@@ -1,0 +1,54 @@
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
+import '../modules/home/views/home_view.dart';
+import '../modules/inventory/views/inventory_view.dart';
+import '../modules/sell/views/sell_view.dart';
+
+class PersistentNavigationController extends GetxController {
+  late PersistentTabController tabController;
+  final RxInt currentIndex = 0.obs;
+
+  @override
+  void onInit() {
+    super.onInit();
+    tabController = PersistentTabController(initialIndex: 0);
+  }
+
+  List<Widget> buildScreens() {
+    return [
+      const HomeView(),
+      const InventoryView(),
+      const SellView(),
+    ];
+  }
+
+  List<PersistentBottomNavBarItem> navBarsItems() {
+    return [
+      PersistentBottomNavBarItem(
+        icon: const Icon(Icons.home),
+        title: 'হোম',
+        activeColorPrimary: Colors.blue,
+        inactiveColorPrimary: Colors.grey,
+      ),
+      PersistentBottomNavBarItem(
+        icon: const Icon(Icons.inventory),
+        title: 'ইনভেন্টরি',
+        activeColorPrimary: Colors.blue,
+        inactiveColorPrimary: Colors.grey,
+      ),
+      PersistentBottomNavBarItem(
+        icon: const Icon(Icons.point_of_sale),
+        title: 'বিক্রয়',
+        activeColorPrimary: Colors.blue,
+        inactiveColorPrimary: Colors.grey,
+      ),
+    ];
+  }
+
+  @override
+  void onClose() {
+    tabController.dispose();
+    super.onClose();
+  }
+}
