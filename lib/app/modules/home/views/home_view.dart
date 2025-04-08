@@ -124,21 +124,16 @@ class HomeView extends GetView<HomeController> {
                       Icons.search,
                       color: themeConfig.getTextSecondaryColor(isDarkMode),
                     ),
+                    const SizedBox(width: 8),
+                    Text(
+                      'পণ্য অনুসন্ধান করুন',
+                      style: GoogleFonts.notoSansBengali(
+                        fontSize: 14,
+                        color: themeConfig.getTextSecondaryColor(isDarkMode),
+                      ),
+                    ),
+                    //TODO : Add search functionality
                     Spacer(),
-                    // Expanded(
-                    //   child: TextField(
-                    //     decoration: InputDecoration(
-                    //       hintText: 'Search...',
-                    //       hintStyle: GoogleFonts.poppins(
-                    //         color:
-                    //             themeConfig.getTextSecondaryColor(isDarkMode),
-                    //       ),
-                    //       border: InputBorder.none,
-                    //       contentPadding:
-                    //           const EdgeInsets.symmetric(vertical: 12),
-                    //     ),
-                    //   ),
-                    // ),
                     IconButton(
                       icon: const Icon(Icons.tune),
                       onPressed: () {},
