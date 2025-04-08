@@ -4,6 +4,14 @@ part 'user.g.dart';
 
 @collection
 class User {
+  static final User _instance = User._internal();
+
+  factory User() {
+    return _instance;
+  }
+
+  User._internal();
+
   Id id = Isar.autoIncrement;
 
   late String name;
@@ -12,12 +20,13 @@ class User {
   late String password;
   late String role;
   late bool isActive;
+  late bool isPremium;
   late DateTime createdAt;
   DateTime? updatedAt;
   String? address;
-  Map<String, dynamic>? settings;
+  String? settings;
 
-  User({
+  User.init({
     required this.name,
     required this.email,
     required this.phone,
@@ -26,13 +35,14 @@ class User {
     this.address,
     this.settings,
     this.isActive = true,
+    this.isPremium = false,
   }) {
     createdAt = DateTime.now();
     updatedAt = null;
   }
 
   // Update user settings
-  void updateSettings(Map<String, dynamic> newSettings) {
+  void updateSettings(String newSettings) {
     settings = newSettings;
     updatedAt = DateTime.now();
   }

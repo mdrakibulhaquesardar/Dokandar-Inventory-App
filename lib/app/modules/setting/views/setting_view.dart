@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import '../../../data/services/database_service.dart';
 import '../controllers/setting_controller.dart';
 import '../../../config/app_theme_config.dart';
 
@@ -10,6 +11,8 @@ class SettingView extends GetView<SettingController> {
   Widget build(BuildContext context) {
     final themeConfig = Get.find<AppThemeConfig>();
     final isDarkMode = Get.isDarkMode;
+
+    DatabaseService databaseService = Get.find<DatabaseService>();
 
     return Scaffold(
       backgroundColor: themeConfig.getBackgroundColor(isDarkMode),
@@ -41,7 +44,7 @@ class SettingView extends GetView<SettingController> {
                   color: themeConfig.getPrimaryColor(isDarkMode),
                   borderRadius: BorderRadius.circular(8),
                 ),
-                child: Text(
+                child:  Text(
                   'ফ্রী ট্রায়াল',
                   style: GoogleFonts.poppins(
                     fontSize: 14,

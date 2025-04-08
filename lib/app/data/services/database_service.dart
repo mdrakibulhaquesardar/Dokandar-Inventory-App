@@ -5,6 +5,8 @@ import '../models/product.dart';
 import '../models/customer.dart';
 import '../models/sale.dart';
 import '../models/stock_history.dart';
+import '../models/user.dart';
+import '../models/store.dart';
 
 class DatabaseService extends GetxService {
   late Isar isar;
@@ -12,7 +14,7 @@ class DatabaseService extends GetxService {
   Future<DatabaseService> init() async {
     final dir = await getApplicationDocumentsDirectory();
     isar = await Isar.open(
-      [ProductSchema, CustomerSchema, SaleSchema, StockHistorySchema],
+      [ProductSchema, CustomerSchema, SaleSchema, StockHistorySchema, UserSchema, StoreSchema],
       directory: dir.path,
     );
     return this;
@@ -61,17 +63,54 @@ class DatabaseService extends GetxService {
     });
   }
 
-  // // Stock History operations
-  // Future<List<StockHistory>> getStockHistory(int productId) async {
-  //   return await isar.stockHistories
-  //       .filter()
-  //       .productIdEqualTo(productId)
-  //       .findAll();
-  // }
-  //
-  // Future<void> saveStockHistory(StockHistory history) async {
-  //   await isar.writeTxn(() async {
-  //     await isar.stockHistories.put(history);
-  //   });
-  // }
+  // Store operations
+  Future<Store?> getStore() async {
+    return await isar.stores.where().findFirst();
+  }
+
+  Future<void> saveStore(Store store) async {
+    await isar.writeTxn(() async {
+      await isar.stores.put(store);
+    });
+  }
+
+  Future<void> updateStore(Store store) async {
+    await isar.writeTxn(() async {
+      await isar.stores.put(store);
+    });
+  }
+
+
+  // Stock History operations
+  Future<List<StockHistory>> getStockHistory(int productId) async {
+    return await isar.stockHistorys
+        .filter()
+        .productIdEqualTo(productId)
+        .findAll();
+  }
+
+  Future<void> saveStockHistory(StockHistory history) async {
+    await isar.writeTxn(() async {
+      await isar.stockHistorys.put(history);
+    });
+  }
+
+  // User operations
+  Future<List<User>> getAllUsers() async {
+    return await isar.users.where().findAll();
+  }
+  Future<User?> getUserById(int id) async {
+    return await isar.users.get(id);
+  }
+  Future<void> saveUser(User user) async {
+    await isar.writeTxn(() async {
+      await isar.users.put(user);
+    });
+  }
+
+  Future<void> deleteUser(int id) async {
+    await isar.writeTxn(() async {
+      await isar.users.delete(id);
+    });
+  }
 }

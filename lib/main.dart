@@ -16,9 +16,6 @@ void main() async {
   await Get.putAsync(() => DatabaseService().init());
   await Get.putAsync(() => AppConfig().init());
   Get.put(AppThemeConfig());
-
-  // Initialize controllers
-  Get.put(ProductController());
   Get.put(PersistentNavigationController());
 
   runApp(GetMaterialApp(
