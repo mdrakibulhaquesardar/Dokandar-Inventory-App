@@ -74,13 +74,13 @@ class ProductController extends GetxController {
     return products.where((product) => product.isLowStock).toList();
   }
 
-  List<Product> searchProducts(String query) {
-    if (query.isEmpty) return products;
-    return products
-        .where((product) =>
-            product.name.toLowerCase().contains(query.toLowerCase()) ||
-            product.sku.toLowerCase().contains(query.toLowerCase()) ||
-            product.category.toLowerCase().contains(query.toLowerCase()))
-        .toList();
-  }
+  // List<Product> searchProducts(String query) {
+  //   if (query.isEmpty) return products;
+  //   return products
+  //       .where((product) =>
+  //           product.name.toLowerCase().contains(query.toLowerCase()) ||
+  //           product.sku.toLowerCase().contains(query.toLowerCase()) ||
+  //           product.category.name!.toLowerCase().contains(query.toLowerCase()))
+  //       .toList();
+  // }
 }

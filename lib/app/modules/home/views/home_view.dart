@@ -1,4 +1,3 @@
-
 import 'package:dokandar_app_inventory/app/config/app_theme_config.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -27,6 +26,7 @@ class HomeView extends GetView<HomeController> {
             ),
           ),
           child: Column(
+
             children: [
               Row(
                 children: [
@@ -44,21 +44,34 @@ class HomeView extends GetView<HomeController> {
                     width: 10,
                   ),
                   Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        "আবজাল শপ",
-                        style: GoogleFonts.notoSansBengali(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          color: themeConfig.getTextPrimaryColor(isDarkMode),
-                        ),
+                      GetBuilder<HomeController>(
+                        assignId: true,
+                        builder: (logic) {
+                          return Text(
+                            logic.store?.name ?? 'তথ্য খুজে পাওয়া যায়নি',
+                            style: GoogleFonts.notoSansBengali(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                              color: themeConfig.getTextPrimaryColor(
+                                  isDarkMode),
+                            ),
+                          );
+                        },
                       ),
-                      Text(
-                        "ইনভেন্টরি ম্যানেজার",
-                        style: GoogleFonts.notoSansBengali(
-                          fontSize: 12,
-                          color: themeConfig.getTextSecondaryColor(isDarkMode),
-                        ),
+                      GetBuilder<HomeController>(
+                        assignId: true,
+                        builder: (logic) {
+                          return Text(
+                            logic.store?.businessType ?? 'তথ্য খুজে পাওয়া যায়নি',
+                            style: GoogleFonts.notoSansBengali(
+                              fontSize: 12,
+                              color: themeConfig.getTextSecondaryColor(
+                                  isDarkMode),
+                            ),
+                          );
+                        },
                       ),
                     ],
                   ),
@@ -370,7 +383,7 @@ class _RecentSalesList extends StatelessWidget {
           return ListTile(
             leading: CircleAvatar(
               backgroundColor:
-                  themeConfig.getPrimaryColor(isDarkMode).withOpacity(0.1),
+              themeConfig.getPrimaryColor(isDarkMode).withOpacity(0.1),
               child: Icon(
                 Icons.shopping_bag_outlined,
                 color: themeConfig.getPrimaryColor(isDarkMode),
@@ -422,7 +435,7 @@ class _LowStockProductsList extends StatelessWidget {
           return ListTile(
             leading: CircleAvatar(
               backgroundColor:
-                  themeConfig.getWarningColor(isDarkMode).withOpacity(0.1),
+              themeConfig.getWarningColor(isDarkMode).withOpacity(0.1),
               child: Icon(
                 Icons.warning_amber_outlined,
                 color: themeConfig.getWarningColor(isDarkMode),

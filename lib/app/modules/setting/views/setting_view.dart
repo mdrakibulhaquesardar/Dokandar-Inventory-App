@@ -1,3 +1,4 @@
+import 'package:dokandar_app_inventory/app/utils/DateTimeUtils.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -7,6 +8,7 @@ import '../../../config/app_theme_config.dart';
 
 class SettingView extends GetView<SettingController> {
   const SettingView({super.key});
+
   @override
   Widget build(BuildContext context) {
     final themeConfig = Get.find<AppThemeConfig>();
@@ -44,8 +46,8 @@ class SettingView extends GetView<SettingController> {
                   color: themeConfig.getPrimaryColor(isDarkMode),
                   borderRadius: BorderRadius.circular(8),
                 ),
-                child:  Text(
-                  'ফ্রী ট্রায়াল',
+                child: Text(
+                  'বেটা ভার্সন',
                   style: GoogleFonts.poppins(
                     fontSize: 14,
                     fontWeight: FontWeight.w500,
@@ -70,7 +72,7 @@ class SettingView extends GetView<SettingController> {
               'থিম',
               Icons.palette_outlined,
               themeConfig.getPrimaryColor(isDarkMode),
-              () {},
+                  () {},
               themeConfig,
               isDarkMode,
             ),
@@ -78,7 +80,7 @@ class SettingView extends GetView<SettingController> {
               'ভাষা',
               Icons.language_outlined,
               themeConfig.getPrimaryColor(isDarkMode),
-              () {},
+                  () {},
               themeConfig,
               isDarkMode,
             ),
@@ -89,7 +91,7 @@ class SettingView extends GetView<SettingController> {
               'ব্যাকআপ ডাটা',
               Icons.backup_outlined,
               Colors.green,
-              () {},
+                  () {},
               themeConfig,
               isDarkMode,
             ),
@@ -97,7 +99,7 @@ class SettingView extends GetView<SettingController> {
               'রিস্টোর ডাটা',
               Icons.restore_outlined,
               Colors.orange,
-              () {},
+                  () {},
               themeConfig,
               isDarkMode,
             ),
@@ -108,7 +110,7 @@ class SettingView extends GetView<SettingController> {
               'দোকানের তথ্য',
               Icons.store_outlined,
               Colors.blue,
-              () {},
+                  () {},
               themeConfig,
               isDarkMode,
             ),
@@ -116,7 +118,7 @@ class SettingView extends GetView<SettingController> {
               'ক্যাটাগরি ম্যানেজমেন্ট',
               Icons.category_outlined,
               Colors.purple,
-              () {},
+                  () {},
               themeConfig,
               isDarkMode,
             ),
@@ -127,7 +129,7 @@ class SettingView extends GetView<SettingController> {
               'সাপোর্ট সেন্টার',
               Icons.support_agent_outlined,
               Colors.teal,
-              () {},
+                  () {},
               themeConfig,
               isDarkMode,
             ),
@@ -135,7 +137,7 @@ class SettingView extends GetView<SettingController> {
               'ফিডব্যাক',
               Icons.feedback_outlined,
               Colors.amber,
-              () {},
+                  () {},
               themeConfig,
               isDarkMode,
             ),
@@ -143,7 +145,7 @@ class SettingView extends GetView<SettingController> {
               'অ্যাপ ভার্সন',
               Icons.info_outline,
               Colors.grey,
-              () {},
+                  () {},
               themeConfig,
               isDarkMode,
             ),
@@ -153,8 +155,8 @@ class SettingView extends GetView<SettingController> {
     );
   }
 
-  Widget _buildSectionTitle(
-      String title, AppThemeConfig themeConfig, bool isDarkMode) {
+  Widget _buildSectionTitle(String title, AppThemeConfig themeConfig,
+      bool isDarkMode) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -177,14 +179,12 @@ class SettingView extends GetView<SettingController> {
     );
   }
 
-  Widget _buildSettingCard(
-    String title,
-    IconData icon,
-    Color color,
-    VoidCallback onTap,
-    AppThemeConfig themeConfig,
-    bool isDarkMode,
-  ) {
+  Widget _buildSettingCard(String title,
+      IconData icon,
+      Color color,
+      VoidCallback onTap,
+      AppThemeConfig themeConfig,
+      bool isDarkMode,) {
     return Card(
       elevation: 0,
       color: themeConfig.getSurfaceColor(isDarkMode),
@@ -227,7 +227,7 @@ class SettingView extends GetView<SettingController> {
               CircleAvatar(
                 radius: 40,
                 backgroundColor:
-                    themeConfig.getPrimaryColor(isDarkMode).withOpacity(0.1),
+                themeConfig.getPrimaryColor(isDarkMode).withOpacity(0.1),
                 child: const CircleAvatar(
                   radius: 38,
                   backgroundImage: AssetImage('assets/images/profile.jpg'),
@@ -238,29 +238,45 @@ class SettingView extends GetView<SettingController> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      'মোঃ রাকিব হাসান',
-                      style: GoogleFonts.poppins(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w600,
-                        color: themeConfig.getTextPrimaryColor(isDarkMode),
-                      ),
+                    GetBuilder<SettingController>(
+                      assignId: true,
+                      builder: (logic) {
+                        return Text(
+                          logic.user?.name ?? 'রাকিব',
+                          style: GoogleFonts.poppins(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w600,
+                            color: themeConfig.getTextPrimaryColor(isDarkMode),
+                          ),
+                        );
+                      },
                     ),
-                    Text(
-                      'rakib@example.com',
-                      style: GoogleFonts.poppins(
-                        fontSize: 14,
-                        color: themeConfig.getTextSecondaryColor(isDarkMode),
-                      ),
+                    GetBuilder<SettingController>(
+                      assignId: true,
+                      builder: (logic) {
+                        return Text(
+                          logic.user?.email ?? "তথ্য খুজে পাওয়া যায়নি",
+                          style: GoogleFonts.poppins(
+                            fontSize: 14,
+                            color: themeConfig.getTextSecondaryColor(
+                                isDarkMode),
+                          ),
+                        );
+                      },
                     ),
                     const SizedBox(height: 4),
-                    Text(
-                      'স্টোর ম্যানেজার',
-                      style: GoogleFonts.poppins(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w500,
-                        color: themeConfig.getPrimaryColor(isDarkMode),
-                      ),
+                    GetBuilder<SettingController>(
+                      assignId: true,
+                      builder: (logic) {
+                        return Text(
+                          logic.user?.role ?? "তথ্য খুজে পাওয়া যায়নি",
+                          style: GoogleFonts.poppins(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w500,
+                            color: themeConfig.getPrimaryColor(isDarkMode),
+                          ),
+                        );
+                      },
                     ),
                   ],
                 ),
@@ -285,28 +301,46 @@ class SettingView extends GetView<SettingController> {
             ),
             child: Column(
               children: [
-                _buildInfoRow(
-                  'স্টোর:',
-                  'রাকিব জেনারেল স্টোর',
-                  Icons.store_outlined,
-                  themeConfig,
-                  isDarkMode,
+                GetBuilder<SettingController>(
+                  assignId: true,
+                  builder: (logic) {
+                    return _buildInfoRow(
+                      'স্টোর:',
+                      logic.store?.name ?? 'তথ্য খুজে পাওয়া যায়নি',
+                      Icons.store_outlined,
+                      themeConfig,
+                      isDarkMode,
+                    );
+                  },
                 ),
                 const SizedBox(height: 8),
-                _buildInfoRow(
-                  'যোগদান:',
-                  '১ জানুয়ারি, ২০২৪',
-                  Icons.calendar_today_outlined,
-                  themeConfig,
-                  isDarkMode,
+                GetBuilder<SettingController>(
+                  assignId: true,
+                  builder: (logic) {
+                    return _buildInfoRow(
+                      'যোগদান:',
+                      logic.user?.createdAt != null
+                          ? DateTimeUtils.convertToBengaliDate(
+                          logic.user!.createdAt)
+                          : 'তারিখ খুজে পাওয়া যায়নি',
+                      Icons.calendar_today_outlined,
+                      themeConfig,
+                      isDarkMode,
+                    );
+                  },
                 ),
                 const SizedBox(height: 8),
-                _buildInfoRow(
-                  'মোবাইল:',
-                  '+৮৮০১৭১২৩৪৫৬৭৮',
-                  Icons.phone_outlined,
-                  themeConfig,
-                  isDarkMode,
+                GetBuilder<SettingController>(
+                  assignId: true,
+                  builder: (logic) {
+                    return _buildInfoRow(
+                      'মোবাইল:',
+                      logic.user?.phone ?? 'মোবাইল নাম্বার নেই',
+                      Icons.phone_outlined,
+                      themeConfig,
+                      isDarkMode,
+                    );
+                  },
                 ),
               ],
             ),
@@ -316,13 +350,11 @@ class SettingView extends GetView<SettingController> {
     );
   }
 
-  Widget _buildInfoRow(
-    String label,
-    String value,
-    IconData icon,
-    AppThemeConfig themeConfig,
-    bool isDarkMode,
-  ) {
+  Widget _buildInfoRow(String label,
+      String value,
+      IconData icon,
+      AppThemeConfig themeConfig,
+      bool isDarkMode,) {
     return Row(
       children: [
         Icon(
@@ -350,90 +382,6 @@ class SettingView extends GetView<SettingController> {
           ),
         ),
       ],
-    );
-  }
-
-  Widget _buildStatisticsSection(AppThemeConfig themeConfig, bool isDarkMode) {
-    return GridView.count(
-      crossAxisCount: 2,
-      crossAxisSpacing: 16,
-      mainAxisSpacing: 16,
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      children: [
-        _buildStatCard(
-          'মোট পণ্য',
-          '১২৫',
-          Icons.inventory_2_outlined,
-          Colors.blue,
-          themeConfig,
-          isDarkMode,
-        ),
-        _buildStatCard(
-          'মোট বিক্রয়',
-          '৳৫০,০০০',
-          Icons.point_of_sale,
-          Colors.green,
-          themeConfig,
-          isDarkMode,
-        ),
-        _buildStatCard(
-          'মোট ক্যাটাগরি',
-          '১২',
-          Icons.category_outlined,
-          Colors.purple,
-          themeConfig,
-          isDarkMode,
-        ),
-        _buildStatCard(
-          'মোট কাস্টমার',
-          '৫০',
-          Icons.people_outline,
-          Colors.orange,
-          themeConfig,
-          isDarkMode,
-        ),
-      ],
-    );
-  }
-
-  Widget _buildStatCard(
-    String title,
-    String value,
-    IconData icon,
-    Color color,
-    AppThemeConfig themeConfig,
-    bool isDarkMode,
-  ) {
-    return Container(
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: themeConfig.getSurfaceColor(isDarkMode),
-        borderRadius: BorderRadius.circular(12),
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(icon, color: color, size: 32),
-          const SizedBox(height: 8),
-          Text(
-            value,
-            style: GoogleFonts.poppins(
-              fontSize: 24,
-              fontWeight: FontWeight.w600,
-              color: themeConfig.getTextPrimaryColor(isDarkMode),
-            ),
-          ),
-          Text(
-            title,
-            textAlign: TextAlign.center,
-            style: GoogleFonts.poppins(
-              fontSize: 14,
-              color: themeConfig.getTextSecondaryColor(isDarkMode),
-            ),
-          ),
-        ],
-      ),
     );
   }
 }

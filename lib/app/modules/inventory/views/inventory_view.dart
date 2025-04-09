@@ -2,6 +2,7 @@ import 'package:dokandar_app_inventory/app/config/app_theme_config.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import '../../../routes/app_pages.dart';
 import '../controllers/inventory_controller.dart';
 
 class InventoryView extends GetView<InventoryController> {
@@ -157,7 +158,9 @@ class InventoryView extends GetView<InventoryController> {
                   'সকল পণ্য',
                   Icons.inventory_2_outlined,
                   themeConfig.getPrimaryColor(isDarkMode),
-                  () {},
+                  () {
+                    Get.toNamed(Routes.ALL_PRODUCTS);
+                  },
                   themeConfig,
                   isDarkMode,
                   false,
@@ -269,6 +272,24 @@ class InventoryView extends GetView<InventoryController> {
                   child: ListTile(
                     onTap: () {
                       //TODO : Implement navigation to respective screen
+                      switch (index) {
+                        case 0:
+                          // Navigate to Transaction History
+                          break;
+                        case 1:
+                          // Navigate to Product Category
+                           Get.toNamed(Routes.CATEGORY);
+                          break;
+                        case 2:
+                          // Navigate to Supplier Management
+                          break;
+                        case 3:
+                          // Navigate to Stock Alert
+                          break;
+                        case 4:
+                          // Navigate to Report Generation
+                          break;
+                      }
                     },
                     contentPadding: const EdgeInsets.only(
                       left: 16,

@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'app/data/services/database_service.dart';
 import 'app/controllers/product_controller.dart';
 import 'app/controllers/persistent_navigation_controller.dart';
+import 'app/modules/setting/controllers/setting_controller.dart';
 import 'app/routes/app_pages.dart';
 import 'app/config/app_config.dart';
 import 'app/config/app_theme_config.dart';
@@ -13,10 +14,17 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   // Initialize services
-  await Get.putAsync(() => DatabaseService().init());
+  final dbService = await Get.putAsync(() => DatabaseService().init());
   await Get.putAsync(() => AppConfig().init());
   Get.put(AppThemeConfig());
+
+  // Initialize controllers
   Get.put(PersistentNavigationController());
+  Get.put(SettingController());
+
+  // Check if user exists
+  final hasUser = await dbService.hasUser();
+  final initialRoute = hasUser ? Routes.MAIN : Routes.SETUP;
 
   runApp(GetMaterialApp(
     debugShowCheckedModeBanner: false,
@@ -24,7 +32,7 @@ void main() async {
     theme: Get.find<AppThemeConfig>().getLightTheme(),
     darkTheme: Get.find<AppThemeConfig>().getDarkTheme(),
     themeMode: ThemeMode.system,
-    initialRoute: AppPages.INITIAL,
+    initialRoute:   initialRoute,
     getPages: AppPages.routes,
     defaultTransition: Transition.fade,
     initialBinding: BindingsBuilder(() {

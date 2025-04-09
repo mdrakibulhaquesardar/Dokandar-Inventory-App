@@ -1,6 +1,8 @@
 import 'package:isar/isar.dart';
 import 'package:uuid/uuid.dart';
 
+
+
 part 'product.g.dart';
 
 @collection
