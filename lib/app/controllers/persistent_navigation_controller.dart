@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/inventory/views/inventory_view.dart';
+import '../modules/sell/views/sell_view.dart';
 import '../modules/setting/views/setting_view.dart';
 
 class PersistentNavigationController extends GetxController {
@@ -20,6 +21,7 @@ class PersistentNavigationController extends GetxController {
     return [
       const HomeView(),
       const InventoryView(),
+      const SellView(),
       const SettingView(),
     ];
   }
@@ -35,6 +37,12 @@ class PersistentNavigationController extends GetxController {
       PersistentBottomNavBarItem(
         icon: const Icon(Icons.inventory),
         title: 'ইনভেন্টরি',
+        activeColorPrimary: Get.find<AppThemeConfig>().getPrimaryColor(Get.isDarkMode),
+        inactiveColorPrimary: Get.isDarkMode ? Colors.grey[300] : Colors.grey[600],
+      ),
+      PersistentBottomNavBarItem(
+        icon: const Icon(Icons.sell),
+        title: 'বিক্রয় কাউনটার',
         activeColorPrimary: Get.find<AppThemeConfig>().getPrimaryColor(Get.isDarkMode),
         inactiveColorPrimary: Get.isDarkMode ? Colors.grey[300] : Colors.grey[600],
       ),

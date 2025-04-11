@@ -84,6 +84,18 @@ class DatabaseService extends GetxService {
     });
   }
 
+  Future<void> updateCustomer(Customer customer) async {
+    await isar.writeTxn(() async {
+      await isar.customers.put(customer);
+    });
+  }
+
+  Future<void> deleteCustomer(int id) async {
+    await isar.writeTxn(() async {
+      await isar.customers.delete(id);
+    });
+  }
+
   // Sale operations
   Future<List<Sale>> getAllSales() async {
     return await isar.sales.where().findAll();
@@ -99,6 +111,17 @@ class DatabaseService extends GetxService {
     await isar.writeTxn(() async {
       await isar.stores.put(store);
     });
+  }
+
+  //searchProducts
+
+  Future<List<Product>> searchProducts(String query) async {
+    return await isar.products
+        .filter()
+        .nameContains(query)
+        .or()
+        .skuContains(query)
+        .findAll();
   }
 
 

@@ -8,7 +8,7 @@ import '../../../data/services/database_service.dart';
 
 class HomeController extends GetxController {
   var currentIndex = 0.obs;
-  Store? store;
+  var store = Rxn<Store>(); // Made store observable
 
   void changePage(int index) {
     currentIndex.value = index;
@@ -26,26 +26,24 @@ class HomeController extends GetxController {
   }
 
   void getStoreInfo() async {
-    store = await Get.find<DatabaseService>().getStore();
-    if (store != null) {
-      if (kDebugMode) {
-        print("Store found: ${store!.name}");
-      }
+    store.value = await Get.find<DatabaseService>().getStore(); // Update the observable
+    if (store.value != null) {
+      debugPrint("Store found: ${store.value!.name}");
     } else {
-      if (kDebugMode) {
-        print("No store found");
-      }
+      debugPrint("No store found");
     }
   }
+
   @override
   void onInit() {
     super.onInit();
-    getStoreInfo();
+
   }
 
   @override
   void onReady() {
     super.onReady();
+    getStoreInfo();
   }
 
   @override

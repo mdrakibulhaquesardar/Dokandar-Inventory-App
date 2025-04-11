@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'app/data/services/database_service.dart';
 import 'app/controllers/product_controller.dart';
 import 'app/controllers/persistent_navigation_controller.dart';
+import 'app/modules/sell/controllers/sell_controller.dart';
 import 'app/modules/setting/controllers/setting_controller.dart';
 import 'app/routes/app_pages.dart';
 import 'app/config/app_config.dart';
@@ -21,6 +22,8 @@ void main() async {
   // Initialize controllers
   Get.put(PersistentNavigationController());
   Get.put(SettingController());
+  Get.put(HomeController());
+  Get.put(SellController());
 
   // Check if user exists
   final hasUser = await dbService.hasUser();

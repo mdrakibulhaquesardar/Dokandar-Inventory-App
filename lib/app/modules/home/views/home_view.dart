@@ -50,7 +50,7 @@ class HomeView extends GetView<HomeController> {
                         assignId: true,
                         builder: (logic) {
                           return Text(
-                            logic.store?.name ?? 'তথ্য খুজে পাওয়া যায়নি',
+                            logic.store.value?.name ?? 'তথ্য খুজে পাওয়া যায়নি',
                             style: GoogleFonts.notoSansBengali(
                               fontSize: 18,
                               fontWeight: FontWeight.bold,
@@ -64,7 +64,7 @@ class HomeView extends GetView<HomeController> {
                         assignId: true,
                         builder: (logic) {
                           return Text(
-                            logic.store?.businessType ?? 'তথ্য খুজে পাওয়া যায়নি',
+                            logic.store.value?.businessType ?? 'তথ্য খুজে পাওয়া যায়নি',
                             style: GoogleFonts.notoSansBengali(
                               fontSize: 12,
                               color: themeConfig.getTextSecondaryColor(

@@ -27,28 +27,38 @@ const CustomerSchema = CollectionSchema(
       name: r'createdAt',
       type: IsarType.dateTime,
     ),
-    r'isActive': PropertySchema(
+    r'hasDue': PropertySchema(
       id: 2,
+      name: r'hasDue',
+      type: IsarType.bool,
+    ),
+    r'isActive': PropertySchema(
+      id: 3,
       name: r'isActive',
       type: IsarType.bool,
     ),
     r'name': PropertySchema(
-      id: 3,
+      id: 4,
       name: r'name',
       type: IsarType.string,
     ),
     r'phone': PropertySchema(
-      id: 4,
+      id: 5,
       name: r'phone',
       type: IsarType.string,
     ),
+    r'totalDue': PropertySchema(
+      id: 6,
+      name: r'totalDue',
+      type: IsarType.double,
+    ),
     r'totalPurchases': PropertySchema(
-      id: 5,
+      id: 7,
       name: r'totalPurchases',
       type: IsarType.double,
     ),
     r'updatedAt': PropertySchema(
-      id: 6,
+      id: 8,
       name: r'updatedAt',
       type: IsarType.dateTime,
     )
@@ -92,11 +102,13 @@ void _customerSerialize(
 ) {
   writer.writeString(offsets[0], object.address);
   writer.writeDateTime(offsets[1], object.createdAt);
-  writer.writeBool(offsets[2], object.isActive);
-  writer.writeString(offsets[3], object.name);
-  writer.writeString(offsets[4], object.phone);
-  writer.writeDouble(offsets[5], object.totalPurchases);
-  writer.writeDateTime(offsets[6], object.updatedAt);
+  writer.writeBool(offsets[2], object.hasDue);
+  writer.writeBool(offsets[3], object.isActive);
+  writer.writeString(offsets[4], object.name);
+  writer.writeString(offsets[5], object.phone);
+  writer.writeDouble(offsets[6], object.totalDue);
+  writer.writeDouble(offsets[7], object.totalPurchases);
+  writer.writeDateTime(offsets[8], object.updatedAt);
 }
 
 Customer _customerDeserialize(
@@ -107,14 +119,16 @@ Customer _customerDeserialize(
 ) {
   final object = Customer(
     address: reader.readStringOrNull(offsets[0]),
-    isActive: reader.readBoolOrNull(offsets[2]) ?? true,
-    name: reader.readString(offsets[3]),
-    phone: reader.readString(offsets[4]),
-    totalPurchases: reader.readDoubleOrNull(offsets[5]) ?? 0,
+    hasDue: reader.readBoolOrNull(offsets[2]) ?? false,
+    isActive: reader.readBoolOrNull(offsets[3]) ?? true,
+    name: reader.readString(offsets[4]),
+    phone: reader.readString(offsets[5]),
+    totalDue: reader.readDoubleOrNull(offsets[6]) ?? 0,
+    totalPurchases: reader.readDoubleOrNull(offsets[7]) ?? 0,
   );
   object.createdAt = reader.readDateTime(offsets[1]);
   object.id = id;
-  object.updatedAt = reader.readDateTimeOrNull(offsets[6]);
+  object.updatedAt = reader.readDateTimeOrNull(offsets[8]);
   return object;
 }
 
@@ -130,14 +144,18 @@ P _customerDeserializeProp<P>(
     case 1:
       return (reader.readDateTime(offset)) as P;
     case 2:
-      return (reader.readBoolOrNull(offset) ?? true) as P;
+      return (reader.readBoolOrNull(offset) ?? false) as P;
     case 3:
-      return (reader.readString(offset)) as P;
+      return (reader.readBoolOrNull(offset) ?? true) as P;
     case 4:
       return (reader.readString(offset)) as P;
     case 5:
-      return (reader.readDoubleOrNull(offset) ?? 0) as P;
+      return (reader.readString(offset)) as P;
     case 6:
+      return (reader.readDoubleOrNull(offset) ?? 0) as P;
+    case 7:
+      return (reader.readDoubleOrNull(offset) ?? 0) as P;
+    case 8:
       return (reader.readDateTimeOrNull(offset)) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
@@ -428,6 +446,16 @@ extension CustomerQueryFilter
         includeLower: includeLower,
         upper: upper,
         includeUpper: includeUpper,
+      ));
+    });
+  }
+
+  QueryBuilder<Customer, Customer, QAfterFilterCondition> hasDueEqualTo(
+      bool value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'hasDue',
+        value: value,
       ));
     });
   }
@@ -754,6 +782,68 @@ extension CustomerQueryFilter
     });
   }
 
+  QueryBuilder<Customer, Customer, QAfterFilterCondition> totalDueEqualTo(
+    double value, {
+    double epsilon = Query.epsilon,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'totalDue',
+        value: value,
+        epsilon: epsilon,
+      ));
+    });
+  }
+
+  QueryBuilder<Customer, Customer, QAfterFilterCondition> totalDueGreaterThan(
+    double value, {
+    bool include = false,
+    double epsilon = Query.epsilon,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'totalDue',
+        value: value,
+        epsilon: epsilon,
+      ));
+    });
+  }
+
+  QueryBuilder<Customer, Customer, QAfterFilterCondition> totalDueLessThan(
+    double value, {
+    bool include = false,
+    double epsilon = Query.epsilon,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'totalDue',
+        value: value,
+        epsilon: epsilon,
+      ));
+    });
+  }
+
+  QueryBuilder<Customer, Customer, QAfterFilterCondition> totalDueBetween(
+    double lower,
+    double upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+    double epsilon = Query.epsilon,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'totalDue',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+        epsilon: epsilon,
+      ));
+    });
+  }
+
   QueryBuilder<Customer, Customer, QAfterFilterCondition> totalPurchasesEqualTo(
     double value, {
     double epsilon = Query.epsilon,
@@ -919,6 +1009,18 @@ extension CustomerQuerySortBy on QueryBuilder<Customer, Customer, QSortBy> {
     });
   }
 
+  QueryBuilder<Customer, Customer, QAfterSortBy> sortByHasDue() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'hasDue', Sort.asc);
+    });
+  }
+
+  QueryBuilder<Customer, Customer, QAfterSortBy> sortByHasDueDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'hasDue', Sort.desc);
+    });
+  }
+
   QueryBuilder<Customer, Customer, QAfterSortBy> sortByIsActive() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'isActive', Sort.asc);
@@ -952,6 +1054,18 @@ extension CustomerQuerySortBy on QueryBuilder<Customer, Customer, QSortBy> {
   QueryBuilder<Customer, Customer, QAfterSortBy> sortByPhoneDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'phone', Sort.desc);
+    });
+  }
+
+  QueryBuilder<Customer, Customer, QAfterSortBy> sortByTotalDue() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'totalDue', Sort.asc);
+    });
+  }
+
+  QueryBuilder<Customer, Customer, QAfterSortBy> sortByTotalDueDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'totalDue', Sort.desc);
     });
   }
 
@@ -1006,6 +1120,18 @@ extension CustomerQuerySortThenBy
     });
   }
 
+  QueryBuilder<Customer, Customer, QAfterSortBy> thenByHasDue() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'hasDue', Sort.asc);
+    });
+  }
+
+  QueryBuilder<Customer, Customer, QAfterSortBy> thenByHasDueDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'hasDue', Sort.desc);
+    });
+  }
+
   QueryBuilder<Customer, Customer, QAfterSortBy> thenById() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'id', Sort.asc);
@@ -1054,6 +1180,18 @@ extension CustomerQuerySortThenBy
     });
   }
 
+  QueryBuilder<Customer, Customer, QAfterSortBy> thenByTotalDue() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'totalDue', Sort.asc);
+    });
+  }
+
+  QueryBuilder<Customer, Customer, QAfterSortBy> thenByTotalDueDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'totalDue', Sort.desc);
+    });
+  }
+
   QueryBuilder<Customer, Customer, QAfterSortBy> thenByTotalPurchases() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'totalPurchases', Sort.asc);
@@ -1094,6 +1232,12 @@ extension CustomerQueryWhereDistinct
     });
   }
 
+  QueryBuilder<Customer, Customer, QDistinct> distinctByHasDue() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'hasDue');
+    });
+  }
+
   QueryBuilder<Customer, Customer, QDistinct> distinctByIsActive() {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'isActive');
@@ -1111,6 +1255,12 @@ extension CustomerQueryWhereDistinct
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'phone', caseSensitive: caseSensitive);
+    });
+  }
+
+  QueryBuilder<Customer, Customer, QDistinct> distinctByTotalDue() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'totalDue');
     });
   }
 
@@ -1147,6 +1297,12 @@ extension CustomerQueryProperty
     });
   }
 
+  QueryBuilder<Customer, bool, QQueryOperations> hasDueProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'hasDue');
+    });
+  }
+
   QueryBuilder<Customer, bool, QQueryOperations> isActiveProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'isActive');
@@ -1162,6 +1318,12 @@ extension CustomerQueryProperty
   QueryBuilder<Customer, String, QQueryOperations> phoneProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'phone');
+    });
+  }
+
+  QueryBuilder<Customer, double, QQueryOperations> totalDueProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'totalDue');
     });
   }
 

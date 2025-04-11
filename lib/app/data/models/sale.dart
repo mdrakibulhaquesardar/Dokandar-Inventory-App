@@ -59,12 +59,14 @@ class Sale {
 
 @embedded
 class SaleItem {
+  late String productName;
   late int productId;
   late double quantity;
   late double unitPrice;
   late double totalPrice;
 
   SaleItem() {
+    productName = '';
     productId = 0;
     quantity = 0;
     unitPrice = 0;
@@ -73,11 +75,13 @@ class SaleItem {
 
   // Named constructor for creating a SaleItem
   static SaleItem create({
+    required String productName,
     required int productId,
     required double quantity,
     required double unitPrice,
   }) {
     final item = SaleItem()
+      ..productName = productName
       ..productId = productId
       ..quantity = quantity
       ..unitPrice = unitPrice

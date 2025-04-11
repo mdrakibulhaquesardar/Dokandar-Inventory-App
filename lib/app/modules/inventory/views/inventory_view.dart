@@ -175,10 +175,12 @@ class InventoryView extends GetView<InventoryController> {
                   true,
                 ),
                 _buildOptionCard(
-                  'ব্যবহারকারী',
+                  'সকল কাস্টমার',
                   Icons.person_outline,
                   themeConfig.getInfoColor(isDarkMode),
-                  () {},
+                  () {
+                    Get.toNamed(Routes.ALL_CUSTOMER);
+                  },
                   themeConfig,
                   isDarkMode,
                   false,

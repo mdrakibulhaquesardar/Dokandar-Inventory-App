@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../../config/app_theme_config.dart';
+import '../../../utils/DateTimeUtils.dart';
 import '../controllers/AllProductController.dart';
 
 class AllProductsView extends GetView<AllProductController> {
@@ -61,31 +62,35 @@ class AllProductsView extends GetView<AllProductController> {
                   children: [
                     Obx(() {
                       return _buildInfoCard(
-                        context,
-                        'মোট পণ্য',
-                        '${controller.products.length}টি',
-                        Icons.inventory_2,
-                        themeConfig,
-                        isDarkMode,
-                      );
+                          context,
+                          'মোট পণ্য',
+                          '${controller.products.length}টি',
+                          Icons.inventory_2,
+                          themeConfig,
+                          isDarkMode,
+                          false);
                     }),
-                    _buildInfoCard(
-                      context,
-                      'স্টক আউট',
-                      '0টি',
-                      Icons.warning,
-                      themeConfig,
-                      isDarkMode,
-                    ),
                     Obx(() {
                       return _buildInfoCard(
                         context,
-                        'মোট মূল্য',
-                        '৳${controller.products.fold(0.0, (sum, item) => sum + item.unitPrice)}',
-                        Icons.attach_money,
+                        'স্টক আউট',
+                        '${controller.products.where((product) => product.stockQuantity < 10).length}টি',
+                        Icons.warning,
                         themeConfig,
                         isDarkMode,
+                        controller.products
+                            .any((product) => product.stockQuantity < 10),
                       );
+                    }),
+                    Obx(() {
+                      return _buildInfoCard(
+                          context,
+                          'মোট মূল্য',
+                          '৳${controller.products.fold(0.0, (sum, item) => sum + item.unitPrice * item.stockQuantity).toStringAsFixed(2)}',
+                          Icons.attach_money,
+                          themeConfig,
+                          isDarkMode,
+                          false);
                     }),
                   ],
                 ),
@@ -109,16 +114,357 @@ class AllProductsView extends GetView<AllProductController> {
                 itemBuilder: (context, index) {
                   final product = controller.products[index];
                   return Container(
-                    margin: const EdgeInsets.only(bottom: 12),
+                    margin: const EdgeInsets.only(bottom: 5),
                     decoration: BoxDecoration(
                       color: themeConfig.getSurfaceColor(isDarkMode),
-                      borderRadius: BorderRadius.circular(12),
+                      borderRadius: BorderRadius.circular(8),
                     ),
                     child: ListTile(
-                      contentPadding: const EdgeInsets.all(16),
+                      onTap: () {
+                        showModalBottomSheet(
+                          context: context,
+                          isScrollControlled: true,
+                          showDragHandle: true,
+                          backgroundColor: Colors.transparent,
+                          builder: (context) => Container(
+                            height: MediaQuery.of(context).size.height * 0.85,
+                            decoration: BoxDecoration(
+                              color: themeConfig.getBackgroundColor(isDarkMode),
+                              borderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(20),
+                                topRight: Radius.circular(20),
+                              ),
+                            ),
+                            padding: const EdgeInsets.all(16),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'পণ্য সম্পাদনা করুন',
+                                  style: GoogleFonts.poppins(
+                                    fontSize: 24,
+                                    fontWeight: FontWeight.w600,
+                                    color: themeConfig
+                                        .getTextPrimaryColor(isDarkMode),
+                                  ),
+                                ),
+                                const SizedBox(height: 16),
+                                Expanded(
+                                  child: SingleChildScrollView(
+                                    child: Column(
+                                      children: [
+                                        TextField(
+                                          controller: TextEditingController(
+                                              text: product.name),
+                                          decoration: InputDecoration(
+                                            labelText: 'পণ্যের নাম',
+                                            border: OutlineInputBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(12),
+                                            ),
+                                          ),
+                                          onChanged: (value) =>
+                                              product.name = value,
+                                        ),
+
+                                        const SizedBox(height: 16),
+                                        TextField(
+                                          controller: TextEditingController(
+                                              text: product.stockQuantity
+                                                  .toString()),
+                                          decoration: InputDecoration(
+                                            labelText: 'স্টক পরিমাণ',
+                                            border: OutlineInputBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(12),
+                                            ),
+                                          ),
+                                          keyboardType: TextInputType.number,
+                                          onChanged: (value) =>
+                                              product.stockQuantity =
+                                                  double.tryParse(value) ?? 0,
+                                        ),
+                                        const SizedBox(height: 16),
+                                        TextField(
+                                          controller: TextEditingController(
+                                              text:
+                                                  product.unitPrice.toString()),
+                                          decoration: InputDecoration(
+                                            labelText: 'বিক্রয় মূল্য',
+                                            border: OutlineInputBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(12),
+                                            ),
+                                          ),
+                                          keyboardType: TextInputType.number,
+                                          onChanged: (value) =>
+                                              product.unitPrice =
+                                                  double.tryParse(value) ?? 0,
+                                        ),
+                                        const SizedBox(height: 16),
+                                        TextField(
+                                          controller: TextEditingController(
+                                              text: product.buyingPrice
+                                                  .toString()),
+                                          decoration: InputDecoration(
+                                            labelText: 'ক্রয় মূল্য',
+                                            border: OutlineInputBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(12),
+                                            ),
+                                          ),
+                                          keyboardType: TextInputType.number,
+                                          onChanged: (value) =>
+                                              product.buyingPrice =
+                                                  double.tryParse(value) ?? 0,
+                                        ),
+
+                                        const SizedBox(height: 16),
+                                        // Text Created At in left side
+                                        Align(
+                                          alignment: Alignment.centerLeft,
+                                          child: Container(
+                                            padding: const EdgeInsets.all(12),
+                                            decoration: BoxDecoration(
+                                              color: themeConfig
+                                                  .getTextSecondaryColor(
+                                                      isDarkMode)
+                                                  .withOpacity(0.05),
+                                              borderRadius:
+                                                  BorderRadius.circular(8),
+                                            ),
+                                            child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Row(
+                                                  children: [
+                                                    Icon(
+                                                      Icons.trending_up,
+                                                      size: 16,
+                                                      color: themeConfig
+                                                          .getPrimaryColor(
+                                                              isDarkMode),
+                                                    ),
+                                                    const SizedBox(width: 8),
+                                                    Text(
+                                                      'মুনাফা: ${product.profitMargin.toStringAsFixed(2)}%',
+                                                      style: TextStyle(
+                                                        fontSize: 14,
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                        color: themeConfig
+                                                            .getPrimaryColor(
+                                                                isDarkMode),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                                const SizedBox(height: 8),
+                                                Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    Text(
+                                                      'একক মুনাফা:',
+                                                      style: TextStyle(
+                                                        fontSize: 12,
+                                                        color: themeConfig
+                                                            .getTextSecondaryColor(
+                                                                isDarkMode),
+                                                      ),
+                                                    ),
+                                                    Text(
+                                                      '৳${(product.unitPrice - product.buyingPrice).toStringAsFixed(2)}',
+                                                      style: TextStyle(
+                                                        fontSize: 12,
+                                                        fontWeight:
+                                                            FontWeight.w500,
+                                                        color: themeConfig
+                                                            .getTextPrimaryColor(
+                                                                isDarkMode),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                                const SizedBox(height: 4),
+                                                Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    Text(
+                                                      'মোট মুনাফা:',
+                                                      style: TextStyle(
+                                                        fontSize: 12,
+                                                        color: themeConfig
+                                                            .getTextSecondaryColor(
+                                                                isDarkMode),
+                                                      ),
+                                                    ),
+                                                    Text(
+                                                      '৳${((product.unitPrice - product.buyingPrice) * product.stockQuantity).toStringAsFixed(2)}',
+                                                      style: TextStyle(
+                                                        fontSize: 12,
+                                                        fontWeight:
+                                                            FontWeight.w500,
+                                                        color: themeConfig
+                                                            .getTextPrimaryColor(
+                                                                isDarkMode),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                                const SizedBox(height: 4),
+                                                Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    Text(
+                                                      'মোট মূল্য:',
+                                                      style: TextStyle(
+                                                        fontSize: 12,
+                                                        color: themeConfig
+                                                            .getTextSecondaryColor(
+                                                                isDarkMode),
+                                                      ),
+                                                    ),
+                                                    Text(
+                                                      '৳${(product.unitPrice * product.stockQuantity).toStringAsFixed(2)}',
+                                                      style: TextStyle(
+                                                        fontSize: 12,
+                                                        fontWeight:
+                                                            FontWeight.w500,
+                                                        color: themeConfig
+                                                            .getTextPrimaryColor(
+                                                                isDarkMode),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                                const Divider(height: 16),
+                                                Text(
+                                                  'তৈরি হয়েছে: ${DateTimeUtils.convertToBengaliDate(product.createdAt)}',
+                                                  style: TextStyle(
+                                                    fontSize: 11,
+                                                    fontStyle: FontStyle.italic,
+                                                    color: themeConfig
+                                                        .getTextSecondaryColor(
+                                                            isDarkMode),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    TextButton(
+                                      onPressed: () {
+                                        showDialog(
+                                          context: context,
+                                          builder: (context) => AlertDialog(
+                                            title: Text(
+                                              'পণ্য মুছে ফেলুন',
+                                              style: GoogleFonts.poppins(
+                                                fontWeight: FontWeight.w600,
+                                              ),
+                                            ),
+                                            content: Text(
+                                              'আপনি কি নিশ্চিত যে আপনি এই পণ্যটি মুছে ফেলতে চান?',
+                                              style: GoogleFonts.poppins(),
+                                            ),
+                                            actions: [
+                                              TextButton(
+                                                onPressed: () => Get.back(),
+                                                child: Text(
+                                                  'না',
+                                                  style: TextStyle(
+                                                    color: themeConfig
+                                                        .getTextSecondaryColor(
+                                                            isDarkMode),
+                                                  ),
+                                                ),
+                                              ),
+                                              ElevatedButton(
+                                                onPressed: () {
+                                                  controller.deleteProduct(
+                                                      product.id);
+                                                  Get.back();
+                                                  Get.back();
+                                                },
+                                                style: ElevatedButton.styleFrom(
+                                                  backgroundColor: Colors.red,
+                                                  foregroundColor: Colors.white,
+                                                  shape: RoundedRectangleBorder(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            12),
+                                                  ),
+                                                ),
+                                                child: const Text(
+                                                    'হ্যাঁ, মুছে ফেলুন'),
+                                              ),
+                                            ],
+                                          ),
+                                        );
+                                      },
+                                      child: Text(
+                                        'ডিলিট করুন',
+                                        style: TextStyle(
+                                          color: themeConfig
+                                              .getErrorColor(isDarkMode),
+                                        ),
+                                      ),
+                                    ),
+                                    TextButton(
+                                      onPressed: () => Get.back(),
+                                      child: Text(
+                                        'বাতিল করুন',
+                                        style: TextStyle(
+                                          color:
+                                              themeConfig.getTextSecondaryColor(
+                                                  isDarkMode),
+                                        ),
+                                      ),
+                                    ),
+                                    const SizedBox(width: 16),
+                                    ElevatedButton(
+                                      onPressed: () {
+                                        controller.updateProduct(product);
+                                        Get.back();
+                                      },
+                                      style: ElevatedButton.styleFrom(
+                                        backgroundColor: themeConfig
+                                            .getPrimaryColor(isDarkMode),
+                                        foregroundColor: themeConfig
+                                            .getBackgroundColor(isDarkMode),
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(12),
+                                        ),
+                                      ),
+                                      child: const Text('সংরক্ষণ করুন'),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                        );
+                      },
+                      contentPadding: const EdgeInsets.symmetric(
+                          horizontal: 12, vertical: 0),
                       leading: Container(
-                        width: 60,
-                        height: 60,
+                        width: 40,
+                        height: 40,
                         decoration: BoxDecoration(
                           color: themeConfig
                               .getPrimaryColor(isDarkMode)
@@ -134,6 +480,7 @@ class AllProductsView extends GetView<AllProductController> {
                       title: Text(
                         product.name,
                         style: GoogleFonts.poppins(
+                          fontSize: 14,
                           fontWeight: FontWeight.w600,
                           color: themeConfig.getTextPrimaryColor(isDarkMode),
                         ),
@@ -141,250 +488,58 @@ class AllProductsView extends GetView<AllProductController> {
                       subtitle: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
+                          Row(
+                            children: [
+                              Container(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 8, vertical: 4),
+                                decoration: BoxDecoration(
+                                  color: product.stockQuantity < 10
+                                      ? Colors.red.withOpacity(0.1)
+                                      : Colors.green.withOpacity(0.1),
+                                  borderRadius: BorderRadius.circular(4),
+                                ),
+                                child: Text(
+                                  'স্টক: ${product.stockQuantity}',
+                                  style: TextStyle(
+                                    fontSize: 12,
+                                    color: product.stockQuantity < 10
+                                        ? Colors.red
+                                        : Colors.green,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(width: 8),
+                              Container(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 8, vertical: 4),
+                                decoration: BoxDecoration(
+                                  color: themeConfig
+                                      .getPrimaryColor(isDarkMode)
+                                      .withOpacity(0.1),
+                                  borderRadius: BorderRadius.circular(4),
+                                ),
+                                child: Text(
+                                  '৳${product.unitPrice}',
+                                  style: TextStyle(
+                                    fontSize: 12,
+                                    color:
+                                        themeConfig.getPrimaryColor(isDarkMode),
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
                           const SizedBox(height: 4),
                           Text(
-                            'স্টক: ${product.stockQuantity} পিস',
+                            'মুনাফা: ${product.profitMargin.toStringAsFixed(2)}% | মোট মূল্য: ৳${(product.unitPrice * product.stockQuantity).toStringAsFixed(2)}',
                             style: TextStyle(
+                              fontSize: 11,
                               color:
                                   themeConfig.getTextSecondaryColor(isDarkMode),
                             ),
-                          ),
-                          Text(
-                            'মূল্য: ৳${product.unitPrice}',
-                            style: TextStyle(
-                              color:
-                                  themeConfig.getTextSecondaryColor(isDarkMode),
-                            ),
-                          ),
-                        ],
-                      ),
-                      trailing: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          IconButton(
-                            icon: const Icon(Icons.edit, color: Colors.blue),
-                            onPressed: () {
-                              showModalBottomSheet(
-                                context: context,
-                                isScrollControlled: true,
-                                backgroundColor: Colors.transparent,
-                                builder: (context) => Container(
-                                  height:
-                                      MediaQuery.of(context).size.height * 0.85,
-                                  decoration: BoxDecoration(
-                                    color: themeConfig
-                                        .getBackgroundColor(isDarkMode),
-                                    borderRadius: const BorderRadius.only(
-                                      topLeft: Radius.circular(20),
-                                      topRight: Radius.circular(20),
-                                    ),
-                                  ),
-                                  padding: const EdgeInsets.all(16),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        'পণ্য সম্পাদনা করুন',
-                                        style: GoogleFonts.poppins(
-                                          fontSize: 24,
-                                          fontWeight: FontWeight.w600,
-                                          color: themeConfig
-                                              .getTextPrimaryColor(isDarkMode),
-                                        ),
-                                      ),
-                                      const SizedBox(height: 16),
-                                      Expanded(
-                                        child: SingleChildScrollView(
-                                          child: Column(
-                                            children: [
-                                              TextField(
-                                                controller:
-                                                    TextEditingController(
-                                                        text: product.name),
-                                                decoration: InputDecoration(
-                                                  labelText: 'পণ্যের নাম',
-                                                  border: OutlineInputBorder(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            12),
-                                                  ),
-                                                ),
-                                                onChanged: (value) =>
-                                                    product.name = value,
-                                              ),
-                                              const SizedBox(height: 16),
-                                              DropdownButtonFormField(
-                                                decoration: InputDecoration(
-                                                  labelText: 'ক্যাটাগরি',
-                                                  border: OutlineInputBorder(
-                                                    borderRadius: BorderRadius.circular(12),
-                                                  ),
-                                                ),
-                                                items: controller.allCategories
-                                                    .map((category) => DropdownMenuItem(
-                                                  value: category.name,
-                                                  child: Text(category.name),
-                                                ))
-                                                    .toList(),
-                                                onChanged: (value) =>
-                                                controller.newProduct['category'] = value,
-                                              ),
-                                              const SizedBox(height: 16),
-                                              TextField(
-                                                controller:
-                                                    TextEditingController(
-                                                        text: product
-                                                            .stockQuantity
-                                                            .toString()),
-                                                decoration: InputDecoration(
-                                                  labelText: 'স্টক পরিমাণ',
-                                                  border: OutlineInputBorder(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            12),
-                                                  ),
-                                                ),
-                                                keyboardType:
-                                                    TextInputType.number,
-                                                onChanged: (value) => product
-                                                        .stockQuantity =
-                                                    double.tryParse(value) ?? 0,
-                                              ),
-                                              const SizedBox(height: 16),
-                                              TextField(
-                                                controller:
-                                                    TextEditingController(
-                                                        text: product.unitPrice
-                                                            .toString()),
-                                                decoration: InputDecoration(
-                                                  labelText: 'বিক্রয় মূল্য',
-                                                  border: OutlineInputBorder(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            12),
-                                                  ),
-                                                ),
-                                                keyboardType:
-                                                    TextInputType.number,
-                                                onChanged: (value) => product
-                                                        .unitPrice =
-                                                    double.tryParse(value) ?? 0,
-                                              ),
-                                              const SizedBox(height: 16),
-                                              TextField(
-                                                controller:
-                                                    TextEditingController(
-                                                        text: product
-                                                            .buyingPrice
-                                                            .toString()),
-                                                decoration: InputDecoration(
-                                                  labelText: 'ক্রয় মূল্য',
-                                                  border: OutlineInputBorder(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            12),
-                                                  ),
-                                                ),
-                                                keyboardType:
-                                                    TextInputType.number,
-                                                onChanged: (value) => product
-                                                        .buyingPrice =
-                                                    double.tryParse(value) ?? 0,
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.end,
-                                        children: [
-                                          TextButton(
-                                            onPressed: () => Get.back(),
-                                            child: Text(
-                                              'বাতিল করুন',
-                                              style: TextStyle(
-                                                color: themeConfig
-                                                    .getTextSecondaryColor(
-                                                        isDarkMode),
-                                              ),
-                                            ),
-                                          ),
-                                          const SizedBox(width: 16),
-                                          ElevatedButton(
-                                            onPressed: () {
-                                              controller.updateProduct(product);
-                                              Get.back();
-                                            },
-                                            style: ElevatedButton.styleFrom(
-                                              backgroundColor: themeConfig
-                                                  .getPrimaryColor(isDarkMode),
-                                              foregroundColor: themeConfig
-                                                  .getBackgroundColor(
-                                                      isDarkMode),
-                                              shape: RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(12),
-                                              ),
-                                            ),
-                                            child: const Text('সংরক্ষণ করুন'),
-                                          ),
-                                        ],
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              );
-                            },
-                          ),
-                          IconButton(
-                            icon: const Icon(Icons.delete, color: Colors.red),
-                            onPressed: () {
-                              showDialog(
-                                context: context,
-                                builder: (context) => AlertDialog(
-                                  title: Text(
-                                    'পণ্য মুছে ফেলুন',
-                                    style: GoogleFonts.poppins(
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                                  ),
-                                  content: Text(
-                                    'আপনি কি নিশ্চিত যে আপনি এই পণ্যটি মুছে ফেলতে চান?',
-                                    style: GoogleFonts.poppins(),
-                                  ),
-                                  actions: [
-                                    TextButton(
-                                      onPressed: () => Get.back(),
-                                      child: Text(
-                                        'না',
-                                        style: TextStyle(
-                                          color:
-                                              themeConfig.getTextSecondaryColor(
-                                                  isDarkMode),
-                                        ),
-                                      ),
-                                    ),
-                                    ElevatedButton(
-                                      onPressed: () {
-                                        controller.deleteProduct(product.id);
-                                        Get.back();
-                                      },
-                                      style: ElevatedButton.styleFrom(
-                                        backgroundColor: Colors.red,
-                                        foregroundColor: Colors.white,
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(12),
-                                        ),
-                                      ),
-                                      child: const Text('হ্যাঁ, মুছে ফেলুন'),
-                                    ),
-                                  ],
-                                ),
-                              );
-                            },
                           ),
                         ],
                       ),
@@ -551,8 +706,14 @@ class AllProductsView extends GetView<AllProductController> {
     );
   }
 
-  Widget _buildInfoCard(BuildContext context, String title, String value,
-      IconData icon, AppThemeConfig themeConfig, bool isDarkMode) {
+  Widget _buildInfoCard(
+      BuildContext context,
+      String title,
+      String value,
+      IconData icon,
+      AppThemeConfig themeConfig,
+      bool isDarkMode,
+      bool isStockOut) {
     return Container(
       width: (MediaQuery.of(context).size.width - 48) / 3,
       padding: const EdgeInsets.all(12),
@@ -564,7 +725,9 @@ class AllProductsView extends GetView<AllProductController> {
         children: [
           Icon(
             icon,
-            color: themeConfig.getPrimaryColor(isDarkMode),
+            color: isStockOut
+                ? themeConfig.getErrorColor(isDarkMode)
+                : themeConfig.getPrimaryColor(isDarkMode),
             size: 24,
           ),
           const SizedBox(height: 8),
@@ -572,7 +735,9 @@ class AllProductsView extends GetView<AllProductController> {
             title,
             style: GoogleFonts.poppins(
               fontSize: 12,
-              color: themeConfig.getTextSecondaryColor(isDarkMode),
+              color: isStockOut
+                  ? themeConfig.getErrorColor(isDarkMode)
+                  : themeConfig.getTextSecondaryColor(isDarkMode),
             ),
           ),
           Text(
@@ -580,7 +745,9 @@ class AllProductsView extends GetView<AllProductController> {
             style: GoogleFonts.poppins(
               fontSize: 16,
               fontWeight: FontWeight.w600,
-              color: themeConfig.getTextPrimaryColor(isDarkMode),
+              color: isStockOut
+                  ? themeConfig.getErrorColor(isDarkMode)
+                  : themeConfig.getTextPrimaryColor(isDarkMode),
             ),
           ),
         ],
