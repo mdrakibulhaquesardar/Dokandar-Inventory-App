@@ -1,4 +1,6 @@
 import 'package:dokandar_app_inventory/app/config/app_theme_config.dart';
+import 'package:dokandar_app_inventory/app/routes/app_pages.dart';
+import 'package:dokandar_app_inventory/app/utils/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -46,33 +48,29 @@ class HomeView extends GetView<HomeController> {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      GetBuilder<HomeController>(
-                        assignId: true,
-                        builder: (logic) {
-                          return Text(
-                            logic.store.value?.name ?? 'তথ্য খুজে পাওয়া যায়নি',
-                            style: GoogleFonts.notoSansBengali(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                              color: themeConfig.getTextPrimaryColor(
-                                  isDarkMode),
-                            ),
-                          );
-                        },
-                      ),
-                      GetBuilder<HomeController>(
-                        assignId: true,
-                        builder: (logic) {
-                          return Text(
-                            logic.store.value?.businessType ?? 'তথ্য খুজে পাওয়া যায়নি',
-                            style: GoogleFonts.notoSansBengali(
-                              fontSize: 12,
-                              color: themeConfig.getTextSecondaryColor(
-                                  isDarkMode),
-                            ),
-                          );
-                        },
-                      ),
+                      Obx(() {
+                        return Text(
+                          controller.store.value?.name ??
+                              'তথ্য খুজে পাওয়া যায়নি',
+                          style: GoogleFonts.notoSansBengali(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: themeConfig.getTextPrimaryColor(
+                                isDarkMode),
+                          ),
+                        );
+                      }),
+                      Obx(() {
+                        return Text(
+                          controller.store.value?.businessType ??
+                              'তথ্য খুজে পাওয়া যায়নি',
+                          style: GoogleFonts.notoSansBengali(
+                            fontSize: 12,
+                            color: themeConfig.getTextSecondaryColor(
+                                isDarkMode),
+                          ),
+                        );
+                      }),
                     ],
                   ),
                   const Spacer(),
@@ -117,8 +115,10 @@ class HomeView extends GetView<HomeController> {
                       shape: BoxShape.circle,
                     ),
                     child: IconButton(
-                      icon: const Icon(Icons.add),
-                      onPressed: () {},
+                      icon: const Icon(Icons.refresh),
+                      onPressed: () {
+                        controller.refresh();
+                      },
                       color: themeConfig.getPrimaryColor(isDarkMode),
                     ),
                   ),
@@ -190,34 +190,42 @@ class HomeView extends GetView<HomeController> {
               crossAxisSpacing: 16,
               childAspectRatio: 1.5,
               children: [
-                _SummaryCard(
-                  title: 'মোট পণ্য',
-                  value: '১৫০',
-                  icon: Icons.inventory_2_outlined,
-                  color: Colors.blue,
-                  subtitle: 'সর্বমোট পণ্যের সংখ্যা',
-                ),
-                _SummaryCard(
-                  title: 'মোট বিক্রয়',
-                  value: '৳২৫,০০০',
-                  icon: Icons.shopping_cart_outlined,
-                  color: Colors.green,
-                  subtitle: 'আজকের মোট বিক্রয়',
-                ),
-                _SummaryCard(
-                  title: 'ক্যাটাগরি',
-                  value: '৮',
-                  icon: Icons.category_outlined,
-                  color: Colors.orange,
-                  subtitle: 'সকল ক্যাটাগরি',
-                ),
-                _SummaryCard(
-                  title: 'গ্রাহক',
-                  value: '৪৫',
-                  icon: Icons.people_outline,
-                  color: Colors.purple,
-                  subtitle: 'সর্বমোট গ্রাহক',
-                ),
+                Obx(() {
+                  return _SummaryCard(
+                    title: 'মোট পণ্য',
+                    value: controller.totalProducts.value.toString(),
+                    icon: Icons.inventory_2_outlined,
+                    color: Colors.blue,
+                    subtitle: 'সর্বমোট পণ্যের সংখ্যা',
+                  );
+                }),
+                Obx(() {
+                  return _SummaryCard(
+                    title: 'মোট বিক্রয়',
+                    value: '৳${controller.totalSales.value.toString()}',
+                    icon: Icons.shopping_cart_outlined,
+                    color: Colors.green,
+                    subtitle: 'আজকের মোট বিক্রয়',
+                  );
+                }),
+                Obx(() {
+                  return _SummaryCard(
+                    title: 'ক্যাটাগরি',
+                    value: controller.totalCategories.value.toString(),
+                    icon: Icons.category_outlined,
+                    color: Colors.orange,
+                    subtitle: 'সকল ক্যাটাগরি',
+                  );
+                }),
+                Obx(() {
+                  return _SummaryCard(
+                    title: 'গ্রাহক',
+                    value: controller.totalCustomers.value.toString(),
+                    icon: Icons.people_outline,
+                    color: Colors.purple,
+                    subtitle: 'সর্বমোট গ্রাহক',
+                  );
+                }),
                 _SummaryCard(
                   title: 'আজকের অর্ডার',
                   value: '১২',
@@ -257,15 +265,20 @@ class HomeView extends GetView<HomeController> {
 
             const SizedBox(height: 24),
 
-            Text(
-              'স্টক শেষ হতে চলেছে',
+
+            controller.allLowStokeProduct.isEmpty
+                ? SizedBox()
+                : Text(
+              'স্টক আলার্ম',
               style: GoogleFonts.notoSansBengali(
                 fontSize: 20,
                 fontWeight: FontWeight.w600,
-                color: themeConfig.getErrorColor(isDarkMode),
+                color: themeConfig.getTextPrimaryColor(isDarkMode),
               ),
             ),
-            Text(
+            controller.allLowStokeProduct.isEmpty
+                ? SizedBox()
+                : Text(
               'স্টক শেষ হতে ৩ দিন আগে কয়েকটি পণ্যের স্টক শেষ হচ্ছে',
               style: GoogleFonts.notoSansBengali(
                 fontSize: 14,
@@ -274,8 +287,10 @@ class HomeView extends GetView<HomeController> {
               ),
             ),
 
-            const SizedBox(height: 16),
-            _LowStockProductsList(),
+            const SizedBox(height: 0),
+            controller.allLowStokeProduct.isEmpty
+                ? SizedBox()
+                : _LowStockProductsList(),
           ],
         ),
       ),
@@ -364,59 +379,83 @@ class _SummaryCard extends StatelessWidget {
   }
 }
 
-class _RecentSalesList extends StatelessWidget {
+class _RecentSalesList extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     final themeConfig = Get.find<AppThemeConfig>();
     final isDarkMode = Get.isDarkMode;
+
 
     return Container(
       decoration: BoxDecoration(
         color: themeConfig.getSurfaceColor(isDarkMode),
         borderRadius: BorderRadius.circular(12),
       ),
-      child: ListView.builder(
-        shrinkWrap: true,
-        physics: const NeverScrollableScrollPhysics(),
-        itemCount: 5,
-        itemBuilder: (context, index) {
-          return ListTile(
-            leading: CircleAvatar(
-              backgroundColor:
-              themeConfig.getPrimaryColor(isDarkMode).withOpacity(0.1),
-              child: Icon(
-                Icons.shopping_bag_outlined,
-                color: themeConfig.getPrimaryColor(isDarkMode),
-              ),
-            ),
-            title: Text(
-              'Product ${index + 1}',
+      child: Obx(() {
+        return controller.recentSale.isEmpty
+            ? Container(
+          padding: const EdgeInsets.all(16),
+          decoration: BoxDecoration(
+            color: themeConfig.getSurfaceColor(isDarkMode),
+            borderRadius: BorderRadius.circular(12),
+          ),
+          child: Center(
+            child: Text(
+              'কোনো সাম্প্রতিক বিক্রয় নেই',
               style: GoogleFonts.poppins(
-                fontWeight: FontWeight.w500,
-                color: themeConfig.getTextPrimaryColor(isDarkMode),
-              ),
-            ),
-            subtitle: Text(
-              '৳${(1000 + index * 200).toString()}',
-              style: GoogleFonts.poppins(
+                fontSize: 16,
                 color: themeConfig.getTextSecondaryColor(isDarkMode),
               ),
             ),
-            trailing: Text(
-              '2 hours ago',
-              style: GoogleFonts.poppins(
-                fontSize: 12,
-                color: themeConfig.getTextSecondaryColor(isDarkMode),
+          ),
+
+        )
+            : ListView.builder(
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          itemCount: controller.recentSale.length,
+          itemBuilder: (context, index) {
+            return ListTile(
+              leading: CircleAvatar(
+                backgroundColor:
+                themeConfig.getPrimaryColor(isDarkMode).withOpacity(0.1),
+                child: Icon(
+                  Icons.shopping_bag_outlined,
+                  color: themeConfig.getPrimaryColor(isDarkMode),
+                ),
               ),
-            ),
-          );
-        },
-      ),
+              title: Text(
+                controller.recentSale[index].items[0].productName,
+                style: GoogleFonts.poppins(
+                  fontWeight: FontWeight.w500,
+                  color: themeConfig.getTextPrimaryColor(isDarkMode),
+                ),
+              ),
+              subtitle: Text(
+                '৳${controller.recentSale[index].totalAmount
+                    .translateNumberToBengali()}',
+                style: GoogleFonts.poppins(
+                  color: themeConfig.getTextSecondaryColor(isDarkMode),
+                ),
+              ),
+              trailing: Text(
+                "${controller.recentSale[index].items[0].quantity.toInt()
+                    .translateNumberToBengali()} পিস",
+                style: GoogleFonts.poppins(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w500,
+                  color: themeConfig.getTextSecondaryColor(isDarkMode),
+                ),
+              ),
+            );
+          },
+        );
+      }),
     );
   }
 }
 
-class _LowStockProductsList extends StatelessWidget {
+class _LowStockProductsList extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     final themeConfig = Get.find<AppThemeConfig>();
@@ -427,52 +466,59 @@ class _LowStockProductsList extends StatelessWidget {
         color: themeConfig.getSurfaceColor(isDarkMode),
         borderRadius: BorderRadius.circular(12),
       ),
-      child: ListView.builder(
-        shrinkWrap: true,
-        physics: const NeverScrollableScrollPhysics(),
-        itemCount: 3,
-        itemBuilder: (context, index) {
-          return ListTile(
-            leading: CircleAvatar(
-              backgroundColor:
-              themeConfig.getWarningColor(isDarkMode).withOpacity(0.1),
-              child: Icon(
-                Icons.warning_amber_outlined,
-                color: themeConfig.getWarningColor(isDarkMode),
-              ),
-            ),
-            title: Text(
-              'Product ${index + 1}',
-              style: GoogleFonts.poppins(
-                fontWeight: FontWeight.w500,
-                color: themeConfig.getTextPrimaryColor(isDarkMode),
-              ),
-            ),
-            subtitle: Text(
-              'Only ${5 - index} items left',
-              style: GoogleFonts.poppins(
-                color: themeConfig.getWarningColor(isDarkMode),
-              ),
-            ),
-            trailing: ElevatedButton(
-              onPressed: () {},
-              style: ElevatedButton.styleFrom(
-                backgroundColor: themeConfig.getPrimaryColor(isDarkMode),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8),
+      child: Obx(() {
+        return ListView.builder(
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          itemCount: controller.allLowStokeProduct.length,
+          itemBuilder: (context, index) {
+            return Obx(() {
+              return ListTile(
+                leading: CircleAvatar(
+                  backgroundColor:
+                  themeConfig.getWarningColor(isDarkMode).withOpacity(0.1),
+                  child: Icon(
+                    Icons.warning_amber_outlined,
+                    color: themeConfig.getWarningColor(isDarkMode),
+                  ),
                 ),
-              ),
-              child: Text(
-                'Restock',
-                style: GoogleFonts.poppins(
-                  color: Colors.white,
-                  fontSize: 12,
+                title: Text(
+                  controller.allLowStokeProduct[index].name,
+                  style: GoogleFonts.poppins(
+                    fontWeight: FontWeight.w500,
+                    color: themeConfig.getTextPrimaryColor(isDarkMode),
+                  ),
                 ),
-              ),
-            ),
-          );
-        },
-      ),
+                subtitle: Text(
+                  'স্টকে ${controller.allLowStokeProduct[index].stockQuantity
+                      .toInt().translateNumberToBengali()} পিস',
+                  style: GoogleFonts.poppins(
+                    color: themeConfig.getWarningColor(isDarkMode),
+                  ),
+                ),
+                trailing: ElevatedButton(
+                  onPressed: () {
+                    Get.toNamed(Routes.ALL_PRODUCTS);
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: themeConfig.getPrimaryColor(isDarkMode),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                  ),
+                  child: Text(
+                    'স্টকে যোগ করুন',
+                    style: GoogleFonts.poppins(
+                      color: Colors.white,
+                      fontSize: 12,
+                    ),
+                  ),
+                ),
+              );
+            });
+          },
+        );
+      }),
     );
   }
 }

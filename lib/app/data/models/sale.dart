@@ -15,9 +15,12 @@ class Sale {
   late double totalAmount;
   late double discount;
   late double paidAmount;
+  late double dueAmount;
   late DateTime saleDate;
   String? notes;
   late bool isCompleted;
+  DateTime? updatedAt;
+  DateTime? createdAt;
 
   Sale({
     required this.customerId,
@@ -25,10 +28,14 @@ class Sale {
     required this.totalAmount,
     this.discount = 0,
     required this.paidAmount,
+    this.dueAmount = 0,
     required this.invoiceNumber,
     this.notes,
     this.isCompleted = true,
+
   }) {
+    createdAt = DateTime.now();
+    updatedAt = null;
     saleDate = DateTime.now();
   }
 
@@ -54,7 +61,7 @@ class Sale {
     );
   }
 
-  double get dueAmount => totalAmount - discount - paidAmount;
+
 }
 
 @embedded

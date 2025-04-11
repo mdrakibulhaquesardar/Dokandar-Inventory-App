@@ -57,6 +57,17 @@ class DatabaseService extends GetxService {
     return await isar.products.where().findAll();
   }
 
+  // get Low Stock Products
+
+  Future<List<Product>> getLowStockProducts() async {
+    return await isar.products
+        .filter()
+        .stockQuantityLessThan(10)
+        .findAll();
+  }
+
+  // Get All Products
+
   Future<Product?> getProductById(int id) async {
     return await isar.products.get(id);
   }
@@ -100,6 +111,53 @@ class DatabaseService extends GetxService {
   Future<List<Sale>> getAllSales() async {
     return await isar.sales.where().findAll();
   }
+
+
+  // get total sales all time
+
+  Future<double> getTotalSales() async {
+    final sales = await isar.sales.where().findAll();
+    double total = 0;
+    for (var sale in sales) {
+      total += sale.totalAmount;
+    }
+    return total;
+  }
+
+
+  // get sale only today
+
+  Future<List<Sale>> getSalesToday() async {
+    final today = DateTime.now();
+    final startOfDay = DateTime(today.year, today.month, today.day);
+    final endOfDay = startOfDay.add(const Duration(days: 1));
+
+    return await isar.sales
+        .filter()
+        .createdAtGreaterThan(startOfDay, include: true)
+        .and()
+        .createdAtLessThan(endOfDay, include: false)
+        .findAll();
+  }
+
+Future<double> getTotalSalesToday() async {
+  final today = DateTime.now();
+  final startOfDay = DateTime(today.year, today.month, today.day);
+  final endOfDay = startOfDay.add(const Duration(days: 1));
+
+  final sales = await isar.sales
+      .filter()
+      .createdAtGreaterThan(startOfDay, include: true)
+      .and()
+      .createdAtLessThan(endOfDay, include: false)
+      .findAll();
+
+  double total = 0;
+  for (var sale in sales) {
+    total += sale.totalAmount;
+  }
+  return total;
+}
 
   Future<void> saveSale(Sale sale) async {
     await isar.writeTxn(() async {

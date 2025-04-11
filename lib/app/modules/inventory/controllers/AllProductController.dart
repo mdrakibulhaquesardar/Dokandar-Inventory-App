@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 
 import '../../../data/models/product.dart';
 import '../../../widgets/showCustomSnackbar.dart';
+import '../../home/controllers/home_controller.dart';
 
 class AllProductController extends GetxController {
   final products = <Product>[].obs;
@@ -59,6 +60,7 @@ class AllProductController extends GetxController {
         backgroundColor: Colors.green,
         icon: Icons.check_circle,
       );
+      Get.find<HomeController>().refresh();
     } catch (e) {
       print('Error adding product: $e');
       showCustomSnackbar(
@@ -104,6 +106,7 @@ class AllProductController extends GetxController {
         backgroundColor: Colors.green,
         icon: Icons.check_circle,
       );
+      Get.find<HomeController>().refresh();
     } catch (e) {
       print('Error deleting product: $e');
       showCustomSnackbar(

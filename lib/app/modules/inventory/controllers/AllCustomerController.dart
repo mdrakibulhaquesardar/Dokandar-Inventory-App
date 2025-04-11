@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import '../../../data/models/customer.dart';
 import '../../../data/services/database_service.dart';
 import '../../../widgets/showCustomSnackbar.dart';
+import '../../home/controllers/home_controller.dart';
 
 class AllCustomerController extends GetxController {
   final DatabaseService _databaseService = Get.find<DatabaseService>();
@@ -60,6 +61,7 @@ class AllCustomerController extends GetxController {
       nameController.clear();
       phoneController.clear();
       addressController.clear();
+      Get.find<HomeController>().refresh();
     } catch (e) {
       Get.snackbar('Error', 'Failed to add customer');
     }
@@ -89,7 +91,9 @@ class AllCustomerController extends GetxController {
         message: 'Customer deleted successfully',
         backgroundColor: Colors.green,
         icon: Icons.check_circle,
+
       );
+      Get.find<HomeController>().refresh();
     } catch (e) {
       Get.snackbar('Error', 'Failed to delete customer');
     }

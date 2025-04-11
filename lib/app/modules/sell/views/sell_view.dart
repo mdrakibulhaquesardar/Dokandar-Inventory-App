@@ -1,5 +1,6 @@
 import 'package:dokandar_app_inventory/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../../config/app_theme_config.dart';
@@ -132,19 +133,6 @@ class SellView extends GetView<SellController> {
                       color: themeConfig.getSurfaceColor(isDarkMode),
                       elevation: 0,
                       child: InkWell(
-                        onTap: () {
-                          // Convert SaleItem back to Product for addToCart
-                          final productToAdd = Product(
-                              name: product.productName,
-                              category: '',
-                              stockQuantity: 0,
-                              unitPrice: product.unitPrice,
-                              buyingPrice: 0,
-                              sku: '',
-
-                              );
-                          controller.addToCart(productToAdd);
-                        },
                         child: ListTile(
                           contentPadding: const EdgeInsets.symmetric(
                               horizontal: 12, vertical: 4),
@@ -280,7 +268,20 @@ class SellView extends GetView<SellController> {
                 SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
-                    onPressed:  () => Get.toNamed(Routes.CHECKOUT),
+                    onPressed:  () {
+                      if (controller.cartItems.isNotEmpty) {
+                        Get.toNamed(Routes.CHECKOUT);
+                      } else {
+                        Fluttertoast.showToast(
+                          msg: 'কোন পণ্য যোগ করা হয়নি',
+                          toastLength: Toast.LENGTH_SHORT,
+                          gravity: ToastGravity.BOTTOM,
+                          backgroundColor: themeConfig.getErrorColor(isDarkMode),
+                          textColor: Colors.white,
+                          fontSize: 16.0,
+                        );
+                      }
+                    },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: themeConfig.getPrimaryColor(isDarkMode),
                       padding: const EdgeInsets.symmetric(vertical: 12),
