@@ -15,6 +15,7 @@ abstract class Routes {
   static const ALL_PRODUCTS = _Paths.ALL_PRODUCTS;
   static const ALL_CUSTOMER = _Paths.ALL_CUSTOMER;
   static const CHECKOUT = _Paths.CHECKOUT;
+  static const BACKUP_DATA = _Paths.BACKUP_DATA;
 }
 
 abstract class _Paths {
@@ -31,4 +32,5 @@ abstract class _Paths {
   static const ALL_PRODUCTS = '/all-products';
   static const ALL_CUSTOMER = '/all-customer';
   static const CHECKOUT = '/checkout';
+  static const BACKUP_DATA = '/backup-data';
 }

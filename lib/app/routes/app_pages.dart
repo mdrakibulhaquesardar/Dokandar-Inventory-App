@@ -1,7 +1,7 @@
-import 'package:dokandar_app_inventory/app/modules/setup/views/confrom_view.dart';
-import 'package:dokandar_app_inventory/app/modules/setup/views/store_setup_view.dart';
 import 'package:get/get.dart';
 
+import '../modules/data_management/bindings/data_management_binding.dart';
+import '../modules/data_management/views/backup_data_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/inventory/bindings/inventory_binding.dart';
@@ -15,7 +15,9 @@ import '../modules/sell/views/sell_view.dart';
 import '../modules/setting/bindings/setting_binding.dart';
 import '../modules/setting/views/setting_view.dart';
 import '../modules/setup/bindings/setup_binding.dart';
+import '../modules/setup/views/confrom_view.dart';
 import '../modules/setup/views/setup_view.dart';
+import '../modules/setup/views/store_setup_view.dart';
 import '../views/main_view.dart';
 
 part 'app_routes.dart';
@@ -26,12 +28,10 @@ class AppPages {
   static const INITIAL = Routes.MAIN;
 
   static final routes = [
-
     GetPage(
       name: _Paths.CONFROM_SETUP,
       page: () => const ConfromView(),
     ),
-
     GetPage(
       name: _Paths.MAIN,
       page: () => const MainView(),
@@ -74,7 +74,6 @@ class AppPages {
       binding: InventoryBinding(),
       transition: Transition.fadeIn,
     ),
-
     GetPage(
       name: _Paths.ALL_PRODUCTS,
       page: () => const AllProductsView(),
@@ -92,6 +91,11 @@ class AppPages {
       page: () => const CheckoutView(),
       binding: SellBinding(),
       transition: Transition.fadeIn,
+    ),
+    GetPage(
+      name: _Paths.BACKUP_DATA,
+      page: () => const BackupDataView(),
+      binding: DataManagementBinding(),
     ),
   ];
 }

@@ -17,6 +17,7 @@ class HomeController extends GetxController {
   RxInt totalCustomers = 0.obs;
   RxDouble totalSales = 0.0.obs;
   RxInt totalCategories = 0.obs;
+  RxInt todaySalesCount = 0.obs;
 
   // all sale variable
   RxList<Sale> recentSale = <Sale>[].obs;
@@ -85,6 +86,11 @@ class HomeController extends GetxController {
     recentSale.assignAll(allSales);
   }
 
+  Future<void> getTodaySalesCount() async {
+    final allSales = await Get.find<DatabaseService>().getSalesToday();
+    recentSale.assignAll(allSales);
+  }
+
   Future<void> getLowStockProducts() async {
     final lowStockProducts = await Get.find<DatabaseService>().getLowStockProducts();
     allLowStokeProduct.assignAll(lowStockProducts);
@@ -92,9 +98,27 @@ class HomeController extends GetxController {
   }
 
 
+
+
   //Refresh the statistics
 
-
+  void refreshStatistics() {
+    Future.wait([
+      getAllStatistics(),
+      getRecentSales(),
+      getLowStockProducts(),
+    ]).then((_) {
+      // Show a toast message after refreshing
+      Fluttertoast.showToast(
+        msg: "রিফ্রেশ করা হয়েছে",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        backgroundColor: Colors.black,
+        textColor: Colors.white,
+        fontSize: 16.0,
+      );
+    });
+  }
 
   @override
   void onInit() {
@@ -114,13 +138,6 @@ class HomeController extends GetxController {
   @override
   void onClose() {
     super.onClose();
-  }
-
-  @override
-  void refresh() {
-    getAllStatistics();
-    getRecentSales();
-    getLowStockProducts();
   }
 
 

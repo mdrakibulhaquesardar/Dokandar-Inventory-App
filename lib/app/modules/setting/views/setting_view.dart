@@ -1,3 +1,4 @@
+import 'package:dokandar_app_inventory/app/routes/app_pages.dart';
 import 'package:dokandar_app_inventory/app/utils/DateTimeUtils.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -91,7 +92,9 @@ class SettingView extends GetView<SettingController> {
               'ব্যাকআপ ডাটা',
               Icons.backup_outlined,
               Colors.green,
-                  () {},
+                  () {
+                Get.toNamed(Routes.BACKUP_DATA);
+                  },
               themeConfig,
               isDarkMode,
             ),
