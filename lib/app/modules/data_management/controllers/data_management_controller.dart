@@ -1,60 +1,76 @@
-
-
+import 'package:dokandar_app_inventory/app/data/services/backup_service.dart';
 import 'package:dokandar_app_inventory/app/data/services/database_service.dart';
 import 'package:get/get.dart';
 
-
 class DataManagementController extends GetxController {
-  //TODO: Implement DataManagementController
-
-  DatabaseService databaseService = Get.find<DatabaseService>();
-
+  final DatabaseService databaseService = Get.find<DatabaseService>();
+  late final BackupService backupService;
 
   final backupProgress = 0.0.obs;
-  //backupStatus
   final backupStatus = ''.obs;
-
-  void startBackup() {
-    // Simulate a backup process
-    backupProgress.value = 0.0;
-    backupStatus.value = 'Backing up...';
-
-    // Simulate progress
-    for (int i = 1; i <= 100; i++) {
-      Future.delayed(Duration(milliseconds: i * 50), () {
-        backupProgress.value = i / 100;
-        if (i == 100) {
-          backupStatus.value = 'Backup completed!';
-        }
-      });
-    }
-  }
-
-
-
-
-
-
-
-
-
-
-
+  final isBackingUp = false.obs;
+  final lastBackupDate = ''.obs;
+  final isInitialized = false.obs;
 
   @override
   void onInit() {
     super.onInit();
+    _initializeServices();
   }
 
-  @override
-  void onReady() {
-    super.onReady();
+  Future<void> _initializeServices() async {
+    try {
+      backupService = await BackupService().init(databaseService.isar);
+      isInitialized.value = true;
+      await _loadLastBackupDate();
+      await backupService.requestStoragePermission();
+    } catch (e) {
+      print('Error initializing services: $e');
+      backupStatus.value = 'সেবা শুরু করতে ব্যর্থ: $e';
+    }
+  }
+
+  Future<void> _loadLastBackupDate() async {
+    try {
+      final lastBackup = await backupService.getLastBackupDate();
+      if (lastBackup != null) {
+        lastBackupDate.value =
+            '${lastBackup.year}-${lastBackup.month.toString().padLeft(2, '0')}-${lastBackup.day.toString().padLeft(2, '0')}';
+      } else {
+        lastBackupDate.value = '';
+      }
+    } catch (e) {
+      print('Error loading last backup date: $e');
+      lastBackupDate.value = '';
+    }
+  }
+
+  Future<void> startBackup() async {
+    if (isBackingUp.value || !isInitialized.value) return;
+
+    try {
+      isBackingUp.value = true;
+      backupProgress.value = 0.0;
+      backupStatus.value = 'ব্যাকআপ করা হচ্ছে...';
+
+      // Start actual backup
+      await backupService.exportIsarToFile();
+
+      // Update progress
+      backupProgress.value = 1.0;
+      backupStatus.value = 'ব্যাকআপ সফল হয়েছে!';
+
+      // Update last backup date
+      await _loadLastBackupDate();
+    } catch (e) {
+      backupStatus.value = 'ব্যাকআপ ব্যর্থ হয়েছে: $e';
+    } finally {
+      isBackingUp.value = false;
+    }
   }
 
   @override
   void onClose() {
     super.onClose();
   }
-
-
 }

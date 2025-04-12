@@ -27,8 +27,8 @@ class BackupDataView extends GetView<DataManagementController> {
           child: Row(
             children: [
               Container(
-                width: 40,
-                height: 40,
+                width: 35,
+                height: 35,
                 decoration: BoxDecoration(
                   color: themeConfig.getPrimaryColor(isDarkMode),
                   borderRadius: BorderRadius.circular(12),
@@ -45,14 +45,14 @@ class BackupDataView extends GetView<DataManagementController> {
                 child: const Icon(
                   Icons.backup,
                   color: Colors.white,
-                  size: 24,
+                  size: 18,
                 ),
               ),
               const SizedBox(width: 16),
               Text(
                 'স্থানীয় ব্যাকআপ',
                 style: GoogleFonts.poppins(
-                  fontSize: 26,
+                  fontSize: 18,
                   fontWeight: FontWeight.w600,
                   color: themeConfig.getTextPrimaryColor(isDarkMode),
                 ),
@@ -67,59 +67,6 @@ class BackupDataView extends GetView<DataManagementController> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Container(
-                padding: const EdgeInsets.all(20),
-                decoration: BoxDecoration(
-                  color: themeConfig.getSurfaceColor(isDarkMode),
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      children: [
-                        Icon(
-                          Icons.history,
-                          color: themeConfig.getPrimaryColor(isDarkMode),
-                          size: 24,
-                        ),
-                        const SizedBox(width: 8),
-                        Text(
-                          'সর্বশেষ ব্যাকআপ ২০২৩-১০-০১',
-                          style: GoogleFonts.poppins(
-                            fontSize: 18,
-                            fontWeight: FontWeight.w600,
-                            color: themeConfig.getTextPrimaryColor(isDarkMode),
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 16),
-                    _buildInfoRow(
-                      Icons.info_outline,
-                      'ডেটা লস প্রতিরোধের জন্য আপনার পিসি বা ইউএসবি ফ্ল্যাশ ড্রাইভে ফাইল ব্যাকআপ করার পরামর্শ দেওয়া হয়।',
-                      themeConfig,
-                      isDarkMode,
-                    ),
-                    const SizedBox(height: 12),
-                    _buildInfoRow(
-                      Icons.storage,
-                      'আপনি যদি ফোনের মেমরিতে ফাইল ব্যাকআপ করেন, ব্যাকআপ ফাইলগুলি অভ্যন্তরীণ স্টোরেজ/ব্যাকআপে সংরক্ষিত হবে।',
-                      themeConfig,
-                      isDarkMode,
-                    ),
-                    const SizedBox(height: 12),
-                    _buildInfoRow(
-                      Icons.security,
-                      'আপনি যদি একটি শেয়ার করা ডিভাইসে ডেটা পাঠান, ব্যাকআপ ফাইলগুলি এমন একটি ডিভাইসে সংরক্ষিত হবে যা এটি ডিক্রিপ্ট করতে পারে না।',
-                      themeConfig,
-                      isDarkMode,
-                    ),
-                  ],
-                ),
-              ),
-
-              const SizedBox(height: 24),
               Row(
                 children: [
                   Expanded(
@@ -148,6 +95,61 @@ class BackupDataView extends GetView<DataManagementController> {
                 ],
               ),
               const SizedBox(height: 24),
+              Obx(() => Container(
+                padding: const EdgeInsets.all(20),
+                decoration: BoxDecoration(
+                  color: themeConfig.getSurfaceColor(isDarkMode),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        Icon(
+                          Icons.history,
+                          color: themeConfig.getPrimaryColor(isDarkMode),
+                          size: 24,
+                        ),
+                        const SizedBox(width: 8),
+                        Text(
+                          controller.lastBackupDate.value.isNotEmpty
+                              ? 'সর্বশেষ ব্যাকআপ ${controller.lastBackupDate.value}'
+                              : 'কোন ব্যাকআপ নেই',
+                          style: GoogleFonts.poppins(
+                            fontSize: 18,
+                            fontWeight: FontWeight.w600,
+                            color:
+                            themeConfig.getTextPrimaryColor(isDarkMode),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 16),
+                    _buildInfoRow(
+                      Icons.info_outline,
+                      'ডেটা লস প্রতিরোধের জন্য আপনার পিসি বা ইউএসবি ফ্ল্যাশ ড্রাইভে ফাইল ব্যাকআপ করার পরামর্শ দেওয়া হয়।',
+                      themeConfig,
+                      isDarkMode,
+                    ),
+                    const SizedBox(height: 12),
+                    _buildInfoRow(
+                      Icons.storage,
+                      'আপনি যদি ফোনের মেমরিতে ফাইল ব্যাকআপ করেন, ব্যাকআপ ফাইলগুলি অভ্যন্তরীণ স্টোরেজ/ব্যাকআপে সংরক্ষিত হবে।',
+                      themeConfig,
+                      isDarkMode,
+                    ),
+                    const SizedBox(height: 12),
+                    _buildInfoRow(
+                      Icons.security,
+                      'আপনি যদি একটি শেয়ার করা ডিভাইসে ডেটা পাঠান, ব্যাকআপ ফাইলগুলি এমন একটি ডিভাইসে সংরক্ষিত হবে যা এটি ডিক্রিপ্ট করতে পারে না।',
+                      themeConfig,
+                      isDarkMode,
+                    ),
+                  ],
+                ),
+              )),
+              const SizedBox(height: 24),
               Text(
                 'ব্যাকআপ তৈরি করুন',
                 style: GoogleFonts.poppins(
@@ -156,14 +158,65 @@ class BackupDataView extends GetView<DataManagementController> {
                   color: themeConfig.getTextPrimaryColor(isDarkMode),
                 ),
               ),
-
-              Text(
-                'ব্যাকআপ তৈরি করতে, আপনার ফোনের মেমরিতে পর্যাপ্ত স্থান থাকতে হবে এবং ব্যাকআপ ফাইলগুলি আপনার ফোনের মেমরিতে সংরক্ষিত হবে।',
-                style: GoogleFonts.poppins(
-                  fontSize: 14,
-                  color: themeConfig.getTextSecondaryColor(isDarkMode),
+              RichText(
+                text: TextSpan(
+                  text: 'ব্যাকআপ তৈরি করতে, আপনার ফোনের মেমরিতে পর্যাপ্ত স্থান থাকতে হবে এবং ব্যাকআপ ফাইলগুলি আপনার ',
+                  style: GoogleFonts.poppins(
+                    fontSize: 12,
+                    color: themeConfig.getTextSecondaryColor(isDarkMode),
+                  ),
+                  children: [
+                    TextSpan(
+                      text: ' দোকানদার নাম ফোল্ডার',
+                      style: GoogleFonts.poppins(
+                        fontSize: 12,
+                        fontWeight: FontWeight.bold,
+                        color: themeConfig.getPrimaryColor(isDarkMode),
+                      ),
+                    ),
+                    TextSpan(
+                      text:
+                          ' ফোনের মেমরিতে এ সংরক্ষিত হবে।',
+                      style: GoogleFonts.poppins(
+                        fontSize: 12,
+                        color: themeConfig.getTextSecondaryColor(isDarkMode),
+                      ),
+                    ),
+                  ],
                 ),
               ),
+              const SizedBox(height: 20),
+              Obx(() => Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  if (controller.isBackingUp.value)
+                    LinearProgressIndicator(
+                      value: controller.backupProgress.value,
+                      backgroundColor: themeConfig
+                          .getTextSecondaryColor(isDarkMode)
+                          .withOpacity(0.1),
+                      valueColor: AlwaysStoppedAnimation<Color>(
+                        themeConfig.getPrimaryColor(isDarkMode),
+                      ),
+                    ),
+                  if (controller.backupStatus.value.isNotEmpty) ...[
+                    const SizedBox(height: 8),
+                    Text(
+                      controller.backupStatus.value,
+                      style: GoogleFonts.poppins(
+                        fontSize: 14,
+                        color: controller.backupStatus.value.contains('সফল')
+                            ? Colors.green
+                            : controller.backupStatus.value
+                            .contains('ব্যর্থ')
+                            ? Colors.red
+                            : themeConfig
+                            .getTextSecondaryColor(isDarkMode),
+                      ),
+                    ),
+                  ],
+                ],
+              )),
               const SizedBox(height: 20),
               Container(
                 width: double.infinity,
@@ -188,30 +241,31 @@ class BackupDataView extends GetView<DataManagementController> {
                     ),
                   ],
                 ),
-                child: ElevatedButton.icon(
-                  onPressed: () {
-                    // Handle backup creation
-                  },
-                  icon: const Icon(Icons.backup, color: Colors.white),
-                  label: Text(
-                    'নতুন ব্যাকআপ তৈরি করুন',
-                    style: GoogleFonts.poppins(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.white,
-                    ),
-                  ),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.transparent,
-                    shadowColor: Colors.transparent,
-                    padding: const EdgeInsets.symmetric(horizontal: 24),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                  ),
-                ),
+                child: Obx(() => ElevatedButton.icon(
+                      onPressed: controller.isBackingUp.value
+                          ? null
+                          : () => controller.startBackup(),
+                      icon: const Icon(Icons.backup, color: Colors.white),
+                      label: Text(
+                        controller.isBackingUp.value
+                            ? 'ব্যাকআপ করা হচ্ছে...'
+                            : 'নতুন ব্যাকআপ তৈরি করুন',
+                        style: GoogleFonts.poppins(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.white,
+                        ),
+                      ),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.transparent,
+                        shadowColor: Colors.transparent,
+                        padding: const EdgeInsets.symmetric(horizontal: 24),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15),
+                        ),
+                      ),
+                    )),
               ),
-
             ],
           ),
         ),
@@ -232,7 +286,7 @@ class BackupDataView extends GetView<DataManagementController> {
       height: 200,
       decoration: BoxDecoration(
         color: color.withOpacity(0.1),
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(10),
         border: Border.all(
           color: color.withOpacity(0.2),
         ),

@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:get/get.dart';
 import 'package:isar/isar.dart';
 import 'package:path_provider/path_provider.dart';
@@ -9,16 +12,29 @@ import '../models/sale.dart';
 import '../models/stock_history.dart';
 import '../models/user.dart';
 import '../models/store.dart';
+import 'backup_service.dart';
 
 class DatabaseService extends GetxService {
   late Isar isar;
+  late BackupService backupService;
 
   Future<DatabaseService> init() async {
     final dir = await getApplicationDocumentsDirectory();
     isar = await Isar.open(
-      [ProductSchema, CustomerSchema, SaleSchema, StockHistorySchema, UserSchema, StoreSchema , CategorySchema],
+      [
+        ProductSchema,
+        CustomerSchema,
+        SaleSchema,
+        StockHistorySchema,
+        UserSchema,
+        StoreSchema,
+        CategorySchema
+      ],
       directory: dir.path,
     );
+
+    // Initialize backup service
+    backupService = await BackupService().init(isar);
     return this;
   }
 
@@ -58,16 +74,11 @@ class DatabaseService extends GetxService {
   }
 
   // get Low Stock Products
-
   Future<List<Product>> getLowStockProducts() async {
-    return await isar.products
-        .filter()
-        .stockQuantityLessThan(10)
-        .findAll();
+    return await isar.products.filter().stockQuantityLessThan(10).findAll();
   }
 
   // Get All Products
-
   Future<Product?> getProductById(int id) async {
     return await isar.products.get(id);
   }
@@ -112,9 +123,7 @@ class DatabaseService extends GetxService {
     return await isar.sales.where().findAll();
   }
 
-
   // get total sales all time
-
   Future<double> getTotalSales() async {
     final sales = await isar.sales.where().findAll();
     double total = 0;
@@ -124,9 +133,7 @@ class DatabaseService extends GetxService {
     return total;
   }
 
-
   // get sale only today
-
   Future<List<Sale>> getSalesToday() async {
     final today = DateTime.now();
     final startOfDay = DateTime(today.year, today.month, today.day);
@@ -140,24 +147,24 @@ class DatabaseService extends GetxService {
         .findAll();
   }
 
-Future<double> getTotalSalesToday() async {
-  final today = DateTime.now();
-  final startOfDay = DateTime(today.year, today.month, today.day);
-  final endOfDay = startOfDay.add(const Duration(days: 1));
+  Future<double> getTotalSalesToday() async {
+    final today = DateTime.now();
+    final startOfDay = DateTime(today.year, today.month, today.day);
+    final endOfDay = startOfDay.add(const Duration(days: 1));
 
-  final sales = await isar.sales
-      .filter()
-      .createdAtGreaterThan(startOfDay, include: true)
-      .and()
-      .createdAtLessThan(endOfDay, include: false)
-      .findAll();
+    final sales = await isar.sales
+        .filter()
+        .createdAtGreaterThan(startOfDay, include: true)
+        .and()
+        .createdAtLessThan(endOfDay, include: false)
+        .findAll();
 
-  double total = 0;
-  for (var sale in sales) {
-    total += sale.totalAmount;
+    double total = 0;
+    for (var sale in sales) {
+      total += sale.totalAmount;
+    }
+    return total;
   }
-  return total;
-}
 
   Future<void> saveSale(Sale sale) async {
     await isar.writeTxn(() async {
@@ -172,7 +179,6 @@ Future<double> getTotalSalesToday() async {
   }
 
   //searchProducts
-
   Future<List<Product>> searchProducts(String query) async {
     return await isar.products
         .filter()
@@ -181,7 +187,6 @@ Future<double> getTotalSalesToday() async {
         .skuContains(query)
         .findAll();
   }
-
 
   // Stock History operations
   Future<List<StockHistory>> getStockHistory(int productId) async {
@@ -201,10 +206,10 @@ Future<double> getTotalSalesToday() async {
   Future<List<User>> getAllUsers() async {
     return await isar.users.where().findAll();
   }
+
   Future<User?> getUserById(int id) async {
     return await isar.users.get(id);
   }
-
 
   Future<void> deleteUser(int id) async {
     await isar.writeTxn(() async {
@@ -212,12 +217,11 @@ Future<double> getTotalSalesToday() async {
     });
   }
 
-
   //Category operations
-
   Future<List<Category>> getAllCategories() async {
     return await isar.categorys.where().findAll();
   }
+
   Future<Category?> getCategoryById(int id) async {
     return await isar.categorys.get(id);
   }
@@ -233,12 +237,4 @@ Future<double> getTotalSalesToday() async {
       await isar.categorys.delete(id);
     });
   }
-
-
-
-
-
-
-
-
 }
