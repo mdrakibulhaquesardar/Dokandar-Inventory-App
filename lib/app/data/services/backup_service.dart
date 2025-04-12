@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:isar/isar.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -183,8 +184,11 @@ class BackupService extends GetxService {
             .toList(),
       };
 
-      // Create backup file
-      final timestamp = DateTime.now().toIso8601String().replaceAll(':', '-');
+      // Create backup file with timestamp Like backup_12-04-2025_11-17-17
+
+
+      final timestamp = DateFormat('dd-MM-yyyy_hh-mm-ss a').format(DateTime.now().toLocal());
+
       final backupFile = File(path.join(_backupDir.path, 'backup_$timestamp.json'));
       await backupFile.writeAsString(jsonEncode(backupData));
       return backupFile.path;
