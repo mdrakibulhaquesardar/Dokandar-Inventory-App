@@ -95,57 +95,60 @@ class RestoreDataView extends GetView<DataManagementController> {
                 ],
               ),
               const SizedBox(height: 24),
-              Container(
-                padding: const EdgeInsets.all(20),
-                decoration: BoxDecoration(
-                  color: themeConfig.getSurfaceColor(isDarkMode),
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
+              Obx(() => Container(
+                    padding: const EdgeInsets.all(20),
+                    decoration: BoxDecoration(
+                      color: themeConfig.getSurfaceColor(isDarkMode),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Icon(
-                          Icons.info_outline,
-                          color: themeConfig.getPrimaryColor(isDarkMode),
-                          size: 24,
+                        Row(
+                          children: [
+                            Icon(
+                              Icons.history,
+                              color: themeConfig.getPrimaryColor(isDarkMode),
+                              size: 24,
+                            ),
+                            const SizedBox(width: 8),
+                            Text(
+                              controller.lastBackupDate.value.isNotEmpty
+                                  ? 'সর্বশেষ ব্যাকআপ ${controller.lastBackupDate.value}'
+                                  : 'কোন ব্যাকআপ নেই',
+                              style: GoogleFonts.poppins(
+                                fontSize: 18,
+                                fontWeight: FontWeight.w600,
+                                color:
+                                    themeConfig.getTextPrimaryColor(isDarkMode),
+                              ),
+                            ),
+                          ],
                         ),
-                        const SizedBox(width: 8),
-                        Text(
-                          'পুনরুদ্ধার সম্পর্কে তথ্য',
-                          style: GoogleFonts.poppins(
-                            fontSize: 18,
-                            fontWeight: FontWeight.w600,
-                            color: themeConfig.getTextPrimaryColor(isDarkMode),
-                          ),
+                        const SizedBox(height: 16),
+                        _buildInfoRow(
+                          Icons.warning_amber_rounded,
+                          'পুনরুদ্ধার করার আগে, আপনার বর্তমান ডেটা ব্যাকআপ করার পরামর্শ দেওয়া হয়।',
+                          themeConfig,
+                          isDarkMode,
+                        ),
+                        const SizedBox(height: 12),
+                        _buildInfoRow(
+                          Icons.storage,
+                          'পুনরুদ্ধার করার সময়, বর্তমান ডেটা মুছে যাবে এবং ব্যাকআপ ফাইলের ডেটা দিয়ে প্রতিস্থাপিত হবে।',
+                          themeConfig,
+                          isDarkMode,
+                        ),
+                        const SizedBox(height: 12),
+                        _buildInfoRow(
+                          Icons.security,
+                          'শুধুমাত্র বৈধ ব্যাকআপ ফাইল থেকে ডেটা পুনরুদ্ধার করা যাবে।',
+                          themeConfig,
+                          isDarkMode,
                         ),
                       ],
                     ),
-                    const SizedBox(height: 16),
-                    _buildInfoRow(
-                      Icons.warning_amber_rounded,
-                      'পুনরুদ্ধার করার আগে, আপনার বর্তমান ডেটা ব্যাকআপ করার পরামর্শ দেওয়া হয়।',
-                      themeConfig,
-                      isDarkMode,
-                    ),
-                    const SizedBox(height: 12),
-                    _buildInfoRow(
-                      Icons.storage,
-                      'পুনরুদ্ধার করার সময়, বর্তমান ডেটা মুছে যাবে এবং ব্যাকআপ ফাইলের ডেটা দিয়ে প্রতিস্থাপিত হবে।',
-                      themeConfig,
-                      isDarkMode,
-                    ),
-                    const SizedBox(height: 12),
-                    _buildInfoRow(
-                      Icons.security,
-                      'শুধুমাত্র বৈধ ব্যাকআপ ফাইল থেকে ডেটা পুনরুদ্ধার করা যাবে।',
-                      themeConfig,
-                      isDarkMode,
-                    ),
-                  ],
-                ),
-              ),
+                  )),
               const SizedBox(height: 24),
               Text(
                 'ডেটা পুনরুদ্ধার করুন',
