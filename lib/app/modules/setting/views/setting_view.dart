@@ -102,7 +102,9 @@ class SettingView extends GetView<SettingController> {
               'রিস্টোর ডাটা',
               Icons.restore_outlined,
               Colors.orange,
-                  () {},
+                  () {
+                Get.toNamed(Routes.RESTORE_DATA);
+                  },
               themeConfig,
               isDarkMode,
             ),

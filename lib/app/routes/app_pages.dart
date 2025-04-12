@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 
 import '../modules/data_management/bindings/data_management_binding.dart';
 import '../modules/data_management/views/backup_data_view.dart';
+import '../modules/data_management/views/restore_data_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/inventory/bindings/inventory_binding.dart';
@@ -95,6 +96,11 @@ class AppPages {
     GetPage(
       name: _Paths.BACKUP_DATA,
       page: () => const BackupDataView(),
+      binding: DataManagementBinding(),
+    ),
+    GetPage(
+      name: _Paths.RESTORE_DATA,
+      page: () => const RestoreDataView(),
       binding: DataManagementBinding(),
     ),
   ];

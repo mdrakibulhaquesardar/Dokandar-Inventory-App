@@ -12,6 +12,11 @@ class DataManagementController extends GetxController {
   final lastBackupDate = ''.obs;
   final isInitialized = false.obs;
 
+  // Restore related observables
+  final restoreProgress = 0.0.obs;
+  final restoreStatus = ''.obs;
+  final isRestoring = false.obs;
+
   @override
   void onInit() {
     super.onInit();
@@ -66,6 +71,29 @@ class DataManagementController extends GetxController {
       backupStatus.value = 'ব্যাকআপ ব্যর্থ হয়েছে: $e';
     } finally {
       isBackingUp.value = false;
+    }
+  }
+
+  Future<void> startRestore() async {
+    if (isRestoring.value || !isInitialized.value) return;
+
+    try {
+      isRestoring.value = true;
+      restoreProgress.value = 0.0;
+      restoreStatus.value = 'পুনরুদ্ধার করা হচ্ছে...';
+
+      await backupService.getLastBackupDate();
+
+      // Start actual restore
+      await backupService.importIsarFromFile();
+
+      // Update progress
+      restoreProgress.value = 1.0;
+      restoreStatus.value = 'পুনরুদ্ধার সফল হয়েছে!';
+    } catch (e) {
+      restoreStatus.value = 'পুনরুদ্ধার ব্যর্থ হয়েছে: $e';
+    } finally {
+      isRestoring.value = false;
     }
   }
 
