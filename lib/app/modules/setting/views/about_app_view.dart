@@ -51,7 +51,6 @@ class AboutAppView extends GetView {
                         radius: 40,
                         backgroundColor: Colors.blue.withOpacity(0.1),
                         backgroundImage: const AssetImage('assets/icon.png'),
-
                       ),
                     ),
                     const SizedBox(height: 16),

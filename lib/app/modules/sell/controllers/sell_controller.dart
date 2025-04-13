@@ -176,8 +176,11 @@ class SellController extends GetxController {
         final customer = await _databaseService.getCustomerById(int.parse(selectedCustomerId.value));
         if (customer != null) {
           customer.updateTotalPurchases(total.value);
-          customer.updateTotalDue(dueAmount.value);
-          customer.updateHasDue(dueAmount.value > 0);
+          if(dueAmount.value > 0) {
+            customer.updateTotalDue(dueAmount.value);
+            customer.updateHasDue(true);
+          }
+
           await _databaseService.saveCustomer(customer);
         }
       }

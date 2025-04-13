@@ -333,6 +333,7 @@ class CheckoutView extends GetView<SellController> {
             bottom: 16,
             left: 16,
             right: 16,
+
             child: GestureDetector(
               onTap: () => controller.processSale(),
               child: Container(
@@ -374,6 +375,7 @@ class CheckoutView extends GetView<SellController> {
               ),
             ),
           ),
+
         ],
       ),
     );
