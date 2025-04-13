@@ -46,6 +46,8 @@ dependencies:
   persistent_bottom_nav_bar: ^6.2.1
   fluttertoast: ^8.2.12
   permission_handler: ^12.0.0+1
+  pdf: ^3.11.3
+  syncfusion_flutter_pdfviewer: ^26.2.11
 
 dev_dependencies:
   flutter_test:

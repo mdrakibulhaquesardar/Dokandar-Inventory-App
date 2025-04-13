@@ -1,8 +1,10 @@
+import 'package:dokandar_app_inventory/app/widgets/Custom_AppBar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../../config/app_theme_config.dart';
 import '../../../data/models/product.dart';
+import '../controllers/invoice_generator_controller.dart';
 import '../controllers/sell_controller.dart';
 
 class CheckoutView extends GetView<SellController> {
@@ -14,30 +16,12 @@ class CheckoutView extends GetView<SellController> {
 
     return Scaffold(
       backgroundColor: themeConfig.getBackgroundColor(isDarkMode),
-      appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(60),
-        child: Container(
-          padding: const EdgeInsets.fromLTRB(16, 40, 16, 16),
-          decoration: BoxDecoration(
-            color: themeConfig.getSurfaceColor(isDarkMode),
-            borderRadius: const BorderRadius.only(
-              bottomLeft: Radius.circular(20),
-              bottomRight: Radius.circular(20),
-            ),
-          ),
-          child: Row(
-            children: [
-              Text(
-                'চেকআউট',
-                style: GoogleFonts.poppins(
-                  fontSize: 24,
-                  fontWeight: FontWeight.w600,
-                  color: themeConfig.getTextPrimaryColor(isDarkMode),
-                ),
-              ),
-            ],
-          ),
-        ),
+      appBar: customAppBar(
+        themeConfig,
+        isDarkMode,
+        'অর্ডার চূড়ান্ত করুন',
+        true,
+        false,
       ),
       body: Stack(
         children: [
@@ -333,49 +317,100 @@ class CheckoutView extends GetView<SellController> {
             bottom: 16,
             left: 16,
             right: 16,
-
-            child: GestureDetector(
-              onTap: () => controller.processSale(),
-              child: Container(
-                padding: const EdgeInsets.symmetric(vertical: 16),
-                decoration: BoxDecoration(
-                  color: themeConfig.getPrimaryColor(isDarkMode),
-                  borderRadius: BorderRadius.circular(12),
-                  boxShadow: [
-                    BoxShadow(
-                      color: themeConfig
-                          .getPrimaryColor(isDarkMode)
-                          .withOpacity(0.3),
-                      blurRadius: 10,
-                      offset: const Offset(0, 3),
-                    ),
-                  ],
-                ),
-                child: Center(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Icon(
-                        Icons.check_circle_outline,
-                        color: Colors.white,
-                        size: 20,
+            child: Row(
+              children: [
+                // Invoice Button
+                Expanded(
+                  flex: 2,
+                  child: GestureDetector(
+                    onTap: () => Get.put(InvoiceGeneratorController()).generateInvoice(),
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(vertical: 16),
+                      decoration: BoxDecoration(
+                        color: themeConfig.getAccentColor(isDarkMode),
+                        borderRadius: BorderRadius.circular(12),
+                        boxShadow: [
+                          BoxShadow(
+                            color: themeConfig
+                                .getAccentColor(isDarkMode)
+                                .withOpacity(0.3),
+                            blurRadius: 10,
+                            offset: const Offset(0, 3),
+                          ),
+                        ],
                       ),
-                      const SizedBox(width: 8),
-                      Text(
-                        'অর্ডার নিশ্চিত করুন',
-                        style: GoogleFonts.poppins(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.white,
+                      child: Center(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            const Icon(
+                              Icons.receipt_long_outlined,
+                              color: Colors.white,
+                              size: 20,
+                            ),
+                            const SizedBox(width: 8),
+                            Text(
+                              'ইনভয়েস',
+                              style: GoogleFonts.poppins(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w600,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ],
                         ),
                       ),
-                    ],
+                    ),
                   ),
                 ),
-              ),
+                const SizedBox(width: 12),
+                // Confirm Order Button
+                Expanded(
+                  flex: 3,
+                  child: GestureDetector(
+                    onTap: () => controller.processSale(),
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(vertical: 16),
+                      decoration: BoxDecoration(
+                        color: themeConfig.getPrimaryColor(isDarkMode),
+                        borderRadius: BorderRadius.circular(12),
+                        boxShadow: [
+                          BoxShadow(
+                            color: themeConfig
+                                .getPrimaryColor(isDarkMode)
+                                .withOpacity(0.3),
+                            blurRadius: 10,
+                            offset: const Offset(0, 3),
+                          ),
+                        ],
+                      ),
+                      child: Center(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            const Icon(
+                              Icons.check_circle_outline,
+                              color: Colors.white,
+                              size: 20,
+                            ),
+                            const SizedBox(width: 8),
+                            Text(
+                              'অর্ডার নিশ্চিত করুন',
+                              style: GoogleFonts.poppins(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w600,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
-
         ],
       ),
     );
