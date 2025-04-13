@@ -1,3 +1,5 @@
+import 'package:dokandar_app_inventory/app/data/models/store.dart';
+import 'package:dokandar_app_inventory/app/modules/sell/controllers/sell_controller.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:pdf/pdf.dart';
@@ -5,13 +7,16 @@ import 'package:pdf/widgets.dart' as pw;
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 import 'dart:typed_data';
 
+import '../../../data/services/database_service.dart';
+
 class InvoiceGeneratorController extends GetxController {
   final pdf = pw.Document();
   Uint8List? pdfBytes;
   final PdfViewerController pdfViewerController = PdfViewerController();
 
-  // Cart products from SellController   final RxList<SaleItem> cartItems = <SaleItem>[].obs;
+  final SellController _sellController = Get.find<SellController>();
 
+  late final Store? store  ;
 
 
 
@@ -28,7 +33,7 @@ class InvoiceGeneratorController extends GetxController {
           buildBackground: (context) => pw.FullPage(
             ignoreMargins: true,
             child: pw.Watermark.text(
-              'DOKANDAR',
+              '${store?.name}',
               style: pw.TextStyle(
                 color: PdfColors.grey200,
                 fontSize: 100,
@@ -62,13 +67,13 @@ class InvoiceGeneratorController extends GetxController {
                   pw.Column(
                     crossAxisAlignment: pw.CrossAxisAlignment.end,
                     children: [
-                      pw.Text('Your Company Name',
+                      pw.Text(store?.name ?? 'Store Name',
                           style: pw.TextStyle(
                               fontSize: 24, fontWeight: pw.FontWeight.bold)),
                       pw.Text('123 Business Street'),
-                      pw.Text('City, State, ZIP'),
-                      pw.Text('Phone: (123) 456-7890'),
-                      pw.Text('Email: business@example.com'),
+                      pw.Text('${store?.address}'),
+                      pw.Text('Phone: ${store?.phone}'),
+                      pw.Text('Email: ${store?.email}'),
                     ],
                   ),
                 ],
@@ -146,37 +151,43 @@ class InvoiceGeneratorController extends GetxController {
                       ),
                     ],
                   ),
-                  // Sample Item Row
-                  pw.TableRow(
-                    children: [
-                      pw.Padding(
-                        padding: const pw.EdgeInsets.all(8),
-                        child: pw.Text('1'),
-                      ),
-                      pw.Padding(
-                        padding: const pw.EdgeInsets.all(8),
-                        child: pw.Text('Sample Product'),
-                      ),
-                      pw.Padding(
-                        padding: const pw.EdgeInsets.all(8),
-                        child: pw.Text('2'),
-                      ),
-                      pw.Padding(
-                        padding: const pw.EdgeInsets.all(8),
-                        child: pw.Text('100.00 Tk',
-                            style: pw.TextStyle(
-                              fontWeight: pw.FontWeight.bold,
-                            )),
-                      ),
-                      pw.Padding(
-                        padding: const pw.EdgeInsets.all(8),
-                        child: pw.Text('200.00 Tk',
-                            style: pw.TextStyle(
-                              fontWeight: pw.FontWeight.bold,
-                            )),
-                      ),
-                    ],
-                  ),
+                  // Dynamic Item Rows
+                  ..._sellController.cartItems.asMap().entries.map((entry) {
+                    final index = entry.key;
+                    final item = entry.value;
+                    return pw.TableRow(
+                      children: [
+                        pw.Padding(
+                          padding: const pw.EdgeInsets.all(8),
+                          child: pw.Text('${index + 1}'),
+                        ),
+                        pw.Padding(
+                          padding: const pw.EdgeInsets.all(8),
+                          child: pw.Text(item.productName),
+                        ),
+                        pw.Padding(
+                          padding: const pw.EdgeInsets.all(8),
+                          child: pw.Text('${item.quantity.toInt()}'),
+                        ),
+                        pw.Padding(
+                          padding: const pw.EdgeInsets.all(8),
+                          child:
+                              pw.Text('${item.unitPrice.toStringAsFixed(2)} Tk',
+                                  style: pw.TextStyle(
+                                    fontWeight: pw.FontWeight.bold,
+                                  )),
+                        ),
+                        pw.Padding(
+                          padding: const pw.EdgeInsets.all(8),
+                          child: pw.Text(
+                              '${item.totalPrice.toStringAsFixed(2)} Tk',
+                              style: pw.TextStyle(
+                                fontWeight: pw.FontWeight.bold,
+                              )),
+                        ),
+                      ],
+                    );
+                  }).toList(),
                 ],
               ),
               pw.SizedBox(height: 20),
@@ -193,17 +204,19 @@ class InvoiceGeneratorController extends GetxController {
                         pw.Text('Subtotal: ',
                             style:
                                 pw.TextStyle(fontWeight: pw.FontWeight.bold)),
-                        pw.Text('200.00 Tk'),
+                        pw.Text(
+                            '${_sellController.total.value.toStringAsFixed(2)} Tk'),
                       ],
                     ),
                     pw.SizedBox(height: 8),
                     pw.Row(
                       mainAxisAlignment: pw.MainAxisAlignment.end,
                       children: [
-                        pw.Text('Tax (5%): ',
+                        pw.Text('Discount: ',
                             style:
                                 pw.TextStyle(fontWeight: pw.FontWeight.bold)),
-                        pw.Text('10.00 Tk'),
+                        pw.Text(
+                            '${_sellController.discount.value.toStringAsFixed(2)} Tk'),
                       ],
                     ),
                     pw.SizedBox(height: 8),
@@ -216,7 +229,8 @@ class InvoiceGeneratorController extends GetxController {
                           pw.Text('Total: ',
                               style:
                                   pw.TextStyle(fontWeight: pw.FontWeight.bold)),
-                          pw.Text('210.00 Tk',
+                          pw.Text(
+                              '${_sellController.total.value.toStringAsFixed(2)} Tk',
                               style: pw.TextStyle(
                                 fontWeight: pw.FontWeight.bold,
                               )),
@@ -385,8 +399,9 @@ class InvoiceGeneratorController extends GetxController {
   }
 
   @override
-  void onInit() {
+  Future<void> onInit() async {
     super.onInit();
+    store = await Get.find<DatabaseService>().getStore();
   }
 
   @override
