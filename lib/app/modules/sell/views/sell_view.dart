@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../../config/app_theme_config.dart';
 import '../../../data/models/product.dart';
+import '../../../widgets/Custom_AppBar.dart';
 import '../controllers/sell_controller.dart';
 
 class SellView extends GetView<SellController> {
@@ -16,17 +17,12 @@ class SellView extends GetView<SellController> {
 
     return Scaffold(
       backgroundColor: themeConfig.getBackgroundColor(isDarkMode),
-      appBar: AppBar(
-        backgroundColor: themeConfig.getSurfaceColor(isDarkMode),
-        elevation: 0,
-        title: Text(
-          'বিক্রয় কাউন্টার',
-          style: GoogleFonts.poppins(
-            fontSize: 20,
-            fontWeight: FontWeight.w600,
-            color: themeConfig.getTextPrimaryColor(isDarkMode),
-          ),
-        ),
+      appBar: customAppBar(
+        themeConfig,
+        isDarkMode,
+        'বিক্রয় কাউন্টার',
+        false,
+        true,
       ),
       body: Column(
         children: [

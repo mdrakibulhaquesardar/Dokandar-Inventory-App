@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 import '../modules/home/controllers/home_controller.dart';
 import '../modules/home/views/home_view.dart';
+import '../modules/inventory/controllers/inventory_controller.dart';
 import '../modules/inventory/views/inventory_view.dart';
 import '../modules/sell/views/sell_view.dart';
 import '../modules/setting/views/setting_view.dart';

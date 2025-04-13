@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'app/data/services/database_service.dart';
 import 'app/controllers/product_controller.dart';
 import 'app/controllers/persistent_navigation_controller.dart';
+import 'app/modules/inventory/controllers/inventory_controller.dart';
 import 'app/modules/sell/controllers/sell_controller.dart';
 import 'app/modules/setting/controllers/setting_controller.dart';
 import 'app/routes/app_pages.dart';
@@ -24,6 +25,7 @@ void main() async {
   Get.put(SettingController());
   Get.put(HomeController());
   Get.put(SellController());
+  Get.put(InventoryController());
 
   // Check if user exists
   final hasUser = await dbService.hasUser();
@@ -31,7 +33,7 @@ void main() async {
 
   runApp(GetMaterialApp(
     debugShowCheckedModeBanner: false,
-    title: 'Inventory Management',
+    title: 'Dokandar Inventory',
     theme: Get.find<AppThemeConfig>().getLightTheme(),
     darkTheme: Get.find<AppThemeConfig>().getDarkTheme(),
     themeMode: ThemeMode.system,

@@ -170,6 +170,21 @@ class SellController extends GetxController {
           await _databaseService.saveProduct(product);
         }
       }
+
+      //Update Customer Info and Add Sale
+      if (selectedCustomerId.value.isNotEmpty) {
+        final customer = await _databaseService.getCustomerById(int.parse(selectedCustomerId.value));
+        if (customer != null) {
+          customer.updateTotalPurchases(total.value);
+          customer.updateTotalDue(dueAmount.value);
+          customer.updateHasDue(dueAmount.value > 0);
+          await _databaseService.saveCustomer(customer);
+        }
+      }
+
+
+
+
       clearCart();
       Get.back();
       Get.find<HomeController>().refresh();

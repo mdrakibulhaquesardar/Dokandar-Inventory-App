@@ -8,9 +8,9 @@
 
     <application
         android:requestLegacyExternalStorage="true"
-        android:label="dokandar_app_inventory"
+        android:label="Dokandar"
         android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/launcher_icon">
         <activity
             android:name=".MainActivity"
             android:exported="true"

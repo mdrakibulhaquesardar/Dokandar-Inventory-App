@@ -1,8 +1,13 @@
 import 'package:dokandar_app_inventory/app/routes/app_pages.dart';
 import 'package:get/get.dart';
 
+import '../../../data/models/product.dart';
+import '../../../data/services/database_service.dart';
+
 class InventoryController extends GetxController {
    var currentIndex = 1.obs;
+   RxInt totalProducts = 0.obs;
+   RxInt totalProductsPrice = 0.obs;
 
   void changePage(int index) {
     currentIndex.value = index;
@@ -20,10 +25,16 @@ class InventoryController extends GetxController {
   }
 
   final count = 0.obs;
-  @override
-  void onInit() {
-    super.onInit();
-  }
+   @override
+   void onInit() {
+     super.onInit();
+     Get.find<DatabaseService>().getTotalProducts().then((value) {
+       totalProducts.value = value;
+     });
+      Get.find<DatabaseService>().getTotalProductsPrice().then((value) {
+        totalProductsPrice.value = value.toInt();
+      });
+   }
 
   @override
   void onReady() {

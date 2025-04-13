@@ -17,6 +17,10 @@ abstract class Routes {
   static const CHECKOUT = _Paths.CHECKOUT;
   static const BACKUP_DATA = _Paths.BACKUP_DATA;
   static const RESTORE_DATA = _Paths.RESTORE_DATA;
+  static const SUPPORT = _Paths.SUPPORT;
+  static const FEEDBACK = _Paths.FEEDBACK;
+  static const ABOUT_APP = _Paths.ABOUT_APP;
+
 }
 
 abstract class _Paths {
@@ -35,4 +39,7 @@ abstract class _Paths {
   static const CHECKOUT = '/checkout';
   static const BACKUP_DATA = '/backup-data';
   static const RESTORE_DATA = '/restore-data';
+  static const SUPPORT = '/support';
+  static const FEEDBACK = '/feedback';
+  static const ABOUT_APP = '/about-app';
 }

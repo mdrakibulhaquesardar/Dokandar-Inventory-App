@@ -102,23 +102,23 @@ class HomeController extends GetxController {
 
   //Refresh the statistics
 
-  void refreshStatistics() {
-    Future.wait([
-      getAllStatistics(),
-      getRecentSales(),
-      getLowStockProducts(),
-    ]).then((_) {
-      // Show a toast message after refreshing
-      Fluttertoast.showToast(
-        msg: "রিফ্রেশ করা হয়েছে",
-        toastLength: Toast.LENGTH_SHORT,
-        gravity: ToastGravity.BOTTOM,
-        backgroundColor: Colors.black,
-        textColor: Colors.white,
-        fontSize: 16.0,
-      );
-    });
-  }
+  // void refreshStatistics() {
+  //   Future.wait([
+  //     getAllStatistics(),
+  //     getRecentSales(),
+  //     getLowStockProducts(),
+  //   ]).then((_) {
+  //     // Show a toast message after refreshing
+  //     Fluttertoast.showToast(
+  //       msg: "রিফ্রেশ করা হয়েছে",
+  //       toastLength: Toast.LENGTH_SHORT,
+  //       gravity: ToastGravity.BOTTOM,
+  //       backgroundColor: Colors.black,
+  //       textColor: Colors.white,
+  //       fontSize: 16.0,
+  //     );
+  //   });
+  // }
 
   @override
   void onInit() {
@@ -138,6 +138,14 @@ class HomeController extends GetxController {
   @override
   void onClose() {
     super.onClose();
+  }
+
+  @override
+  void refresh() {
+    super.refresh();
+    getAllStatistics();
+    getRecentSales();
+    getLowStockProducts();
   }
 
 

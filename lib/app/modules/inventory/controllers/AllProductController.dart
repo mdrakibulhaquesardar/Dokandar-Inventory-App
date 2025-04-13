@@ -8,10 +8,10 @@ import '../../../widgets/showCustomSnackbar.dart';
 import '../../home/controllers/home_controller.dart';
 
 class AllProductController extends GetxController {
+
   final products = <Product>[].obs;
   final newProduct = <String, dynamic>{}.obs;
   final DatabaseService _databaseService = Get.find<DatabaseService>();
-
   RxList<Category> allCategories = <Category>[].obs;
 
   @override

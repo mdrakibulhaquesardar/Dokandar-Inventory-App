@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../../config/app_theme_config.dart';
 import '../../../data/models/customer.dart';
+import '../../../widgets/Custom_AppBar.dart';
 import '../controllers/AllCustomerController.dart';
 
 class AllCustomerView extends GetView<AllCustomerController> {
@@ -18,41 +19,12 @@ class AllCustomerView extends GetView<AllCustomerController> {
 
     return Scaffold(
       backgroundColor: themeConfig.getBackgroundColor(isDarkMode),
-      appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(60),
-        child: Container(
-          padding: const EdgeInsets.fromLTRB(16, 40, 16, 16),
-          decoration: BoxDecoration(
-            color: themeConfig.getSurfaceColor(isDarkMode),
-            borderRadius: const BorderRadius.only(
-              bottomLeft: Radius.circular(20),
-              bottomRight: Radius.circular(20),
-            ),
-          ),
-          child: Row(
-            children: [
-              Text(
-                'আপনার গ্রাহকগণ',
-                style: GoogleFonts.poppins(
-                  fontSize: 24,
-                  fontWeight: FontWeight.w600,
-                  color: themeConfig.getTextPrimaryColor(isDarkMode),
-                ),
-              ),
-              const Spacer(),
-              IconButton(
-                icon: Icon(
-                  Icons.search,
-                  color: themeConfig.getTextPrimaryColor(isDarkMode),
-                ),
-                onPressed: () =>
-                    _showCustomerDetails(
-                        context, controller.customers[0], themeConfig,
-                        isDarkMode),
-              ),
-            ],
-          ),
-        ),
+      appBar:customAppBar(
+        themeConfig,
+        isDarkMode,
+        'গ্রাহক তালিকা',
+        true,
+        false,
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -193,13 +165,19 @@ class AllCustomerView extends GetView<AllCustomerController> {
                           ),
                         ),
                         const SizedBox(width: 8),
-                        Text(
-                          customerPhone,
-                          style: TextStyle(
-                            fontSize: 14,
-                            color:
-                            themeConfig.getTextSecondaryColor(isDarkMode),
-                            fontWeight: FontWeight.w500,
+                        Expanded(
+                          child: Text(
+                            customerPhone,
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 1,
+                            softWrap: true,
+                            
+                            style: TextStyle(
+                          
+                              fontSize: 14,
+                              color: themeConfig.getTextSecondaryColor(isDarkMode),
+                              fontWeight: FontWeight.w500,
+                            ),
                           ),
                         ),
                       ],
@@ -318,14 +296,50 @@ class AllCustomerView extends GetView<AllCustomerController> {
                         color: themeConfig.getTextPrimaryColor(isDarkMode),
                       ),
                     ),
-                    Text(
-                      'মোট ক্রয়: ${customer.totalPurchases.toStringAsFixed(
-                          2)}৳',
-                      style: GoogleFonts.poppins(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w500,
-                        color: themeConfig.getPrimaryColor(isDarkMode),
-                      ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        Row(
+                          children: [
+                            Text(
+                              'মোট ক্রয়: ${customer.totalPurchases.toStringAsFixed(
+                                  2)}৳',
+                              style: GoogleFonts.poppins(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w500,
+                                color: themeConfig.getPrimaryColor(isDarkMode),
+                              ),
+                            ),
+                            Text(
+                              '  |  বাকি: ${customer.totalDue.toStringAsFixed(2)}৳',
+                              style: GoogleFonts.poppins(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w500,
+                                color: themeConfig.getPrimaryColor(isDarkMode),
+                              ),
+                            ),
+                          ],
+                        ),
+                        Text(
+                          customer.hasDue ? 'গ্রাহক বাকি আছে' : 'গ্রাহক বাকি নেই',
+                          style: GoogleFonts.poppins(
+                            fontSize: 12,
+                            fontWeight: FontWeight.w500,
+                            color: customer.hasDue
+                                ? Colors.red
+                                : themeConfig.getTextPrimaryColor(isDarkMode),
+                          ),
+                        ),
+                        //last purchase date
+                        Text(
+                          'সর্বশেষ ক্রয়: ${customer.updatedAt != null ? customer.updatedAt!.toLocal().toString().split(' ')[0] : 'N/A'}',
+                          style: GoogleFonts.poppins(
+                            fontSize: 12,
+                            fontWeight: FontWeight.w500,
+                            color: themeConfig.getTextSecondaryColor(isDarkMode),
+                          ),
+                        ),
+                      ],
                     ),
                   ],
                 ),

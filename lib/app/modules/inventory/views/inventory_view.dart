@@ -1,8 +1,11 @@
 import 'package:dokandar_app_inventory/app/config/app_theme_config.dart';
+import 'package:dokandar_app_inventory/app/modules/home/views/home_view.dart';
+import 'package:dokandar_app_inventory/app/utils/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../../routes/app_pages.dart';
+import '../../../widgets/Custom_AppBar.dart';
 import '../controllers/inventory_controller.dart';
 
 class InventoryView extends GetView<InventoryController> {
@@ -15,40 +18,12 @@ class InventoryView extends GetView<InventoryController> {
 
     return Scaffold(
       backgroundColor: themeConfig.getBackgroundColor(isDarkMode),
-      appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(60),
-        child: Container(
-          padding: const EdgeInsets.fromLTRB(16, 40, 16, 16),
-          decoration: BoxDecoration(
-            color: themeConfig.getSurfaceColor(isDarkMode),
-            borderRadius: const BorderRadius.only(
-              bottomLeft: Radius.circular(20),
-              bottomRight: Radius.circular(20),
-            ),
-          ),
-          child: Row(
-            children: [
-              Text(
-                'ইনভেন্টরি',
-                style: GoogleFonts.poppins(
-                  fontSize: 24,
-                  fontWeight: FontWeight.w600,
-                  color: themeConfig.getTextPrimaryColor(isDarkMode),
-                ),
-              ),
-              const Spacer(),
-              IconButton(
-                icon: Icon(
-                  Icons.search,
-                  color: themeConfig.getTextPrimaryColor(isDarkMode),
-                ),
-                onPressed: () {
-                  //TODO : Implement search functionality
-                },
-              ),
-            ],
-          ),
-        ),
+      appBar: customAppBar(
+        themeConfig,
+        isDarkMode,
+        'ইনভেন্টরি',
+        false,
+        true,
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
@@ -73,19 +48,21 @@ class InventoryView extends GetView<InventoryController> {
                             style: GoogleFonts.poppins(
                               fontSize: 14,
                               color:
-                                  themeConfig.getTextSecondaryColor(isDarkMode),
+                              themeConfig.getTextSecondaryColor(isDarkMode),
                             ),
                           ),
                           const SizedBox(height: 8),
-                          Text(
-                            '১২৫',
-                            style: GoogleFonts.poppins(
-                              fontSize: 24,
-                              fontWeight: FontWeight.w600,
-                              color:
-                                  themeConfig.getTextPrimaryColor(isDarkMode),
-                            ),
-                          ),
+                          Obx(() {
+                            return Text(
+                              '${controller.totalProducts.value.translateNumberToBengali()} টি',
+                              style: GoogleFonts.poppins(
+                                fontSize: 24,
+                                fontWeight: FontWeight.w600,
+                                color:
+                                themeConfig.getTextPrimaryColor(isDarkMode),
+                              ),
+                            );
+                          }),
                         ],
                       ),
                     ),
@@ -108,19 +85,21 @@ class InventoryView extends GetView<InventoryController> {
                             style: GoogleFonts.poppins(
                               fontSize: 14,
                               color:
-                                  themeConfig.getTextSecondaryColor(isDarkMode),
+                              themeConfig.getTextSecondaryColor(isDarkMode),
                             ),
                           ),
                           const SizedBox(height: 8),
-                          Text(
-                            '৳১২,৫০০',
-                            style: GoogleFonts.poppins(
-                              fontSize: 24,
-                              fontWeight: FontWeight.w600,
-                              color:
-                                  themeConfig.getTextPrimaryColor(isDarkMode),
-                            ),
-                          ),
+                          Obx(() {
+                            return Text(
+                              '৳${controller.totalProductsPrice.value.translateNumberToBengali()}',
+                              style: GoogleFonts.poppins(
+                                fontSize: 24,
+                                fontWeight: FontWeight.w600,
+                                color:
+                                themeConfig.getTextPrimaryColor(isDarkMode),
+                              ),
+                            );
+                          }),
                         ],
                       ),
                     ),
@@ -158,7 +137,7 @@ class InventoryView extends GetView<InventoryController> {
                   'সকল পণ্য',
                   Icons.inventory_2_outlined,
                   themeConfig.getPrimaryColor(isDarkMode),
-                  () {
+                      () {
                     Get.toNamed(Routes.ALL_PRODUCTS);
                   },
                   themeConfig,
@@ -169,7 +148,7 @@ class InventoryView extends GetView<InventoryController> {
                   'বিক্রয় ইতিহাস',
                   Icons.receipt_long_outlined,
                   themeConfig.getSuccessColor(isDarkMode),
-                  () {},
+                      () {},
                   themeConfig,
                   isDarkMode,
                   true,
@@ -178,7 +157,7 @@ class InventoryView extends GetView<InventoryController> {
                   'সকল কাস্টমার',
                   Icons.person_outline,
                   themeConfig.getInfoColor(isDarkMode),
-                  () {
+                      () {
                     Get.toNamed(Routes.ALL_CUSTOMER);
                   },
                   themeConfig,
@@ -186,31 +165,31 @@ class InventoryView extends GetView<InventoryController> {
                   false,
                 ),
                 _buildOptionCard(
-                  'ব্যবহারকারী',
-                  Icons.person_outline,
+                  'সকল সাপ্লায়ার',
+                  Icons.people_outline,
                   themeConfig.getInfoColor(isDarkMode),
                       () {},
                   themeConfig,
                   isDarkMode,
-                  false,
+                  true,
                 ),
                 _buildOptionCard(
-                  'ব্যবহারকারী',
-                  Icons.person_outline,
+                  'দোকান খরচ',
+                  Icons.attach_money_outlined,
                   themeConfig.getInfoColor(isDarkMode),
                       () {},
                   themeConfig,
                   isDarkMode,
-                  false,
+                  true,
                 ),
                 _buildOptionCard(
-                  'ব্যবহারকারী',
-                  Icons.person_outline,
+                  'সকল কর্মচারী',
+                  Icons.person_add_alt_1_outlined,
                   themeConfig.getInfoColor(isDarkMode),
                       () {},
                   themeConfig,
                   isDarkMode,
-                  false,
+                  true,
                 ),
 
               ],
@@ -240,29 +219,42 @@ class InventoryView extends GetView<InventoryController> {
               itemBuilder: (context, index) {
                 final items = [
                   {
+                    'title': 'বাকি প্রতিশোধ',
+                    'icon': Icons.attach_money_outlined,
+                    'color': themeConfig.getPrimaryColor(isDarkMode),
+                    'isLocked': false,
+                  },
+
+                  {
                     'title': 'ট্রানজেকশন ইতিহাস',
                     'icon': Icons.history,
-                    'color': themeConfig.getPrimaryColor(isDarkMode)
+                    'color': themeConfig.getPrimaryColor(isDarkMode),
+                    'isLocked': false,
                   },
                   {
                     'title': 'পণ্যের ক্যাটাগরি',
                     'icon': Icons.category,
-                    'color': themeConfig.getSuccessColor(isDarkMode)
+                    'color': themeConfig.getSuccessColor(isDarkMode),
+                    'isLocked': false,
+
                   },
                   {
                     'title': 'সাপ্লায়ার ম্যানেজমেন্ট',
                     'icon': Icons.people_outline,
-                    'color': themeConfig.getInfoColor(isDarkMode)
+                    'color': themeConfig.getInfoColor(isDarkMode),
+                    'isLocked': true,
                   },
                   {
                     'title': 'স্টক অ্যালার্ট',
                     'icon': Icons.notification_important_outlined,
-                    'color': themeConfig.getWarningColor(isDarkMode)
+                    'color': themeConfig.getWarningColor(isDarkMode),
+                    'isLocked': true,
                   },
                   {
                     'title': 'রিপোর্ট জেনারেট',
                     'icon': Icons.assessment_outlined,
-                    'color': themeConfig.getWarningColor(isDarkMode)
+                    'color': themeConfig.getWarningColor(isDarkMode),
+                    'isLocked': true,
                   },
                 ];
                 return Card(
@@ -276,20 +268,20 @@ class InventoryView extends GetView<InventoryController> {
                       //TODO : Implement navigation to respective screen
                       switch (index) {
                         case 0:
-                          // Navigate to Transaction History
+                        // Navigate to Transaction History
                           break;
                         case 1:
-                          // Navigate to Product Category
-                           Get.toNamed(Routes.CATEGORY);
+                        // Navigate to Product Category
+                          Get.toNamed(Routes.CATEGORY);
                           break;
                         case 2:
-                          // Navigate to Supplier Management
+                        // Navigate to Supplier Management
                           break;
                         case 3:
-                          // Navigate to Stock Alert
+                        // Navigate to Stock Alert
                           break;
                         case 4:
-                          // Navigate to Report Generation
+                        // Navigate to Report Generation
                           break;
                       }
                     },
@@ -320,10 +312,16 @@ class InventoryView extends GetView<InventoryController> {
                         color: themeConfig.getTextSecondaryColor(isDarkMode),
                       ),
                     ),
-                    trailing: Icon(
+                    trailing: items[index]['isLocked'] as bool
+                        ? Icon(
                       Icons.lock,
-                      size: 16,
                       color: themeConfig.getTextSecondaryColor(isDarkMode),
+                      size: 20,
+                    )
+                        : Icon(
+                      Icons.account_tree_outlined,
+                      color: themeConfig.getTextSecondaryColor(isDarkMode),
+                      size: 20,
                     ),
                   ),
                 );
@@ -335,8 +333,7 @@ class InventoryView extends GetView<InventoryController> {
     );
   }
 
-  Widget _buildOptionCard(
-      String title,
+  Widget _buildOptionCard(String title,
       IconData icon,
       Color color,
       VoidCallback onTap,
@@ -353,7 +350,10 @@ class InventoryView extends GetView<InventoryController> {
         child: Stack(
           children: [
             Padding(
-              padding:  EdgeInsets.symmetric(horizontal: 10, vertical: MediaQuery.of(Get.context!).size.width > 400 ? 16 : 20),
+              padding: EdgeInsets.symmetric(horizontal: 10, vertical: MediaQuery
+                  .of(Get.context!)
+                  .size
+                  .width > 400 ? 16 : 20),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -370,7 +370,10 @@ class InventoryView extends GetView<InventoryController> {
                   Text(
                     title,
                     style: GoogleFonts.poppins(
-                      fontSize: MediaQuery.of(Get.context!).size.width > 400
+                      fontSize: MediaQuery
+                          .of(Get.context!)
+                          .size
+                          .width > 400
                           ? 14
                           : 12,
                       fontWeight: FontWeight.w600,
@@ -394,18 +397,18 @@ class InventoryView extends GetView<InventoryController> {
                 ),
                 child: isLocked
                     ? Icon(
-                        Icons.lock,
-                        color: themeConfig.getTextSecondaryColor(isDarkMode),
-                        size: 14,
-                      )
+                  Icons.lock,
+                  color: themeConfig.getTextSecondaryColor(isDarkMode),
+                  size: 14,
+                )
                     : Text(
-                        'নতুন',
-                        style: GoogleFonts.poppins(
-                          fontSize: 9,
-                          fontWeight: FontWeight.w500,
-                          color: color,
-                        ),
-                      ),
+                  'নতুন',
+                  style: GoogleFonts.poppins(
+                    fontSize: 9,
+                    fontWeight: FontWeight.w500,
+                    color: color,
+                  ),
+                ),
               ),
             ),
           ],

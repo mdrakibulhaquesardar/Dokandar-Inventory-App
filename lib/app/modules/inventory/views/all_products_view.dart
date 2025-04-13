@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../../../config/app_theme_config.dart';
 import '../../../utils/DateTimeUtils.dart';
+import '../../../widgets/Custom_AppBar.dart';
 import '../controllers/AllProductController.dart';
 
 class AllProductsView extends GetView<AllProductController> {
@@ -14,40 +15,12 @@ class AllProductsView extends GetView<AllProductController> {
     final themeConfig = Get.find<AppThemeConfig>();
     final isDarkMode = Get.isDarkMode;
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(60),
-        child: Container(
-          padding: const EdgeInsets.fromLTRB(16, 40, 16, 16),
-          decoration: BoxDecoration(
-            color: themeConfig.getSurfaceColor(isDarkMode),
-            borderRadius: const BorderRadius.only(
-              bottomLeft: Radius.circular(20),
-              bottomRight: Radius.circular(20),
-            ),
-          ),
-          child: Row(
-            children: [
-              Text(
-                'আপনার পণ্যসমূহ',
-                style: GoogleFonts.poppins(
-                  fontSize: 24,
-                  fontWeight: FontWeight.w600,
-                  color: themeConfig.getTextPrimaryColor(isDarkMode),
-                ),
-              ),
-              const Spacer(),
-              IconButton(
-                icon: Icon(
-                  Icons.search,
-                  color: themeConfig.getTextPrimaryColor(isDarkMode),
-                ),
-                onPressed: () {
-                  //TODO: Implement search functionality
-                },
-              ),
-            ],
-          ),
-        ),
+      appBar: customAppBar(
+        themeConfig,
+        isDarkMode,
+        ' আপনার পণ্যসমূহ',
+        true,
+        false,
       ),
       body: Column(
         children: [

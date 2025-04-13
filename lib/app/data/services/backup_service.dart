@@ -165,6 +165,8 @@ class BackupService extends GetxService {
                   'phone': u.phone,
                   'password': u.password,
                   'role': u.role,
+                  'isActive': u.isActive,
+                  'isPremium': u.isPremium,
                   'createdAt': u.createdAt.toIso8601String(),
                   'updatedAt': u.updatedAt?.toIso8601String(),
                 })
@@ -345,6 +347,8 @@ class BackupService extends GetxService {
             ..phone = userData['phone']
             ..password = userData['password']
             ..role = userData['role']
+            ..isActive = userData['isActive']
+            ..isPremium = userData['isPremium']
             ..createdAt = DateTime.parse(userData['createdAt'])
             ..updatedAt = userData['updatedAt'] != null
                 ? DateTime.parse(userData['updatedAt'])

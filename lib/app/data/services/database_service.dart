@@ -68,9 +68,26 @@ class DatabaseService extends GetxService {
     });
   }
 
-  // Product operations
+  /// Product operations
+
   Future<List<Product>> getAllProducts() async {
     return await isar.products.where().findAll();
+  }
+
+  // get total products
+  Future<int> getTotalProducts() async {
+    return await isar.products.count();
+  }
+
+  // get total products price
+
+  Future<double> getTotalProductsPrice() async {
+    final products = await isar.products.where().findAll();
+    double total = 0;
+    for (var product in products) {
+      total += product.unitPrice * product.stockQuantity;
+    }
+    return total;
   }
 
   // get Low Stock Products
@@ -98,6 +115,12 @@ class DatabaseService extends GetxService {
   // Customer operations
   Future<List<Customer>> getAllCustomers() async {
     return await isar.customers.where().findAll();
+  }
+
+  // get Customer by id
+
+  Future<Customer?> getCustomerById(int id) async {
+    return await isar.customers.get(id);
   }
 
   Future<void> saveCustomer(Customer customer) async {

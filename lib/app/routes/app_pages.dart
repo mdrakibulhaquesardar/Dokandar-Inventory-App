@@ -14,7 +14,10 @@ import '../modules/sell/bindings/sell_binding.dart';
 import '../modules/sell/views/checkout_view.dart';
 import '../modules/sell/views/sell_view.dart';
 import '../modules/setting/bindings/setting_binding.dart';
+import '../modules/setting/views/about_app_view.dart';
+import '../modules/setting/views/feedback_view.dart';
 import '../modules/setting/views/setting_view.dart';
+import '../modules/setting/views/support_view.dart';
 import '../modules/setup/bindings/setup_binding.dart';
 import '../modules/setup/views/confrom_view.dart';
 import '../modules/setup/views/setup_view.dart';
@@ -102,6 +105,21 @@ class AppPages {
       name: _Paths.RESTORE_DATA,
       page: () => const RestoreDataView(),
       binding: DataManagementBinding(),
+    ),
+    GetPage(
+      name: _Paths.SUPPORT,
+      page: () => const SupportView(),
+      binding: SettingBinding(),
+    ),
+    GetPage(
+      name: _Paths.FEEDBACK,
+      page: () => const FeedbackView(),
+      binding: SettingBinding(),
+    ),
+    GetPage(
+      name: _Paths.ABOUT_APP,
+      page: () => const AboutAppView(),
+      binding: SettingBinding(),
     ),
   ];
 }

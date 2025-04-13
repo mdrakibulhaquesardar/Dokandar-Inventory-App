@@ -120,7 +120,7 @@ class SettingView extends GetView<SettingController> {
               isDarkMode,
             ),
             _buildSettingCard(
-              'ক্যাটাগরি ম্যানেজমেন্ট',
+              'দোকানর ম্যানেজমেন্ট',
               Icons.category_outlined,
               Colors.purple,
                   () {},
@@ -134,7 +134,9 @@ class SettingView extends GetView<SettingController> {
               'সাপোর্ট সেন্টার',
               Icons.support_agent_outlined,
               Colors.teal,
-                  () {},
+                  () {
+                Get.toNamed(Routes.SUPPORT);
+                  },
               themeConfig,
               isDarkMode,
             ),
@@ -142,7 +144,9 @@ class SettingView extends GetView<SettingController> {
               'ফিডব্যাক',
               Icons.feedback_outlined,
               Colors.amber,
-                  () {},
+                  () {
+                Get.toNamed(Routes.FEEDBACK);
+                  },
               themeConfig,
               isDarkMode,
             ),
@@ -150,7 +154,9 @@ class SettingView extends GetView<SettingController> {
               'অ্যাপ ভার্সন',
               Icons.info_outline,
               Colors.grey,
-                  () {},
+                  () {
+                Get.toNamed(Routes.ABOUT_APP);
+                  },
               themeConfig,
               isDarkMode,
             ),
