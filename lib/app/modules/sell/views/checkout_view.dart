@@ -9,6 +9,7 @@ import '../controllers/sell_controller.dart';
 
 class CheckoutView extends GetView<SellController> {
   const CheckoutView({super.key});
+
   @override
   Widget build(BuildContext context) {
     final themeConfig = Get.find<AppThemeConfig>();
@@ -64,7 +65,7 @@ class CheckoutView extends GetView<SellController> {
                                 fontSize: 18,
                                 fontWeight: FontWeight.w600,
                                 color:
-                                    themeConfig.getTextPrimaryColor(isDarkMode),
+                                themeConfig.getTextPrimaryColor(isDarkMode),
                               ),
                             ),
                             const Spacer(),
@@ -87,7 +88,8 @@ class CheckoutView extends GetView<SellController> {
                           ],
                         ),
                         const SizedBox(height: 16),
-                        Obx(() => Column(
+                        Obx(() =>
+                            Column(
                               children: [
                                 ...controller.cartItems
                                     .asMap()
@@ -99,7 +101,8 @@ class CheckoutView extends GetView<SellController> {
                                       _buildCostRow(
                                         item.productName,
                                         item.quantity.toInt(),
-                                        '৳ ${item.totalPrice.toStringAsFixed(2)}',
+                                        '৳ ${item.totalPrice.toStringAsFixed(
+                                            2)}',
                                         themeConfig,
                                         isDarkMode,
                                       ),
@@ -118,7 +121,7 @@ class CheckoutView extends GetView<SellController> {
                                   ),
                                   child: Row(
                                     mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
+                                    MainAxisAlignment.spaceBetween,
                                     children: [
                                       Text(
                                         'মোট',
@@ -130,7 +133,8 @@ class CheckoutView extends GetView<SellController> {
                                         ),
                                       ),
                                       Text(
-                                        '৳ ${controller.total.value.toStringAsFixed(2)}',
+                                        '৳ ${controller.total.value
+                                            .toStringAsFixed(2)}',
                                         style: GoogleFonts.poppins(
                                           fontSize: 20,
                                           fontWeight: FontWeight.w600,
@@ -180,7 +184,7 @@ class CheckoutView extends GetView<SellController> {
                                 fontSize: 18,
                                 fontWeight: FontWeight.w600,
                                 color:
-                                    themeConfig.getTextPrimaryColor(isDarkMode),
+                                themeConfig.getTextPrimaryColor(isDarkMode),
                               ),
                             ),
                             Text(
@@ -212,19 +216,21 @@ class CheckoutView extends GetView<SellController> {
                               ),
                             ),
                             ...controller.customers
-                                .map((customer) => DropdownMenuItem<String>(
-                                      value: customer.id.toString(),
-                                      child: Text(
-                                        customer.name,
-                                        style: GoogleFonts.poppins(
-                                          fontSize: 14,
-                                        ),
-                                      ),
-                                    )),
+                                .map((customer) =>
+                                DropdownMenuItem<String>(
+                                  value: customer.id.toString(),
+                                  child: Text(
+                                    customer.name,
+                                    style: GoogleFonts.poppins(
+                                      fontSize: 14,
+                                    ),
+                                  ),
+                                )),
                           ],
                           onChanged: (value) =>
                               controller.setSelectedCustomer(value ?? '0'),
-                          value: '0', // Default value
+                          value: '0',
+                          // Default value
                           style: GoogleFonts.poppins(
                             fontSize: 14,
                             color: themeConfig.getTextPrimaryColor(isDarkMode),
@@ -243,7 +249,7 @@ class CheckoutView extends GetView<SellController> {
                                   prefixIcon: Icon(
                                     Icons.discount_outlined,
                                     color:
-                                        themeConfig.getAccentColor(isDarkMode),
+                                    themeConfig.getAccentColor(isDarkMode),
                                     size: 18,
                                   ),
                                   labelStyle: GoogleFonts.poppins(
@@ -268,7 +274,7 @@ class CheckoutView extends GetView<SellController> {
                                   prefixIcon: Icon(
                                     Icons.account_balance_wallet_outlined,
                                     color:
-                                        themeConfig.getAccentColor(isDarkMode),
+                                    themeConfig.getAccentColor(isDarkMode),
                                     size: 18,
                                   ),
                                   labelStyle: GoogleFonts.poppins(
@@ -323,7 +329,8 @@ class CheckoutView extends GetView<SellController> {
                 Expanded(
                   flex: 2,
                   child: GestureDetector(
-                    onTap: () => Get.put(InvoiceGeneratorController()).generateInvoice(),
+                    onTap: () =>
+                        Get.put(InvoiceGeneratorController()).generateInvoice(),
                     child: Container(
                       padding: const EdgeInsets.symmetric(vertical: 16),
                       decoration: BoxDecoration(
@@ -349,14 +356,18 @@ class CheckoutView extends GetView<SellController> {
                               size: 20,
                             ),
                             const SizedBox(width: 8),
-                            Text(
-                              'ইনভয়েস',
-                              style: GoogleFonts.poppins(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w600,
-                                color: Colors.white,
-                              ),
-                            ),
+                            Obx(() {
+                              return Text(
+                                Get.put(InvoiceGeneratorController()).isStoreInitialized.value
+                                    ? 'ইনভয়েস'
+                                    : 'তৈরি হছে...',
+                                style: GoogleFonts.poppins(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w600,
+                                  color: Colors.white,
+                                ),
+                              );
+                            }),
                           ],
                         ),
                       ),
@@ -455,7 +466,7 @@ class CheckoutView extends GetView<SellController> {
           border: InputBorder.none,
           isDense: true,
           contentPadding:
-              const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+          const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
           prefixIcon: Icon(
             icon,
             color: themeConfig.getAccentColor(isDarkMode),

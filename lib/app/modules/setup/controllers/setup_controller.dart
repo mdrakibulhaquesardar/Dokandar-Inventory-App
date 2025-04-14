@@ -3,6 +3,7 @@ import 'package:dokandar_app_inventory/app/data/models/user.dart';
 import 'package:dokandar_app_inventory/app/data/services/database_service.dart';
 import 'package:dokandar_app_inventory/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 
 import '../../../widgets/loading_overlay.dart';
@@ -11,40 +12,20 @@ class SetupController extends GetxController {
   final currentStep = 0.obs;
   GlobalKey<FormState> userFormKey = GlobalKey<FormState>();
   GlobalKey<FormState> storeFormKey = GlobalKey<FormState>();
-  
+
   // User form controllers
-  final nameController = TextEditingController(
-    text: 'John Doe',
-  );
-  final emailController = TextEditingController(
-      text: "test@gmail.com"
-  );
-  final phoneController = TextEditingController(
-    text: '+1234567890',
-  );
-  final passwordController = TextEditingController(
-    text: 'password123',
-  );
-  final addressController = TextEditingController(
-    text: '123 Main St, City, Country',
-  );
+  final nameController = TextEditingController();
+  final emailController = TextEditingController();
+  final phoneController = TextEditingController();
+  final passwordController = TextEditingController();
+  final addressController = TextEditingController();
 
   // Store form controllers
-  final storeNameController = TextEditingController(
-    text: 'My Store',
-  );
-  final storeAddressController = TextEditingController(
-    text: '123 Main St, City, Country',
-  );
-  final storePhoneController = TextEditingController(
-    text: '+1234567890',
-  );
-  final storeEmailController = TextEditingController(
-    text: "test@gmail.com"
-  );
-  final businessTypeController = TextEditingController(
-    text: 'রেস্তোরাঁ',
-  );
+  final storeNameController = TextEditingController();
+  final storeAddressController = TextEditingController();
+  final storePhoneController = TextEditingController();
+  final storeEmailController = TextEditingController();
+  final businessTypeController = TextEditingController();
 
   final DatabaseService _databaseService = Get.find<DatabaseService>();
 
@@ -66,7 +47,6 @@ class SetupController extends GetxController {
     businessTypeController.dispose();
     super.onClose();
   }
-
 
   void saveSetupData() async {
     if (_validateUserForm() && _validateStoreForm()) {
@@ -95,14 +75,16 @@ class SetupController extends GetxController {
     }
   }
 
-
-
   bool _validateUserForm() {
-    if (nameController.text.isEmpty ||
+    if (
+        nameController.text.isEmpty ||
         emailController.text.isEmpty ||
         phoneController.text.isEmpty ||
-        passwordController.text.isEmpty) {
-      Get.snackbar('Error', 'Please fill all fields');
+        addressController.text.isEmpty ||
+        !GetUtils.isEmail(emailController.text) ||
+        !GetUtils.isPhoneNumber(phoneController.text)
+    ) {
+      Get.snackbar('Error', 'Please fill all fields on User Form');
       return false;
     }
     return true;
@@ -120,30 +102,54 @@ class SetupController extends GetxController {
     return true;
   }
 
-  String validateName(String value) {
-    if (value.isEmpty) {
-      Get.snackbar('Error', 'Name cannot be empty');
+  String? validateName(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Name cannot be empty';
     }
-    return value;
-  }
-  String validateEmail(String value) {
-    if (value.isEmpty) {
-      Get.snackbar('Error', 'Email cannot be empty');
+    if (value.length < 3) {
+      return 'Name must be at least 3 characters long';
     }
-    return value;
-  }
-  String validatePhone(String value) {
-    if (value.isEmpty) {
-      Get.snackbar('Error', 'Phone cannot be empty');
-    }
-    return value;
+    return null;
   }
 
-  String validateAddress(String value) {
-    if (value.isEmpty) {
-      Get.snackbar('Error', 'Address cannot be empty');
+  String? validateEmail(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Email cannot be empty';
     }
-    return value;
+    if (!GetUtils.isEmail(value)) {
+      return 'Please enter a valid email address';
+    }
+    return null;
+  }
+
+  String? validatePhone(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Phone cannot be empty';
+    }
+    if (!GetUtils.isPhoneNumber(value)) {
+      return 'Please enter a valid phone number';
+    }
+    return null;
+  }
+
+  String? validateAddress(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Address cannot be empty';
+    }
+    if (value.length < 5) {
+      return 'Address must be at least 5 characters long';
+    }
+    return null;
+  }
+
+  String? validatePassword(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Password cannot be empty';
+    }
+    if (value.length < 6) {
+      return 'Password must be at least 6 characters long';
+    }
+    return null;
   }
 
   void onNextStep() {
@@ -152,5 +158,4 @@ class SetupController extends GetxController {
     }
     Get.toNamed(Routes.STORE_SETUP);
   }
-
 }

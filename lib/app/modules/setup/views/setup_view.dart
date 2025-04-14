@@ -354,7 +354,12 @@ class SetupView extends GetView<SetupController> {
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
-                  onPressed: () => controller.onNextStep(),
+                  onPressed : () {
+                    if (controller.userFormKey.currentState!.validate()) {
+                       controller.onNextStep();
+                    }
+                    print('Name: ${controller.nameController.text}');
+                  },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: themeConfig.getPrimaryColor(isDarkMode),
                     padding: const EdgeInsets.symmetric(vertical: 16),

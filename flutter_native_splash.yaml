@@ -1,0 +1,16 @@
+# flutter_native_splash-development.yaml
+flutter_native_splash:
+  color: "#407bff"
+  image: assets/icon_bg_removed.png
+  branding: assets/icon_bg_removed.png
+  color_dark: "#121212"
+  image_dark: assets/icon_bg_removed.png
+  branding_dark: assets/icon_bg_removed.png
+
+  android_12:
+    image: assets/icon_bg_removed.png
+    icon_background_color: "#407bff"
+    image_dark: assets/icon_bg_removed.png
+    icon_background_color_dark: "#121212"
+
+  web: false

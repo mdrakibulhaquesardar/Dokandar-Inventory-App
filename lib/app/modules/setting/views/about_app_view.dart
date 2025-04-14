@@ -131,10 +131,10 @@ class AboutAppView extends GetView {
                 content: Column(
                   children: [
                     _buildDeveloperCard(
-                      name: 'ডকান্ডার টিম',
-                      role: 'সফটওয়্যার ডেভেলপমেন্ট টিম',
-                      email: 'support@dokandar.com',
-                      website: 'www.dokandar.com',
+                      name: 'রাকিবুল হক সরদার',
+                      role: 'Associate Software Engineer at NexCode Studio',
+                      email: 'rakibullhaques@gmail.com',
+                      website: 'www.linkedin.com/in/rakibullhaque',
                     ),
                   ],
                 ),
@@ -220,6 +220,7 @@ class AboutAppView extends GetView {
     required String title,
     required String value,
     required IconData icon,
+
   }) {
     return Card(
       elevation: 0,

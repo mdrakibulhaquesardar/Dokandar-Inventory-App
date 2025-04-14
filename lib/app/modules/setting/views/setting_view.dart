@@ -1,6 +1,7 @@
 import 'package:dokandar_app_inventory/app/routes/app_pages.dart';
 import 'package:dokandar_app_inventory/app/utils/DateTimeUtils.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../../data/services/database_service.dart';
@@ -70,95 +71,114 @@ class SettingView extends GetView<SettingController> {
             _buildSectionTitle('অ্যাপ সেটিংস', themeConfig, isDarkMode),
             const SizedBox(height: 8),
             _buildSettingCard(
-              'থিম',
-              Icons.palette_outlined,
-              themeConfig.getPrimaryColor(isDarkMode),
-                  () {},
-              themeConfig,
-              isDarkMode,
+              title: 'অ্যাপ থিম',
+              icon: Icons.color_lens_outlined,
+              color: themeConfig.getPrimaryColor(isDarkMode),
+              onTap: () {
+
+              },
+              themeConfig: themeConfig,
+              isDarkMode: isDarkMode,
+              isLocked:   true,
             ),
             _buildSettingCard(
-              'ভাষা',
-              Icons.language_outlined,
-              themeConfig.getPrimaryColor(isDarkMode),
-                  () {},
-              themeConfig,
-              isDarkMode,
+              title: 'ভাষা',
+              icon: Icons.language_outlined,
+              color: themeConfig.getPrimaryColor(isDarkMode),
+              onTap: () {
+
+              },
+              themeConfig: themeConfig,
+              isDarkMode: isDarkMode,
+              isLocked: true,
             ),
             const SizedBox(height: 10),
             _buildSectionTitle('ডাটা ম্যানেজমেন্ট', themeConfig, isDarkMode),
             const SizedBox(height: 8),
             _buildSettingCard(
-              'ব্যাকআপ ডাটা',
-              Icons.backup_outlined,
-              Colors.green,
-                  () {
+              title: 'ডাটা ব্যাকআপ',
+              icon: Icons.backup_outlined,
+              color: Colors.blue,
+              onTap: () {
                 Get.toNamed(Routes.BACKUP_DATA);
-                  },
-              themeConfig,
-              isDarkMode,
+              },
+              themeConfig: themeConfig,
+              isDarkMode: isDarkMode,
             ),
             _buildSettingCard(
-              'রিস্টোর ডাটা',
-              Icons.restore_outlined,
-              Colors.orange,
-                  () {
+             title: 'ডাটা রিস্টোর',
+              icon: Icons.restore_outlined,
+              color: Colors.green,
+              onTap: () {
                 Get.toNamed(Routes.RESTORE_DATA);
-                  },
-              themeConfig,
-              isDarkMode,
+              },
+              themeConfig: themeConfig,
+              isDarkMode: isDarkMode,
             ),
             const SizedBox(height: 10),
             _buildSectionTitle('দোকান সেটআপ', themeConfig, isDarkMode),
             const SizedBox(height: 8),
             _buildSettingCard(
-              'দোকানের তথ্য',
-              Icons.store_outlined,
-              Colors.blue,
-                  () {},
-              themeConfig,
-              isDarkMode,
+              title: 'দোকান সেটিংস',
+              icon: Icons.store_outlined,
+              color: Colors.blue,
+              onTap: () {
+
+              },
+              themeConfig: themeConfig,
+              isDarkMode: isDarkMode,
+              isLocked: true,
             ),
             _buildSettingCard(
-              'দোকানর ম্যানেজমেন্ট',
-              Icons.category_outlined,
-              Colors.purple,
-                  () {},
-              themeConfig,
-              isDarkMode,
+              title: 'দোকানদার সাবস্ক্রিপশন',
+              icon: Icons.location_on_outlined,
+              color: Colors.blue,
+              onTap: () {
+                 Fluttertoast.showToast(
+                  msg: 'দোকানদার বর্তমানে সাবস্ক্রিপশন ফ্রী',
+                  toastLength: Toast.LENGTH_SHORT,
+                  gravity: ToastGravity.SNACKBAR,
+                  backgroundColor: Colors.green,
+                  textColor: Colors.white,
+                  fontSize: 16.0,
+                );
+              },
+              themeConfig: themeConfig,
+              isDarkMode: isDarkMode,
+              isLocked: true,
             ),
             const SizedBox(height: 24),
             _buildSectionTitle('সাপোর্ট এবং সহায়তা', themeConfig, isDarkMode),
             const SizedBox(height: 8),
             _buildSettingCard(
-              'সাপোর্ট সেন্টার',
-              Icons.support_agent_outlined,
-              Colors.teal,
-                  () {
+              title: 'সাপোর্ট সেন্টার',
+              icon: Icons.phone_outlined,
+              color: Colors.red,
+              onTap: () {
                 Get.toNamed(Routes.SUPPORT);
-                  },
-              themeConfig,
-              isDarkMode,
+              },
+              themeConfig: themeConfig,
+              isDarkMode: isDarkMode,
             ),
             _buildSettingCard(
-              'ফিডব্যাক',
-              Icons.feedback_outlined,
-              Colors.amber,
-                  () {
+             title: 'ফিডব্যাক',
+              icon: Icons.feedback_outlined,
+              color: Colors.amber,
+              onTap: () {
                 Get.toNamed(Routes.FEEDBACK);
-                  },
-              themeConfig,
-              isDarkMode,
+              },
+              themeConfig: themeConfig,
+              isDarkMode: isDarkMode,
             ),
             _buildSettingCard(
-              'অ্যাপ ভার্সন',
-              Icons.info_outline,
-              Colors.grey,
-                  () {
+              title: 'অ্যাপ সম্পর্কে',
+              icon: Icons.info_outline,
+              color: Colors.blueAccent,
+              onTap: () {
                 Get.toNamed(Routes.ABOUT_APP);
-                  },
-              themeConfig,
-              isDarkMode,
+              },
+              themeConfig: themeConfig,
+              isDarkMode: isDarkMode,
             ),
           ],
         ),
@@ -190,12 +210,16 @@ class SettingView extends GetView<SettingController> {
     );
   }
 
-  Widget _buildSettingCard(String title,
-      IconData icon,
-      Color color,
-      VoidCallback onTap,
-      AppThemeConfig themeConfig,
-      bool isDarkMode,) {
+  Widget _buildSettingCard({
+    required String title,
+    required IconData icon,
+    required Color color,
+    required VoidCallback onTap,
+    required AppThemeConfig themeConfig,
+    bool isLocked = false,
+    required bool isDarkMode,
+  }
+  ) {
     return Card(
       elevation: 0,
       color: themeConfig.getSurfaceColor(isDarkMode),
@@ -205,8 +229,10 @@ class SettingView extends GetView<SettingController> {
         onTap: onTap,
         contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         leading: CircleAvatar(
-          backgroundColor: color.withOpacity(0.1),
-          child: Icon(icon, color: color),
+          backgroundColor: isLocked
+              ? themeConfig.getBorderColor(isDarkMode)
+              : themeConfig.getPrimaryColor(isDarkMode).withOpacity(0.1),
+          child: Icon(icon, color: isLocked ? Colors.grey : color, size: 24),
         ),
         title: Text(
           title,
@@ -216,7 +242,9 @@ class SettingView extends GetView<SettingController> {
           ),
         ),
         trailing: Icon(
-          Icons.arrow_forward_ios,
+          isLocked
+              ? Icons.lock_outline
+              : Icons.arrow_forward_ios_outlined,
           size: 16,
           color: themeConfig.getTextSecondaryColor(isDarkMode),
         ),

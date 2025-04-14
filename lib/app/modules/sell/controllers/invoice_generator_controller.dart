@@ -16,11 +16,19 @@ class InvoiceGeneratorController extends GetxController {
 
   final SellController _sellController = Get.find<SellController>();
 
-  late final Store? store  ;
-
-
+  Store? store;
+  final RxBool isStoreInitialized = false.obs;
 
   Future<void> generateInvoice() async {
+    if (!isStoreInitialized.value) {
+      Get.snackbar(
+        'Error',
+        'Store information not initialized yet. Please wait...',
+        backgroundColor: Colors.red,
+        colorText: Colors.white,
+      );
+      return;
+    }
     // Reset PDF document before generating new invoice
     late pw.Document pdf = pw.Document();
     pdfBytes = null;
@@ -402,6 +410,7 @@ class InvoiceGeneratorController extends GetxController {
   Future<void> onInit() async {
     super.onInit();
     store = await Get.find<DatabaseService>().getStore();
+    isStoreInitialized.value = store != null;
   }
 
   @override
