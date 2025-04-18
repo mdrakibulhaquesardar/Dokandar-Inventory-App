@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../data/models/customer.dart';
-import '../../../data/services/database_service.dart';
+import '../../../core/services/database_service.dart';
 import '../../../widgets/showCustomSnackbar.dart';
 import '../../home/controllers/home_controller.dart';
 

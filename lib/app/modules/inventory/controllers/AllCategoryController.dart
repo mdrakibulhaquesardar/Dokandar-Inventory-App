@@ -1,5 +1,5 @@
 import 'package:dokandar_app_inventory/app/data/models/category.dart';
-import 'package:dokandar_app_inventory/app/data/services/database_service.dart';
+import 'package:dokandar_app_inventory/app/core/services/database_service.dart';
 import 'package:get/get.dart';
 
 import '../../home/controllers/home_controller.dart';

@@ -147,11 +147,13 @@ class InventoryView extends GetView<InventoryController> {
                 _buildOptionCard(
                   'বিক্রয় ইতিহাস',
                   Icons.receipt_long_outlined,
-                  themeConfig.getSuccessColor(isDarkMode),
-                      () {},
+                  themeConfig.getPrimaryColor(isDarkMode),
+                      () {
+                    Get.toNamed(Routes.ALL_SALES);
+                      },
                   themeConfig,
                   isDarkMode,
-                  true,
+                  false,
                 ),
                 _buildOptionCard(
                   'সকল কাস্টমার',
@@ -226,13 +228,13 @@ class InventoryView extends GetView<InventoryController> {
                   },
 
                   {
-                    'title': 'ট্রানজেকশন ইতিহাস',
+                    'title': 'পণ্যের ক্যাটাগরি',
                     'icon': Icons.history,
                     'color': themeConfig.getPrimaryColor(isDarkMode),
                     'isLocked': false,
                   },
                   {
-                    'title': 'পণ্যের ক্যাটাগরি',
+                    'title': 'ট্রানজেকশন ইতিহাস',
                     'icon': Icons.category,
                     'color': themeConfig.getSuccessColor(isDarkMode),
                     'isLocked': false,
@@ -268,7 +270,7 @@ class InventoryView extends GetView<InventoryController> {
                       //TODO : Implement navigation to respective screen
                       switch (index) {
                         case 0:
-                        // Navigate to Transaction History
+                         Get.toNamed(Routes.PAY_DUE);
                           break;
                         case 1:
                         // Navigate to Product Category

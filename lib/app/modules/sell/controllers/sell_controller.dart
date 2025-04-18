@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import '../../../data/models/customer.dart';
 import '../../../data/models/product.dart';
 import '../../../data/models/sale.dart';
-import '../../../data/services/database_service.dart';
+import '../../../core/services/database_service.dart';
 
 class SellController extends GetxController {
   final DatabaseService _databaseService = Get.find<DatabaseService>();

@@ -1,5 +1,5 @@
-import 'package:dokandar_app_inventory/app/data/services/backup_service.dart';
-import 'package:dokandar_app_inventory/app/data/services/database_service.dart';
+import 'package:dokandar_app_inventory/app/core/services/backup_service.dart';
+import 'package:dokandar_app_inventory/app/core/services/database_service.dart';
 import 'package:get/get.dart';
 
 class DataManagementController extends GetxController {

@@ -20,6 +20,9 @@ abstract class Routes {
   static const SUPPORT = _Paths.SUPPORT;
   static const FEEDBACK = _Paths.FEEDBACK;
   static const ABOUT_APP = _Paths.ABOUT_APP;
+  static const ALL_SALES = _Paths.ALL_SALES;
+  static const PAY_DUE = _Paths.PAY_DUE;
+  static const SUBSCRIPTION = _Paths.SUBSCRIPTION;
 
 }
 
@@ -42,4 +45,7 @@ abstract class _Paths {
   static const SUPPORT = '/support';
   static const FEEDBACK = '/feedback';
   static const ABOUT_APP = '/about-app';
+  static const ALL_SALES = '/all-sales';
+  static const PAY_DUE= '/pay-due';
+  static const SUBSCRIPTION = '/subscription';
 }

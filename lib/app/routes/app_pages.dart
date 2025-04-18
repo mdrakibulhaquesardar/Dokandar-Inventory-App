@@ -1,3 +1,4 @@
+import 'package:dokandar_app_inventory/app/modules/setting/views/subscription_view.dart';
 import 'package:get/get.dart';
 
 import '../modules/data_management/bindings/data_management_binding.dart';
@@ -9,7 +10,10 @@ import '../modules/inventory/bindings/inventory_binding.dart';
 import '../modules/inventory/views/all_category_view.dart';
 import '../modules/inventory/views/all_customer_view.dart';
 import '../modules/inventory/views/all_products_view.dart';
+import '../modules/inventory/views/all_sales_view.dart';
+import '../modules/inventory/views/due_customers_view.dart';
 import '../modules/inventory/views/inventory_view.dart';
+
 import '../modules/sell/bindings/sell_binding.dart';
 import '../modules/sell/views/checkout_view.dart';
 import '../modules/sell/views/sell_view.dart';
@@ -91,6 +95,18 @@ class AppPages {
       transition: Transition.fadeIn,
     ),
     GetPage(
+      name: _Paths.ALL_SALES,
+      page: () => const AllSalesView(),
+      binding: InventoryBinding(),
+      transition: Transition.fadeIn,
+    ),
+    GetPage(
+      name: _Paths.PAY_DUE,
+      page: () => const DueCustomersView(),
+      binding: InventoryBinding(),
+      transition: Transition.fadeIn,
+    ),
+    GetPage(
       name: _Paths.CHECKOUT,
       page: () => const CheckoutView(),
       binding: SellBinding(),
@@ -119,6 +135,11 @@ class AppPages {
     GetPage(
       name: _Paths.ABOUT_APP,
       page: () => const AboutAppView(),
+      binding: SettingBinding(),
+    ),
+    GetPage(
+      name: _Paths.SUBSCRIPTION,
+      page: () => const SubscriptionView(),
       binding: SettingBinding(),
     ),
   ];

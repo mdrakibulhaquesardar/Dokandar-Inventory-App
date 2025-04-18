@@ -1,6 +1,6 @@
 import 'package:dokandar_app_inventory/app/data/models/store.dart';
 import 'package:dokandar_app_inventory/app/data/models/user.dart';
-import 'package:dokandar_app_inventory/app/data/services/database_service.dart';
+import 'package:dokandar_app_inventory/app/core/services/database_service.dart';
 import 'package:dokandar_app_inventory/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';

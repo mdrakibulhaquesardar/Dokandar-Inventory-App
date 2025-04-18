@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../../../data/services/database_service.dart';
+import '../../../core/services/database_service.dart';
 import '../controllers/setting_controller.dart';
 import '../../../config/app_theme_config.dart';
 
@@ -15,8 +15,6 @@ class SettingView extends GetView<SettingController> {
   Widget build(BuildContext context) {
     final themeConfig = Get.find<AppThemeConfig>();
     final isDarkMode = Get.isDarkMode;
-
-    DatabaseService databaseService = Get.find<DatabaseService>();
 
     return Scaffold(
       backgroundColor: themeConfig.getBackgroundColor(isDarkMode),
@@ -74,20 +72,16 @@ class SettingView extends GetView<SettingController> {
               title: 'অ্যাপ থিম',
               icon: Icons.color_lens_outlined,
               color: themeConfig.getPrimaryColor(isDarkMode),
-              onTap: () {
-
-              },
+              onTap: () {},
               themeConfig: themeConfig,
               isDarkMode: isDarkMode,
-              isLocked:   true,
+              isLocked: true,
             ),
             _buildSettingCard(
               title: 'ভাষা',
               icon: Icons.language_outlined,
               color: themeConfig.getPrimaryColor(isDarkMode),
-              onTap: () {
-
-              },
+              onTap: () {},
               themeConfig: themeConfig,
               isDarkMode: isDarkMode,
               isLocked: true,
@@ -106,7 +100,7 @@ class SettingView extends GetView<SettingController> {
               isDarkMode: isDarkMode,
             ),
             _buildSettingCard(
-             title: 'ডাটা রিস্টোর',
+              title: 'ডাটা রিস্টোর',
               icon: Icons.restore_outlined,
               color: Colors.green,
               onTap: () {
@@ -122,9 +116,7 @@ class SettingView extends GetView<SettingController> {
               title: 'দোকান সেটিংস',
               icon: Icons.store_outlined,
               color: Colors.blue,
-              onTap: () {
-
-              },
+              onTap: () {},
               themeConfig: themeConfig,
               isDarkMode: isDarkMode,
               isLocked: true,
@@ -134,18 +126,11 @@ class SettingView extends GetView<SettingController> {
               icon: Icons.location_on_outlined,
               color: Colors.blue,
               onTap: () {
-                 Fluttertoast.showToast(
-                  msg: 'দোকানদার বর্তমানে সাবস্ক্রিপশন ফ্রী',
-                  toastLength: Toast.LENGTH_SHORT,
-                  gravity: ToastGravity.SNACKBAR,
-                  backgroundColor: Colors.green,
-                  textColor: Colors.white,
-                  fontSize: 16.0,
-                );
+                Get.toNamed(Routes.SUBSCRIPTION);
               },
               themeConfig: themeConfig,
               isDarkMode: isDarkMode,
-              isLocked: true,
+              isLocked: false,
             ),
             const SizedBox(height: 24),
             _buildSectionTitle('সাপোর্ট এবং সহায়তা', themeConfig, isDarkMode),
@@ -161,7 +146,7 @@ class SettingView extends GetView<SettingController> {
               isDarkMode: isDarkMode,
             ),
             _buildSettingCard(
-             title: 'ফিডব্যাক',
+              title: 'ফিডব্যাক',
               icon: Icons.feedback_outlined,
               color: Colors.amber,
               onTap: () {
@@ -186,8 +171,8 @@ class SettingView extends GetView<SettingController> {
     );
   }
 
-  Widget _buildSectionTitle(String title, AppThemeConfig themeConfig,
-      bool isDarkMode) {
+  Widget _buildSectionTitle(
+      String title, AppThemeConfig themeConfig, bool isDarkMode) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -218,8 +203,7 @@ class SettingView extends GetView<SettingController> {
     required AppThemeConfig themeConfig,
     bool isLocked = false,
     required bool isDarkMode,
-  }
-  ) {
+  }) {
     return Card(
       elevation: 0,
       color: themeConfig.getSurfaceColor(isDarkMode),
@@ -242,9 +226,7 @@ class SettingView extends GetView<SettingController> {
           ),
         ),
         trailing: Icon(
-          isLocked
-              ? Icons.lock_outline
-              : Icons.arrow_forward_ios_outlined,
+          isLocked ? Icons.lock_outline : Icons.arrow_forward_ios_outlined,
           size: 16,
           color: themeConfig.getTextSecondaryColor(isDarkMode),
         ),
@@ -266,7 +248,7 @@ class SettingView extends GetView<SettingController> {
               CircleAvatar(
                 radius: 40,
                 backgroundColor:
-                themeConfig.getPrimaryColor(isDarkMode).withOpacity(0.1),
+                    themeConfig.getPrimaryColor(isDarkMode).withOpacity(0.1),
                 child: const CircleAvatar(
                   radius: 38,
                   backgroundImage: AssetImage('assets/images/profile.jpg'),
@@ -297,8 +279,8 @@ class SettingView extends GetView<SettingController> {
                           logic.user?.email ?? "তথ্য খুজে পাওয়া যায়নি",
                           style: GoogleFonts.poppins(
                             fontSize: 14,
-                            color: themeConfig.getTextSecondaryColor(
-                                isDarkMode),
+                            color:
+                                themeConfig.getTextSecondaryColor(isDarkMode),
                           ),
                         );
                       },
@@ -360,7 +342,7 @@ class SettingView extends GetView<SettingController> {
                       'যোগদান:',
                       logic.user?.createdAt != null
                           ? DateTimeUtils.convertToBengaliDate(
-                          logic.user!.createdAt)
+                              logic.user!.createdAt)
                           : 'তারিখ খুজে পাওয়া যায়নি',
                       Icons.calendar_today_outlined,
                       themeConfig,
@@ -389,11 +371,13 @@ class SettingView extends GetView<SettingController> {
     );
   }
 
-  Widget _buildInfoRow(String label,
-      String value,
-      IconData icon,
-      AppThemeConfig themeConfig,
-      bool isDarkMode,) {
+  Widget _buildInfoRow(
+    String label,
+    String value,
+    IconData icon,
+    AppThemeConfig themeConfig,
+    bool isDarkMode,
+  ) {
     return Row(
       children: [
         Icon(

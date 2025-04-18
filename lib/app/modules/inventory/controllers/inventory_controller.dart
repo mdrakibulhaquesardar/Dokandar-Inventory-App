@@ -1,13 +1,12 @@
 import 'package:dokandar_app_inventory/app/routes/app_pages.dart';
 import 'package:get/get.dart';
-
-import '../../../data/models/product.dart';
-import '../../../data/services/database_service.dart';
+import '../../../core/services/database_service.dart';
 
 class InventoryController extends GetxController {
    var currentIndex = 1.obs;
    RxInt totalProducts = 0.obs;
    RxInt totalProductsPrice = 0.obs;
+
 
   void changePage(int index) {
     currentIndex.value = index;

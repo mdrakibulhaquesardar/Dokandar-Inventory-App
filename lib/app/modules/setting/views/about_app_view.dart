@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import '../../../config/app_config.dart';
 import '../../../config/app_theme_config.dart';
 import '../../../widgets/Custom_AppBar.dart';
 
@@ -55,7 +56,7 @@ class AboutAppView extends GetView {
                     ),
                     const SizedBox(height: 16),
                     Text(
-                      'দোকানদার (Dokandar)',
+                      Get.find <AppConfig>().appCurrentName,
                       style: GoogleFonts.poppins(
                         fontSize: 24,
                         fontWeight: FontWeight.w600,
@@ -64,7 +65,7 @@ class AboutAppView extends GetView {
                     ),
                     const SizedBox(height: 4),
                     Text(
-                      'ইনভেন্টরি ম্যানেজমেন্ট সিস্টেম',
+                      Get.find<AppConfig>().appCurrentDescription,
                       style: GoogleFonts.poppins(
                         fontSize: 14,
                         color: Colors.grey[600],
@@ -83,17 +84,17 @@ class AboutAppView extends GetView {
                   children: [
                     _buildAppInfoCard(
                       title: 'বর্তমান সংস্করণ',
-                      value: '1.0.0',
+                      value: Get.find<AppConfig>().appCurrentVersion,
                       icon: Icons.phone_android,
                     ),
                     _buildAppInfoCard(
                       title: 'আপডেট তারিখ',
-                      value: '২৫ মার্চ ২০২৪',
+                      value: Get.find<AppConfig>().appLastUpdate,
                       icon: Icons.calendar_today,
                     ),
                     _buildAppInfoCard(
                       title: 'অ্যাপ সাইজ',
-                      value: '১৫.৫ MB',
+                      value: Get.find<AppConfig>().appCurrentSize,
                       icon: Icons.storage,
                     ),
                   ],
@@ -109,14 +110,9 @@ class AboutAppView extends GetView {
                 content: Column(
                   children: [
                     _buildChangelogItem(
-                      version: '1.0.0',
-                      date: '২৫ মার্চ ২০২৪',
-                      changes: [
-                        'প্রথম সংস্করণ প্রকাশ',
-                        'বেসিক ফিচার যোগ করা হয়েছে',
-                        'ইনভেন্টরি ম্যানেজমেন্ট সিস্টেম',
-                        'বিক্রয় ট্র্যাকিং সিস্টেম',
-                      ],
+                      version: Get.find<AppConfig>().appCurrentVersion,
+                      date: Get.find<AppConfig>().appLastUpdate,
+                      changes: Get.find<AppConfig>().appChangeLog,
                     ),
                   ],
                 ),

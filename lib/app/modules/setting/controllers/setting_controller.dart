@@ -3,7 +3,7 @@ import 'package:dokandar_app_inventory/app/data/models/user.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 
-import '../../../data/services/database_service.dart';
+import '../../../core/services/database_service.dart';
 
 class SettingController extends GetxController {
 

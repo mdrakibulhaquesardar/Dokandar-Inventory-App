@@ -226,20 +226,24 @@ class HomeView extends GetView<HomeController> {
                     subtitle: 'সর্বমোট গ্রাহক',
                   );
                 }),
-                _SummaryCard(
-                  title: 'আজকের অর্ডার',
-                  value: '১২',
-                  icon: Icons.shopping_bag_outlined,
-                  color: Colors.teal,
-                  subtitle: 'নতুন অর্ডার',
-                ),
-                _SummaryCard(
-                  title: 'মোট লাভ',
-                  value: '৳১৫,০০০',
-                  icon: Icons.trending_up,
-                  color: Colors.indigo,
-                  subtitle: 'আজকের মোট লাভ',
-                ),
+                Obx(() {
+                  return _SummaryCard(
+                    title: 'আজকের অর্ডার',
+                    value: controller.recentSale.length.toString(),
+                    icon: Icons.shopping_bag_outlined,
+                    color: Colors.teal,
+                    subtitle: 'নতুন অর্ডার',
+                  );
+                }),
+                Obx(() {
+                  return _SummaryCard(
+                    title: 'মোট লাভ',
+                    value: controller.totalRevenue.value.toString(),
+                    icon: Icons.trending_up,
+                    color: Colors.indigo,
+                    subtitle: 'আজকের মোট লাভ',
+                  );
+                }),
               ],
             ),
 

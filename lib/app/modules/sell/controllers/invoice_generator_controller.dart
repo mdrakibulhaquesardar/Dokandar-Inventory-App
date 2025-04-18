@@ -7,7 +7,7 @@ import 'package:pdf/widgets.dart' as pw;
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 import 'dart:typed_data';
 
-import '../../../data/services/database_service.dart';
+import '../../../core/services/database_service.dart';
 
 class InvoiceGeneratorController extends GetxController {
   final pdf = pw.Document();

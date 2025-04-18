@@ -7,7 +7,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 
 import '../../../data/models/store.dart';
-import '../../../data/services/database_service.dart';
+import '../../../core/services/database_service.dart';
 
 class HomeController extends GetxController {
   var currentIndex = 0.obs;
@@ -18,6 +18,7 @@ class HomeController extends GetxController {
   RxDouble totalSales = 0.0.obs;
   RxInt totalCategories = 0.obs;
   RxInt todaySalesCount = 0.obs;
+  RxDouble totalRevenue = 0.0.obs;
 
   // all sale variable
   RxList<Sale> recentSale = <Sale>[].obs;
@@ -86,7 +87,7 @@ class HomeController extends GetxController {
     recentSale.assignAll(allSales);
   }
 
-  Future<void> getTodaySalesCount() async {
+  Future<void> getTodaySales() async {
     final allSales = await Get.find<DatabaseService>().getSalesToday();
     recentSale.assignAll(allSales);
   }
@@ -95,6 +96,12 @@ class HomeController extends GetxController {
     final lowStockProducts = await Get.find<DatabaseService>().getLowStockProducts();
     allLowStokeProduct.assignAll(lowStockProducts);
     printInfo(info: "Low stock products: ${allLowStokeProduct.length}");
+  }
+
+  // totalRevenue
+  Future<void> getTotalRevenue() async {
+    final revenue = await Get.find<DatabaseService>().totalRevenue();
+    totalRevenue.value = revenue;
   }
 
 
@@ -146,6 +153,9 @@ class HomeController extends GetxController {
     getAllStatistics();
     getRecentSales();
     getLowStockProducts();
+    getTodaySales();
+    getTotalRevenue();
+
   }
 
 

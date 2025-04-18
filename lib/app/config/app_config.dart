@@ -3,7 +3,25 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class AppConfig extends GetxService {
   // App Version
-  static const String appVersion = '1.0.0';
+  static const String appVersion = '১.০.১';
+  get appCurrentVersion => appVersion;
+  static const String appName = 'দোকানদার (Dokandar)';
+  get appCurrentName => appName;
+  static const String lastUpdate = 'এপ্রিল ২০, ২০২৫';
+  get appLastUpdate => lastUpdate;
+  static const String appSize = '৩০ MB';
+  get appCurrentSize => appSize;
+  static const String appDescription = 'ইনভেন্টরি ম্যানেজমেন্ট সিস্টেম';
+  get appCurrentDescription => appDescription;
+
+  // Change Log
+  static const List<String> changeLog =  [
+    'প্রথম সংস্করণ প্রকাশ',
+    'বেসিক ফিচার যোগ করা হয়েছে',
+    'ইনভেন্টরি ম্যানেজমেন্ট সিস্টেম',
+    'বিক্রয় ট্র্যাকিং সিস্টেম',
+  ];
+  get appChangeLog => changeLog;
 
   // Database Configuration
   static const String databaseName = 'dokandar_db';

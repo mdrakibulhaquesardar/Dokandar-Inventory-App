@@ -4,18 +4,18 @@ import 'dart:io';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:isar/isar.dart';
-import 'package:path_provider/path_provider.dart';
+
 import 'package:permission_handler/permission_handler.dart';
 import 'package:flutter/foundation.dart' hide Category;
 import 'package:path/path.dart' as path;
 
-import '../models/category.dart';
-import '../models/product.dart';
-import '../models/customer.dart';
-import '../models/sale.dart';
-import '../models/stock_history.dart';
-import '../models/user.dart';
-import '../models/store.dart';
+import '../../data/models/category.dart';
+import '../../data/models/product.dart';
+import '../../data/models/customer.dart';
+import '../../data/models/sale.dart';
+import '../../data/models/stock_history.dart';
+import '../../data/models/user.dart';
+import '../../data/models/store.dart';
 
 class BackupService extends GetxService {
   late Isar isar;
