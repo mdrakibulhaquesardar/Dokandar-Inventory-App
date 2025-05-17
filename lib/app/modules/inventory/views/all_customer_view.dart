@@ -1,4 +1,3 @@
-import 'dart:developer';
 
 import 'package:dokandar_app_inventory/app/utils/extensions.dart';
 import 'package:flutter/material.dart';

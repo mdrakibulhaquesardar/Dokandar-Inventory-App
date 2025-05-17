@@ -1,5 +1,4 @@
 import 'package:dokandar_app_inventory/app/config/app_theme_config.dart';
-import 'package:dokandar_app_inventory/app/modules/home/views/home_view.dart';
 import 'package:dokandar_app_inventory/app/utils/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

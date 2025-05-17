@@ -3,7 +3,6 @@ import 'package:dokandar_app_inventory/app/data/models/user.dart';
 import 'package:dokandar_app_inventory/app/core/services/database_service.dart';
 import 'package:dokandar_app_inventory/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 
 import '../../../widgets/loading_overlay.dart';
@@ -29,10 +28,6 @@ class SetupController extends GetxController {
 
   final DatabaseService _databaseService = Get.find<DatabaseService>();
 
-  @override
-  void onInit() {
-    super.onInit();
-  }
 
   @override
   void onClose() {

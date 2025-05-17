@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../../config/app_theme_config.dart';
-import '../../../data/models/product.dart';
 import '../controllers/invoice_generator_controller.dart';
 import '../controllers/sell_controller.dart';
 
@@ -109,7 +108,7 @@ class CheckoutView extends GetView<SellController> {
                                       const SizedBox(height: 8),
                                     ],
                                   );
-                                }).toList(),
+                                }),
                                 const SizedBox(height: 16),
                                 Container(
                                   padding: const EdgeInsets.all(12),

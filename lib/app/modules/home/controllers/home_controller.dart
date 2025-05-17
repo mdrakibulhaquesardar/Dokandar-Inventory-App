@@ -3,7 +3,6 @@ import 'package:dokandar_app_inventory/app/data/models/sale.dart';
 import 'package:dokandar_app_inventory/app/routes/app_pages.dart';
 
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 
 import '../../../data/models/store.dart';
@@ -142,10 +141,6 @@ class HomeController extends GetxController {
     getStoreInfo();
   }
 
-  @override
-  void onClose() {
-    super.onClose();
-  }
 
   @override
   void refresh() {

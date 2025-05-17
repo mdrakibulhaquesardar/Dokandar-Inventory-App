@@ -42,14 +42,6 @@ class SettingController extends GetxController {
     getStoreInfo();
   }
 
-  @override
-  void onReady() {
-    super.onReady();
-  }
 
-  @override
-  void onClose() {
-    super.onClose();
-  }
 
 }

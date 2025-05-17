@@ -4,8 +4,28 @@ import 'package:google_fonts/google_fonts.dart';
 import '../../../config/app_theme_config.dart';
 import '../../../widgets/Custom_AppBar.dart';
 
+/// A view that displays subscription plans and allows users to purchase them.
+/// This view shows the current plan, available subscription packages, and their features.
 class SubscriptionView extends GetView {
   const SubscriptionView({super.key});
+
+  // Constants for subscription plans
+  static const String _freePlanName = 'ফ্রি';
+  static const String _premiumTitle = 'প্রিমিয়াম সাবস্ক্রিপশন নিন!';
+  static const String _premiumSubtitle =
+      'আপনার প্রয়োজন অনুযায়ী সাবস্ক্রিপশন প্যাকেজ বেছে নিয়ে বড় সুবিধা পান';
+  static const String _currentPlanText = 'বর্তমান প্ল্যান: ';
+  static const String _featuresTitle = 'ফ্রি প্ল্যানের সুবিধাসমূহ:';
+  static const String _packagesTitle = 'সাবস্ক্রিপশন প্যাকেজসমূহ';
+  static const String _buyNowText = 'এখনি কিনুন';
+
+  // Feature list for free plan
+  static const List<String> _freePlanFeatures = [
+    '১০টি পর্যন্ত পণ্য যোগ করতে পারবেন',
+    '৫টি পর্যন্ত গ্রাহক যোগ করতে পারবেন',
+    'বেসিক রিপোর্ট দেখতে পারবেন',
+    '৭ দিনের ট্রায়াল পিরিয়ড',
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +54,7 @@ class SubscriptionView extends GetView {
               const SizedBox(height: 16),
               _buildAdditionalInfo(themeConfig, isDarkMode),
               const SizedBox(height: 24),
-              _buildNextButton(themeConfig , isDarkMode),
+              _buildNextButton(themeConfig, isDarkMode),
             ],
           ),
         ),
@@ -42,12 +62,13 @@ class SubscriptionView extends GetView {
     );
   }
 
+  /// Builds the header section with title and subtitle
   Widget _buildHeader(AppThemeConfig themeConfig, bool isDarkMode) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'প্রিমিয়াম সাবস্ক্রিপশন নিন!',
+          _premiumTitle,
           style: GoogleFonts.poppins(
             fontSize: 28,
             fontWeight: FontWeight.bold,
@@ -56,7 +77,7 @@ class SubscriptionView extends GetView {
         ),
         const SizedBox(height: 8),
         Text(
-          'আপনার প্রয়োজন অনুযায়ী সাবস্ক্রিপশন প্যাকেজ বেছে নিয়ে বড় সুবিধা পান',
+          _premiumSubtitle,
           style: GoogleFonts.poppins(
             fontSize: 16,
             color: themeConfig.getTextSecondaryColor(isDarkMode),
@@ -66,6 +87,7 @@ class SubscriptionView extends GetView {
     );
   }
 
+  /// Builds the current plan section showing free plan features
   Widget _buildCurrentPlanSection(AppThemeConfig themeConfig, bool isDarkMode) {
     return Container(
       padding: const EdgeInsets.all(16),
@@ -89,7 +111,7 @@ class SubscriptionView extends GetView {
               ),
               const SizedBox(width: 8),
               Text(
-                'বর্তমান প্ল্যান: ফ্রি',
+                '$_currentPlanText$_freePlanName',
                 style: GoogleFonts.poppins(
                   fontSize: 20,
                   fontWeight: FontWeight.w600,
@@ -100,7 +122,7 @@ class SubscriptionView extends GetView {
           ),
           const SizedBox(height: 16),
           Text(
-            'ফ্রি প্ল্যানের সুবিধাসমূহ:',
+            _featuresTitle,
             style: GoogleFonts.poppins(
               fontSize: 16,
               fontWeight: FontWeight.w500,
@@ -108,10 +130,7 @@ class SubscriptionView extends GetView {
             ),
           ),
           const SizedBox(height: 8),
-          _buildFeatureItem('১০টি পর্যন্ত পণ্য যোগ করতে পারবেন'),
-          _buildFeatureItem('৫টি পর্যন্ত গ্রাহক যোগ করতে পারবেন'),
-          _buildFeatureItem('বেসিক রিপোর্ট দেখতে পারবেন'),
-          _buildFeatureItem('৭ দিনের ট্রায়াল পিরিয়ড'),
+          ..._freePlanFeatures.map((feature) => _buildFeatureItem(feature)),
         ],
       ),
     );
@@ -123,7 +142,7 @@ class SubscriptionView extends GetView {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'সাবস্ক্রিপশন প্যাকেজসমূহ',
+          _packagesTitle,
           style: GoogleFonts.poppins(
             fontSize: 20,
             fontWeight: FontWeight.bold,
@@ -203,11 +222,10 @@ class SubscriptionView extends GetView {
             ? themeConfig.getPrimaryColor(isDarkMode).withOpacity(0.05)
             : themeConfig.getSurfaceColor(isDarkMode),
         border: isSelected
-            ? Border.all(color: themeConfig.getPrimaryColor(isDarkMode), width: 1)
+            ? Border.all(
+                color: themeConfig.getPrimaryColor(isDarkMode), width: 1)
             : null,
-
       ),
-
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: SizedBox(
@@ -291,14 +309,13 @@ class SubscriptionView extends GetView {
     );
   }
 
-  Widget _buildNextButton(AppThemeConfig themeConfig,
-      bool isDarkMode) {
+  Widget _buildNextButton(AppThemeConfig themeConfig, bool isDarkMode) {
     return SizedBox(
       width: double.infinity,
       child: ElevatedButton(
         onPressed: () {
           // Navigate to the next page
-         // Get.toNamed('/nextPage'); // Replace with your actual route
+          // Get.toNamed('/nextPage'); // Replace with your actual route
         },
         style: ElevatedButton.styleFrom(
           padding: const EdgeInsets.symmetric(vertical: 16),
@@ -308,7 +325,7 @@ class SubscriptionView extends GetView {
           backgroundColor: themeConfig.getPrimaryColor(isDarkMode),
         ),
         child: Text(
-          'এখনি কিনুন',
+          _buyNowText,
           style: GoogleFonts.poppins(
             fontSize: 16,
             fontWeight: FontWeight.w500,
@@ -319,6 +336,7 @@ class SubscriptionView extends GetView {
     );
   }
 
+  /// Builds a feature item with an icon and text
   Widget _buildFeatureItem(String text) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 8),

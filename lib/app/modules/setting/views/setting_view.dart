@@ -1,10 +1,9 @@
+import 'package:dokandar_app_inventory/app/config/app_config.dart';
 import 'package:dokandar_app_inventory/app/routes/app_pages.dart';
 import 'package:dokandar_app_inventory/app/utils/DateTimeUtils.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../../../core/services/database_service.dart';
 import '../controllers/setting_controller.dart';
 import '../../../config/app_theme_config.dart';
 
@@ -14,6 +13,7 @@ class SettingView extends GetView<SettingController> {
   @override
   Widget build(BuildContext context) {
     final themeConfig = Get.find<AppThemeConfig>();
+
     final isDarkMode = Get.isDarkMode;
 
     return Scaffold(
@@ -77,15 +77,16 @@ class SettingView extends GetView<SettingController> {
               isDarkMode: isDarkMode,
               isLocked: true,
             ),
-            _buildSettingCard(
-              title: 'ভাষা',
-              icon: Icons.language_outlined,
-              color: themeConfig.getPrimaryColor(isDarkMode),
-              onTap: () {},
-              themeConfig: themeConfig,
-              isDarkMode: isDarkMode,
-              isLocked: true,
-            ),
+            if (AppConfig.enableMultiLanguageSupport)
+              _buildSettingCard(
+                title: 'ভাষা',
+                icon: Icons.language_outlined,
+                color: themeConfig.getPrimaryColor(isDarkMode),
+                onTap: () {},
+                themeConfig: themeConfig,
+                isDarkMode: isDarkMode,
+                isLocked: true,
+              ),
             const SizedBox(height: 10),
             _buildSectionTitle('ডাটা ম্যানেজমেন্ট', themeConfig, isDarkMode),
             const SizedBox(height: 8),
@@ -121,6 +122,7 @@ class SettingView extends GetView<SettingController> {
               isDarkMode: isDarkMode,
               isLocked: true,
             ),
+            if (AppConfig.enableSubscription)
             _buildSettingCard(
               title: 'দোকানদার সাবস্ক্রিপশন',
               icon: Icons.location_on_outlined,
@@ -132,9 +134,13 @@ class SettingView extends GetView<SettingController> {
               isDarkMode: isDarkMode,
               isLocked: false,
             ),
+            if (!AppConfig.enablePersonalUse)
             const SizedBox(height: 24),
-            _buildSectionTitle('সাপোর্ট এবং সহায়তা', themeConfig, isDarkMode),
+            AppConfig.enablePersonalUse ?
+            _buildSectionTitle('সাপোর্ট এবং সহায়তা', themeConfig, isDarkMode)
+            : _buildSectionTitle('অ্যাপ সম্পর্কে', themeConfig, isDarkMode) ,
             const SizedBox(height: 8),
+            if (!AppConfig.enablePersonalUse)
             _buildSettingCard(
               title: 'সাপোর্ট সেন্টার',
               icon: Icons.phone_outlined,
@@ -144,7 +150,8 @@ class SettingView extends GetView<SettingController> {
               },
               themeConfig: themeConfig,
               isDarkMode: isDarkMode,
-            ),
+            ), 
+            if (!AppConfig.enablePersonalUse)
             _buildSettingCard(
               title: 'ফিডব্যাক',
               icon: Icons.feedback_outlined,

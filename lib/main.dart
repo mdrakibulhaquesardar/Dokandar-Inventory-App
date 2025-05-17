@@ -30,11 +30,11 @@ void main() async {
 
   runApp(GetMaterialApp(
     debugShowCheckedModeBanner: false,
-    title: Get.find <AppConfig>().appCurrentName,
+    title: Get.find<AppConfig>().appCurrentName,
     theme: Get.find<AppThemeConfig>().getLightTheme(),
     darkTheme: Get.find<AppThemeConfig>().getDarkTheme(),
     themeMode: ThemeMode.system,
-    initialRoute:   initialRoute,
+    initialRoute: initialRoute,
     getPages: AppPages.routes,
     defaultTransition: Transition.fade,
     initialBinding: BindingsBuilder(() {

@@ -1,6 +1,5 @@
 import 'package:dokandar_app_inventory/app/core/services/database_service.dart';
 import 'package:get/get.dart';
-import '../../../core/repository/database_service_repository.dart';
 import '../../../data/models/sale.dart';
 
 class AllSalesController extends GetxController {

@@ -2,9 +2,7 @@ import 'package:dokandar_app_inventory/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
 import '../../../config/app_theme_config.dart';
-import '../../../data/models/product.dart';
 import '../../../widgets/Custom_AppBar.dart';
 import '../controllers/sell_controller.dart';
 

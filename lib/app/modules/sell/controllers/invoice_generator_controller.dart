@@ -195,7 +195,7 @@ class InvoiceGeneratorController extends GetxController {
                         ),
                       ],
                     );
-                  }).toList(),
+                  }),
                 ],
               ),
               pw.SizedBox(height: 20),
@@ -413,10 +413,6 @@ class InvoiceGeneratorController extends GetxController {
     isStoreInitialized.value = store != null;
   }
 
-  @override
-  void onReady() {
-    super.onReady();
-  }
 
   @override
   void onClose() {

@@ -1,7 +1,5 @@
 import 'package:isar/isar.dart';
 import 'package:uuid/uuid.dart';
-import 'product.dart';
-import 'customer.dart';
 
 part 'sale.g.dart';
 
