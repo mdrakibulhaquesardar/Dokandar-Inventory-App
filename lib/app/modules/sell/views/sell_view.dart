@@ -2,6 +2,7 @@ import 'package:dokandar_app_inventory/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
+import '../../../../l10n/app_localizations.dart';
 import '../../../config/app_theme_config.dart';
 import '../../../widgets/Custom_AppBar.dart';
 import '../controllers/sell_controller.dart';
@@ -12,13 +13,14 @@ class SellView extends GetView<SellController> {
   Widget build(BuildContext context) {
     final themeConfig = Get.find<AppThemeConfig>();
     final isDarkMode = Get.isDarkMode;
+    final l10n = AppLocalizations.of(context)!;
 
     return Scaffold(
       backgroundColor: themeConfig.getBackgroundColor(isDarkMode),
       appBar: customAppBar(
         themeConfig,
         isDarkMode,
-        'বিক্রয় কাউন্টার',
+        l10n.salesCounter,
         false,
         true,
       ),
@@ -46,7 +48,7 @@ class SellView extends GetView<SellController> {
                       child: TextField(
                         onChanged: (value) => controller.searchProducts(value),
                         decoration: InputDecoration(
-                          hintText: 'পণ্য খুঁজুন...',
+                          hintText: l10n.searchProducts,
                           border: InputBorder.none,
                           contentPadding:
                               const EdgeInsets.symmetric(horizontal: 16),
@@ -243,7 +245,7 @@ class SellView extends GetView<SellController> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          'মোট পণ্য: ${controller.cartItems.length}',
+                          '${l10n.totalProducts}: ${controller.cartItems.length}',
                           style: TextStyle(
                             color: themeConfig.getTextPrimaryColor(isDarkMode),
                           ),
@@ -267,7 +269,7 @@ class SellView extends GetView<SellController> {
                         Get.toNamed(Routes.CHECKOUT);
                       } else {
                         Fluttertoast.showToast(
-                          msg: 'কোন পণ্য যোগ করা হয়নি',
+                          msg: l10n.noProductsAdded,
                           toastLength: Toast.LENGTH_SHORT,
                           gravity: ToastGravity.BOTTOM,
                           backgroundColor: themeConfig.getErrorColor(isDarkMode),
@@ -283,9 +285,9 @@ class SellView extends GetView<SellController> {
                         borderRadius: BorderRadius.circular(12),
                       ),
                     ),
-                    child: const Text(
-                      'বিক্রয় সম্পন্ন করুন',
-                      style: TextStyle(
+                    child: Text(
+                      l10n.completeSale,
+                      style: const TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
                         fontSize: 16,

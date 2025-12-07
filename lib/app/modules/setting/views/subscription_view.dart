@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import '../../../../l10n/app_localizations.dart';
 import '../../../config/app_theme_config.dart';
+import '../../../config/app_config.dart';
 import '../../../widgets/Custom_AppBar.dart';
 
 /// A view that displays subscription plans and allows users to purchase them.
@@ -9,34 +11,27 @@ import '../../../widgets/Custom_AppBar.dart';
 class SubscriptionView extends GetView {
   const SubscriptionView({super.key});
 
-  // Constants for subscription plans
-  static const String _freePlanName = 'ফ্রি';
-  static const String _premiumTitle = 'প্রিমিয়াম সাবস্ক্রিপশন নিন!';
-  static const String _premiumSubtitle =
-      'আপনার প্রয়োজন অনুযায়ী সাবস্ক্রিপশন প্যাকেজ বেছে নিয়ে বড় সুবিধা পান';
-  static const String _currentPlanText = 'বর্তমান প্ল্যান: ';
-  static const String _featuresTitle = 'ফ্রি প্ল্যানের সুবিধাসমূহ:';
-  static const String _packagesTitle = 'সাবস্ক্রিপশন প্যাকেজসমূহ';
-  static const String _buyNowText = 'এখনি কিনুন';
-
-  // Feature list for free plan
-  static const List<String> _freePlanFeatures = [
-    '১০টি পর্যন্ত পণ্য যোগ করতে পারবেন',
-    '৫টি পর্যন্ত গ্রাহক যোগ করতে পারবেন',
-    'বেসিক রিপোর্ট দেখতে পারবেন',
-    '৭ দিনের ট্রায়াল পিরিয়ড',
-  ];
+  // Get feature list for free plan from AppConfig
+  List<String> _getFreePlanFeatures(AppLocalizations l10n, AppConfig config) {
+    return [
+      '${config.freeProductLimit} ${l10n.productsUpTo}',
+      '${config.freeCustomerLimit} ${l10n.customersUpTo}',
+      l10n.basicReports,
+      '${config.trialDays} ${l10n.trialPeriodDays}',
+    ];
+  }
 
   @override
   Widget build(BuildContext context) {
     final themeConfig = Get.find<AppThemeConfig>();
     final isDarkMode = Get.isDarkMode;
+    final l10n = AppLocalizations.of(context)!;
 
     return Scaffold(
       appBar: customAppBar(
         themeConfig,
         isDarkMode,
-        'সাবস্ক্রিপশন',
+        l10n.subscription,
         true,
         false,
       ),
@@ -46,15 +41,15 @@ class SubscriptionView extends GetView {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              _buildHeader(themeConfig, isDarkMode),
+              _buildHeader(themeConfig, isDarkMode, l10n),
               const SizedBox(height: 24),
-              _buildCurrentPlanSection(themeConfig, isDarkMode),
+              _buildCurrentPlanSection(themeConfig, isDarkMode, l10n),
               const SizedBox(height: 24),
-              _buildSubscriptionPackages(themeConfig, isDarkMode),
+              _buildSubscriptionPackages(themeConfig, isDarkMode, l10n),
               const SizedBox(height: 16),
-              _buildAdditionalInfo(themeConfig, isDarkMode),
+              _buildAdditionalInfo(themeConfig, isDarkMode, l10n),
               const SizedBox(height: 24),
-              _buildNextButton(themeConfig, isDarkMode),
+              _buildNextButton(themeConfig, isDarkMode, l10n),
             ],
           ),
         ),
@@ -63,12 +58,12 @@ class SubscriptionView extends GetView {
   }
 
   /// Builds the header section with title and subtitle
-  Widget _buildHeader(AppThemeConfig themeConfig, bool isDarkMode) {
+  Widget _buildHeader(AppThemeConfig themeConfig, bool isDarkMode, AppLocalizations l10n) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          _premiumTitle,
+          l10n.premiumSubscription,
           style: GoogleFonts.poppins(
             fontSize: 28,
             fontWeight: FontWeight.bold,
@@ -77,7 +72,7 @@ class SubscriptionView extends GetView {
         ),
         const SizedBox(height: 8),
         Text(
-          _premiumSubtitle,
+          l10n.premiumSubtitle,
           style: GoogleFonts.poppins(
             fontSize: 16,
             color: themeConfig.getTextSecondaryColor(isDarkMode),
@@ -88,7 +83,8 @@ class SubscriptionView extends GetView {
   }
 
   /// Builds the current plan section showing free plan features
-  Widget _buildCurrentPlanSection(AppThemeConfig themeConfig, bool isDarkMode) {
+  Widget _buildCurrentPlanSection(AppThemeConfig themeConfig, bool isDarkMode, AppLocalizations l10n) {
+    final config = Get.find<AppConfig>();
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
@@ -111,7 +107,7 @@ class SubscriptionView extends GetView {
               ),
               const SizedBox(width: 8),
               Text(
-                '$_currentPlanText$_freePlanName',
+                '${l10n.currentPlan} ${l10n.free}',
                 style: GoogleFonts.poppins(
                   fontSize: 20,
                   fontWeight: FontWeight.w600,
@@ -122,7 +118,7 @@ class SubscriptionView extends GetView {
           ),
           const SizedBox(height: 16),
           Text(
-            _featuresTitle,
+            l10n.freePlanFeatures,
             style: GoogleFonts.poppins(
               fontSize: 16,
               fontWeight: FontWeight.w500,
@@ -130,19 +126,22 @@ class SubscriptionView extends GetView {
             ),
           ),
           const SizedBox(height: 8),
-          ..._freePlanFeatures.map((feature) => _buildFeatureItem(feature)),
+          ..._getFreePlanFeatures(l10n, config).map((feature) => _buildFeatureItem(feature)),
         ],
       ),
     );
   }
 
   Widget _buildSubscriptionPackages(
-      AppThemeConfig themeConfig, bool isDarkMode) {
+      AppThemeConfig themeConfig, bool isDarkMode, AppLocalizations l10n) {
+    final config = Get.find<AppConfig>();
+    final plans = config.subscriptionPlansData;
+    
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          _packagesTitle,
+          l10n.subscriptionPackages,
           style: GoogleFonts.poppins(
             fontSize: 20,
             fontWeight: FontWeight.bold,
@@ -155,38 +154,53 @@ class SubscriptionView extends GetView {
           child: ListView(
             scrollDirection: Axis.horizontal,
             children: [
-              _buildSubscriptionPlan(
+              if (plans['quarterly'] != null)
+                _buildSubscriptionPlan(
                   themeConfig,
                   isDarkMode,
-                  '৩ মাস',
-                  '৳২৯৯',
-                  '৳৯৯/মাস',
-                  15,
+                  plans['quarterly']!['name'] ?? '',
+                  plans['quarterly']!['price'] ?? '',
+                  plans['quarterly']!['perMonth'] ?? '',
+                  plans['quarterly']!['savePercentage'] as int?,
                   false,
-                  'জুলাই ২০২৫',
-                  'Access to basic features and support.'),
-              const SizedBox(width: 16),
-              _buildSubscriptionPlan(
+                  plans['quarterly']!['expiryDate'] ?? '',
+                  (plans['quarterly']!['features'] as List).isNotEmpty
+                      ? (plans['quarterly']!['features'] as List)[0] ?? ''
+                      : '',
+                  l10n,
+                ),
+              if (plans['quarterly'] != null) const SizedBox(width: 16),
+              if (plans['halfYearly'] != null)
+                _buildSubscriptionPlan(
                   themeConfig,
                   isDarkMode,
-                  '৬ মাস',
-                  '৳৫৯৯',
-                  '৳৯৯/মাস',
-                  25,
+                  plans['halfYearly']!['name'] ?? '',
+                  plans['halfYearly']!['price'] ?? '',
+                  plans['halfYearly']!['perMonth'] ?? '',
+                  plans['halfYearly']!['savePercentage'] as int?,
                   true,
-                  'অক্টোবর ২০২৫',
-                  'Includes premium features and priority support.'),
-              const SizedBox(width: 16),
-              _buildSubscriptionPlan(
+                  plans['halfYearly']!['expiryDate'] ?? '',
+                  (plans['halfYearly']!['features'] as List).isNotEmpty
+                      ? (plans['halfYearly']!['features'] as List)[0] ?? ''
+                      : '',
+                  l10n,
+                ),
+              if (plans['halfYearly'] != null) const SizedBox(width: 16),
+              if (plans['monthly'] != null)
+                _buildSubscriptionPlan(
                   themeConfig,
                   isDarkMode,
-                  '১ মাস',
-                  '৳৯৯',
-                  '৳৯৯/মাস',
-                  null,
+                  plans['monthly']!['name'] ?? '',
+                  plans['monthly']!['price'] ?? '',
+                  plans['monthly']!['perMonth'] ?? '',
+                  plans['monthly']!['savePercentage'] as int?,
                   false,
-                  'এপ্রিল ২০২৫',
-                  'Trial period with limited features.'),
+                  plans['monthly']!['expiryDate'] ?? '',
+                  (plans['monthly']!['features'] as List).isNotEmpty
+                      ? (plans['monthly']!['features'] as List)[0] ?? ''
+                      : '',
+                  l10n,
+                ),
             ],
           ),
         ),
@@ -194,9 +208,9 @@ class SubscriptionView extends GetView {
     );
   }
 
-  Widget _buildAdditionalInfo(AppThemeConfig themeConfig, bool isDarkMode) {
+  Widget _buildAdditionalInfo(AppThemeConfig themeConfig, bool isDarkMode, AppLocalizations l10n) {
     return Text(
-      'আপনার সাবস্ক্রিপশন প্যাকেজ বেছে নিয়ে আরও সুবিধা নিন। আমাদের প্রিমিয়াম প্ল্যানের মাধ্যমে আপনি আরও বেশি সুবিধা পাবেন।',
+      l10n.subscriptionAdditionalInfo,
       style: GoogleFonts.poppins(
         fontSize: 14,
         color: themeConfig.getTextSecondaryColor(isDarkMode),
@@ -214,6 +228,7 @@ class SubscriptionView extends GetView {
     bool isSelected,
     String startDate,
     String details, // New parameter for additional details
+    AppLocalizations l10n,
   ) {
     return Container(
       decoration: BoxDecoration(
@@ -254,7 +269,7 @@ class SubscriptionView extends GetView {
                         borderRadius: BorderRadius.circular(20),
                       ),
                       child: Text(
-                        'সেভ $savePercentage%',
+                        '${l10n.save} $savePercentage%',
                         style: GoogleFonts.poppins(
                           fontSize: 12,
                           fontWeight: FontWeight.w600,
@@ -296,7 +311,7 @@ class SubscriptionView extends GetView {
               ),
               const SizedBox(height: 8),
               Text(
-                'আপনার বর্তমান অফার শেষ হলে $startDate থেকে নিয়মিত প্লাস রেট প্রযোজ্য হবে।',
+                l10n.subscriptionExpiryNote(startDate),
                 style: GoogleFonts.poppins(
                   fontSize: 12,
                   color: themeConfig.getTextSecondaryColor(isDarkMode),
@@ -309,7 +324,7 @@ class SubscriptionView extends GetView {
     );
   }
 
-  Widget _buildNextButton(AppThemeConfig themeConfig, bool isDarkMode) {
+  Widget _buildNextButton(AppThemeConfig themeConfig, bool isDarkMode, AppLocalizations l10n) {
     return SizedBox(
       width: double.infinity,
       child: ElevatedButton(
@@ -325,7 +340,7 @@ class SubscriptionView extends GetView {
           backgroundColor: themeConfig.getPrimaryColor(isDarkMode),
         ),
         child: Text(
-          _buyNowText,
+          l10n.buyNow,
           style: GoogleFonts.poppins(
             fontSize: 16,
             fontWeight: FontWeight.w500,

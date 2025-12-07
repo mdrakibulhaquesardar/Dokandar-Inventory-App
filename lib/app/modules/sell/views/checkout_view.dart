@@ -2,6 +2,7 @@ import 'package:dokandar_app_inventory/app/widgets/Custom_AppBar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import '../../../../l10n/app_localizations.dart';
 import '../../../config/app_theme_config.dart';
 import '../controllers/invoice_generator_controller.dart';
 import '../controllers/sell_controller.dart';
@@ -13,13 +14,14 @@ class CheckoutView extends GetView<SellController> {
   Widget build(BuildContext context) {
     final themeConfig = Get.find<AppThemeConfig>();
     final isDarkMode = Get.isDarkMode;
+    final l10n = AppLocalizations.of(context)!;
 
     return Scaffold(
       backgroundColor: themeConfig.getBackgroundColor(isDarkMode),
       appBar: customAppBar(
         themeConfig,
         isDarkMode,
-        'অর্ডার চূড়ান্ত করুন',
+        l10n.completeOrder,
         true,
         false,
       ),
@@ -59,7 +61,7 @@ class CheckoutView extends GetView<SellController> {
                             ),
                             const SizedBox(width: 8),
                             Text(
-                              'অর্ডার সারাংশ',
+                              l10n.orderSummary,
                               style: GoogleFonts.poppins(
                                 fontSize: 18,
                                 fontWeight: FontWeight.w600,
@@ -76,7 +78,7 @@ class CheckoutView extends GetView<SellController> {
                                 borderRadius: BorderRadius.circular(6),
                               ),
                               child: Text(
-                                'নতুন অর্ডার',
+                                l10n.newOrder,
                                 style: GoogleFonts.poppins(
                                   fontSize: 12,
                                   fontWeight: FontWeight.w500,
@@ -123,7 +125,7 @@ class CheckoutView extends GetView<SellController> {
                                     MainAxisAlignment.spaceBetween,
                                     children: [
                                       Text(
-                                        'মোট',
+                                        l10n.total,
                                         style: GoogleFonts.poppins(
                                           fontSize: 16,
                                           fontWeight: FontWeight.w600,
@@ -178,7 +180,7 @@ class CheckoutView extends GetView<SellController> {
                             ),
                             const SizedBox(width: 8),
                             Text(
-                              'গ্রাহক তথ্য',
+                              l10n.customerInfo,
                               style: GoogleFonts.poppins(
                                 fontSize: 18,
                                 fontWeight: FontWeight.w600,
@@ -187,7 +189,7 @@ class CheckoutView extends GetView<SellController> {
                               ),
                             ),
                             Text(
-                              ' (অবশ্যই নয়)',
+                              ' ${l10n.optional}',
                               style: GoogleFonts.poppins(
                                 fontSize: 12,
                                 fontWeight: FontWeight.w500,
@@ -208,7 +210,7 @@ class CheckoutView extends GetView<SellController> {
                             DropdownMenuItem<String>(
                               value: '0',
                               child: Text(
-                                'অজ্ঞাতপরিচয়',
+                                l10n.unknown,
                                 style: GoogleFonts.poppins(
                                   fontSize: 14,
                                 ),
@@ -241,7 +243,7 @@ class CheckoutView extends GetView<SellController> {
                             Expanded(
                               child: TextFormField(
                                 decoration: InputDecoration(
-                                  labelText: 'ডিসকাউন্ক (৳)',
+                                  labelText: l10n.discount,
                                   border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(8),
                                   ),
@@ -266,7 +268,7 @@ class CheckoutView extends GetView<SellController> {
                             Expanded(
                               child: TextFormField(
                                 decoration: InputDecoration(
-                                  labelText: 'বাকি টাকা (৳)',
+                                  labelText: l10n.dueAmount,
                                   border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(8),
                                   ),
@@ -292,7 +294,7 @@ class CheckoutView extends GetView<SellController> {
                         const SizedBox(height: 12),
                         TextFormField(
                           decoration: InputDecoration(
-                            labelText: 'অর্ডার নোট (যদি থাকে)',
+                            labelText: l10n.orderNote,
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(8),
                             ),
@@ -358,8 +360,8 @@ class CheckoutView extends GetView<SellController> {
                             Obx(() {
                               return Text(
                                 Get.put(InvoiceGeneratorController()).isStoreInitialized.value
-                                    ? 'ইনভয়েস'
-                                    : 'তৈরি হছে...',
+                                    ? l10n.invoice
+                                    : l10n.generating,
                                 style: GoogleFonts.poppins(
                                   fontSize: 16,
                                   fontWeight: FontWeight.w600,
@@ -405,7 +407,7 @@ class CheckoutView extends GetView<SellController> {
                             ),
                             const SizedBox(width: 8),
                             Text(
-                              'অর্ডার নিশ্চিত করুন',
+                              l10n.confirmOrder,
                               style: GoogleFonts.poppins(
                                 fontSize: 16,
                                 fontWeight: FontWeight.w600,
@@ -450,36 +452,4 @@ class CheckoutView extends GetView<SellController> {
     );
   }
 
-  Widget _buildTextField(String label, IconData icon,
-      AppThemeConfig themeConfig, bool isDarkMode) {
-    return Container(
-      decoration: BoxDecoration(
-        border: Border.all(
-          color: themeConfig.getTextSecondaryColor(isDarkMode).withOpacity(0.2),
-        ),
-        borderRadius: BorderRadius.circular(8),
-      ),
-      child: TextFormField(
-        decoration: InputDecoration(
-          labelText: label,
-          border: InputBorder.none,
-          isDense: true,
-          contentPadding:
-          const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
-          prefixIcon: Icon(
-            icon,
-            color: themeConfig.getAccentColor(isDarkMode),
-            size: 18,
-          ),
-          labelStyle: GoogleFonts.poppins(
-            fontSize: 14,
-          ),
-        ),
-        style: GoogleFonts.poppins(
-          fontSize: 14,
-        ),
-        keyboardType: TextInputType.number,
-      ),
-    );
-  }
 }

@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../../../l10n/app_localizations.dart';
 import '../../../config/app_theme_config.dart';
+import '../../../config/app_config.dart';
 import '../../../utils/DateTimeUtils.dart';
 import '../../../widgets/Custom_AppBar.dart';
 import '../controllers/AllProductController.dart';
@@ -14,11 +16,12 @@ class AllProductsView extends GetView<AllProductController> {
   Widget build(BuildContext context) {
     final themeConfig = Get.find<AppThemeConfig>();
     final isDarkMode = Get.isDarkMode;
+    final l10n = AppLocalizations.of(context)!;
     return Scaffold(
       appBar: customAppBar(
         themeConfig,
         isDarkMode,
-        ' আপনার পণ্যসমূহ',
+        l10n.yourProducts,
         true,
         false,
       ),
@@ -36,8 +39,8 @@ class AllProductsView extends GetView<AllProductController> {
                     Obx(() {
                       return _buildInfoCard(
                           context,
-                          'মোট পণ্য',
-                          '${controller.products.length}টি',
+                          l10n.totalProducts,
+                          '${controller.products.length}',
                           Icons.inventory_2,
                           themeConfig,
                           isDarkMode,
@@ -46,19 +49,19 @@ class AllProductsView extends GetView<AllProductController> {
                     Obx(() {
                       return _buildInfoCard(
                         context,
-                        'স্টক আউট',
-                        '${controller.products.where((product) => product.stockQuantity < 10).length}টি',
+                        l10n.stockOut,
+                        '${controller.products.where((product) => product.stockQuantity < AppConfig.lowStockThreshold).length}',
                         Icons.warning,
                         themeConfig,
                         isDarkMode,
                         controller.products
-                            .any((product) => product.stockQuantity < 10),
+                            .any((product) => product.stockQuantity < AppConfig.lowStockThreshold),
                       );
                     }),
                     Obx(() {
                       return _buildInfoCard(
                           context,
-                          'মোট মূল্য',
+                          l10n.totalPrice,
                           '৳${controller.products.fold(0.0, (sum, item) => sum + item.unitPrice * item.stockQuantity).toStringAsFixed(2)}',
                           Icons.attach_money,
                           themeConfig,
@@ -69,7 +72,7 @@ class AllProductsView extends GetView<AllProductController> {
                 ),
                 const SizedBox(height: 16),
                 Text(
-                  'সাম্রতিক পণ্যসমূহ',
+                  l10n.recentProducts,
                   style: GoogleFonts.poppins(
                     fontSize: 18,
                     fontWeight: FontWeight.w600,
@@ -113,7 +116,7 @@ class AllProductsView extends GetView<AllProductController> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  'পণ্য সম্পাদনা করুন',
+                                  l10n.editProduct,
                                   style: GoogleFonts.poppins(
                                     fontSize: 24,
                                     fontWeight: FontWeight.w600,
@@ -130,7 +133,7 @@ class AllProductsView extends GetView<AllProductController> {
                                           controller: TextEditingController(
                                               text: product.name),
                                           decoration: InputDecoration(
-                                            labelText: 'পণ্যের নাম',
+                                            labelText: l10n.productName,
                                             border: OutlineInputBorder(
                                               borderRadius:
                                               BorderRadius.circular(12),
@@ -146,7 +149,7 @@ class AllProductsView extends GetView<AllProductController> {
                                               text: product.stockQuantity
                                                   .toString()),
                                           decoration: InputDecoration(
-                                            labelText: 'স্টক পরিমাণ',
+                                            labelText: l10n.stockQuantity,
                                             border: OutlineInputBorder(
                                               borderRadius:
                                               BorderRadius.circular(12),
@@ -163,7 +166,7 @@ class AllProductsView extends GetView<AllProductController> {
                                               text:
                                               product.unitPrice.toString()),
                                           decoration: InputDecoration(
-                                            labelText: 'বিক্রয় মূল্য',
+                                            labelText: l10n.sellingPrice,
                                             border: OutlineInputBorder(
                                               borderRadius:
                                               BorderRadius.circular(12),
@@ -180,7 +183,7 @@ class AllProductsView extends GetView<AllProductController> {
                                               text: product.buyingPrice
                                                   .toString()),
                                           decoration: InputDecoration(
-                                            labelText: 'ক্রয় মূল্য',
+                                            labelText: l10n.buyingPrice,
                                             border: OutlineInputBorder(
                                               borderRadius:
                                               BorderRadius.circular(12),
@@ -221,7 +224,7 @@ class AllProductsView extends GetView<AllProductController> {
                                                     ),
                                                     const SizedBox(width: 8),
                                                     Text(
-                                                      'মুনাফা: ${product.profitMargin.toStringAsFixed(2)}%',
+                                                      '${l10n.profit}: ${product.profitMargin.toStringAsFixed(2)}%',
                                                       style: TextStyle(
                                                         fontSize: 14,
                                                         fontWeight:
@@ -240,7 +243,7 @@ class AllProductsView extends GetView<AllProductController> {
                                                       .spaceBetween,
                                                   children: [
                                                     Text(
-                                                      'একক মুনাফা:',
+                                                      '${l10n.unitProfit}:',
                                                       style: TextStyle(
                                                         fontSize: 12,
                                                         color: themeConfig
@@ -268,7 +271,7 @@ class AllProductsView extends GetView<AllProductController> {
                                                       .spaceBetween,
                                                   children: [
                                                     Text(
-                                                      'মোট মুনাফা:',
+                                                      '${l10n.totalProfit}:',
                                                       style: TextStyle(
                                                         fontSize: 12,
                                                         color: themeConfig
@@ -296,7 +299,7 @@ class AllProductsView extends GetView<AllProductController> {
                                                       .spaceBetween,
                                                   children: [
                                                     Text(
-                                                      'মোট মূল্য:',
+                                                      '${l10n.totalPrice}:',
                                                       style: TextStyle(
                                                         fontSize: 12,
                                                         color: themeConfig
@@ -319,7 +322,7 @@ class AllProductsView extends GetView<AllProductController> {
                                                 ),
                                                 const Divider(height: 16),
                                                 Text(
-                                                  'তৈরি হয়েছে: ${DateTimeUtils.convertToBengaliDate(product.createdAt)}',
+                                                  '${l10n.createdAt}: ${DateTimeUtils.convertToBengaliDate(product.createdAt)}',
                                                   style: TextStyle(
                                                     fontSize: 11,
                                                     fontStyle: FontStyle.italic,
@@ -345,20 +348,20 @@ class AllProductsView extends GetView<AllProductController> {
                                           context: context,
                                           builder: (context) => AlertDialog(
                                             title: Text(
-                                              'পণ্য মুছে ফেলুন',
+                                              l10n.deleteProduct,
                                               style: GoogleFonts.poppins(
                                                 fontWeight: FontWeight.w600,
                                               ),
                                             ),
                                             content: Text(
-                                              'আপনি কি নিশ্চিত যে আপনি এই পণ্যটি মুছে ফেলতে চান?',
+                                              l10n.confirmDeleteProduct,
                                               style: GoogleFonts.poppins(),
                                             ),
                                             actions: [
                                               TextButton(
                                                 onPressed: () => Get.back(),
                                                 child: Text(
-                                                  'না',
+                                                  l10n.no,
                                                   style: TextStyle(
                                                     color: themeConfig
                                                         .getTextSecondaryColor(
@@ -382,15 +385,14 @@ class AllProductsView extends GetView<AllProductController> {
                                                         12),
                                                   ),
                                                 ),
-                                                child: const Text(
-                                                    'হ্যাঁ, মুছে ফেলুন'),
+                                                child: Text(l10n.yesDelete),
                                               ),
                                             ],
                                           ),
                                         );
                                       },
                                       child: Text(
-                                        'ডিলিট করুন',
+                                        l10n.delete,
                                         style: TextStyle(
                                           color: themeConfig
                                               .getErrorColor(isDarkMode),
@@ -400,7 +402,7 @@ class AllProductsView extends GetView<AllProductController> {
                                     TextButton(
                                       onPressed: () => Get.back(),
                                       child: Text(
-                                        'বাতিল করুন',
+                                        l10n.cancel,
                                         style: TextStyle(
                                           color:
                                           themeConfig.getTextSecondaryColor(
@@ -424,7 +426,7 @@ class AllProductsView extends GetView<AllProductController> {
                                           BorderRadius.circular(12),
                                         ),
                                       ),
-                                      child: const Text('সংরক্ষণ করুন'),
+                                      child: Text(l10n.save),
                                     ),
                                   ],
                                 ),
@@ -467,7 +469,7 @@ class AllProductsView extends GetView<AllProductController> {
                                 padding: const EdgeInsets.symmetric(
                                     horizontal: 8, vertical: 4),
                                 decoration: BoxDecoration(
-                                  color: product.stockQuantity < 10
+                                  color: product.stockQuantity < AppConfig.lowStockThreshold
                                       ? Colors.red.withOpacity(0.1)
                                       : Colors.green.withOpacity(0.1),
                                   borderRadius: BorderRadius.circular(4),
@@ -476,7 +478,7 @@ class AllProductsView extends GetView<AllProductController> {
                                   'স্টক: ${product.stockQuantity}',
                                   style: TextStyle(
                                     fontSize: 12,
-                                    color: product.stockQuantity < 10
+                                    color: product.stockQuantity < AppConfig.lowStockThreshold
                                         ? Colors.red
                                         : Colors.green,
                                     fontWeight: FontWeight.w600,
@@ -507,7 +509,7 @@ class AllProductsView extends GetView<AllProductController> {
                           ),
                           const SizedBox(height: 4),
                           Text(
-                            'মুনাফা: ${product.profitMargin.toStringAsFixed(2)}% | মোট মূল্য: ৳${(product.unitPrice * product.stockQuantity).toStringAsFixed(2)}',
+                            '${l10n.profit}: ${product.profitMargin.toStringAsFixed(2)}% | ${l10n.totalPrice}: ৳${(product.unitPrice * product.stockQuantity).toStringAsFixed(2)}',
                             style: TextStyle(
                               fontSize: 11,
                               color:
@@ -546,7 +548,7 @@ class AllProductsView extends GetView<AllProductController> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'নতুন পণ্য যোগ করুন',
+                    l10n.addNewProduct,
                     style: GoogleFonts.poppins(
                       fontSize: 24,
                       fontWeight: FontWeight.w600,
@@ -560,7 +562,7 @@ class AllProductsView extends GetView<AllProductController> {
                         children: [
                           TextField(
                             decoration: InputDecoration(
-                              labelText: 'পণ্যের নাম',
+                              labelText: l10n.productName,
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(12),
                               ),
@@ -571,7 +573,7 @@ class AllProductsView extends GetView<AllProductController> {
                           const SizedBox(height: 16),
                           DropdownButtonFormField(
                             decoration: InputDecoration(
-                              labelText: 'ক্যাটাগরি',
+                              labelText: l10n.category,
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(12),
                               ),
@@ -588,7 +590,7 @@ class AllProductsView extends GetView<AllProductController> {
                           const SizedBox(height: 16),
                           TextField(
                             decoration: InputDecoration(
-                              labelText: 'স্টক পরিমাণ',
+                              labelText: l10n.stockQuantity,
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(12),
                               ),
@@ -601,7 +603,7 @@ class AllProductsView extends GetView<AllProductController> {
                           const SizedBox(height: 16),
                           TextField(
                             decoration: InputDecoration(
-                              labelText: 'বিক্রয় মূল্য',
+                              labelText: l10n.sellingPrice,
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(12),
                               ),
@@ -614,7 +616,7 @@ class AllProductsView extends GetView<AllProductController> {
                           const SizedBox(height: 16),
                           TextField(
                             decoration: InputDecoration(
-                              labelText: 'ক্রয় মূল্য',
+                              labelText: l10n.buyingPrice,
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(12),
                               ),
@@ -634,7 +636,7 @@ class AllProductsView extends GetView<AllProductController> {
                       TextButton(
                         onPressed: () => Get.back(),
                         child: Text(
-                          'বাতিল করুন',
+                          l10n.cancel,
                           style: TextStyle(
                             color:
                             themeConfig.getTextSecondaryColor(isDarkMode),
@@ -656,7 +658,7 @@ class AllProductsView extends GetView<AllProductController> {
                             borderRadius: BorderRadius.circular(12),
                           ),
                         ),
-                        child: const Text('সংরক্ষণ করুন'),
+                        child: Text(l10n.save),
                       ),
                     ],
                   ),

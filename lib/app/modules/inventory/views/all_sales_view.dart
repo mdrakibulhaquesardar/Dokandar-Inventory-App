@@ -2,6 +2,7 @@ import 'package:dokandar_app_inventory/app/core/services/database_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import '../../../../l10n/app_localizations.dart';
 import '../../../config/app_theme_config.dart';
 import '../../../widgets/Custom_AppBar.dart';
 import '../controllers/all_sales_controller.dart';
@@ -13,13 +14,14 @@ class AllSalesView extends GetView<AllSalesController> {
   Widget build(BuildContext context) {
     final themeConfig = Get.find<AppThemeConfig>();
     final isDarkMode = Get.isDarkMode;
+    final l10n = AppLocalizations.of(context)!;
 
     return Scaffold(
       backgroundColor: themeConfig.getBackgroundColor(isDarkMode),
       appBar: customAppBar(
         themeConfig,
         isDarkMode,
-        'বিক্রয় তালিকা',
+        l10n.salesList,
         true,
         false,
       ),
@@ -38,7 +40,7 @@ class AllSalesView extends GetView<AllSalesController> {
                 children: [
                   Obx(() {
                     return _buildStatCard(
-                      'মোট বিক্রয়',
+                      l10n.totalSales,
                       controller.totalSales.value.toString(),
                       Icons.shopping_cart,
                       themeConfig,
@@ -47,7 +49,7 @@ class AllSalesView extends GetView<AllSalesController> {
                   }),
                   Obx(() {
                     return _buildStatCard(
-                      'মোট লেনদেন',
+                      l10n.totalTransactions,
                       controller.totalTransactions.value.toString(),
                       Icons.receipt_long,
                       themeConfig,
@@ -56,7 +58,7 @@ class AllSalesView extends GetView<AllSalesController> {
                   }),
                   Obx(() {
                     return _buildStatCard(
-                      'মোট বাকি',
+                      l10n.totalDue,
                       controller.totalDue.value.toString(),
                       Icons.money_off,
                       themeConfig,
@@ -72,7 +74,7 @@ class AllSalesView extends GetView<AllSalesController> {
                 if (controller.sales.isEmpty) {
                   return Center(
                     child: Text(
-                      'কোন বিক্রয় নেই',
+                      l10n.noSales,
                       style: TextStyle(
                         color: themeConfig.getTextPrimaryColor(isDarkMode),
                         fontSize: 16,
@@ -102,6 +104,7 @@ class AllSalesView extends GetView<AllSalesController> {
 
   Widget _buildSaleCard(
       sale, AppThemeConfig themeConfig, bool isDarkMode, BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Container(
       margin: const EdgeInsets.only(bottom: 8),
       decoration: BoxDecoration(
@@ -119,7 +122,7 @@ class AllSalesView extends GetView<AllSalesController> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Invoice: ${sale.invoiceNumber}',
+                  '${l10n.invoice}: ${sale.invoiceNumber}',
                   style: TextStyle(
                     color: themeConfig.getTextPrimaryColor(isDarkMode),
                     fontWeight: FontWeight.bold,
@@ -130,7 +133,7 @@ class AllSalesView extends GetView<AllSalesController> {
                         .getCustomerNameById(sale.customerId),
                     builder: (context, snapshot) {
                       return Text(
-                        snapshot.data ?? 'অজ্ঞাত',
+                        snapshot.data ?? l10n.unknown,
                         style: TextStyle(
                           color: themeConfig.getTextSecondaryColor(isDarkMode),
                           fontSize: 12,
@@ -177,7 +180,7 @@ class AllSalesView extends GetView<AllSalesController> {
                       borderRadius: BorderRadius.circular(4),
                     ),
                     child: Text(
-                      'বাকি: ${sale.dueAmount}৳',
+                      '${l10n.dueAmount}: ${sale.dueAmount}৳',
                       style: const TextStyle(
                         color: Colors.red,
                         fontSize: 12,
@@ -194,6 +197,7 @@ class AllSalesView extends GetView<AllSalesController> {
 
   void _showSaleDetails(
       BuildContext context, sale, AppThemeConfig themeConfig, bool isDarkMode) {
+    final l10n = AppLocalizations.of(context)!;
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
@@ -209,7 +213,7 @@ class AllSalesView extends GetView<AllSalesController> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'বিক্রয় বিবরণ',
+              l10n.saleDetails,
               style: GoogleFonts.poppins(
                 fontSize: 20,
                 fontWeight: FontWeight.w600,
@@ -219,21 +223,21 @@ class AllSalesView extends GetView<AllSalesController> {
             const SizedBox(height: 16),
             // Sale details
             _buildDetailRow(
-                'ইনভয়েস নং:', sale.invoiceNumber, themeConfig, isDarkMode),
-            _buildDetailRow('তারিখ:', sale.saleDate.toString().split(' ')[0],
+                '${l10n.invoiceNumber}:', sale.invoiceNumber, themeConfig, isDarkMode),
+            _buildDetailRow('${l10n.date}:', sale.saleDate.toString().split(' ')[0],
                 themeConfig, isDarkMode),
             _buildDetailRow(
-                'মোট মূল্য:', '${sale.totalAmount}৳', themeConfig, isDarkMode),
+                '${l10n.totalPrice}:', '${sale.totalAmount}৳', themeConfig, isDarkMode),
             _buildDetailRow(
-                'ডিসকাউন্ট:', '${sale.discount}৳', themeConfig, isDarkMode),
+                '${l10n.discount}:', '${sale.discount}৳', themeConfig, isDarkMode),
             _buildDetailRow(
-                'প্রদত্ত:', '${sale.paidAmount}৳', themeConfig, isDarkMode),
+                '${l10n.paid}:', '${sale.paidAmount}৳', themeConfig, isDarkMode),
             _buildDetailRow(
-                'বাকি:', '${sale.dueAmount}৳', themeConfig, isDarkMode),
+                '${l10n.dueAmount}:', '${sale.dueAmount}৳', themeConfig, isDarkMode),
 
             const SizedBox(height: 16),
             Text(
-              'পণ্য তালিকা',
+              l10n.productList,
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w600,

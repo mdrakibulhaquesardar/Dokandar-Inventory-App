@@ -4,6 +4,7 @@ import 'package:dokandar_app_inventory/app/utils/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import '../../../../l10n/app_localizations.dart';
 import '../controllers/home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
@@ -13,6 +14,7 @@ class HomeView extends GetView<HomeController> {
   Widget build(BuildContext context) {
     final themeConfig = Get.find<AppThemeConfig>();
     final isDarkMode = Get.isDarkMode;
+    final l10n = AppLocalizations.of(context)!;
 
     return Scaffold(
       backgroundColor: themeConfig.getBackgroundColor(isDarkMode),
@@ -51,7 +53,7 @@ class HomeView extends GetView<HomeController> {
                       Obx(() {
                         return Text(
                           controller.store.value?.name ??
-                              'তথ্য খুজে পাওয়া যায়নি',
+                              l10n.dataNotFound,
                           style: GoogleFonts.notoSansBengali(
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
@@ -63,7 +65,7 @@ class HomeView extends GetView<HomeController> {
                       Obx(() {
                         return Text(
                           controller.store.value?.businessType ??
-                              'তথ্য খুজে পাওয়া যায়নি',
+                              l10n.dataNotFound,
                           style: GoogleFonts.notoSansBengali(
                             fontSize: 12,
                             color: themeConfig.getTextSecondaryColor(
@@ -139,7 +141,7 @@ class HomeView extends GetView<HomeController> {
                     ),
                     const SizedBox(width: 8),
                     Text(
-                      'পণ্য অনুসন্ধান করুন',
+                      l10n.searchProducts,
                       style: GoogleFonts.notoSansBengali(
                         fontSize: 14,
                         color: themeConfig.getTextSecondaryColor(isDarkMode),
@@ -166,7 +168,7 @@ class HomeView extends GetView<HomeController> {
           children: [
             // Summary Cards Grid
             Text(
-              'সারাংশিক তথ্য',
+              l10n.summaryInfo,
               style: GoogleFonts.notoSansBengali(
                 fontSize: 20,
                 fontWeight: FontWeight.w600,
@@ -174,7 +176,7 @@ class HomeView extends GetView<HomeController> {
               ),
             ),
             Text(
-              'সারাংশিক তথ্য সম্পর্কিত বিবরণ শো করুন সম্পর্কিত বিবরণ শো করুন',
+              l10n.summaryInfoDescription,
               style: GoogleFonts.notoSansBengali(
                 fontSize: 14,
                 fontWeight: FontWeight.w500,
@@ -192,56 +194,62 @@ class HomeView extends GetView<HomeController> {
               children: [
                 Obx(() {
                   return _SummaryCard(
-                    title: 'মোট পণ্য',
+                    title: l10n.totalProducts,
                     value: controller.totalProducts.value.toString(),
                     icon: Icons.inventory_2_outlined,
                     color: Colors.blue,
-                    subtitle: 'সর্বমোট পণ্যের সংখ্যা',
+                    subtitle: l10n.totalProducts,
+                    context: context,
                   );
                 }),
                 Obx(() {
                   return _SummaryCard(
-                    title: 'মোট বিক্রয়',
+                    title: l10n.totalSales,
                     value: '৳${controller.totalSales.value.toString()}',
                     icon: Icons.shopping_cart_outlined,
                     color: Colors.green,
-                    subtitle: 'আজকের মোট বিক্রয়',
+                    subtitle: l10n.totalSales,
+                    context: context,
                   );
                 }),
                 Obx(() {
                   return _SummaryCard(
-                    title: 'ক্যাটাগরি',
+                    title: l10n.categories,
                     value: controller.totalCategories.value.toString(),
                     icon: Icons.category_outlined,
                     color: Colors.orange,
-                    subtitle: 'সকল ক্যাটাগরি',
+                    subtitle: l10n.categories,
+                    context: context,
                   );
                 }),
                 Obx(() {
                   return _SummaryCard(
-                    title: 'গ্রাহক',
+                    title: l10n.customers,
                     value: controller.totalCustomers.value.toString(),
                     icon: Icons.people_outline,
                     color: Colors.purple,
-                    subtitle: 'সর্বমোট গ্রাহক',
+                    subtitle: l10n.customers,
+                    context: context,
                   );
                 }),
                 Obx(() {
                   return _SummaryCard(
-                    title: 'আজকের অর্ডার',
+                    title: l10n.todaysOrders,
                     value: controller.recentSale.length.toString(),
                     icon: Icons.shopping_bag_outlined,
                     color: Colors.teal,
-                    subtitle: 'নতুন অর্ডার',
+                    subtitle: l10n.newOrder,
+                    context: context,
                   );
                 }),
                 Obx(() {
                   return _SummaryCard(
-                    title: 'মোট লাভ',
+                    title: l10n.totalProfit,
                     value: controller.totalRevenue.value.toString(),
                     icon: Icons.trending_up,
                     color: Colors.indigo,
-                    subtitle: 'আজকের মোট লাভ',
+                    subtitle: l10n.totalProfit,
+                    context: context,
                   );
                 }),
               ],
@@ -249,7 +257,7 @@ class HomeView extends GetView<HomeController> {
 
             const SizedBox(height: 24),
             Text(
-              'সাম্প্রতিক বিক্রয়',
+              l10n.recentSales,
               style: GoogleFonts.notoSansBengali(
                 fontSize: 20,
                 fontWeight: FontWeight.w600,
@@ -257,7 +265,7 @@ class HomeView extends GetView<HomeController> {
               ),
             ),
             Text(
-              'সাম্প্রতিক বিক্রয় তালিকা শো করুন সম্প্রতিক বিক্রয় তালিকা শো করুন',
+              l10n.recentSalesDescription,
               style: GoogleFonts.notoSansBengali(
                 fontSize: 14,
                 fontWeight: FontWeight.w500,
@@ -273,7 +281,7 @@ class HomeView extends GetView<HomeController> {
             controller.allLowStokeProduct.isEmpty
                 ? SizedBox()
                 : Text(
-              'স্টক আলার্ম',
+              l10n.stockAlert,
               style: GoogleFonts.notoSansBengali(
                 fontSize: 20,
                 fontWeight: FontWeight.w600,
@@ -283,7 +291,7 @@ class HomeView extends GetView<HomeController> {
             controller.allLowStokeProduct.isEmpty
                 ? SizedBox()
                 : Text(
-              'স্টক শেষ হতে ৩ দিন আগে কয়েকটি পণ্যের স্টক শেষ হচ্ছে',
+              l10n.stockAlertDescription,
               style: GoogleFonts.notoSansBengali(
                 fontSize: 14,
                 fontWeight: FontWeight.w500,
@@ -308,6 +316,7 @@ class _SummaryCard extends StatelessWidget {
   final String subtitle;
   final IconData icon;
   final Color color;
+  final BuildContext context;
 
   const _SummaryCard({
     required this.title,
@@ -315,6 +324,7 @@ class _SummaryCard extends StatelessWidget {
     required this.icon,
     required this.color,
     required this.subtitle,
+    required this.context,
   });
 
   @override
@@ -388,6 +398,7 @@ class _RecentSalesList extends GetView<HomeController> {
   Widget build(BuildContext context) {
     final themeConfig = Get.find<AppThemeConfig>();
     final isDarkMode = Get.isDarkMode;
+    final l10n = AppLocalizations.of(context)!;
 
 
     return Container(
@@ -405,7 +416,7 @@ class _RecentSalesList extends GetView<HomeController> {
           ),
           child: Center(
             child: Text(
-              'কোনো সাম্প্রতিক বিক্রয় নেই',
+              l10n.noRecentSales,
               style: GoogleFonts.poppins(
                 fontSize: 16,
                 color: themeConfig.getTextSecondaryColor(isDarkMode),
@@ -464,6 +475,7 @@ class _LowStockProductsList extends GetView<HomeController> {
   Widget build(BuildContext context) {
     final themeConfig = Get.find<AppThemeConfig>();
     final isDarkMode = Get.isDarkMode;
+    final l10n = AppLocalizations.of(context)!;
 
     return Container(
       decoration: BoxDecoration(
@@ -511,7 +523,7 @@ class _LowStockProductsList extends GetView<HomeController> {
                     ),
                   ),
                   child: Text(
-                    'স্টকে যোগ করুন',
+                    l10n.addToStock,
                     style: GoogleFonts.poppins(
                       color: Colors.white,
                       fontSize: 12,

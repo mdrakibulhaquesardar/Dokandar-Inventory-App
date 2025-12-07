@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import '../../../../l10n/app_localizations.dart';
 import '../../../config/app_config.dart';
 import '../../../config/app_theme_config.dart';
 import '../../../widgets/Custom_AppBar.dart';
@@ -12,11 +13,12 @@ class AboutAppView extends GetView {
   Widget build(BuildContext context) {
     final themeConfig = Get.find<AppThemeConfig>();
     final isDarkMode = Get.isDarkMode;
+    final l10n = AppLocalizations.of(context)!;
     return Scaffold(
       appBar: customAppBar(
         themeConfig,
         isDarkMode,
-        'অ্যাপ সম্পর্কে',
+        l10n.aboutApp,
         true,
         false,
       ),
@@ -77,23 +79,23 @@ class AboutAppView extends GetView {
               const SizedBox(height: 16),
               // App Info Section
               _buildSection(
-                title: 'অ্যাপ তথ্য',
-                subtitle: 'বর্তমান সংস্করণ এবং বিবরণ',
+                title: l10n.appInfo,
+                subtitle: l10n.currentVersionAndDescription,
                 icon: Icons.info_outline,
                 content: Column(
                   children: [
                     _buildAppInfoCard(
-                      title: 'বর্তমান সংস্করণ',
+                      title: l10n.currentVersion,
                       value: Get.find<AppConfig>().appCurrentVersion,
                       icon: Icons.phone_android,
                     ),
                     _buildAppInfoCard(
-                      title: 'আপডেট তারিখ',
+                      title: l10n.updateDate,
                       value: Get.find<AppConfig>().appLastUpdate,
                       icon: Icons.calendar_today,
                     ),
                     _buildAppInfoCard(
-                      title: 'অ্যাপ সাইজ',
+                      title: l10n.appSize,
                       value: Get.find<AppConfig>().appCurrentSize,
                       icon: Icons.storage,
                     ),
@@ -104,8 +106,8 @@ class AboutAppView extends GetView {
 
               // Changelog Section
               _buildSection(
-                title: 'পরিবর্তনসমূহ',
-                subtitle: 'সর্বশেষ আপডেটে কি কি পরিবর্তন হয়েছে',
+                title: l10n.changelog,
+                subtitle: l10n.changelogDescription,
                 icon: Icons.history,
                 content: Column(
                   children: [
@@ -113,6 +115,7 @@ class AboutAppView extends GetView {
                       version: Get.find<AppConfig>().appCurrentVersion,
                       date: Get.find<AppConfig>().appLastUpdate,
                       changes: Get.find<AppConfig>().appChangeLog,
+                      l10n: l10n,
                     ),
                   ],
                 ),
@@ -120,17 +123,18 @@ class AboutAppView extends GetView {
               const SizedBox(height: 24),
 
               // Developer Info Section
+              if (!AppConfig.enablePersonalUse)
               _buildSection(
-                title: 'ডেভেলপার তথ্য',
-                subtitle: 'অ্যাপটি কে তৈরি করেছেন',
+                title: l10n.developerInfo,
+                subtitle: l10n.developerInfoDescription,
                 icon: Icons.code,
                 content: Column(
                   children: [
                     _buildDeveloperCard(
-                      name: 'রাকিবুল হক সরদার',
-                      role: 'Associate Software Engineer at NexCode Studio',
-                      email: 'rakibullhaques@gmail.com',
-                      website: 'www.linkedin.com/in/rakibullhaque',
+                      name: Get.find<AppConfig>().appDeveloperName,
+                      role: l10n.developer,
+                      email: Get.find<AppConfig>().appSupportEmail,
+                      website: Get.find<AppConfig>().appWebsite,
                     ),
                   ],
                 ),
@@ -139,17 +143,17 @@ class AboutAppView extends GetView {
 
               // Legal Section
               _buildSection(
-                title: 'আইনি তথ্য',
-                subtitle: 'গোপনীয়তা নীতি এবং শর্তাবলী',
+                title: l10n.legalInfo,
+                subtitle: l10n.legalInfoDescription,
                 icon: Icons.gavel,
                 content: Column(
                   children: [
                     _buildLegalItem(
-                      title: 'গোপনীয়তা নীতি',
+                      title: l10n.privacyPolicy,
                       onTap: () {},
                     ),
                     _buildLegalItem(
-                      title: 'ব্যবহারের শর্তাবলী',
+                      title: l10n.termsAndConditions,
                       onTap: () {},
                     ),
                   ],
@@ -255,6 +259,7 @@ class AboutAppView extends GetView {
     required String version,
     required String date,
     required List<String> changes,
+    required AppLocalizations l10n,
   }) {
     return Card(
       elevation: 0,
@@ -270,7 +275,7 @@ class AboutAppView extends GetView {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  'সংস্করণ $version',
+                  '${l10n.version} $version',
                   style: GoogleFonts.poppins(
                     fontSize: 16,
                     fontWeight: FontWeight.w600,

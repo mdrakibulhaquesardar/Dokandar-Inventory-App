@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../data/models/customer.dart';
 import '../../../core/services/database_service.dart';
+import '../../../config/app_config.dart';
 import '../../../widgets/showCustomSnackbar.dart';
 import '../../home/controllers/home_controller.dart';
 
@@ -44,6 +45,20 @@ class AllCustomerController extends GetxController {
 
   Future<void> addCustomer(String name, String phone, String? address) async {
     try {
+      // Check customer limit if subscription is enabled
+      if (AppConfig.enableSubscription) {
+        final totalCustomers = await _databaseService.getTotalCustomers();
+        if (totalCustomers >= AppConfig.freePlanCustomerLimit) {
+          showCustomSnackbar(
+            title: 'Limit Reached',
+            message: 'You have reached the free plan limit of ${AppConfig.freePlanCustomerLimit} customers. Please upgrade to add more customers.',
+            backgroundColor: Colors.orange,
+            icon: Icons.warning,
+          );
+          return;
+        }
+      }
+
       final customer = Customer(
         name: name,
         phone: phone,

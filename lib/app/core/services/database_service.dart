@@ -12,6 +12,7 @@ import '../../data/models/stock_history.dart';
 import '../../data/models/user.dart';
 import '../../data/models/store.dart';
 import '../repository/database_service_repository.dart';
+import '../../config/app_config.dart';
 import 'backup_service.dart';
 
 class DatabaseService extends GetxService implements DatabaseServiceRepository {
@@ -21,6 +22,8 @@ class DatabaseService extends GetxService implements DatabaseServiceRepository {
   @override
   Future<DatabaseService> init() async {
     final dir = await getApplicationDocumentsDirectory();
+    // Database name is configured in AppConfig.databaseName
+    // Note: Isar uses the directory path, but the name is referenced for documentation
     isar = await Isar.open(
       [
         ProductSchema,
@@ -104,7 +107,7 @@ class DatabaseService extends GetxService implements DatabaseServiceRepository {
 
   @override
   Future<List<Product>> getLowStockProducts() async {
-    return await isar.products.filter().stockQuantityLessThan(10).findAll();
+    return await isar.products.filter().stockQuantityLessThan(AppConfig.lowStockThreshold.toDouble()).findAll();
   }
 
   @override
@@ -129,6 +132,11 @@ class DatabaseService extends GetxService implements DatabaseServiceRepository {
   @override
   Future<List<Customer>> getAllCustomers() async {
     return await isar.customers.where().findAll();
+  }
+
+  @override
+  Future<int> getTotalCustomers() async {
+    return await isar.customers.count();
   }
 
   @override

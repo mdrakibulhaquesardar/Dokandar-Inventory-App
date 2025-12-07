@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import '../../../../l10n/app_localizations.dart';
 import '../../../config/app_theme_config.dart';
 import '../controllers/setup_controller.dart';
 
@@ -10,6 +11,7 @@ class ConfromView extends GetView<SetupController> {
   Widget build(BuildContext context) {
     final themeConfig = Get.find<AppThemeConfig>();
     final isDarkMode = Get.isDarkMode;
+    final l10n = AppLocalizations.of(context)!;
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(60),
@@ -50,7 +52,7 @@ class ConfromView extends GetView<SetupController> {
                     ),
                     const SizedBox(width: 4),
                     Text(
-                      'ধাপ ৩/৩',
+                      l10n.step3of3,
                       style: GoogleFonts.poppins(
                         fontSize: 12,
                         color: themeConfig.getPrimaryColor(isDarkMode),
@@ -70,7 +72,7 @@ class ConfromView extends GetView<SetupController> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Text(
-                ' ${controller.nameController.text} আপনার দোকান ব্যবস্থাপনার উন্নতি করুন',
+                '${controller.nameController.text} ${l10n.improveStoreManagement}',
                 style: GoogleFonts.poppins(
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
@@ -80,7 +82,7 @@ class ConfromView extends GetView<SetupController> {
               ),
               const SizedBox(height: 8),
               Text(
-                'আমাদের শক্তিশালী দোকান ব্যবস্থাপনা টুল দিয়ে আপনার দোকান পরিচালনা শুরু করুন।',
+                l10n.startWithPowerfulTool,
                 style: GoogleFonts.poppins(
                   color: themeConfig.getTextSecondaryColor(isDarkMode),
                 ),
@@ -89,27 +91,24 @@ class ConfromView extends GetView<SetupController> {
               const SizedBox(height: 24),
               _buildFeatureCard(
                 icon: Icons.store,
-                title: 'আপনার দোকানের সকল কার্যক্রম ট্র্যাক করুন',
-                description:
-                    'একটি সুবিধাজনক স্থানে ইনভেন্টরি, বিক্রয় এবং লেনদেন পরিচালনা করুন।',
+                title: l10n.trackAllActivities,
+                description: l10n.trackActivitiesDescription,
                 themeConfig: themeConfig,
                 isDarkMode: isDarkMode,
               ),
 
               _buildFeatureCard(
                 icon: Icons.bar_chart,
-                title: 'স্মার্ট ব্যবসায়িক অন্তর্দৃষ্টি',
-                description:
-                    'সঠিক সিদ্ধান্ত নেওয়ার জন্য বিস্তারিত রিপোর্ট এবং বিশ্লেষণ পান।',
+                title: l10n.smartBusinessInsights,
+                description: l10n.smartInsightsDescription,
                 themeConfig: themeConfig,
                 isDarkMode: isDarkMode,
               ),
 
               _buildFeatureCard(
                 icon: Icons.lock,
-                title: 'নিরাপদ এবং গোপনীয়',
-                description:
-                    'আপনার দোকানের তথ্য সুরক্ষিত এবং শুধুমাত্র আপনার জন্য অ্যাক্সেসযোগ্য।',
+                title: l10n.secureAndPrivate,
+                description: l10n.secureDescription,
                 themeConfig: themeConfig,
                 isDarkMode: isDarkMode,
               ),
@@ -128,7 +127,7 @@ class ConfromView extends GetView<SetupController> {
                 child: Column(
                   children: [
                     Text(
-                      'আপনার দোকান পরিচালনা শুরু করুন',
+                      l10n.startManagingStore,
                       style: GoogleFonts.poppins(
                         fontSize: 20,
                         fontWeight: FontWeight.w600,
@@ -138,7 +137,7 @@ class ConfromView extends GetView<SetupController> {
                     ),
                     const SizedBox(height: 8),
                     Text(
-                      'আমাদের শক্তিশালী দোকান ব্যবস্থাপনা টুল দিয়ে শুরু করুন',
+                      l10n.startWithTool,
                       textAlign: TextAlign.center,
                       style: GoogleFonts.poppins(
                         color: themeConfig.getTextSecondaryColor(isDarkMode),
@@ -160,7 +159,7 @@ class ConfromView extends GetView<SetupController> {
                   padding: const EdgeInsets.symmetric(vertical: 16),
                 ),
                 child: Text(
-                  'শুরু করুন',
+                  l10n.start,
                   style: GoogleFonts.poppins(
                     fontSize: 18,
                     color: themeConfig.getBackgroundColor(isDarkMode),

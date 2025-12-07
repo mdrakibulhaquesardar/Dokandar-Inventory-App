@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 
 import '../../../data/models/product.dart';
 import '../../../widgets/showCustomSnackbar.dart';
+import '../../../config/app_config.dart';
 import '../../home/controllers/home_controller.dart';
 
 class AllProductController extends GetxController {
@@ -43,6 +44,20 @@ class AllProductController extends GetxController {
 
   void saveNewProduct() async {
     try {
+      // Check product limit if subscription is enabled
+      if (AppConfig.enableSubscription) {
+        final totalProducts = await _databaseService.getTotalProducts();
+        if (totalProducts >= AppConfig.freePlanProductLimit) {
+          showCustomSnackbar(
+            title: 'Limit Reached',
+            message: 'You have reached the free plan limit of ${AppConfig.freePlanProductLimit} products. Please upgrade to add more products.',
+            backgroundColor: Colors.orange,
+            icon: Icons.warning,
+          );
+          return;
+        }
+      }
+
       final product = Product.withGeneratedSku(
         name: newProduct['name'] ?? '',
         category: newProduct['category'] ?? '',
@@ -119,9 +134,6 @@ class AllProductController extends GetxController {
   }
 
   bool isLowStock(Product product) {
-    if (product.stockQuantity < 10) {
-      return true;
-    }
-    return false;
+    return product.stockQuantity < AppConfig.lowStockThreshold;
   }
 }

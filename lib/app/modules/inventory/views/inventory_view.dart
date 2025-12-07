@@ -3,6 +3,7 @@ import 'package:dokandar_app_inventory/app/utils/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import '../../../../l10n/app_localizations.dart';
 import '../../../routes/app_pages.dart';
 import '../../../widgets/Custom_AppBar.dart';
 import '../controllers/inventory_controller.dart';
@@ -14,13 +15,14 @@ class InventoryView extends GetView<InventoryController> {
   Widget build(BuildContext context) {
     final themeConfig = Get.find<AppThemeConfig>();
     final isDarkMode = Get.isDarkMode;
+    final l10n = AppLocalizations.of(context)!;
 
     return Scaffold(
       backgroundColor: themeConfig.getBackgroundColor(isDarkMode),
       appBar: customAppBar(
         themeConfig,
         isDarkMode,
-        'ইনভেন্টরি',
+        l10n.inventory,
         false,
         true,
       ),
@@ -43,7 +45,7 @@ class InventoryView extends GetView<InventoryController> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'মোট পণ্য',
+                            l10n.totalProducts,
                             style: GoogleFonts.poppins(
                               fontSize: 14,
                               color:
@@ -80,7 +82,7 @@ class InventoryView extends GetView<InventoryController> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'মোট মূল্য',
+                            l10n.totalPrice,
                             style: GoogleFonts.poppins(
                               fontSize: 14,
                               color:
@@ -108,7 +110,7 @@ class InventoryView extends GetView<InventoryController> {
             ),
             const SizedBox(height: 24),
             Text(
-              'দ্রুত অ্যাক্সেস',
+              l10n.quickAccess,
               style: GoogleFonts.poppins(
                 fontSize: 18,
                 fontWeight: FontWeight.w600,
@@ -117,7 +119,7 @@ class InventoryView extends GetView<InventoryController> {
             ),
             const SizedBox(height: 5),
             Text(
-              'আপনার ইনভেন্টরির জন্য দ্রুত অ্যাক্সেস পেতে নিচের অপশনগুলো ব্যবহার করুন।',
+              l10n.quickAccessDescription,
               style: GoogleFonts.poppins(
                 fontSize: 14,
                 color: themeConfig.getTextSecondaryColor(isDarkMode),
@@ -133,7 +135,7 @@ class InventoryView extends GetView<InventoryController> {
               childAspectRatio: 0.95,
               children: [
                 _buildOptionCard(
-                  'সকল পণ্য',
+                  l10n.allProducts,
                   Icons.inventory_2_outlined,
                   themeConfig.getPrimaryColor(isDarkMode),
                       () {
@@ -142,9 +144,10 @@ class InventoryView extends GetView<InventoryController> {
                   themeConfig,
                   isDarkMode,
                   false,
+                  context,
                 ),
                 _buildOptionCard(
-                  'বিক্রয় ইতিহাস',
+                  l10n.salesHistory,
                   Icons.receipt_long_outlined,
                   themeConfig.getPrimaryColor(isDarkMode),
                       () {
@@ -153,9 +156,10 @@ class InventoryView extends GetView<InventoryController> {
                   themeConfig,
                   isDarkMode,
                   false,
+                  context,
                 ),
                 _buildOptionCard(
-                  'সকল কাস্টমার',
+                  l10n.allCustomers,
                   Icons.person_outline,
                   themeConfig.getInfoColor(isDarkMode),
                       () {
@@ -164,40 +168,44 @@ class InventoryView extends GetView<InventoryController> {
                   themeConfig,
                   isDarkMode,
                   false,
+                  context,
                 ),
                 _buildOptionCard(
-                  'সকল সাপ্লায়ার',
+                  l10n.allSuppliers,
                   Icons.people_outline,
                   themeConfig.getInfoColor(isDarkMode),
                       () {},
                   themeConfig,
                   isDarkMode,
                   true,
+                  context,
                 ),
                 _buildOptionCard(
-                  'দোকান খরচ',
+                  l10n.storeExpenses,
                   Icons.attach_money_outlined,
                   themeConfig.getInfoColor(isDarkMode),
                       () {},
                   themeConfig,
                   isDarkMode,
                   true,
+                  context,
                 ),
                 _buildOptionCard(
-                  'সকল কর্মচারী',
+                  l10n.allEmployees,
                   Icons.person_add_alt_1_outlined,
                   themeConfig.getInfoColor(isDarkMode),
                       () {},
                   themeConfig,
                   isDarkMode,
                   true,
+                  context,
                 ),
 
               ],
             ),
             const SizedBox(height: 24),
             Text(
-              'অন্যান্য ফাংশন',
+              l10n.otherFunctions,
               style: GoogleFonts.poppins(
                 fontSize: 18,
                 fontWeight: FontWeight.w600,
@@ -206,7 +214,7 @@ class InventoryView extends GetView<InventoryController> {
             ),
             const SizedBox(height: 5),
             Text(
-              'আপনার ইনভেন্টরির জন্য অন্যান্য ফাংশনগুলো ব্যবহার করুন।',
+              l10n.otherFunctionsDescription,
               style: GoogleFonts.poppins(
                 fontSize: 14,
                 color: themeConfig.getTextSecondaryColor(isDarkMode),
@@ -218,41 +226,42 @@ class InventoryView extends GetView<InventoryController> {
               physics: const NeverScrollableScrollPhysics(),
               itemCount: 5,
               itemBuilder: (context, index) {
+                final l10nLocal = AppLocalizations.of(context)!;
                 final items = [
                   {
-                    'title': 'বাকি প্রতিশোধ',
+                    'title': l10nLocal.duePayment,
                     'icon': Icons.attach_money_outlined,
                     'color': themeConfig.getPrimaryColor(isDarkMode),
                     'isLocked': false,
                   },
 
                   {
-                    'title': 'পণ্যের ক্যাটাগরি',
+                    'title': l10nLocal.productCategories,
                     'icon': Icons.history,
                     'color': themeConfig.getPrimaryColor(isDarkMode),
                     'isLocked': false,
                   },
                   {
-                    'title': 'ট্রানজেকশন ইতিহাস',
+                    'title': l10nLocal.transactionHistory,
                     'icon': Icons.category,
                     'color': themeConfig.getSuccessColor(isDarkMode),
                     'isLocked': false,
 
                   },
                   {
-                    'title': 'সাপ্লায়ার ম্যানেজমেন্ট',
+                    'title': l10nLocal.supplierManagement,
                     'icon': Icons.people_outline,
                     'color': themeConfig.getInfoColor(isDarkMode),
                     'isLocked': true,
                   },
                   {
-                    'title': 'স্টক অ্যালার্ট',
+                    'title': l10nLocal.stockAlert,
                     'icon': Icons.notification_important_outlined,
                     'color': themeConfig.getWarningColor(isDarkMode),
                     'isLocked': true,
                   },
                   {
-                    'title': 'রিপোর্ট জেনারেট',
+                    'title': l10nLocal.generateReport,
                     'icon': Icons.assessment_outlined,
                     'color': themeConfig.getWarningColor(isDarkMode),
                     'isLocked': true,
@@ -307,7 +316,7 @@ class InventoryView extends GetView<InventoryController> {
                       ),
                     ),
                     subtitle: Text(
-                      'বিস্তারিত দেখুন',
+                      l10nLocal.viewDetails,
                       style: GoogleFonts.poppins(
                         fontSize: 12,
                         color: themeConfig.getTextSecondaryColor(isDarkMode),
@@ -340,7 +349,9 @@ class InventoryView extends GetView<InventoryController> {
       VoidCallback onTap,
       AppThemeConfig themeConfig,
       bool isDarkMode,
-      bool isLocked) {
+      bool isLocked,
+      BuildContext context) {
+    final l10nLocal = AppLocalizations.of(context)!;
     return Card(
       elevation: 0,
       color: themeConfig.getSurfaceColor(isDarkMode),
@@ -403,7 +414,7 @@ class InventoryView extends GetView<InventoryController> {
                   size: 14,
                 )
                     : Text(
-                  'নতুন',
+                  l10nLocal.newLabel,
                   style: GoogleFonts.poppins(
                     fontSize: 9,
                     fontWeight: FontWeight.w500,

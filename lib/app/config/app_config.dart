@@ -1,34 +1,72 @@
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+/// AppConfig - Centralized Configuration Class
+/// 
+/// This class contains all app configuration settings that can be easily customized
+/// by CodeCanyon buyers. Simply modify the values below to customize your app.
+/// 
+/// IMPORTANT FOR CODECANYON USERS:
+/// - Change all "Your Company Name", "support@example.com", etc. to your own information
+/// - Modify subscription plans, limits, and features according to your needs
+/// - Update theme colors, currency settings, and other configurations
+/// - All changes made here will be reflected throughout the entire app
 class AppConfig extends GetxService {
-  // App Information
+  // ============================================================================
+  // APP INFORMATION - Customize these values for your app
+  // ============================================================================
   static const String appVersion = '১.০.১';
   static const String appName = 'দোকানদার (Dokandar)';
   static const String lastUpdate = 'এপ্রিল ২০, ২০২৫';
   static const String appSize = '৩০ MB';
   static const String appDescription = 'ইনভেন্টরি ম্যানেজমেন্ট সিস্টেম';
+  
+  // Developer/Company Information - CHANGE THESE FOR YOUR COMPANY
   static const String developerName = 'Your Company Name';
   static const String supportEmail = 'support@example.com';
   static const String website = 'https://example.com';
 
-  // App Features Configuration
+  // ============================================================================
+  // APP FEATURES CONFIGURATION - Enable/Disable features
+  // ============================================================================
+  /// Set to true to enable subscription features in the app
   static const bool enableSubscription = true;
+  
+  /// Set to true to enable dark mode support
   static const bool enableDarkMode = true;
+  
+  /// Set to true to enable push notifications
   static const bool enableNotifications = true;
+  
+  /// Set to true to enable data backup functionality
   static const bool enableBackup = true;
+  
+  /// Set to true to enable analytics tracking
   static const bool enableAnalytics = true;
+  
+  /// Set to true to enable multi-language support
   static const bool enableMultiLanguage = true;
-  static const bool enableMultiLanguageSupport = false;
+  
+  /// Set to true to show language selection in settings
+  static const bool enableMultiLanguageSupport = true;
+  
+  /// Set to true for personal use (hides support/feedback options)
   static const bool enablePersonalUse = true;
 
-
-  
-
-  // Subscription Configuration
+  // ============================================================================
+  // SUBSCRIPTION CONFIGURATION - Configure subscription limits and plans
+  // ============================================================================
+  /// Maximum number of products allowed in free plan
   static const int freePlanProductLimit = 10;
+  
+  /// Maximum number of customers allowed in free plan
   static const int freePlanCustomerLimit = 5;
+  
+  /// Trial period duration in days
   static const int trialPeriodDays = 7;
+  
+  /// Low stock threshold - Products below this quantity will be marked as low stock
+  static const int lowStockThreshold = 10;
   static const Map<String, Map<String, dynamic>> subscriptionPlans = {
     'monthly': {
       'name': '১ মাস',
@@ -56,15 +94,31 @@ class AppConfig extends GetxService {
     },
   };
 
-  // Database Configuration
+  // ============================================================================
+  // DATABASE CONFIGURATION - Database settings
+  // ============================================================================
+  /// Database name - Change this if you want a different database name
   static const String databaseName = 'dokandar_db';
+  
+  /// Database version - Increment this when you make schema changes
   static const int databaseVersion = 1;
+  
+  /// Enable database encryption (if supported)
   static const bool enableDatabaseEncryption = true;
 
-  // API Configuration
+  // ============================================================================
+  // API CONFIGURATION - Backend API settings (if using remote API)
+  // ============================================================================
+  /// Base URL for API endpoints - CHANGE THIS TO YOUR API URL
   static const String baseUrl = 'https://api.example.com';
+  
+  /// API request timeout in milliseconds
   static const int apiTimeout = 30000; // 30 seconds
+  
+  /// Maximum number of retry attempts for failed API calls
   static const int maxRetryAttempts = 3;
+  
+  /// Delay between retry attempts in milliseconds
   static const int retryDelay = 1000; // 1 second
 
   // Theme Configuration
@@ -83,11 +137,21 @@ class AppConfig extends GetxService {
     'onError': 0xFFFFFFFF,
   };
 
-  // Currency Configuration
+  // ============================================================================
+  // CURRENCY CONFIGURATION - Currency and number formatting
+  // ============================================================================
   final RxString currentCurrency = 'BDT'.obs;
+  
+  /// Currency symbol to display (e.g., ৳, $, €, ₹)
   static const String currencySymbol = '৳';
+  
+  /// Number of decimal places for currency display
   static const int decimalPlaces = 2;
+  
+  /// Thousand separator character
   static const String thousandSeparator = ',';
+  
+  /// Decimal separator character
   static const String decimalSeparator = '.';
 
   // Date Format Configuration
@@ -125,43 +189,106 @@ class AppConfig extends GetxService {
     'en': 'English',
   };
 
-  // File Upload Configuration
+  // ============================================================================
+  // FILE UPLOAD CONFIGURATION - File upload settings
+  // ============================================================================
+  /// Maximum file size in bytes (5MB default)
   static const int maxFileSize = 5 * 1024 * 1024; // 5MB
+  
+  /// Allowed file extensions for uploads
   static const List<String> allowedFileTypes = ['jpg', 'jpeg', 'png', 'pdf'];
+  
+  /// Directory name for uploaded files
   static const String uploadDirectory = 'uploads';
 
-  // Notification Configuration
+  // ============================================================================
+  // NOTIFICATION CONFIGURATION - Notification settings
+  // ============================================================================
+  /// Notification display timeout in milliseconds
   static const int notificationTimeout = 5000; // 5 seconds
+  
+  /// Enable sound for notifications
   static const bool enableSound = true;
+  
+  /// Enable vibration for notifications
   static const bool enableVibration = true;
 
-  // Backup Configuration
+  // ============================================================================
+  // BACKUP CONFIGURATION - Data backup settings
+  // ============================================================================
+  /// Enable automatic backups
   static const bool enableAutoBackup = true;
+  
+  /// Backup frequency in hours
   static const int backupFrequency = 24; // hours
+  
+  /// Maximum number of backup files to keep
   static const int maxBackupFiles = 5;
 
-  // Analytics Configuration
+  // ============================================================================
+  // ANALYTICS CONFIGURATION - Analytics and tracking settings
+  // ============================================================================
+  /// Enable user behavior tracking
   static const bool enableUserTracking = true;
+  
+  /// Enable error reporting
   static const bool enableErrorReporting = true;
+  
+  /// Enable performance monitoring
   static const bool enablePerformanceMonitoring = true;
 
   late SharedPreferences _prefs;
 
-  // Getters for app information
-  get appCurrentVersion => appVersion;
-  get appCurrentName => appName;
-  get appLastUpdate => lastUpdate;
-  get appCurrentSize => appSize;
-  get appCurrentDescription => appDescription;
+  // ============================================================================
+  // GETTERS - Access app information throughout the app
+  // ============================================================================
+  String get appCurrentVersion => appVersion;
+  String get appCurrentName => appName;
+  String get appLastUpdate => lastUpdate;
+  String get appCurrentSize => appSize;
+  String get appCurrentDescription => appDescription;
+  String get appDeveloperName => developerName;
+  String get appSupportEmail => supportEmail;
+  String get appWebsite => website;
 
-  // Change Log
+  // ============================================================================
+  // CHANGE LOG - Update this with each version release
+  // ============================================================================
+  /// Change log entries - Update this list with each app version
   static const List<String> changeLog = [
     'প্রথম সংস্করণ প্রকাশ',
     'বেসিক ফিচার যোগ করা হয়েছে',
     'ইনভেন্টরি ম্যানেজমেন্ট সিস্টেম',
     'বিক্রয় ট্র্যাকিং সিস্টেম',
   ];
-  get appChangeLog => changeLog;
+  List<String> get appChangeLog => changeLog;
+  
+  // ============================================================================
+  // SUBSCRIPTION PLANS GETTERS - Access subscription plan data
+  // ============================================================================
+  /// Get all subscription plans
+  Map<String, Map<String, dynamic>> get subscriptionPlansData => subscriptionPlans;
+  
+  /// Get monthly plan details
+  Map<String, dynamic>? get monthlyPlan => subscriptionPlans['monthly'];
+  
+  /// Get quarterly plan details
+  Map<String, dynamic>? get quarterlyPlan => subscriptionPlans['quarterly'];
+  
+  /// Get half-yearly plan details
+  Map<String, dynamic>? get halfYearlyPlan => subscriptionPlans['halfYearly'];
+  
+  /// Get free plan product limit
+  int get freeProductLimit => freePlanProductLimit;
+  
+  /// Get free plan customer limit
+  int get freeCustomerLimit => freePlanCustomerLimit;
+  
+  /// Get trial period days
+  int get trialDays => trialPeriodDays;
+  
+  /// Get low stock threshold
+  int get lowStockLimit => lowStockThreshold;
 
   // Initialize the configuration
   Future<AppConfig> init() async {
@@ -206,6 +333,34 @@ class AppConfig extends GetxService {
   Future<void> _loadCurrencyPreferences() async {
     currentCurrency.value = _prefs.getString('currency') ?? defaultCurrency;
   }
+  
+  // ============================================================================
+  // HELPER METHODS - Utility methods for configuration
+  // ============================================================================
+  
+  /// Format currency amount with symbol
+  String formatCurrency(double amount) {
+    final formatted = amount.toStringAsFixed(decimalPlaces);
+    return '$currencySymbol$formatted';
+  }
+  
+  /// Check if subscription is enabled
+  bool get isSubscriptionEnabled => enableSubscription;
+  
+  /// Check if dark mode is enabled
+  bool get isDarkModeEnabled => enableDarkMode;
+  
+  /// Check if backup is enabled
+  bool get isBackupEnabled => enableBackup;
+  
+  /// Check if notifications are enabled
+  bool get isNotificationsEnabled => enableNotifications;
+  
+  /// Get database name
+  String get dbName => databaseName;
+  
+  /// Get database version
+  int get dbVersion => databaseVersion;
 
   Future<void> saveCurrency(String currency) async {
     currentCurrency.value = currency;

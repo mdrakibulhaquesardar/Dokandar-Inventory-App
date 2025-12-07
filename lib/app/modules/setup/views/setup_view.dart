@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import '../../../../l10n/app_localizations.dart';
 import '../../../config/app_theme_config.dart';
 import '../controllers/setup_controller.dart';
 
@@ -11,6 +12,7 @@ class SetupView extends GetView<SetupController> {
   Widget build(BuildContext context) {
     final themeConfig = Get.find<AppThemeConfig>();
     final isDarkMode = Get.isDarkMode;
+    final l10n = AppLocalizations.of(context)!;
 
     return Scaffold(
       backgroundColor: themeConfig.getSurfaceColor(isDarkMode),
@@ -28,7 +30,7 @@ class SetupView extends GetView<SetupController> {
           child: Row(
             children: [
               Text(
-                'ব্যবহারকারী সেটআপ',
+                l10n.userSetup,
                 style: GoogleFonts.poppins(
                   fontSize: 24,
                   fontWeight: FontWeight.w600,
@@ -53,7 +55,7 @@ class SetupView extends GetView<SetupController> {
                     ),
                     const SizedBox(width: 4),
                     Text(
-                      'ধাপ 1/2',
+                      l10n.step1of2,
                       style: GoogleFonts.poppins(
                         fontSize: 12,
                         color: themeConfig.getPrimaryColor(isDarkMode),
@@ -109,7 +111,7 @@ class SetupView extends GetView<SetupController> {
                     ),
                     const SizedBox(height: 16),
                     Text(
-                      'আপনার প্রোফাইল সম্পূর্ণ করুন',
+                      l10n.completeProfile,
                       style: GoogleFonts.poppins(
                         fontSize: 20,
                         fontWeight: FontWeight.w600,
@@ -117,7 +119,7 @@ class SetupView extends GetView<SetupController> {
                       ),
                     ),
                     Text(
-                      'আপনার ব্যবসা পরিচালনার জন্য প্রয়োজনীয় তথ্য দিন',
+                      l10n.completeProfileDescription,
                       textAlign: TextAlign.center,
                       style: GoogleFonts.poppins(
                         fontSize: 14,
@@ -129,7 +131,7 @@ class SetupView extends GetView<SetupController> {
                 ),
               ),
               Text(
-                'ব্যবহারকারীর তথ্য',
+                l10n.userInfo,
                 style: GoogleFonts.poppins(
                   fontSize: 18,
                   fontWeight: FontWeight.w600,
@@ -137,7 +139,7 @@ class SetupView extends GetView<SetupController> {
                 ),
               ),
               Text(
-                'আপনার প্রোফাইল সেটআপ করুন এবং ব্যবসার জন্য প্রয়োজনীয় তথ্য দিন',
+                l10n.userInfoDescription,
                 style: GoogleFonts.poppins(
                   fontSize: 14,
                   color: themeConfig.getTextSecondaryColor(isDarkMode),
@@ -158,9 +160,9 @@ class SetupView extends GetView<SetupController> {
                         controller: controller.nameController,
                         validator: (value) => controller.validateName(value!),
                         decoration: InputDecoration(
-                          labelText: 'নাম',
+                          labelText: l10n.name,
                           labelStyle: GoogleFonts.poppins(),
-                          hintText: 'আপনার পূর্ণ নাম লিখুন',
+                          hintText: l10n.fullName,
                           hintStyle: GoogleFonts.poppins(
                             color:
                                 themeConfig.getTextSecondaryColor(isDarkMode),
@@ -206,9 +208,9 @@ class SetupView extends GetView<SetupController> {
                         controller: controller.emailController,
                         validator: (value) => controller.validateEmail(value!),
                         decoration: InputDecoration(
-                          labelText: 'ইমেইল',
+                          labelText: l10n.email,
                           labelStyle: GoogleFonts.poppins(),
-                          hintText: 'আপনার ইমেইল ঠিকানা লিখুন',
+                          hintText: l10n.emailAddress,
                           hintStyle: GoogleFonts.poppins(
                             color:
                                 themeConfig.getTextSecondaryColor(isDarkMode),
@@ -254,9 +256,9 @@ class SetupView extends GetView<SetupController> {
                         controller: controller.phoneController,
                         validator: (value) => controller.validatePhone(value!),
                         decoration: InputDecoration(
-                          labelText: 'মোবাইল নম্বর',
+                          labelText: l10n.phoneNumber,
                           labelStyle: GoogleFonts.poppins(),
-                          hintText: 'আপনার মোবাইল নম্বর লিখুন',
+                          hintText: l10n.mobileNumber,
                           hintStyle: GoogleFonts.poppins(
                             color:
                                 themeConfig.getTextSecondaryColor(isDarkMode),
@@ -303,9 +305,9 @@ class SetupView extends GetView<SetupController> {
                         validator: (value) => controller.validateAddress(value!),
                         maxLines: 3,
                         decoration: InputDecoration(
-                          labelText: 'ঠিকানা',
+                          labelText: l10n.address,
                           labelStyle: GoogleFonts.poppins(),
-                          hintText: 'আপনার ঠিকানা লিখুন',
+                          hintText: l10n.yourAddress,
                           hintStyle: GoogleFonts.poppins(
                             color:
                                 themeConfig.getTextSecondaryColor(isDarkMode),
@@ -371,7 +373,7 @@ class SetupView extends GetView<SetupController> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        'পরবর্তী ধাপে যান',
+                        l10n.nextStep,
                         style: GoogleFonts.poppins(
                           fontSize: 16,
                           fontWeight: FontWeight.w500,
@@ -390,7 +392,7 @@ class SetupView extends GetView<SetupController> {
               const SizedBox(height: 16),
               Center(
                 child: Text(
-                  'আপনি চাইলে পরবর্তী পিন কোডটি সেটআপ করতে পারে ',
+                  l10n.pinCodeSetup,
                   textAlign: TextAlign.center,
                   style: GoogleFonts.poppins(
                     fontSize: 14,

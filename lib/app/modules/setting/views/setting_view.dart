@@ -4,6 +4,8 @@ import 'package:dokandar_app_inventory/app/utils/DateTimeUtils.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import '../../../../l10n/app_localizations.dart';
+import '../../../core/services/localization_service.dart';
 import '../controllers/setting_controller.dart';
 import '../../../config/app_theme_config.dart';
 
@@ -13,8 +15,8 @@ class SettingView extends GetView<SettingController> {
   @override
   Widget build(BuildContext context) {
     final themeConfig = Get.find<AppThemeConfig>();
-
     final isDarkMode = Get.isDarkMode;
+    final l10n = AppLocalizations.of(context)!;
 
     return Scaffold(
       backgroundColor: themeConfig.getBackgroundColor(isDarkMode),
@@ -32,7 +34,7 @@ class SettingView extends GetView<SettingController> {
           child: Row(
             children: [
               Text(
-                'সেটিংস',
+                l10n.settings,
                 style: GoogleFonts.poppins(
                   fontSize: 24,
                   fontWeight: FontWeight.w600,
@@ -47,7 +49,7 @@ class SettingView extends GetView<SettingController> {
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: Text(
-                  'বেটা ভার্সন',
+                  Get.find<AppConfig>().appCurrentVersion,
                   style: GoogleFonts.poppins(
                     fontSize: 14,
                     fontWeight: FontWeight.w500,
@@ -64,34 +66,40 @@ class SettingView extends GetView<SettingController> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _buildProfileSection(themeConfig, isDarkMode),
+            _buildProfileSection(themeConfig, isDarkMode, l10n),
             const SizedBox(height: 24),
-            _buildSectionTitle('অ্যাপ সেটিংস', themeConfig, isDarkMode),
+            _buildSectionTitle(l10n.appSettings, themeConfig, isDarkMode, l10n),
             const SizedBox(height: 8),
             _buildSettingCard(
-              title: 'অ্যাপ থিম',
+              title: l10n.appTheme,
               icon: Icons.color_lens_outlined,
               color: themeConfig.getPrimaryColor(isDarkMode),
               onTap: () {},
               themeConfig: themeConfig,
               isDarkMode: isDarkMode,
               isLocked: true,
+              context: context,
             ),
             if (AppConfig.enableMultiLanguageSupport)
-              _buildSettingCard(
-                title: 'ভাষা',
-                icon: Icons.language_outlined,
-                color: themeConfig.getPrimaryColor(isDarkMode),
-                onTap: () {},
-                themeConfig: themeConfig,
-                isDarkMode: isDarkMode,
-                isLocked: true,
-              ),
+              Obx(() {
+                final localizationService = Get.find<LocalizationService>();
+                return _buildSettingCard(
+                  title: l10n.language,
+                  subtitle: localizationService.currentLanguageName,
+                  icon: Icons.language_outlined,
+                  color: themeConfig.getPrimaryColor(isDarkMode),
+                  onTap: () => _showLanguageSelector(context, themeConfig, isDarkMode),
+                  themeConfig: themeConfig,
+                  isDarkMode: isDarkMode,
+                  isLocked: false,
+                  context: context,
+                );
+              }),
             const SizedBox(height: 10),
-            _buildSectionTitle('ডাটা ম্যানেজমেন্ট', themeConfig, isDarkMode),
+            _buildSectionTitle(l10n.dataManagement, themeConfig, isDarkMode, l10n),
             const SizedBox(height: 8),
             _buildSettingCard(
-              title: 'ডাটা ব্যাকআপ',
+              title: l10n.dataBackup,
               icon: Icons.backup_outlined,
               color: Colors.blue,
               onTap: () {
@@ -99,9 +107,10 @@ class SettingView extends GetView<SettingController> {
               },
               themeConfig: themeConfig,
               isDarkMode: isDarkMode,
+              context: context,
             ),
             _buildSettingCard(
-              title: 'ডাটা রিস্টোর',
+              title: l10n.dataRestore,
               icon: Icons.restore_outlined,
               color: Colors.green,
               onTap: () {
@@ -109,22 +118,24 @@ class SettingView extends GetView<SettingController> {
               },
               themeConfig: themeConfig,
               isDarkMode: isDarkMode,
+              context: context,
             ),
             const SizedBox(height: 10),
-            _buildSectionTitle('দোকান সেটআপ', themeConfig, isDarkMode),
+            _buildSectionTitle(l10n.storeSetup, themeConfig, isDarkMode, l10n),
             const SizedBox(height: 8),
             _buildSettingCard(
-              title: 'দোকান সেটিংস',
+              title: l10n.storeSettings,
               icon: Icons.store_outlined,
               color: Colors.blue,
               onTap: () {},
               themeConfig: themeConfig,
               isDarkMode: isDarkMode,
               isLocked: true,
+              context: context,
             ),
             if (AppConfig.enableSubscription)
             _buildSettingCard(
-              title: 'দোকানদার সাবস্ক্রিপশন',
+              title: l10n.subscription,
               icon: Icons.location_on_outlined,
               color: Colors.blue,
               onTap: () {
@@ -133,16 +144,17 @@ class SettingView extends GetView<SettingController> {
               themeConfig: themeConfig,
               isDarkMode: isDarkMode,
               isLocked: false,
+              context: context,
             ),
             if (!AppConfig.enablePersonalUse)
             const SizedBox(height: 24),
             AppConfig.enablePersonalUse ?
-            _buildSectionTitle('সাপোর্ট এবং সহায়তা', themeConfig, isDarkMode)
-            : _buildSectionTitle('অ্যাপ সম্পর্কে', themeConfig, isDarkMode) ,
+            _buildSectionTitle(l10n.supportAndHelp, themeConfig, isDarkMode, l10n)
+            : _buildSectionTitle(l10n.aboutApp, themeConfig, isDarkMode, l10n) ,
             const SizedBox(height: 8),
             if (!AppConfig.enablePersonalUse)
             _buildSettingCard(
-              title: 'সাপোর্ট সেন্টার',
+              title: l10n.supportCenter,
               icon: Icons.phone_outlined,
               color: Colors.red,
               onTap: () {
@@ -150,10 +162,11 @@ class SettingView extends GetView<SettingController> {
               },
               themeConfig: themeConfig,
               isDarkMode: isDarkMode,
+              context: context,
             ), 
             if (!AppConfig.enablePersonalUse)
             _buildSettingCard(
-              title: 'ফিডব্যাক',
+              title: l10n.feedback,
               icon: Icons.feedback_outlined,
               color: Colors.amber,
               onTap: () {
@@ -161,9 +174,10 @@ class SettingView extends GetView<SettingController> {
               },
               themeConfig: themeConfig,
               isDarkMode: isDarkMode,
+              context: context,
             ),
             _buildSettingCard(
-              title: 'অ্যাপ সম্পর্কে',
+              title: l10n.aboutApp,
               icon: Icons.info_outline,
               color: Colors.blueAccent,
               onTap: () {
@@ -171,6 +185,7 @@ class SettingView extends GetView<SettingController> {
               },
               themeConfig: themeConfig,
               isDarkMode: isDarkMode,
+              context: context,
             ),
           ],
         ),
@@ -179,7 +194,7 @@ class SettingView extends GetView<SettingController> {
   }
 
   Widget _buildSectionTitle(
-      String title, AppThemeConfig themeConfig, bool isDarkMode) {
+      String title, AppThemeConfig themeConfig, bool isDarkMode, AppLocalizations l10n) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -192,7 +207,7 @@ class SettingView extends GetView<SettingController> {
           ),
         ),
         Text(
-          'আপনার অ্যাপ সেটিংস কাস্টমাইজ করুন',
+          l10n.customizeAppSettings,
           style: GoogleFonts.poppins(
             fontSize: 14,
             color: themeConfig.getTextSecondaryColor(isDarkMode),
@@ -204,12 +219,14 @@ class SettingView extends GetView<SettingController> {
 
   Widget _buildSettingCard({
     required String title,
+    String? subtitle,
     required IconData icon,
     required Color color,
     required VoidCallback onTap,
     required AppThemeConfig themeConfig,
     bool isLocked = false,
     required bool isDarkMode,
+    required BuildContext context,
   }) {
     return Card(
       elevation: 0,
@@ -232,6 +249,15 @@ class SettingView extends GetView<SettingController> {
             color: themeConfig.getTextPrimaryColor(isDarkMode),
           ),
         ),
+        subtitle: subtitle != null
+            ? Text(
+                subtitle,
+                style: GoogleFonts.poppins(
+                  fontSize: 12,
+                  color: themeConfig.getTextSecondaryColor(isDarkMode),
+                ),
+              )
+            : null,
         trailing: Icon(
           isLocked ? Icons.lock_outline : Icons.arrow_forward_ios_outlined,
           size: 16,
@@ -241,7 +267,81 @@ class SettingView extends GetView<SettingController> {
     );
   }
 
-  Widget _buildProfileSection(AppThemeConfig themeConfig, bool isDarkMode) {
+  void _showLanguageSelector(BuildContext context, AppThemeConfig themeConfig, bool isDarkMode) {
+    final localizationService = Get.find<LocalizationService>();
+    final l10n = AppLocalizations.of(context)!;
+    
+    Get.bottomSheet(
+      Container(
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          color: themeConfig.getBackgroundColor(isDarkMode),
+          borderRadius: const BorderRadius.vertical(
+            top: Radius.circular(20),
+          ),
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  l10n.selectLanguage,
+                  style: GoogleFonts.poppins(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w600,
+                    color: themeConfig.getTextPrimaryColor(isDarkMode),
+                  ),
+                ),
+                IconButton(
+                  onPressed: () => Get.back(),
+                  icon: Icon(
+                    Icons.close,
+                    color: themeConfig.getTextSecondaryColor(isDarkMode),
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 16),
+            ...localizationService.availableLanguages.entries.map((entry) {
+              return Obx(() {
+                final isSelected = localizationService.currentLanguageCode == entry.key;
+                return ListTile(
+                  contentPadding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                  leading: Icon(
+                    isSelected ? Icons.check_circle : Icons.circle_outlined,
+                    color: isSelected
+                        ? themeConfig.getPrimaryColor(isDarkMode)
+                        : themeConfig.getTextSecondaryColor(isDarkMode),
+                  ),
+                  title: Text(
+                    entry.value,
+                    style: GoogleFonts.poppins(
+                      fontWeight: isSelected ? FontWeight.w600 : FontWeight.normal,
+                      color: themeConfig.getTextPrimaryColor(isDarkMode),
+                    ),
+                  ),
+                  onTap: () async {
+                    final success = await localizationService.changeLanguage(entry.key);
+                    if (success) {
+                      Get.back();
+                    }
+                  },
+                );
+              });
+            }),
+            const SizedBox(height: 8),
+          ],
+        ),
+      ),
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+    );
+  }
+
+  Widget _buildProfileSection(AppThemeConfig themeConfig, bool isDarkMode, AppLocalizations l10n) {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
@@ -270,7 +370,7 @@ class SettingView extends GetView<SettingController> {
                       assignId: true,
                       builder: (logic) {
                         return Text(
-                          logic.user?.name ?? 'রাকিব',
+                          logic.user?.name ?? l10n.defaultName,
                           style: GoogleFonts.poppins(
                             fontSize: 20,
                             fontWeight: FontWeight.w600,
@@ -283,7 +383,7 @@ class SettingView extends GetView<SettingController> {
                       assignId: true,
                       builder: (logic) {
                         return Text(
-                          logic.user?.email ?? "তথ্য খুজে পাওয়া যায়নি",
+                          logic.user?.email ?? l10n.dataNotFound,
                           style: GoogleFonts.poppins(
                             fontSize: 14,
                             color:
@@ -297,7 +397,7 @@ class SettingView extends GetView<SettingController> {
                       assignId: true,
                       builder: (logic) {
                         return Text(
-                          logic.user?.role ?? "তথ্য খুজে পাওয়া যায়নি",
+                          logic.user?.role ?? l10n.dataNotFound,
                           style: GoogleFonts.poppins(
                             fontSize: 14,
                             fontWeight: FontWeight.w500,
@@ -333,8 +433,8 @@ class SettingView extends GetView<SettingController> {
                   assignId: true,
                   builder: (logic) {
                     return _buildInfoRow(
-                      'স্টোর:',
-                      logic.store?.name ?? 'তথ্য খুজে পাওয়া যায়নি',
+                      '${l10n.store}:',
+                      logic.store?.name ?? l10n.dataNotFound,
                       Icons.store_outlined,
                       themeConfig,
                       isDarkMode,
@@ -346,11 +446,11 @@ class SettingView extends GetView<SettingController> {
                   assignId: true,
                   builder: (logic) {
                     return _buildInfoRow(
-                      'যোগদান:',
+                      '${l10n.joined}:',
                       logic.user?.createdAt != null
                           ? DateTimeUtils.convertToBengaliDate(
                               logic.user!.createdAt)
-                          : 'তারিখ খুজে পাওয়া যায়নি',
+                          : l10n.dateNotFound,
                       Icons.calendar_today_outlined,
                       themeConfig,
                       isDarkMode,
@@ -362,8 +462,8 @@ class SettingView extends GetView<SettingController> {
                   assignId: true,
                   builder: (logic) {
                     return _buildInfoRow(
-                      'মোবাইল:',
-                      logic.user?.phone ?? 'মোবাইল নাম্বার নেই',
+                      '${l10n.mobile}:',
+                      logic.user?.phone ?? l10n.noMobileNumber,
                       Icons.phone_outlined,
                       themeConfig,
                       isDarkMode,

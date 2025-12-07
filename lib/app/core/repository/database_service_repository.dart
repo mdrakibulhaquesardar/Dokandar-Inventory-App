@@ -37,6 +37,7 @@ abstract class DatabaseServiceRepository {
 
   // Customer operations
   Future<List<Customer>> getAllCustomers();
+  Future<int> getTotalCustomers();
   Future<Customer?> getCustomerById(int id);
   Future<String?> getCustomerNameById(int id);
   Future<void> saveCustomer(Customer customer);

@@ -1,0 +1,535 @@
+{
+  "@@locale": "en",
+  "appName": "Dokandar",
+  "@appName": {
+    "description": "Application name"
+  },
+  "appDescription": "Inventory Management System",
+  "@appDescription": {
+    "description": "Application description"
+  },
+  "settings": "Settings",
+  "@settings": {
+    "description": "Settings screen title"
+  },
+  "aboutApp": "About App",
+  "@aboutApp": {
+    "description": "About app screen title"
+  },
+  "subscription": "Subscription",
+  "@subscription": {
+    "description": "Subscription screen title"
+  },
+  "products": "Products",
+  "@products": {
+    "description": "Products label"
+  },
+  "customers": "Customers",
+  "@customers": {
+    "description": "Customers label"
+  },
+  "sales": "Sales",
+  "@sales": {
+    "description": "Sales label"
+  },
+  "inventory": "Inventory",
+  "@inventory": {
+    "description": "Inventory label"
+  },
+  "addProduct": "Add Product",
+  "@addProduct": {
+    "description": "Add product button text"
+  },
+  "addCustomer": "Add Customer",
+  "@addCustomer": {
+    "description": "Add customer button text"
+  },
+  "save": "Save",
+  "@save": {
+    "description": "Save button text"
+  },
+  "cancel": "Cancel",
+  "@cancel": {
+    "description": "Cancel button text"
+  },
+  "delete": "Delete",
+  "@delete": {
+    "description": "Delete button text"
+  },
+  "edit": "Edit",
+  "@edit": {
+    "description": "Edit button text"
+  },
+  "search": "Search",
+  "@search": {
+    "description": "Search placeholder"
+  },
+  "name": "Name",
+  "@name": {
+    "description": "Name field label"
+  },
+  "price": "Price",
+  "@price": {
+    "description": "Price field label"
+  },
+  "quantity": "Quantity",
+  "@quantity": {
+    "description": "Quantity field label"
+  },
+  "phone": "Phone",
+  "@phone": {
+    "description": "Phone field label"
+  },
+  "email": "Email",
+  "@email": {
+    "description": "Email field label"
+  },
+  "address": "Address",
+  "@address": {
+    "description": "Address field label"
+  },
+  "total": "Total",
+  "@total": {
+    "description": "Total label"
+  },
+  "subtotal": "Subtotal",
+  "@subtotal": {
+    "description": "Subtotal label"
+  },
+  "discount": "Discount",
+  "@discount": {
+    "description": "Discount label"
+  },
+  "dueAmount": "Due Amount",
+  "@dueAmount": {
+    "description": "Due amount label"
+  },
+  "paidAmount": "Paid Amount",
+  "@paidAmount": {
+    "description": "Paid amount label"
+  },
+  "lowStock": "Low Stock",
+  "@lowStock": {
+    "description": "Low stock warning"
+  },
+  "outOfStock": "Out of Stock",
+  "@outOfStock": {
+    "description": "Out of stock warning"
+  },
+  "success": "Success",
+  "@success": {
+    "description": "Success message"
+  },
+  "error": "Error",
+  "@error": {
+    "description": "Error message"
+  },
+  "loading": "Loading...",
+  "@loading": {
+    "description": "Loading message"
+  },
+  "noData": "No data available",
+  "@noData": {
+    "description": "No data message"
+  },
+  "developerInfo": "Developer Information",
+  "@developerInfo": {
+    "description": "Developer information section title"
+  },
+  "appInfo": "App Information",
+  "@appInfo": {
+    "description": "App information section title"
+  },
+  "currentVersionAndDescription": "Current version and description",
+  "developer": "Developer",
+  "changelog": "Changelog",
+  "@changelog": {
+    "description": "Changelog section title"
+  },
+  "version": "Version",
+  "@version": {
+    "description": "Version label"
+  },
+  "lastUpdate": "Last Update",
+  "@lastUpdate": {
+    "description": "Last update label"
+  },
+  "appSize": "App Size",
+  "@appSize": {
+    "description": "App size label"
+  },
+  "freePlan": "Free Plan",
+  "@freePlan": {
+    "description": "Free plan label"
+  },
+  "currentPlan": "Current Plan",
+  "@currentPlan": {
+    "description": "Current plan label"
+  },
+  "upgrade": "Upgrade",
+  "@upgrade": {
+    "description": "Upgrade button text"
+  },
+  "buyNow": "Buy Now",
+  "@buyNow": {
+    "description": "Buy now button text"
+  },
+  "trialPeriod": "Trial Period",
+  "@trialPeriod": {
+    "description": "Trial period label"
+  },
+  "days": "{count} days",
+  "@days": {
+    "description": "Days count",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "productsLimit": "You can add up to {count} products",
+  "@productsLimit": {
+    "description": "Products limit message",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "customersLimit": "You can add up to {count} customers",
+  "@customersLimit": {
+    "description": "Customers limit message",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "limitReached": "Limit Reached",
+  "@limitReached": {
+    "description": "Limit reached message"
+  },
+  "pleaseUpgrade": "Please upgrade to add more",
+  "@pleaseUpgrade": {
+    "description": "Please upgrade message"
+  },
+  "home": "Home",
+  "summaryInfo": "Summary Information",
+  "summaryInfoDescription": "View summary information and related details",
+  "totalProducts": "Total Products",
+  "totalSales": "Total Sales",
+  "categories": "Categories",
+  "customers": "Customers",
+  "todaysOrders": "Today's Orders",
+  "totalProfit": "Total Profit",
+  "recentSales": "Recent Sales",
+  "recentSalesDescription": "View recent sales list and transactions",
+  "stockAlert": "Stock Alert",
+  "stockAlertDescription": "Some products are running low on stock, 3 days before stock runs out",
+  "noRecentSales": "No recent sales",
+  "addToStock": "Add to Stock",
+  "searchProducts": "Search Products",
+  "inventory": "Inventory",
+  "totalPrice": "Total Price",
+  "quickAccess": "Quick Access",
+  "quickAccessDescription": "Use the options below to quickly access your inventory",
+  "allProducts": "All Products",
+  "salesHistory": "Sales History",
+  "allCustomers": "All Customers",
+  "allSuppliers": "All Suppliers",
+  "storeExpenses": "Store Expenses",
+  "allEmployees": "All Employees",
+  "otherFunctions": "Other Functions",
+  "otherFunctionsDescription": "Use other functions for your inventory",
+  "duePayment": "Due Payment",
+  "productCategories": "Product Categories",
+  "transactionHistory": "Transaction History",
+  "supplierManagement": "Supplier Management",
+  "stockAlert": "Stock Alert",
+  "generateReport": "Generate Report",
+  "viewDetails": "View Details",
+  "newLabel": "New",
+  "sellCounter": "Sales Counter",
+  "searchProduct": "Search products...",
+  "totalProductsCount": "Total Products: {count}",
+  "@totalProductsCount": {
+    "description": "Total products count",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "completeSale": "Complete Sale",
+  "noProductsAdded": "No products added",
+  "salesCounter": "Sales Counter",
+  "yourProducts": "Your Products",
+  "stockOut": "Stock Out",
+  "recentProducts": "Recent Products",
+  "editProduct": "Edit Product",
+  "productName": "Product Name",
+  "stockQuantity": "Stock Quantity",
+  "sellingPrice": "Selling Price",
+  "buyingPrice": "Buying Price",
+  "profit": "Profit",
+  "unitProfit": "Unit Profit",
+  "totalProfit": "Total Profit",
+  "totalPrice": "Total Price",
+  "createdAt": "Created At",
+  "deleteProduct": "Delete Product",
+  "confirmDeleteProduct": "Are you sure you want to delete this product?",
+  "no": "No",
+  "yesDelete": "Yes, Delete",
+  "delete": "Delete",
+  "save": "Save",
+  "addNewProduct": "Add New Product",
+  "category": "Category",
+  "customerList": "Customer List",
+  "totalCustomers": "Total Customers",
+  "newCustomers": "New Customers",
+  "totalDue": "Total Due",
+  "addCustomer": "Add Customer",
+  "customerName": "Customer Name",
+  "customerPhone": "Customer Phone",
+  "customerAddress": "Customer Address",
+  "totalPurchases": "Total Purchases",
+  "dueAmount": "Due Amount",
+  "due": "Due",
+  "customer": "Customer",
+  "salesList": "Sales List",
+  "totalTransactions": "Total Transactions",
+  "noSales": "No Sales",
+  "invoiceNumber": "Invoice Number",
+  "date": "Date",
+  "paid": "Paid",
+  "saleDetails": "Sale Details",
+  "productList": "Product List",
+  "selectLanguage": "Select Language",
+  "dueCustomersList": "Due Customers List",
+  "totalDueCustomers": "Total Due Customers",
+  "noDueCustomers": "No Due Customers",
+  "people": "people",
+  "payDue": "Pay Due",
+  "enterAmount": "Enter amount",
+  "pay": "Pay",
+  "yourCategories": "Your Categories",
+  "addCategory": "Add Category",
+  "categoryName": "Category Name",
+  "description": "Description",
+  "editCategory": "Edit Category",
+  "update": "Update",
+  "userSetup": "User Setup",
+  "step1of2": "Step 1/2",
+  "step2of2": "Step 2/2",
+  "step3of3": "Step 3/3",
+  "completeYourProfile": "Complete Your Profile",
+  "provideRequiredInfo": "Provide the necessary information to manage your business",
+  "userInformation": "User Information",
+  "setupProfileAndProvideInfo": "Set up your profile and provide necessary information for your business",
+  "enterYourFullName": "Enter your full name",
+  "enterYourEmail": "Enter your email address",
+  "enterYourPhoneNumber": "Enter your phone number",
+  "enterYourAddress": "Enter your address",
+  "goToNextStep": "Go to Next Step",
+  "step": "Step",
+  "completeProfile": "Complete Your Profile",
+  "completeProfileDescription": "Provide necessary information to manage your business",
+  "userInfo": "User Information",
+  "userInfoDescription": "Set up your profile and provide information for your business",
+  "fullName": "Enter your full name",
+  "emailAddress": "Enter your email address",
+  "mobileNumber": "Enter your mobile number",
+  "yourAddress": "Enter your address",
+  "nextStep": "Go to Next Step",
+  "pinCodeSetup": "You can optionally set up the PIN code next",
+  "storeSetup": "Store Setup",
+  "addStoreLogo": "Add Store Logo",
+  "storeInfo": "Store Information",
+  "storeInfoDescription": "Enter your store information",
+  "storeName": "Store Name",
+  "storeNameRequired": "Please enter store name",
+  "addressRequired": "Please enter address",
+  "phoneNumber": "Phone Number",
+  "phoneNumberRequired": "Please enter phone number",
+  "emailRequired": "Please enter email",
+  "validEmailRequired": "Please enter valid email",
+  "businessType": "Business Type",
+  "businessTypeRequired": "Please enter business type",
+  "retailer": "Retailer",
+  "wholesaler": "Wholesaler",
+  "restaurant": "Restaurant",
+  "pharmacy": "Pharmacy",
+  "fashionStore": "Fashion Store",
+  "electronics": "Electronics",
+  "other": "Other",
+  "storeInfoNote": "Please enter your store information correctly. This information is important for your business.",
+  "previous": "Previous",
+  "next": "Next",
+  "improveStoreManagement": "Improve Your Store Management",
+  "startWithPowerfulTool": "Start managing your store with our powerful store management tool.",
+  "trackAllActivities": "Track All Your Store Activities",
+  "trackActivitiesDescription": "Manage inventory, sales, and transactions in one convenient place.",
+  "smartBusinessInsights": "Smart Business Insights",
+  "smartInsightsDescription": "Get detailed reports and analytics to make informed decisions.",
+  "secureAndPrivate": "Secure and Private",
+  "secureDescription": "Your store information is secure and accessible only to you.",
+  "startManagingStore": "Start Managing Your Store",
+  "startWithTool": "Start with our powerful store management tool",
+  "start": "Start",
+  "settings": "Settings",
+  "customizeAppSettings": "Customize your app settings",
+  "appSettings": "App Settings",
+  "appTheme": "App Theme",
+  "language": "Language",
+  "dataManagement": "Data Management",
+  "dataBackup": "Data Backup",
+  "dataRestore": "Data Restore",
+  "storeSetup": "Store Setup",
+  "storeSettings": "Store Settings",
+  "dokandarSubscription": "Dokandar Subscription",
+  "supportAndHelp": "Support and Help",
+  "supportCenter": "Support Center",
+  "feedback": "Feedback",
+  "aboutApp": "About App",
+  "store": "Store",
+  "joinDate": "Join Date",
+  "mobile": "Mobile",
+  "noMobileNumber": "No mobile number",
+  "dataNotFound": "Data not found",
+  "dateNotFound": "Date not found",
+  "defaultName": "Rakib",
+  "joined": "Joined",
+  "premiumSubscription": "Get Premium Subscription!",
+  "premiumSubtitle": "Choose subscription packages according to your needs and get great benefits",
+  "currentPlan": "Current Plan",
+  "freePlanFeatures": "Free Plan Features",
+  "subscriptionPackages": "Subscription Packages",
+  "productsUpTo": " products up to",
+  "customersUpTo": " customers up to",
+  "trialPeriodDays": " days trial period",
+  "subscriptionAdditionalInfo": "Choose your subscription package and get more benefits. With our premium plan, you will get even more benefits.",
+  "subscriptionExpiryNote": "Regular plus rate will apply from {startDate} when your current offer ends.",
+  "@subscriptionExpiryNote": {
+    "placeholders": {
+      "startDate": {
+        "type": "String"
+      }
+    }
+  },
+  "free": "Free",
+  "basicReports": "You can view basic reports",
+  "completeOrder": "Complete Order",
+  "orderSummary": "Order Summary",
+  "newOrder": "New Order",
+  "customerInfo": "Customer Information",
+  "optional": "Optional",
+  "unknown": "Unknown",
+  "discountAmount": "Discount (৳)",
+  "dueAmountField": "Due Amount (৳)",
+  "orderNote": "Order Note (if any)",
+  "invoice": "Invoice",
+  "generating": "Generating...",
+  "confirmOrder": "Confirm Order",
+  "localBackup": "Local Backup",
+  "backupToLocalStorage": "Backup to Local Storage",
+  "backupToLocalDescription": "Backup files to your phone memory or USB flash drive.",
+  "restoreFromLocal": "Restore from Local Storage",
+  "restoreFromLocalDescription": "You can restore backup files from memory",
+  "lastBackup": "Last Backup",
+  "noBackup": "No Backup",
+  "backupPrevention": "It is recommended to backup files to your PC or USB flash drive to prevent data loss.",
+  "backupStorage": "If you backup files to phone memory, backup files will be saved in internal storage/backup.",
+  "sharedDevice": "If you send data to a shared device, backup files will be saved on a device that cannot decrypt it.",
+  "createBackup": "Create Backup",
+  "backupInstructions": "To create a backup, you must have sufficient space on your phone memory and backup files will be saved in your",
+  "dokandarFolder": "Dokandar folder",
+  "backupStorageLocation": "in phone memory.",
+  "backingUp": "Backing up...",
+  "createNewBackup": "Create New Backup",
+  "selectBackupFile": "Select Backup File",
+  "selectBackupDescription": "Select backup file from your phone memory.",
+  "restoreData": "Restore Data",
+  "restoreDataDescription": "Restore data from selected backup file",
+  "importantInfo": "Important Information",
+  "backupBeforeRestore": "Before restoring, it is recommended to backup your current data.",
+  "restoreWarning": "When restoring, current data will be deleted and replaced with backup file data.",
+  "validBackupOnly": "Data can only be restored from valid backup files.",
+  "restoring": "Restoring...",
+  "restoreDataButton": "Restore Data",
+  "appInfo": "App Information",
+  "currentVersion": "Current Version",
+  "updateDate": "Update Date",
+  "appSize": "App Size",
+  "changelog": "Changelog",
+  "changelogDescription": "What changes have been made in the latest update",
+  "developerInfo": "Developer Information",
+  "developerInfoDescription": "Who created the app",
+  "legalInfo": "Legal Information",
+  "legalInfoDescription": "Privacy Policy and Terms & Conditions",
+  "privacyPolicy": "Privacy Policy",
+  "termsAndConditions": "Terms & Conditions",
+  "supportAndHelpTitle": "Support and Help",
+  "howToUseApp": "How to Use the App",
+  "gettingStarted": "Getting Started",
+  "gettingStartedDescription": "Learn the basics of our inventory management system",
+  "productManagement": "Product Management",
+  "productManagementDescription": "Add, edit and track products",
+  "salesAndReports": "Sales and Reports",
+  "salesAndReportsDescription": "Track sales and create detailed reports",
+  "availableModules": "Available Modules",
+  "availableModulesDescription": "Suitable for your business",
+  "inventoryManagement": "Inventory Management",
+  "inventoryManagementDescription": "Track and manage stock levels",
+  "salesTracking": "Sales Tracking",
+  "salesTrackingDescription": "Monitor sales and revenue",
+  "customerManagement": "Customer Management",
+  "customerManagementDescription": "Manage customer information and orders",
+  "reportsAndAnalytics": "Reports and Analytics",
+  "reportsAndAnalyticsDescription": "Create detailed business insights",
+  "videoTutorials": "Video Tutorials",
+  "videoTutorialsDescription": "Learn and gain expertise",
+  "gettingStartedGuide": "Getting Started Guide",
+  "someTipsToGetStarted": "Some tips to get started",
+  "learnBasicIn5Minutes": "Learn basic in 5 minutes",
+  "advancedFeatures": "Advanced Features",
+  "masterAdvancedFeatures": "Master advanced features",
+  "giveFeedback": "Give Your Feedback",
+  "feedbackDescription": "Your valuable feedback for our improvement",
+  "feedbackCategories": "Feedback Categories",
+  "feedbackCategoriesDescription": "What type of feedback would you like to give?",
+  "bugReport": "Bug Report",
+  "bugReportDescription": "Found any issues in the app?",
+  "featureRequest": "Feature Request",
+  "featureRequestDescription": "Want any new features?",
+  "generalFeedback": "General Feedback",
+  "generalFeedbackDescription": "Share your experience",
+  "recentFeedback": "Recent Feedback",
+  "recentFeedbackDescription": "Feedback from other users",
+  "appIsGreat": "App is great",
+  "appIsGreatDescription": "My business has improved a lot using this app",
+  "someIssues": "Some issues",
+  "someIssuesDescription": "Sometimes the app becomes slow",
+  "veryHelpful": "Very helpful",
+  "veryHelpfulDescription": "Support team responds very quickly",
+  "giveFeedback": "Give Your Feedback",
+  "writeYourFeedback": "Write Your Feedback",
+  "writeYourValuableFeedbackHint": "Write your valuable feedback...",
+  "rating": "Rating:",
+  "submit": "Submit",
+  "sampleUserName1": "Rahim Ali",
+  "sampleUserName2": "Karim Ahmed",
+  "sampleUserName3": "Fatema Begum",
+  "sampleUserName4": "Zahid Hasan",
+  "newFeaturesNeeded": "New Features Needed",
+  "needToAddNewFeatures": "Need to add some new features to the app",
+  "totalPurchases": "Total Purchases",
+  "customerHasDue": "Customer has due",
+  "customerNoDue": "Customer has no due",
+  "lastPurchase": "Last Purchase",
+  "deleteCustomer": "Delete Customer",
+  "confirmDeleteCustomer": "Are you sure you want to delete this customer?",
+  "nameRequired": "Name is required",
+  "phoneRequired": "Phone number is required",
+  "add": "Add"
+}
+

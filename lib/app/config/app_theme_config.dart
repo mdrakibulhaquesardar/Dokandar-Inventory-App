@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'app_config.dart';
 
 class AppThemeConfig extends GetxService {
-  // Light Theme Colors
-  static const Color primaryColor = Color(0xFF2196F3);
-  static const Color secondaryColor = Color(0xFF03A9F4);
-  static const Color accentColor = Color(0xFF00BCD4);
-  static const Color backgroundColor = Color(0xFFF5F5F5);
-  static const Color surfaceColor = Color(0xFFFFFFFF);
-  static const Color errorColor = Color(0xFFB00020);
-  static const Color successColor = Color(0xFF4CAF50);
-  static const Color warningColor = Color(0xFFFFC107);
-  static const Color infoColor = Color(0xFF2196F3);
+  // Light Theme Colors - These can be customized via AppConfig.themeColors
+  Color get primaryColor => Color(AppConfig.themeColors['primary'] as int);
+  Color get secondaryColor => Color(AppConfig.themeColors['secondary'] as int);
+  Color get accentColor => Color(AppConfig.themeColors['secondary'] as int);
+  Color get backgroundColor =>
+      Color(AppConfig.themeColors['background'] as int);
+  Color get surfaceColor => Color(AppConfig.themeColors['surface'] as int);
+  Color get errorColor => Color(AppConfig.themeColors['error'] as int);
+  Color get successColor => const Color(0xFF4CAF50);
+  Color get warningColor => const Color(0xFFFFC107);
+  Color get infoColor => Color(AppConfig.themeColors['primary'] as int);
 
   // Dark Theme Colors
   static const Color darkPrimaryColor = Color(0xFF1565C0);
@@ -68,6 +70,10 @@ class AppThemeConfig extends GetxService {
         secondary: secondaryColor,
         surface: surfaceColor,
         error: errorColor,
+        onPrimary: Color(AppConfig.themeColors['onPrimary'] as int),
+        onSecondary: Color(AppConfig.themeColors['onSecondary'] as int),
+        onSurface: Color(AppConfig.themeColors['onSurface'] as int),
+        onError: Color(AppConfig.themeColors['onError'] as int),
       ),
       scaffoldBackgroundColor: backgroundColor,
       appBarTheme: AppBarTheme(
@@ -75,7 +81,7 @@ class AppThemeConfig extends GetxService {
         foregroundColor: Colors.white,
         elevation: 0,
       ),
-      cardTheme: CardTheme(
+      cardTheme: CardThemeData(
         color: surfaceColor,
         elevation: 2,
         shape: RoundedRectangleBorder(
@@ -118,7 +124,7 @@ class AppThemeConfig extends GetxService {
         foregroundColor: Colors.white,
         elevation: 0,
       ),
-      cardTheme: CardTheme(
+      cardTheme: CardThemeData(
         color: darkSurfaceColor,
         elevation: 2,
         shape: RoundedRectangleBorder(

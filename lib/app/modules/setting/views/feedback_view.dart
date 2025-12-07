@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import '../../../../l10n/app_localizations.dart';
 import '../../../config/app_theme_config.dart';
 import '../../../widgets/Custom_AppBar.dart';
 
@@ -11,11 +12,12 @@ class FeedbackView extends GetView {
   Widget build(BuildContext context) {
     final themeConfig = Get.find<AppThemeConfig>();
     final isDarkMode = Get.isDarkMode;
+    final l10n = AppLocalizations.of(context)!;
     return Scaffold(
       appBar: customAppBar(
         themeConfig,
         isDarkMode,
-        'ফিডব্যাক',
+        l10n.feedback,
         true,
         false,
       ),
@@ -27,14 +29,14 @@ class FeedbackView extends GetView {
             children: [
               // Feedback Form Section
               _buildSection(
-                title: 'আপনার মতামত দিন',
-                subtitle: 'আমাদের উন্নতির জন্য আপনার মূল্যবান মতামত',
+                title: l10n.giveFeedback,
+                subtitle: l10n.feedbackDescription,
                 icon: Icons.feedback_outlined,
                 content: Column(
                   children: [
-                    _buildFeedbackForm(),
+                    _buildFeedbackForm(l10n),
                     const SizedBox(height: 24),
-                    _buildSubmitButton(),
+                    _buildSubmitButton(l10n),
                   ],
                 ),
               ),
@@ -42,8 +44,8 @@ class FeedbackView extends GetView {
 
               // Feedback Categories Section
               _buildSection(
-                title: 'ফিডব্যাক ক্যাটাগরি',
-                subtitle: 'আপনি কোন ধরনের ফিডব্যাক দিতে চান?',
+                title: l10n.feedbackCategories,
+                subtitle: l10n.feedbackCategoriesDescription,
                 icon: Icons.category_outlined,
                 content: SizedBox(
                   height: 140,
@@ -51,18 +53,18 @@ class FeedbackView extends GetView {
                     scrollDirection: Axis.horizontal,
                     children: [
                       _buildFeedbackCategory(
-                        title: 'বাগ রিপোর্ট',
-                        description: 'অ্যাপে কোন সমস্যা খুঁজে পেয়েছেন?',
+                        title: l10n.bugReport,
+                        description: l10n.bugReportDescription,
                         icon: Icons.bug_report_outlined,
                       ),
                       _buildFeedbackCategory(
-                        title: 'ফিচার রিকোয়েস্ট',
-                        description: 'নতুন কোন ফিচার চান?',
+                        title: l10n.featureRequest,
+                        description: l10n.featureRequestDescription,
                         icon: Icons.lightbulb_outline,
                       ),
                       _buildFeedbackCategory(
-                        title: 'সাধারণ ফিডব্যাক',
-                        description: 'আপনার অভিজ্ঞতা শেয়ার করুন',
+                        title: l10n.generalFeedback,
+                        description: l10n.generalFeedbackDescription,
                         icon: Icons.chat_bubble_outline,
                       ),
                     ],
@@ -73,34 +75,33 @@ class FeedbackView extends GetView {
 
               // Recent Feedback Section
               _buildSection(
-                title: 'সাম্প্রতিক ফিডব্যাক',
-                subtitle: 'অন্যান্য ব্যবহারকারীদের মতামত',
+                title: l10n.recentFeedback,
+                subtitle: l10n.recentFeedbackDescription,
                 icon: Icons.history,
                 content: Column(
                   children: [
                     _buildRecentFeedback(
-                      name: 'রহিম আলী',
-                      title: 'অ্যাপটি খুব ভালো',
-                      description:
-                          'এই অ্যাপটি ব্যবহার করে আমার ব্যবসার অনেক উন্নতি হয়েছে',
+                      name: l10n.sampleUserName1,
+                      title: l10n.appIsGreat,
+                      description: l10n.appIsGreatDescription,
                       rating: 5,
                     ),
                     _buildRecentFeedback(
-                      name: 'করিম আহমেদ',
-                      title: 'কিছু সমস্যা আছে',
-                      description: 'কখনও কখনও অ্যাপটি ধীর হয়ে যায়',
+                      name: l10n.sampleUserName2,
+                      title: l10n.someIssues,
+                      description: l10n.someIssuesDescription,
                       rating: 3,
                     ),
                     _buildRecentFeedback(
-                      name: 'ফাতেমা বেগম',
-                      title: 'অত্যন্ত সহায়ক',
-                      description: 'সাপোর্ট টিম খুব দ্রুত সাড়া দেয়',
+                      name: l10n.sampleUserName3,
+                      title: l10n.veryHelpful,
+                      description: l10n.veryHelpfulDescription,
                       rating: 5,
                     ),
                     _buildRecentFeedback(
-                      name: 'জাহিদ হাসান',
-                      title: 'নতুন ফিচার দরকার',
-                      description: 'অ্যাপে কিছু নতুন ফিচার যুক্ত করা দরকার',
+                      name: l10n.sampleUserName4,
+                      title: l10n.newFeaturesNeeded,
+                      description: l10n.needToAddNewFeatures,
                       rating: 4,
                     ),
                   ],
@@ -163,7 +164,7 @@ class FeedbackView extends GetView {
     );
   }
 
-  Widget _buildFeedbackForm() {
+  Widget _buildFeedbackForm(AppLocalizations l10n) {
     return Card(
       elevation: 0,
       shape: RoundedRectangleBorder(
@@ -175,7 +176,7 @@ class FeedbackView extends GetView {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'আপনার ফিডব্যাক লিখুন',
+              l10n.writeYourFeedback,
               style: GoogleFonts.poppins(
                 fontSize: 16,
                 fontWeight: FontWeight.w500,
@@ -185,7 +186,7 @@ class FeedbackView extends GetView {
             TextField(
               maxLines: 5,
               decoration: InputDecoration(
-                hintText: 'আপনার মূল্যবান মতামত লিখুন...',
+                hintText: l10n.writeYourValuableFeedbackHint,
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(8),
                   borderSide: BorderSide(color: Colors.grey.shade300),
@@ -204,7 +205,7 @@ class FeedbackView extends GetView {
             Row(
               children: [
                 Text(
-                  'রেটিং:',
+                  l10n.rating,
                   style: GoogleFonts.poppins(
                     fontSize: 14,
                     color: Colors.grey[600],
@@ -227,7 +228,7 @@ class FeedbackView extends GetView {
     );
   }
 
-  Widget _buildSubmitButton() {
+  Widget _buildSubmitButton(AppLocalizations l10n) {
     return SizedBox(
       width: double.infinity,
       child: ElevatedButton(
@@ -240,7 +241,7 @@ class FeedbackView extends GetView {
           ),
         ),
         child: Text(
-          'সাবমিট করুন',
+          l10n.submit,
           style: GoogleFonts.poppins(
             fontSize: 16,
             fontWeight: FontWeight.w500,
