@@ -1,8 +1,9 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
-import '../../../../l10n/app_localizations.dart';
+import '../../../utils/safe_google_fonts.dart';
+import 'package:dokandar_app_inventory/l10n/app_localizations.dart';
 import '../../../config/app_theme_config.dart';
 import '../controllers/setup_controller.dart';
 
@@ -31,7 +32,7 @@ class SetupView extends GetView<SetupController> {
             children: [
               Text(
                 l10n.userSetup,
-                style: GoogleFonts.poppins(
+                style: SafeGoogleFonts.poppins(
                   fontSize: 24,
                   fontWeight: FontWeight.w600,
                   color: themeConfig.getTextPrimaryColor(isDarkMode),
@@ -56,7 +57,7 @@ class SetupView extends GetView<SetupController> {
                     const SizedBox(width: 4),
                     Text(
                       l10n.step1of2,
-                      style: GoogleFonts.poppins(
+                      style: SafeGoogleFonts.poppins(
                         fontSize: 12,
                         color: themeConfig.getPrimaryColor(isDarkMode),
                       ),
@@ -112,7 +113,7 @@ class SetupView extends GetView<SetupController> {
                     const SizedBox(height: 16),
                     Text(
                       l10n.completeProfile,
-                      style: GoogleFonts.poppins(
+                      style: SafeGoogleFonts.poppins(
                         fontSize: 20,
                         fontWeight: FontWeight.w600,
                         color: themeConfig.getTextPrimaryColor(isDarkMode),
@@ -121,7 +122,7 @@ class SetupView extends GetView<SetupController> {
                     Text(
                       l10n.completeProfileDescription,
                       textAlign: TextAlign.center,
-                      style: GoogleFonts.poppins(
+                      style: SafeGoogleFonts.poppins(
                         fontSize: 14,
                         color: themeConfig.getTextSecondaryColor(isDarkMode),
                       ),
@@ -132,7 +133,7 @@ class SetupView extends GetView<SetupController> {
               ),
               Text(
                 l10n.userInfo,
-                style: GoogleFonts.poppins(
+                style: SafeGoogleFonts.poppins(
                   fontSize: 18,
                   fontWeight: FontWeight.w600,
                   color: themeConfig.getTextPrimaryColor(isDarkMode),
@@ -140,7 +141,7 @@ class SetupView extends GetView<SetupController> {
               ),
               Text(
                 l10n.userInfoDescription,
-                style: GoogleFonts.poppins(
+                style: SafeGoogleFonts.poppins(
                   fontSize: 14,
                   color: themeConfig.getTextSecondaryColor(isDarkMode),
                 ),
@@ -161,9 +162,9 @@ class SetupView extends GetView<SetupController> {
                         validator: (value) => controller.validateName(value!),
                         decoration: InputDecoration(
                           labelText: l10n.name,
-                          labelStyle: GoogleFonts.poppins(),
+                          labelStyle: SafeGoogleFonts.poppins(),
                           hintText: l10n.fullName,
-                          hintStyle: GoogleFonts.poppins(
+                          hintStyle: SafeGoogleFonts.poppins(
                             color:
                                 themeConfig.getTextSecondaryColor(isDarkMode),
                           ),
@@ -209,9 +210,9 @@ class SetupView extends GetView<SetupController> {
                         validator: (value) => controller.validateEmail(value!),
                         decoration: InputDecoration(
                           labelText: l10n.email,
-                          labelStyle: GoogleFonts.poppins(),
+                          labelStyle: SafeGoogleFonts.poppins(),
                           hintText: l10n.emailAddress,
-                          hintStyle: GoogleFonts.poppins(
+                          hintStyle: SafeGoogleFonts.poppins(
                             color:
                                 themeConfig.getTextSecondaryColor(isDarkMode),
                           ),
@@ -257,9 +258,9 @@ class SetupView extends GetView<SetupController> {
                         validator: (value) => controller.validatePhone(value!),
                         decoration: InputDecoration(
                           labelText: l10n.phoneNumber,
-                          labelStyle: GoogleFonts.poppins(),
+                          labelStyle: SafeGoogleFonts.poppins(),
                           hintText: l10n.mobileNumber,
-                          hintStyle: GoogleFonts.poppins(
+                          hintStyle: SafeGoogleFonts.poppins(
                             color:
                                 themeConfig.getTextSecondaryColor(isDarkMode),
                           ),
@@ -306,9 +307,9 @@ class SetupView extends GetView<SetupController> {
                         maxLines: 3,
                         decoration: InputDecoration(
                           labelText: l10n.address,
-                          labelStyle: GoogleFonts.poppins(),
+                          labelStyle: SafeGoogleFonts.poppins(),
                           hintText: l10n.yourAddress,
-                          hintStyle: GoogleFonts.poppins(
+                          hintStyle: SafeGoogleFonts.poppins(
                             color:
                                 themeConfig.getTextSecondaryColor(isDarkMode),
                           ),
@@ -360,7 +361,7 @@ class SetupView extends GetView<SetupController> {
                     if (controller.userFormKey.currentState!.validate()) {
                        controller.onNextStep();
                     }
-                    print('Name: ${controller.nameController.text}');
+                    debugPrint('Name: ${controller.nameController.text}');
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: themeConfig.getPrimaryColor(isDarkMode),
@@ -374,7 +375,7 @@ class SetupView extends GetView<SetupController> {
                     children: [
                       Text(
                         l10n.nextStep,
-                        style: GoogleFonts.poppins(
+                        style: SafeGoogleFonts.poppins(
                           fontSize: 16,
                           fontWeight: FontWeight.w500,
                           color: Colors.white,
@@ -394,7 +395,7 @@ class SetupView extends GetView<SetupController> {
                 child: Text(
                   l10n.pinCodeSetup,
                   textAlign: TextAlign.center,
-                  style: GoogleFonts.poppins(
+                  style: SafeGoogleFonts.poppins(
                     fontSize: 14,
                     color: themeConfig.getTextSecondaryColor(isDarkMode),
                   ),

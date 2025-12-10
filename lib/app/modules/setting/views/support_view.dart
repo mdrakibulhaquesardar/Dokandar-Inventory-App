@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
-import '../../../../l10n/app_localizations.dart';
+import '../../../utils/safe_google_fonts.dart';
+import 'package:dokandar_app_inventory/l10n/app_localizations.dart';
 
 import '../../../config/app_theme_config.dart';
 import '../../../widgets/Custom_AppBar.dart';
@@ -142,7 +142,7 @@ class SupportView extends GetView {
                 children: [
                   Text(
                     title,
-                    style: GoogleFonts.poppins(
+                    style: SafeGoogleFonts.poppins(
                       fontSize: 18,
                       fontWeight: FontWeight.w600,
                     ),
@@ -152,7 +152,7 @@ class SupportView extends GetView {
                     maxLines: 2,
                     softWrap: true,
                     subtitle,
-                    style: GoogleFonts.poppins(
+                    style: SafeGoogleFonts.poppins(
                       fontSize: 14,
                       color: Colors.grey[600],
                     ),
@@ -192,14 +192,14 @@ class SupportView extends GetView {
         ),
         title: Text(
           title,
-          style: GoogleFonts.poppins(
+          style: SafeGoogleFonts.poppins(
             fontSize: 16,
             fontWeight: FontWeight.w500,
           ),
         ),
         subtitle: Text(
           description,
-          style: GoogleFonts.poppins(
+          style: SafeGoogleFonts.poppins(
             fontSize: 14,
             color: Colors.grey[600],
           ),
@@ -247,7 +247,7 @@ class SupportView extends GetView {
               const SizedBox(height: 16),
               Text(
                 title,
-                style: GoogleFonts.poppins(
+                style: SafeGoogleFonts.poppins(
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
                 ),
@@ -256,7 +256,7 @@ class SupportView extends GetView {
               const SizedBox(height: 8),
               Text(
                 description,
-                style: GoogleFonts.poppins(
+                style: SafeGoogleFonts.poppins(
                   color: Colors.grey[600],
                   fontSize: 14,
                 ),
@@ -329,7 +329,7 @@ class SupportView extends GetView {
               children: [
                 Text(
                   title,
-                  style: GoogleFonts.poppins(
+                  style: SafeGoogleFonts.poppins(
                     fontSize: 16,
                     fontWeight: FontWeight.w600,
                   ),
@@ -337,7 +337,7 @@ class SupportView extends GetView {
                 const SizedBox(height: 8),
                 Text(
                   description,
-                  style: GoogleFonts.poppins(
+                  style: SafeGoogleFonts.poppins(
                     color: Colors.grey[600],
                     fontSize: 14,
                   ),

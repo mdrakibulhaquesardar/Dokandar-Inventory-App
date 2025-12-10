@@ -1,8 +1,8 @@
 import 'package:dokandar_app_inventory/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
-import '../../../../l10n/app_localizations.dart';
+import '../../../utils/safe_google_fonts.dart';
+import 'package:dokandar_app_inventory/l10n/app_localizations.dart';
 import '../../../config/app_theme_config.dart';
 import '../controllers/setup_controller.dart';
 
@@ -32,7 +32,7 @@ class StoreSetupView extends GetView<SetupController> {
               children: [
                 Text(
                   l10n.storeSetup,
-                  style: GoogleFonts.poppins(
+                  style: SafeGoogleFonts.poppins(
                     fontSize: 24,
                     fontWeight: FontWeight.w600,
                     color: themeConfig.getTextPrimaryColor(isDarkMode),
@@ -58,7 +58,7 @@ class StoreSetupView extends GetView<SetupController> {
                       const SizedBox(width: 4),
                       Text(
                         l10n.step2of2,
-                        style: GoogleFonts.poppins(
+                        style: SafeGoogleFonts.poppins(
                           fontSize: 12,
                           color: themeConfig.getPrimaryColor(isDarkMode),
                         ),
@@ -114,7 +114,7 @@ class StoreSetupView extends GetView<SetupController> {
                       const SizedBox(height: 8),
                       Text(
                         l10n.addStoreLogo,
-                        style: GoogleFonts.poppins(
+                        style: SafeGoogleFonts.poppins(
                           fontSize: 14,
                           color: themeConfig.getTextSecondaryColor(isDarkMode),
                         ),
@@ -125,7 +125,7 @@ class StoreSetupView extends GetView<SetupController> {
                 const SizedBox(height: 24),
                 Text(
                   l10n.storeInfo,
-                  style: GoogleFonts.poppins(
+                  style: SafeGoogleFonts.poppins(
                     fontSize: 18,
                     fontWeight: FontWeight.w600,
                     color: themeConfig.getTextPrimaryColor(isDarkMode),
@@ -133,7 +133,7 @@ class StoreSetupView extends GetView<SetupController> {
                 ),
                 Text(
                   l10n.storeInfoDescription,
-                  style: GoogleFonts.poppins(
+                  style: SafeGoogleFonts.poppins(
                     fontSize: 14,
                     color: themeConfig.getTextSecondaryColor(isDarkMode),
                   ),
@@ -207,7 +207,7 @@ class StoreSetupView extends GetView<SetupController> {
                 ),
                 const SizedBox(height: 16),
                 DropdownButtonFormField<String>(
-                  value: controller.businessTypeController.text.isEmpty
+                  initialValue: controller.businessTypeController.text.isEmpty
                       ? null
                       : controller.businessTypeController.text,
                   decoration: InputDecoration(
@@ -216,7 +216,7 @@ class StoreSetupView extends GetView<SetupController> {
                       borderRadius: BorderRadius.circular(12),
                     ),
                   ),
-                  items: [
+                  items: <String>[
                     l10n.retailer,
                     l10n.wholesaler,
                     l10n.restaurant,
@@ -224,7 +224,7 @@ class StoreSetupView extends GetView<SetupController> {
                     l10n.fashionStore,
                     l10n.electronics,
                     l10n.other,
-                  ].map((String value) {
+                  ].map<DropdownMenuItem<String>>((String value) {
                     return DropdownMenuItem<String>(
                       value: value,
                       child: Text(value),
@@ -262,7 +262,7 @@ class StoreSetupView extends GetView<SetupController> {
                       Expanded(
                         child: Text(
                           l10n.storeInfoNote,
-                          style: GoogleFonts.poppins(
+                          style: SafeGoogleFonts.poppins(
                             fontSize: 12,
                             color:
                                 themeConfig.getTextSecondaryColor(isDarkMode),
@@ -292,7 +292,7 @@ class StoreSetupView extends GetView<SetupController> {
                         ),
                         child: Text(
                           l10n.previous,
-                          style: GoogleFonts.poppins(
+                          style: SafeGoogleFonts.poppins(
                             fontSize: 16,
                             fontWeight: FontWeight.w600,
                             color: themeConfig.getPrimaryColor(isDarkMode),
@@ -322,7 +322,7 @@ class StoreSetupView extends GetView<SetupController> {
                         ),
                         child: Text(
                           l10n.next,
-                          style: GoogleFonts.poppins(
+                          style: SafeGoogleFonts.poppins(
                             fontSize: 16,
                             fontWeight: FontWeight.w600,
                             color: Colors.white,

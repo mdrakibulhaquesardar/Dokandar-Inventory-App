@@ -1,9 +1,10 @@
+import 'package:dokandar_app_inventory/app/config/app_config.dart';
 import 'package:dokandar_app_inventory/app/config/app_theme_config.dart';
 import 'package:dokandar_app_inventory/app/utils/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
-import '../../../../l10n/app_localizations.dart';
+import '../../../utils/safe_google_fonts.dart';
+import 'package:dokandar_app_inventory/l10n/app_localizations.dart';
 import '../../../routes/app_pages.dart';
 import '../../../widgets/Custom_AppBar.dart';
 import '../controllers/inventory_controller.dart';
@@ -27,40 +28,44 @@ class InventoryView extends GetView<InventoryController> {
         true,
       ),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16),
+        padding: const EdgeInsets.all(12),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
               children: [
                 Expanded(
-                  child: Card(
-                    elevation: 0,
-                    color: themeConfig.getSurfaceColor(isDarkMode),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12)),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: themeConfig.getSurfaceColor(isDarkMode),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
                     child: Padding(
-                      padding: const EdgeInsets.all(16),
+                      padding: const EdgeInsets.all(12),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
                             l10n.totalProducts,
-                            style: GoogleFonts.poppins(
+                            style: SafeGoogleFonts.poppins(
                               fontSize: 14,
                               color:
-                              themeConfig.getTextSecondaryColor(isDarkMode),
+                                  themeConfig.getTextSecondaryColor(isDarkMode),
                             ),
                           ),
                           const SizedBox(height: 8),
                           Obx(() {
+                            final number = l10n.localeName == 'bn'
+                                ? controller.totalProducts.value
+                                    .translateNumberToBengali()
+                                : controller.totalProducts.value.toString();
                             return Text(
-                              '${controller.totalProducts.value.translateNumberToBengali()} টি',
-                              style: GoogleFonts.poppins(
-                                fontSize: 24,
+                              '$number ${l10n.pieces}',
+                              style: SafeGoogleFonts.poppins(
+                                fontSize: 20,
                                 fontWeight: FontWeight.w600,
                                 color:
-                                themeConfig.getTextPrimaryColor(isDarkMode),
+                                    themeConfig.getTextPrimaryColor(isDarkMode),
                               ),
                             );
                           }),
@@ -69,35 +74,61 @@ class InventoryView extends GetView<InventoryController> {
                     ),
                   ),
                 ),
-                const SizedBox(width: 10),
+                const SizedBox(width: 8),
                 Expanded(
-                  child: Card(
-                    elevation: 0,
-                    color: themeConfig.getSurfaceColor(isDarkMode),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12)),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: themeConfig.getSurfaceColor(isDarkMode),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
                     child: Padding(
-                      padding: const EdgeInsets.all(16),
+                      padding: const EdgeInsets.all(12),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
                             l10n.totalPrice,
-                            style: GoogleFonts.poppins(
+                            style: SafeGoogleFonts.poppins(
                               fontSize: 14,
                               color:
-                              themeConfig.getTextSecondaryColor(isDarkMode),
+                                  themeConfig.getTextSecondaryColor(isDarkMode),
                             ),
                           ),
                           const SizedBox(height: 8),
                           Obx(() {
+                            final price = controller.totalProductsPrice.value;
+                            final appConfig = Get.find<AppConfig>();
+                            String displayPrice;
+                            if (l10n.localeName == 'bn') {
+                              // Format first, then translate each digit
+                              final formatted = price
+                                  .toStringAsFixed(AppConfig.decimalPlaces);
+                              const numberMap = {
+                                '0': '০',
+                                '1': '১',
+                                '2': '২',
+                                '3': '৩',
+                                '4': '৪',
+                                '5': '৫',
+                                '6': '৬',
+                                '7': '৭',
+                                '8': '৮',
+                                '9': '৯',
+                              };
+                              displayPrice = formatted.split('').map((char) {
+                                return numberMap[char] ?? char;
+                              }).join();
+                            } else {
+                              displayPrice = price
+                                  .toStringAsFixed(AppConfig.decimalPlaces);
+                            }
                             return Text(
-                              '৳${controller.totalProductsPrice.value.translateNumberToBengali()}',
-                              style: GoogleFonts.poppins(
-                                fontSize: 24,
+                              '${appConfig.getCurrencySymbol()}$displayPrice',
+                              style: SafeGoogleFonts.poppins(
+                                fontSize: 20,
                                 fontWeight: FontWeight.w600,
                                 color:
-                                themeConfig.getTextPrimaryColor(isDarkMode),
+                                    themeConfig.getTextPrimaryColor(isDarkMode),
                               ),
                             );
                           }),
@@ -108,37 +139,38 @@ class InventoryView extends GetView<InventoryController> {
                 ),
               ],
             ),
-            const SizedBox(height: 24),
+            const SizedBox(height: 20),
             Text(
               l10n.quickAccess,
-              style: GoogleFonts.poppins(
-                fontSize: 18,
+              style: SafeGoogleFonts.poppins(
+                fontSize: 16,
                 fontWeight: FontWeight.w600,
                 color: themeConfig.getTextPrimaryColor(isDarkMode),
               ),
             ),
-            const SizedBox(height: 5),
+            const SizedBox(height: 2),
             Text(
               l10n.quickAccessDescription,
-              style: GoogleFonts.poppins(
-                fontSize: 14,
+              style: SafeGoogleFonts.poppins(
+                fontSize: 12,
                 color: themeConfig.getTextSecondaryColor(isDarkMode),
               ),
             ),
-            const SizedBox(height: 16),
+            const SizedBox(height: 12),
             GridView.count(
-              crossAxisCount: 3,
+              crossAxisCount: MediaQuery.of(context).size.width > 400 ? 3 : 2,
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
               mainAxisSpacing: 8,
               crossAxisSpacing: 8,
-              childAspectRatio: 0.95,
+              childAspectRatio:
+                  MediaQuery.of(context).size.width > 400 ? 2.0 : 1.8,
               children: [
                 _buildOptionCard(
                   l10n.allProducts,
                   Icons.inventory_2_outlined,
                   themeConfig.getPrimaryColor(isDarkMode),
-                      () {
+                  () {
                     Get.toNamed(Routes.ALL_PRODUCTS);
                   },
                   themeConfig,
@@ -150,9 +182,9 @@ class InventoryView extends GetView<InventoryController> {
                   l10n.salesHistory,
                   Icons.receipt_long_outlined,
                   themeConfig.getPrimaryColor(isDarkMode),
-                      () {
+                  () {
                     Get.toNamed(Routes.ALL_SALES);
-                      },
+                  },
                   themeConfig,
                   isDarkMode,
                   false,
@@ -162,7 +194,7 @@ class InventoryView extends GetView<InventoryController> {
                   l10n.allCustomers,
                   Icons.person_outline,
                   themeConfig.getInfoColor(isDarkMode),
-                      () {
+                  () {
                     Get.toNamed(Routes.ALL_CUSTOMER);
                   },
                   themeConfig,
@@ -174,57 +206,62 @@ class InventoryView extends GetView<InventoryController> {
                   l10n.allSuppliers,
                   Icons.people_outline,
                   themeConfig.getInfoColor(isDarkMode),
-                      () {},
+                  () {
+                    Get.toNamed(Routes.ALL_SUPPLIERS);
+                  },
                   themeConfig,
                   isDarkMode,
-                  true,
+                  false,
                   context,
                 ),
                 _buildOptionCard(
                   l10n.storeExpenses,
                   Icons.attach_money_outlined,
                   themeConfig.getInfoColor(isDarkMode),
-                      () {},
+                  () {
+                    Get.toNamed(Routes.STORE_EXPENSES);
+                  },
                   themeConfig,
                   isDarkMode,
-                  true,
+                  false,
                   context,
                 ),
                 _buildOptionCard(
                   l10n.allEmployees,
                   Icons.person_add_alt_1_outlined,
                   themeConfig.getInfoColor(isDarkMode),
-                      () {},
+                  () {
+                    Get.toNamed(Routes.ALL_EMPLOYEES);
+                  },
                   themeConfig,
                   isDarkMode,
-                  true,
+                  false,
                   context,
                 ),
-
               ],
             ),
-            const SizedBox(height: 24),
+            const SizedBox(height: 20),
             Text(
               l10n.otherFunctions,
-              style: GoogleFonts.poppins(
-                fontSize: 18,
+              style: SafeGoogleFonts.poppins(
+                fontSize: 16,
                 fontWeight: FontWeight.w600,
                 color: themeConfig.getTextPrimaryColor(isDarkMode),
               ),
             ),
-            const SizedBox(height: 5),
+            const SizedBox(height: 2),
             Text(
               l10n.otherFunctionsDescription,
-              style: GoogleFonts.poppins(
-                fontSize: 14,
+              style: SafeGoogleFonts.poppins(
+                fontSize: 12,
                 color: themeConfig.getTextSecondaryColor(isDarkMode),
               ),
             ),
-            const SizedBox(height: 16),
+            const SizedBox(height: 12),
             ListView.builder(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
-              itemCount: 5,
+              itemCount: 6,
               itemBuilder: (context, index) {
                 final l10nLocal = AppLocalizations.of(context)!;
                 final items = [
@@ -234,7 +271,6 @@ class InventoryView extends GetView<InventoryController> {
                     'color': themeConfig.getPrimaryColor(isDarkMode),
                     'isLocked': false,
                   },
-
                   {
                     'title': l10nLocal.productCategories,
                     'icon': Icons.history,
@@ -246,92 +282,102 @@ class InventoryView extends GetView<InventoryController> {
                     'icon': Icons.category,
                     'color': themeConfig.getSuccessColor(isDarkMode),
                     'isLocked': false,
-
                   },
                   {
                     'title': l10nLocal.supplierManagement,
                     'icon': Icons.people_outline,
                     'color': themeConfig.getInfoColor(isDarkMode),
-                    'isLocked': true,
+                    'isLocked': false,
                   },
                   {
                     'title': l10nLocal.stockAlert,
                     'icon': Icons.notification_important_outlined,
                     'color': themeConfig.getWarningColor(isDarkMode),
-                    'isLocked': true,
+                    'isLocked': false,
                   },
                   {
                     'title': l10nLocal.generateReport,
                     'icon': Icons.assessment_outlined,
                     'color': themeConfig.getWarningColor(isDarkMode),
-                    'isLocked': true,
+                    'isLocked': false,
                   },
                 ];
-                return Card(
-                  elevation: 0,
-                  color: themeConfig.getSurfaceColor(isDarkMode),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
+                return Container(
+                  margin: const EdgeInsets.only(bottom: 6),
+                  decoration: BoxDecoration(
+                    color: themeConfig.getSurfaceColor(isDarkMode),
+                    borderRadius: BorderRadius.circular(8),
                   ),
-                  child: ListTile(
-                    onTap: () {
-                      //TODO : Implement navigation to respective screen
-                      switch (index) {
-                        case 0:
-                         Get.toNamed(Routes.PAY_DUE);
-                          break;
-                        case 1:
-                        // Navigate to Product Category
-                          Get.toNamed(Routes.CATEGORY);
-                          break;
-                        case 2:
-                        // Navigate to Supplier Management
-                          break;
-                        case 3:
-                        // Navigate to Stock Alert
-                          break;
-                        case 4:
-                        // Navigate to Report Generation
-                          break;
-                      }
-                    },
-                    contentPadding: const EdgeInsets.only(
-                      left: 16,
-                      right: 16,
-                    ),
-                    leading: CircleAvatar(
-                      backgroundColor: items[index]['color'] as Color,
-                      child: Icon(
-                        items[index]['icon'] as IconData, // Cast to IconData
-                        color: themeConfig.getSurfaceColor(isDarkMode),
-                        size: 20,
+                  child: Material(
+                    color: Colors.transparent,
+                    child: InkWell(
+                      onTap: () {
+                        switch (index) {
+                          case 0:
+                            Get.toNamed(Routes.PAY_DUE);
+                            break;
+                          case 1:
+                            // Navigate to Product Category
+                            Get.toNamed(Routes.CATEGORY);
+                            break;
+                          case 2:
+                            Get.toNamed(Routes.TRANSACTION_HISTORY);
+                            break;
+                          case 3:
+                            Get.toNamed(Routes.ALL_SUPPLIERS);
+                            break;
+                          case 4:
+                            Get.toNamed(Routes.STOCK_ALERT);
+                            break;
+                          case 5:
+                            Get.toNamed(Routes.GENERATE_REPORT);
+                            break;
+                        }
+                      },
+                      borderRadius: BorderRadius.circular(8),
+                      child: ListTile(
+                        contentPadding: const EdgeInsets.symmetric(
+                          horizontal: 12,
+                          vertical: 8,
+                        ),
+                        leading: Container(
+                          width: 36,
+                          height: 36,
+                          decoration: BoxDecoration(
+                            color: (items[index]['color'] as Color)
+                                .withOpacity(0.1),
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          child: Icon(
+                            items[index]['icon'] as IconData,
+                            color: items[index]['color'] as Color,
+                            size: 18,
+                          ),
+                        ),
+                        title: Text(
+                          items[index]['title'] as String,
+                          style: SafeGoogleFonts.poppins(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w500,
+                            color: themeConfig.getTextPrimaryColor(isDarkMode),
+                          ),
+                        ),
+                        subtitle: Text(
+                          l10nLocal.viewDetails,
+                          style: SafeGoogleFonts.poppins(
+                            fontSize: 11,
+                            color:
+                                themeConfig.getTextSecondaryColor(isDarkMode),
+                          ),
+                        ),
+                        trailing: Icon(
+                          items[index]['isLocked'] as bool
+                              ? Icons.lock
+                              : Icons.chevron_right,
+                          color: themeConfig.getTextSecondaryColor(isDarkMode),
+                          size: 18,
+                        ),
                       ),
-                    ),
-                    title: Text(
-                      items[index]['title'] as String, // Cast to String
-                      style: GoogleFonts.poppins(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w500,
-                        color: themeConfig.getTextPrimaryColor(isDarkMode),
-                      ),
-                    ),
-                    subtitle: Text(
-                      l10nLocal.viewDetails,
-                      style: GoogleFonts.poppins(
-                        fontSize: 12,
-                        color: themeConfig.getTextSecondaryColor(isDarkMode),
-                      ),
-                    ),
-                    trailing: items[index]['isLocked'] as bool
-                        ? Icon(
-                      Icons.lock,
-                      color: themeConfig.getTextSecondaryColor(isDarkMode),
-                      size: 20,
-                    )
-                        : Icon(
-                      Icons.account_tree_outlined,
-                      color: themeConfig.getTextSecondaryColor(isDarkMode),
-                      size: 20,
                     ),
                   ),
                 );
@@ -343,7 +389,8 @@ class InventoryView extends GetView<InventoryController> {
     );
   }
 
-  Widget _buildOptionCard(String title,
+  Widget _buildOptionCard(
+      String title,
       IconData icon,
       Color color,
       VoidCallback onTap,
@@ -352,78 +399,81 @@ class InventoryView extends GetView<InventoryController> {
       bool isLocked,
       BuildContext context) {
     final l10nLocal = AppLocalizations.of(context)!;
-    return Card(
-      elevation: 0,
-      color: themeConfig.getSurfaceColor(isDarkMode),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-      child: InkWell(
-        onTap: onTap,
+    final screenWidth = MediaQuery.of(context).size.width;
+    return Container(
+      decoration: BoxDecoration(
+        color: themeConfig.getSurfaceColor(isDarkMode),
         borderRadius: BorderRadius.circular(8),
-        child: Stack(
-          children: [
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 10, vertical: MediaQuery
-                  .of(Get.context!)
-                  .size
-                  .width > 400 ? 16 : 20),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Center(
-                    child: CircleAvatar(
-                      radius: 20,
-                      backgroundColor: color.withOpacity(0.1),
-                      child: Icon(icon, color: color, size: 20),
-                    ),
-                  ),
-                  const SizedBox(height: 8),
-                  Text(
-                    title,
-                    style: GoogleFonts.poppins(
-                      fontSize: MediaQuery
-                          .of(Get.context!)
-                          .size
-                          .width > 400
-                          ? 14
-                          : 12,
-                      fontWeight: FontWeight.w600,
-                      color: themeConfig.getTextPrimaryColor(isDarkMode),
-                    ),
-                    textAlign: TextAlign.center,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                ],
-              ),
-            ),
-            Positioned(
-              top: 5,
-              right: 5,
-              child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
-                decoration: BoxDecoration(
-                  color: color.withOpacity(0.1),
-                  borderRadius: BorderRadius.circular(8),
+      ),
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
+          onTap: onTap,
+          borderRadius: BorderRadius.circular(8),
+          child: Stack(
+            children: [
+              Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: 10,
+                  vertical: screenWidth > 400 ? 10 : 12,
                 ),
-                child: isLocked
-                    ? Icon(
-                  Icons.lock,
-                  color: themeConfig.getTextSecondaryColor(isDarkMode),
-                  size: 14,
-                )
-                    : Text(
-                  l10nLocal.newLabel,
-                  style: GoogleFonts.poppins(
-                    fontSize: 9,
-                    fontWeight: FontWeight.w500,
-                    color: color,
-                  ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Container(
+                      width: 42,
+                      height: 42,
+                      decoration: BoxDecoration(
+                        color: color.withOpacity(0.1),
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: Icon(icon, color: color, size: 22),
+                    ),
+                    const SizedBox(height: 8),
+                    Text(
+                      title,
+                      style: SafeGoogleFonts.poppins(
+                        fontSize: screenWidth > 400 ? 13 : 12,
+                        fontWeight: FontWeight.w600,
+                        color: themeConfig.getTextPrimaryColor(isDarkMode),
+                      ),
+                      textAlign: TextAlign.center,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ],
                 ),
               ),
-            ),
-          ],
+              Positioned(
+                top: 4,
+                right: 4,
+                child: Container(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 4, vertical: 2),
+                  decoration: BoxDecoration(
+                    color: color.withOpacity(0.15),
+                    borderRadius: BorderRadius.circular(6),
+                  ),
+                  child: isLocked
+                      ? Icon(
+                          Icons.lock,
+                          color: themeConfig.getTextSecondaryColor(isDarkMode),
+                          size: 12,
+                        )
+                      : Text(
+                          l10nLocal.newLabel,
+                          style: SafeGoogleFonts.poppins(
+                            fontSize: 8,
+                            fontWeight: FontWeight.w500,
+                            color: color,
+                          ),
+                        ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

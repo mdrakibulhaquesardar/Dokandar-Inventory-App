@@ -530,6 +530,104 @@
   "confirmDeleteCustomer": "আপনি কি নিশ্চিত যে আপনি এই গ্রাহককে মুছে ফেলতে চান?",
   "nameRequired": "নাম অবশ্যই পূরণ করতে হবে",
   "phoneRequired": "ফোন নম্বর অবশ্যই পূরণ করতে হবে",
-  "add": "যোগ করুন"
+  "add": "যোগ করুন",
+  "stockInPieces": "স্টকে {quantity} পিস",
+  "@stockInPieces": {
+    "description": "Stock quantity in pieces",
+    "placeholders": {
+      "quantity": {
+        "type": "String"
+      }
+    }
+  },
+  "stock": "স্টক",
+  "pieces": "পিস",
+  "serviceInitFailed": "সেবা শুরু করতে ব্যর্থ: {error}",
+  "@serviceInitFailed": {
+    "description": "Service initialization failed",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "backingUp": "ব্যাকআপ করা হচ্ছে...",
+  "backupSuccess": "ব্যাকআপ সফল হয়েছে!",
+  "backupFailed": "ব্যাকআপ ব্যর্থ হয়েছে: {error}",
+  "@backupFailed": {
+    "description": "Backup failed",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "restoring": "পুনরুদ্ধার করা হচ্ছে...",
+  "restoreSuccess": "পুনরুদ্ধার সফল হয়েছে!",
+  "restoreFailed": "পুনরুদ্ধার ব্যর্থ হয়েছে: {error}",
+  "@restoreFailed": {
+    "description": "Restore failed",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "failedToLoadDueCustomers": "বাকিদার তালিকা লোড করতে ব্যর্থ হয়েছে",
+  "paymentUpdated": "পেমেন্ট আপডেট করা হয়েছে",
+  "failedToUpdatePayment": "পেমেন্ট আপডেট করতে ব্যর্থ হয়েছে",
+  "lastBackupDate": "সর্বশেষ ব্যাকআপ {date}",
+  "@lastBackupDate": {
+    "description": "Last backup date",
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "backupInstructions": "ব্যাকআপ তৈরি করতে, আপনার ফোনের মেমরিতে পর্যাপ্ত স্থান থাকতে হবে এবং ব্যাকআপ ফাইলগুলি আপনার {folderName} ফোনের মেমরিতে এ সংরক্ষিত হবে।",
+  "@backupInstructions": {
+    "description": "Backup instructions",
+    "placeholders": {
+      "folderName": {
+        "type": "String"
+      }
+    }
+  },
+  "dokandarFolder": "দোকানদার নাম ফোল্ডার",
+  "notifications": "নোটিফিকেশন",
+  "enableNotifications": "নোটিফিকেশন সক্রিয় করুন",
+  "autoBackup": "স্বয়ংক্রিয় ব্যাকআপ",
+  "enableAutoBackup": "স্বয়ংক্রিয় ব্যাকআপ সক্রিয় করুন",
+  "soundSettings": "সাউন্ড সেটিংস",
+  "enableSound": "সাউন্ড সক্রিয় করুন",
+  "vibration": "ভাইব্রেশন",
+  "enableVibration": "ভাইব্রেশন সক্রিয় করুন",
+  "fontSize": "ফন্ট সাইজ",
+  "selectFontSize": "ফন্ট সাইজ নির্বাচন করুন",
+  "currency": "মুদ্রা",
+  "selectCurrency": "মুদ্রা নির্বাচন করুন",
+  "dateFormat": "তারিখ ফরম্যাট",
+  "selectDateFormat": "তারিখ ফরম্যাট নির্বাচন করুন",
+  "timeFormat": "সময় ফরম্যাট",
+  "selectTimeFormat": "সময় ফরম্যাট নির্বাচন করুন",
+  "pageSize": "পেজ সাইজ",
+  "selectPageSize": "পেজ সাইজ নির্বাচন করুন",
+  "cacheDuration": "ক্যাশে সময়কাল",
+  "selectCacheDuration": "ক্যাশে সময়কাল নির্বাচন করুন",
+  "clearCache": "ক্যাশে পরিষ্কার করুন",
+  "clearCacheDescription": "সমস্ত ক্যাশে করা ডেটা পরিষ্কার করুন",
+  "cacheCleared": "ক্যাশে সফলভাবে পরিষ্কার করা হয়েছে",
+  "resetSettings": "সেটিংস রিসেট করুন",
+  "resetSettingsDescription": "সমস্ত সেটিংস ডিফল্টে ফিরিয়ে দিন",
+  "resetSettingsConfirm": "আপনি কি নিশ্চিত যে আপনি সমস্ত সেটিংস ডিফল্টে ফিরিয়ে দিতে চান?",
+  "settingsReset": "সেটিংস সফলভাবে রিসেট করা হয়েছে",
+  "small": "ছোট",
+  "medium": "মাঝারি",
+  "large": "বড়",
+  "extraLarge": "অতিরিক্ত বড়",
+  "minutes": "মিনিট",
+  "hours": "ঘন্টা",
+  "itemsPerPage": "প্রতি পেজে আইটেম"
 }
 

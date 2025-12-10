@@ -1,9 +1,10 @@
 import 'package:dokandar_app_inventory/app/core/services/database_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
-import '../../../../l10n/app_localizations.dart';
+import '../../../utils/safe_google_fonts.dart';
+import 'package:dokandar_app_inventory/l10n/app_localizations.dart';
 import '../../../config/app_theme_config.dart';
+import '../../../config/app_config.dart';
 import '../../../widgets/Custom_AppBar.dart';
 import '../controllers/all_sales_controller.dart';
 
@@ -143,13 +144,16 @@ class AllSalesView extends GetView<AllSalesController> {
               ],
             ),
             const Spacer(),
-            Text(
-              '${sale.totalAmount}৳',
-              style: TextStyle(
-                color: themeConfig.getPrimaryColor(isDarkMode),
-                fontWeight: FontWeight.bold,
-              ),
-            ),
+            Obx(() {
+              final appConfig = Get.find<AppConfig>();
+              return Text(
+                '${appConfig.getCurrencySymbol()}${sale.totalAmount}',
+                style: TextStyle(
+                  color: themeConfig.getPrimaryColor(isDarkMode),
+                  fontWeight: FontWeight.bold,
+                ),
+              );
+            }),
           ],
         ),
         subtitle: Column(
@@ -164,12 +168,15 @@ class AllSalesView extends GetView<AllSalesController> {
                   color: themeConfig.getTextSecondaryColor(isDarkMode),
                 ),
                 const SizedBox(width: 4),
-                Text(
-                  sale.saleDate.toString().split(' ')[0],
-                  style: TextStyle(
-                    color: themeConfig.getTextSecondaryColor(isDarkMode),
-                  ),
-                ),
+                Obx(() {
+                  final appConfig = Get.find<AppConfig>();
+                  return Text(
+                    appConfig.getFormattedDate(sale.saleDate),
+                    style: TextStyle(
+                      color: themeConfig.getTextSecondaryColor(isDarkMode),
+                    ),
+                  );
+                }),
                 const Spacer(),
                 if (sale.dueAmount > 0)
                   Container(
@@ -179,13 +186,16 @@ class AllSalesView extends GetView<AllSalesController> {
                       color: Colors.red.withOpacity(0.1),
                       borderRadius: BorderRadius.circular(4),
                     ),
-                    child: Text(
-                      '${l10n.dueAmount}: ${sale.dueAmount}৳',
-                      style: const TextStyle(
-                        color: Colors.red,
-                        fontSize: 12,
-                      ),
-                    ),
+                    child: Obx(() {
+                      final appConfig = Get.find<AppConfig>();
+                      return Text(
+                        '${l10n.dueAmount}: ${appConfig.getCurrencySymbol()}${sale.dueAmount}',
+                        style: const TextStyle(
+                          color: Colors.red,
+                          fontSize: 12,
+                        ),
+                      );
+                    }),
                   ),
               ],
             ),
@@ -214,7 +224,7 @@ class AllSalesView extends GetView<AllSalesController> {
           children: [
             Text(
               l10n.saleDetails,
-              style: GoogleFonts.poppins(
+              style: SafeGoogleFonts.poppins(
                 fontSize: 20,
                 fontWeight: FontWeight.w600,
                 color: themeConfig.getTextPrimaryColor(isDarkMode),

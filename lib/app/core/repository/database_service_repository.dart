@@ -5,6 +5,9 @@ import '../../data/models/sale.dart';
 import '../../data/models/stock_history.dart';
 import '../../data/models/user.dart';
 import '../../data/models/store.dart';
+import '../../data/models/supplier.dart';
+import '../../data/models/employee.dart';
+import '../../data/models/expense.dart';
 
 abstract class DatabaseServiceRepository {
   // Database lifecycle
@@ -63,4 +66,25 @@ abstract class DatabaseServiceRepository {
   Future<Category?> getCategoryById(int id);
   Future<void> saveCategory(Category category);
   Future<void> deleteCategory(int id);
+
+  // Supplier operations
+  Future<List<Supplier>> getAllSuppliers();
+  Future<Supplier?> getSupplierById(int id);
+  Future<void> saveSupplier(Supplier supplier);
+  Future<void> updateSupplier(Supplier supplier);
+  Future<void> deleteSupplier(int id);
+
+  // Employee operations
+  Future<List<Employee>> getAllEmployees();
+  Future<Employee?> getEmployeeById(int id);
+  Future<void> saveEmployee(Employee employee);
+  Future<void> updateEmployee(Employee employee);
+  Future<void> deleteEmployee(int id);
+
+  // Expense operations
+  Future<List<Expense>> getAllExpenses();
+  Future<Expense?> getExpenseById(int id);
+  Future<void> saveExpense(Expense expense);
+  Future<void> updateExpense(Expense expense);
+  Future<void> deleteExpense(int id);
 }

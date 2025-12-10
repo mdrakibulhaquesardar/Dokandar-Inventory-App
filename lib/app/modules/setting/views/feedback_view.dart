@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
-import '../../../../l10n/app_localizations.dart';
+import '../../../utils/safe_google_fonts.dart';
+import 'package:dokandar_app_inventory/l10n/app_localizations.dart';
 import '../../../config/app_theme_config.dart';
 import '../../../widgets/Custom_AppBar.dart';
+import '../controllers/feedback_controller.dart';
 
-class FeedbackView extends GetView {
+class FeedbackView extends GetView<FeedbackController> {
   const FeedbackView({super.key});
 
   @override
@@ -56,16 +57,19 @@ class FeedbackView extends GetView {
                         title: l10n.bugReport,
                         description: l10n.bugReportDescription,
                         icon: Icons.bug_report_outlined,
+                        onTap: () => controller.setCategory('bug'),
                       ),
                       _buildFeedbackCategory(
                         title: l10n.featureRequest,
                         description: l10n.featureRequestDescription,
                         icon: Icons.lightbulb_outline,
+                        onTap: () => controller.setCategory('feature'),
                       ),
                       _buildFeedbackCategory(
                         title: l10n.generalFeedback,
                         description: l10n.generalFeedbackDescription,
                         icon: Icons.chat_bubble_outline,
+                        onTap: () => controller.setCategory('general'),
                       ),
                     ],
                   ),
@@ -141,14 +145,14 @@ class FeedbackView extends GetView {
                 children: [
                   Text(
                     title,
-                    style: GoogleFonts.poppins(
+                    style: SafeGoogleFonts.poppins(
                       fontSize: 18,
                       fontWeight: FontWeight.w600,
                     ),
                   ),
                   Text(
                     subtitle,
-                    style: GoogleFonts.poppins(
+                    style: SafeGoogleFonts.poppins(
                       fontSize: 14,
                       color: Colors.grey[600],
                     ),
@@ -177,13 +181,14 @@ class FeedbackView extends GetView {
           children: [
             Text(
               l10n.writeYourFeedback,
-              style: GoogleFonts.poppins(
+              style: SafeGoogleFonts.poppins(
                 fontSize: 16,
                 fontWeight: FontWeight.w500,
               ),
             ),
             const SizedBox(height: 16),
             TextField(
+              controller: controller.feedbackTextController,
               maxLines: 5,
               decoration: InputDecoration(
                 hintText: l10n.writeYourValuableFeedbackHint,
@@ -206,20 +211,32 @@ class FeedbackView extends GetView {
               children: [
                 Text(
                   l10n.rating,
-                  style: GoogleFonts.poppins(
+                  style: SafeGoogleFonts.poppins(
                     fontSize: 14,
                     color: Colors.grey[600],
                   ),
                 ),
                 const SizedBox(width: 8),
-                ...List.generate(
-                  5,
-                  (index) => Icon(
-                    Icons.star,
-                    color: index < 4 ? Colors.amber : Colors.grey[300],
-                    size: 24,
-                  ),
-                ),
+                Obx(() {
+                  return Row(
+                    children: List.generate(
+                      5,
+                      (index) => IconButton(
+                        padding: EdgeInsets.zero,
+                        constraints:
+                            const BoxConstraints(minWidth: 32, minHeight: 32),
+                        onPressed: () => controller.setRating(index + 1),
+                        icon: Icon(
+                          Icons.star,
+                          color: index < controller.rating.value
+                              ? Colors.amber
+                              : Colors.grey[300],
+                          size: 24,
+                        ),
+                      ),
+                    ),
+                  );
+                }),
               ],
             ),
           ],
@@ -232,7 +249,9 @@ class FeedbackView extends GetView {
     return SizedBox(
       width: double.infinity,
       child: ElevatedButton(
-        onPressed: () {},
+        onPressed: () {
+          controller.submitFeedback();
+        },
         style: ElevatedButton.styleFrom(
           backgroundColor: Colors.blue,
           padding: const EdgeInsets.symmetric(vertical: 16),
@@ -242,7 +261,7 @@ class FeedbackView extends GetView {
         ),
         child: Text(
           l10n.submit,
-          style: GoogleFonts.poppins(
+          style: SafeGoogleFonts.poppins(
             fontSize: 16,
             fontWeight: FontWeight.w500,
             color: Colors.white,
@@ -256,6 +275,7 @@ class FeedbackView extends GetView {
     required String title,
     required String description,
     required IconData icon,
+    VoidCallback? onTap,
   }) {
     return Container(
       width: 140,
@@ -265,42 +285,45 @@ class FeedbackView extends GetView {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(12),
         ),
-        child: Padding(
-          padding: const EdgeInsets.all(12),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(
-                padding: const EdgeInsets.all(10),
-                decoration: BoxDecoration(
-                  color: Colors.blue.withOpacity(0.1),
-                  borderRadius: BorderRadius.circular(8),
+        child: InkWell(
+          onTap: onTap,
+          child: Padding(
+            padding: const EdgeInsets.all(12),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  padding: const EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                    color: Colors.blue.withOpacity(0.1),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: Icon(icon, color: Colors.blue, size: 24),
                 ),
-                child: Icon(icon, color: Colors.blue, size: 24),
-              ),
-              const SizedBox(height: 8),
-              Text(
-                title,
-                style: GoogleFonts.poppins(
-                  fontSize: 13,
-                  fontWeight: FontWeight.w600,
+                const SizedBox(height: 8),
+                Text(
+                  title,
+                  style: SafeGoogleFonts.poppins(
+                    fontSize: 13,
+                    fontWeight: FontWeight.w600,
+                  ),
+                  textAlign: TextAlign.center,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
                 ),
-                textAlign: TextAlign.center,
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-              ),
-              const SizedBox(height: 4),
-              Text(
-                description,
-                style: GoogleFonts.poppins(
-                  fontSize: 11,
-                  color: Colors.grey[600],
+                const SizedBox(height: 4),
+                Text(
+                  description,
+                  style: SafeGoogleFonts.poppins(
+                    fontSize: 11,
+                    color: Colors.grey[600],
+                  ),
+                  textAlign: TextAlign.center,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
                 ),
-                textAlign: TextAlign.center,
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
@@ -339,7 +362,7 @@ class FeedbackView extends GetView {
                     children: [
                       Text(
                         name,
-                        style: GoogleFonts.poppins(
+                        style: SafeGoogleFonts.poppins(
                           fontSize: 13,
                           fontWeight: FontWeight.w500,
                         ),
@@ -348,7 +371,7 @@ class FeedbackView extends GetView {
                       ),
                       Text(
                         title,
-                        style: GoogleFonts.poppins(
+                        style: SafeGoogleFonts.poppins(
                           fontSize: 14,
                           fontWeight: FontWeight.w600,
                         ),
@@ -373,7 +396,7 @@ class FeedbackView extends GetView {
             const SizedBox(height: 8),
             Text(
               description,
-              style: GoogleFonts.poppins(
+              style: SafeGoogleFonts.poppins(
                 fontSize: 13,
                 color: Colors.grey[600],
               ),

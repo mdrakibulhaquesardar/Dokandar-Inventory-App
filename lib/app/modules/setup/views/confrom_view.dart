@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
-import '../../../../l10n/app_localizations.dart';
+import '../../../utils/safe_google_fonts.dart';
+import 'package:dokandar_app_inventory/l10n/app_localizations.dart';
 import '../../../config/app_theme_config.dart';
 import '../controllers/setup_controller.dart';
 
@@ -28,7 +28,7 @@ class ConfromView extends GetView<SetupController> {
             children: [
               Text(
                 controller.storeNameController.text,
-                style: GoogleFonts.poppins(
+                style: SafeGoogleFonts.poppins(
                   fontSize: 24,
                   fontWeight: FontWeight.w600,
                   color: themeConfig.getTextPrimaryColor(isDarkMode),
@@ -53,7 +53,7 @@ class ConfromView extends GetView<SetupController> {
                     const SizedBox(width: 4),
                     Text(
                       l10n.step3of3,
-                      style: GoogleFonts.poppins(
+                      style: SafeGoogleFonts.poppins(
                         fontSize: 12,
                         color: themeConfig.getPrimaryColor(isDarkMode),
                       ),
@@ -73,7 +73,7 @@ class ConfromView extends GetView<SetupController> {
             children: [
               Text(
                 '${controller.nameController.text} ${l10n.improveStoreManagement}',
-                style: GoogleFonts.poppins(
+                style: SafeGoogleFonts.poppins(
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
                   color: themeConfig.getTextPrimaryColor(isDarkMode),
@@ -83,7 +83,7 @@ class ConfromView extends GetView<SetupController> {
               const SizedBox(height: 8),
               Text(
                 l10n.startWithPowerfulTool,
-                style: GoogleFonts.poppins(
+                style: SafeGoogleFonts.poppins(
                   color: themeConfig.getTextSecondaryColor(isDarkMode),
                 ),
                 textAlign: TextAlign.start,
@@ -128,7 +128,7 @@ class ConfromView extends GetView<SetupController> {
                   children: [
                     Text(
                       l10n.startManagingStore,
-                      style: GoogleFonts.poppins(
+                      style: SafeGoogleFonts.poppins(
                         fontSize: 20,
                         fontWeight: FontWeight.w600,
                         color: themeConfig.getTextPrimaryColor(isDarkMode),
@@ -139,7 +139,7 @@ class ConfromView extends GetView<SetupController> {
                     Text(
                       l10n.startWithTool,
                       textAlign: TextAlign.center,
-                      style: GoogleFonts.poppins(
+                      style: SafeGoogleFonts.poppins(
                         color: themeConfig.getTextSecondaryColor(isDarkMode),
                       ),
                     ),
@@ -160,7 +160,7 @@ class ConfromView extends GetView<SetupController> {
                 ),
                 child: Text(
                   l10n.start,
-                  style: GoogleFonts.poppins(
+                  style: SafeGoogleFonts.poppins(
                     fontSize: 18,
                     color: themeConfig.getBackgroundColor(isDarkMode),
                   ),
@@ -205,7 +205,7 @@ class ConfromView extends GetView<SetupController> {
                 children: [
                   Text(
                     title,
-                    style: GoogleFonts.poppins(
+                    style: SafeGoogleFonts.poppins(
                       fontSize: 18,
                       fontWeight: FontWeight.w600,
                       color: themeConfig.getTextPrimaryColor(isDarkMode),
@@ -214,7 +214,7 @@ class ConfromView extends GetView<SetupController> {
                   const SizedBox(height: 4),
                   Text(
                     description,
-                    style: GoogleFonts.poppins(
+                    style: SafeGoogleFonts.poppins(
                       color: themeConfig.getTextSecondaryColor(isDarkMode),
                     ),
                   ),

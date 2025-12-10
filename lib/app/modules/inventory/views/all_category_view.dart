@@ -1,8 +1,8 @@
 import 'package:dokandar_app_inventory/app/data/models/category.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
-import '../../../../l10n/app_localizations.dart';
+import '../../../utils/safe_google_fonts.dart';
+import 'package:dokandar_app_inventory/l10n/app_localizations.dart';
 
 import '../../../config/app_theme_config.dart';
 import '../../../widgets/Custom_AppBar.dart';
@@ -113,7 +113,7 @@ class AllCategoryView extends GetView<AllCategoryController> {
             ),
             Text(
               l10n.addCategory,
-              style: GoogleFonts.poppins(
+              style: SafeGoogleFonts.poppins(
                 fontSize: 20,
                 fontWeight: FontWeight.w600,
                 color: themeConfig.getTextPrimaryColor(isDarkMode),
@@ -159,7 +159,7 @@ class AllCategoryView extends GetView<AllCategoryController> {
               controller: descriptionController,
               maxLines: 3,
               decoration: InputDecoration(
-                labelText: 'বিবরণ',
+                labelText: l10n.description,
                 labelStyle: TextStyle(
                   color: themeConfig.getTextSecondaryColor(isDarkMode),
                 ),
@@ -273,7 +273,7 @@ class AllCategoryView extends GetView<AllCategoryController> {
             ),
             Text(
               l10n.editCategory,
-              style: GoogleFonts.poppins(
+              style: SafeGoogleFonts.poppins(
                 fontSize: 20,
                 fontWeight: FontWeight.w600,
                 color: themeConfig.getTextPrimaryColor(isDarkMode),

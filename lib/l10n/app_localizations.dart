@@ -1604,11 +1604,11 @@ abstract class AppLocalizations {
   /// **'Create Backup'**
   String get createBackup;
 
-  /// No description provided for @backupInstructions.
+  /// Backup instructions
   ///
   /// In en, this message translates to:
-  /// **'To create a backup, you must have sufficient space on your phone memory and backup files will be saved in your'**
-  String get backupInstructions;
+  /// **'To create a backup, you must have sufficient space on your phone memory and backup files will be saved in your {folderName} folder in phone memory.'**
+  String backupInstructions(String folderName);
 
   /// No description provided for @dokandarFolder.
   ///
@@ -2107,6 +2107,282 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Add'**
   String get add;
+
+  /// Stock quantity in pieces
+  ///
+  /// In en, this message translates to:
+  /// **'Stock: {quantity} pieces'**
+  String stockInPieces(String quantity);
+
+  /// No description provided for @stock.
+  ///
+  /// In en, this message translates to:
+  /// **'Stock'**
+  String get stock;
+
+  /// No description provided for @pieces.
+  ///
+  /// In en, this message translates to:
+  /// **'pieces'**
+  String get pieces;
+
+  /// Service initialization failed
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to initialize service: {error}'**
+  String serviceInitFailed(String error);
+
+  /// No description provided for @backupSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Backup successful!'**
+  String get backupSuccess;
+
+  /// Backup failed
+  ///
+  /// In en, this message translates to:
+  /// **'Backup failed: {error}'**
+  String backupFailed(String error);
+
+  /// No description provided for @restoreSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Restore successful!'**
+  String get restoreSuccess;
+
+  /// Restore failed
+  ///
+  /// In en, this message translates to:
+  /// **'Restore failed: {error}'**
+  String restoreFailed(String error);
+
+  /// No description provided for @failedToLoadDueCustomers.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to load due customers list'**
+  String get failedToLoadDueCustomers;
+
+  /// No description provided for @paymentUpdated.
+  ///
+  /// In en, this message translates to:
+  /// **'Payment updated'**
+  String get paymentUpdated;
+
+  /// No description provided for @failedToUpdatePayment.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to update payment'**
+  String get failedToUpdatePayment;
+
+  /// Last backup date
+  ///
+  /// In en, this message translates to:
+  /// **'Last backup {date}'**
+  String lastBackupDate(String date);
+
+  /// No description provided for @notifications.
+  ///
+  /// In en, this message translates to:
+  /// **'Notifications'**
+  String get notifications;
+
+  /// No description provided for @enableNotifications.
+  ///
+  /// In en, this message translates to:
+  /// **'Enable Notifications'**
+  String get enableNotifications;
+
+  /// No description provided for @autoBackup.
+  ///
+  /// In en, this message translates to:
+  /// **'Auto Backup'**
+  String get autoBackup;
+
+  /// No description provided for @enableAutoBackup.
+  ///
+  /// In en, this message translates to:
+  /// **'Enable Auto Backup'**
+  String get enableAutoBackup;
+
+  /// No description provided for @soundSettings.
+  ///
+  /// In en, this message translates to:
+  /// **'Sound Settings'**
+  String get soundSettings;
+
+  /// No description provided for @enableSound.
+  ///
+  /// In en, this message translates to:
+  /// **'Enable Sound'**
+  String get enableSound;
+
+  /// No description provided for @vibration.
+  ///
+  /// In en, this message translates to:
+  /// **'Vibration'**
+  String get vibration;
+
+  /// No description provided for @enableVibration.
+  ///
+  /// In en, this message translates to:
+  /// **'Enable Vibration'**
+  String get enableVibration;
+
+  /// No description provided for @fontSize.
+  ///
+  /// In en, this message translates to:
+  /// **'Font Size'**
+  String get fontSize;
+
+  /// No description provided for @selectFontSize.
+  ///
+  /// In en, this message translates to:
+  /// **'Select Font Size'**
+  String get selectFontSize;
+
+  /// No description provided for @currency.
+  ///
+  /// In en, this message translates to:
+  /// **'Currency'**
+  String get currency;
+
+  /// No description provided for @selectCurrency.
+  ///
+  /// In en, this message translates to:
+  /// **'Select Currency'**
+  String get selectCurrency;
+
+  /// No description provided for @dateFormat.
+  ///
+  /// In en, this message translates to:
+  /// **'Date Format'**
+  String get dateFormat;
+
+  /// No description provided for @selectDateFormat.
+  ///
+  /// In en, this message translates to:
+  /// **'Select Date Format'**
+  String get selectDateFormat;
+
+  /// No description provided for @timeFormat.
+  ///
+  /// In en, this message translates to:
+  /// **'Time Format'**
+  String get timeFormat;
+
+  /// No description provided for @selectTimeFormat.
+  ///
+  /// In en, this message translates to:
+  /// **'Select Time Format'**
+  String get selectTimeFormat;
+
+  /// No description provided for @pageSize.
+  ///
+  /// In en, this message translates to:
+  /// **'Page Size'**
+  String get pageSize;
+
+  /// No description provided for @selectPageSize.
+  ///
+  /// In en, this message translates to:
+  /// **'Select Page Size'**
+  String get selectPageSize;
+
+  /// No description provided for @cacheDuration.
+  ///
+  /// In en, this message translates to:
+  /// **'Cache Duration'**
+  String get cacheDuration;
+
+  /// No description provided for @selectCacheDuration.
+  ///
+  /// In en, this message translates to:
+  /// **'Select Cache Duration'**
+  String get selectCacheDuration;
+
+  /// No description provided for @clearCache.
+  ///
+  /// In en, this message translates to:
+  /// **'Clear Cache'**
+  String get clearCache;
+
+  /// No description provided for @clearCacheDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Clear all cached data'**
+  String get clearCacheDescription;
+
+  /// No description provided for @cacheCleared.
+  ///
+  /// In en, this message translates to:
+  /// **'Cache cleared successfully'**
+  String get cacheCleared;
+
+  /// No description provided for @resetSettings.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset Settings'**
+  String get resetSettings;
+
+  /// No description provided for @resetSettingsDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset all settings to default'**
+  String get resetSettingsDescription;
+
+  /// No description provided for @resetSettingsConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to reset all settings to default?'**
+  String get resetSettingsConfirm;
+
+  /// No description provided for @settingsReset.
+  ///
+  /// In en, this message translates to:
+  /// **'Settings reset successfully'**
+  String get settingsReset;
+
+  /// No description provided for @small.
+  ///
+  /// In en, this message translates to:
+  /// **'Small'**
+  String get small;
+
+  /// No description provided for @medium.
+  ///
+  /// In en, this message translates to:
+  /// **'Medium'**
+  String get medium;
+
+  /// No description provided for @large.
+  ///
+  /// In en, this message translates to:
+  /// **'Large'**
+  String get large;
+
+  /// No description provided for @extraLarge.
+  ///
+  /// In en, this message translates to:
+  /// **'Extra Large'**
+  String get extraLarge;
+
+  /// No description provided for @minutes.
+  ///
+  /// In en, this message translates to:
+  /// **'minutes'**
+  String get minutes;
+
+  /// No description provided for @hours.
+  ///
+  /// In en, this message translates to:
+  /// **'hour(s)'**
+  String get hours;
+
+  /// No description provided for @itemsPerPage.
+  ///
+  /// In en, this message translates to:
+  /// **'items per page'**
+  String get itemsPerPage;
 }
 
 class _AppLocalizationsDelegate

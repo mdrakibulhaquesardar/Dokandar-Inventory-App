@@ -5,6 +5,7 @@ import '../../../data/models/customer.dart';
 import '../../../core/services/database_service.dart';
 import '../../../config/app_config.dart';
 import '../../../widgets/showCustomSnackbar.dart';
+import '../../../utils/vibration_helper.dart';
 import '../../home/controllers/home_controller.dart';
 
 class AllCustomerController extends GetxController {
@@ -66,6 +67,7 @@ class AllCustomerController extends GetxController {
       );
       await _databaseService.saveCustomer(customer);
       await loadCustomers();
+      VibrationHelper.onSuccess();
       showCustomSnackbar(
         title: 'Success',
         message: 'Customer added successfully',
@@ -86,6 +88,7 @@ class AllCustomerController extends GetxController {
     try {
       await _databaseService.updateCustomer(customer);
       await loadCustomers();
+      VibrationHelper.onSuccess();
       showCustomSnackbar(
         title: 'Success',
         message: 'Customer updated successfully',
@@ -101,6 +104,7 @@ class AllCustomerController extends GetxController {
     try {
       await _databaseService.deleteCustomer(customerId);
       await loadCustomers();
+      VibrationHelper.onImportantAction();
       showCustomSnackbar(
         title: 'Success',
         message: 'Customer deleted successfully',

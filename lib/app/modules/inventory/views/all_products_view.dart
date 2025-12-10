@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
+import '../../../utils/safe_google_fonts.dart';
 
-import '../../../../l10n/app_localizations.dart';
+import 'package:dokandar_app_inventory/l10n/app_localizations.dart';
 import '../../../config/app_theme_config.dart';
 import '../../../config/app_config.dart';
 import '../../../utils/DateTimeUtils.dart';
@@ -28,7 +28,7 @@ class AllProductsView extends GetView<AllProductController> {
       body: Column(
         children: [
           Container(
-            padding: const EdgeInsets.all(16),
+            padding: const EdgeInsets.all(12),
             color: themeConfig.getSurfaceColor(isDarkMode),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -70,11 +70,11 @@ class AllProductsView extends GetView<AllProductController> {
                     }),
                   ],
                 ),
-                const SizedBox(height: 16),
+                const SizedBox(height: 12),
                 Text(
                   l10n.recentProducts,
-                  style: GoogleFonts.poppins(
-                    fontSize: 18,
+                  style: SafeGoogleFonts.poppins(
+                    fontSize: 16,
                     fontWeight: FontWeight.w600,
                     color: themeConfig.getTextPrimaryColor(isDarkMode),
                   ),
@@ -85,17 +85,18 @@ class AllProductsView extends GetView<AllProductController> {
           Expanded(
             child: Obx(
                   () => ListView.builder(
-                padding: const EdgeInsets.all(16),
+                padding: const EdgeInsets.all(12),
                 itemCount: controller.products.length,
                 itemBuilder: (context, index) {
                   final product = controller.products[index];
                   return Container(
-                    margin: const EdgeInsets.only(bottom: 5),
+                    margin: const EdgeInsets.only(bottom: 6),
                     decoration: BoxDecoration(
                       color: themeConfig.getSurfaceColor(isDarkMode),
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: ListTile(
+                      contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
                       onTap: () {
                         showModalBottomSheet(
                           context: context,
@@ -117,7 +118,7 @@ class AllProductsView extends GetView<AllProductController> {
                               children: [
                                 Text(
                                   l10n.editProduct,
-                                  style: GoogleFonts.poppins(
+                                  style: SafeGoogleFonts.poppins(
                                     fontSize: 24,
                                     fontWeight: FontWeight.w600,
                                     color: themeConfig
@@ -307,17 +308,20 @@ class AllProductsView extends GetView<AllProductController> {
                                                             isDarkMode),
                                                       ),
                                                     ),
-                                                    Text(
-                                                      '৳${(product.unitPrice * product.stockQuantity).toStringAsFixed(2)}',
-                                                      style: TextStyle(
-                                                        fontSize: 12,
-                                                        fontWeight:
-                                                        FontWeight.w500,
-                                                        color: themeConfig
-                                                            .getTextPrimaryColor(
-                                                            isDarkMode),
-                                                      ),
-                                                    ),
+                                                    Obx(() {
+                                                      final appConfig = Get.find<AppConfig>();
+                                                      return Text(
+                                                        '${appConfig.getCurrencySymbol()}${(product.unitPrice * product.stockQuantity).toStringAsFixed(2)}',
+                                                        style: TextStyle(
+                                                          fontSize: 12,
+                                                          fontWeight:
+                                                          FontWeight.w500,
+                                                          color: themeConfig
+                                                              .getTextPrimaryColor(
+                                                              isDarkMode),
+                                                        ),
+                                                      );
+                                                    }),
                                                   ],
                                                 ),
                                                 const Divider(height: 16),
@@ -349,13 +353,13 @@ class AllProductsView extends GetView<AllProductController> {
                                           builder: (context) => AlertDialog(
                                             title: Text(
                                               l10n.deleteProduct,
-                                              style: GoogleFonts.poppins(
+                                              style: SafeGoogleFonts.poppins(
                                                 fontWeight: FontWeight.w600,
                                               ),
                                             ),
                                             content: Text(
                                               l10n.confirmDeleteProduct,
-                                              style: GoogleFonts.poppins(),
+                                              style: SafeGoogleFonts.poppins(),
                                             ),
                                             actions: [
                                               TextButton(
@@ -435,8 +439,6 @@ class AllProductsView extends GetView<AllProductController> {
                           ),
                         );
                       },
-                      contentPadding: const EdgeInsets.symmetric(
-                          horizontal: 12, vertical: 0),
                       leading: Container(
                         width: 40,
                         height: 40,
@@ -454,7 +456,7 @@ class AllProductsView extends GetView<AllProductController> {
                       ),
                       title: Text(
                         product.name,
-                        style: GoogleFonts.poppins(
+                        style: SafeGoogleFonts.poppins(
                           fontSize: 14,
                           fontWeight: FontWeight.w600,
                           color: themeConfig.getTextPrimaryColor(isDarkMode),
@@ -475,7 +477,7 @@ class AllProductsView extends GetView<AllProductController> {
                                   borderRadius: BorderRadius.circular(4),
                                 ),
                                 child: Text(
-                                  'স্টক: ${product.stockQuantity}',
+                                  '${l10n.stock}: ${product.stockQuantity}',
                                   style: TextStyle(
                                     fontSize: 12,
                                     color: product.stockQuantity < AppConfig.lowStockThreshold
@@ -495,27 +497,33 @@ class AllProductsView extends GetView<AllProductController> {
                                       .withOpacity(0.1),
                                   borderRadius: BorderRadius.circular(4),
                                 ),
-                                child: Text(
-                                  '৳${product.unitPrice}',
-                                  style: TextStyle(
-                                    fontSize: 12,
-                                    color:
-                                    themeConfig.getPrimaryColor(isDarkMode),
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
+                                child: Obx(() {
+                                  final appConfig = Get.find<AppConfig>();
+                                  return Text(
+                                    '${appConfig.getCurrencySymbol()}${product.unitPrice}',
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                      color:
+                                      themeConfig.getPrimaryColor(isDarkMode),
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  );
+                                }),
                               ),
                             ],
                           ),
                           const SizedBox(height: 4),
-                          Text(
-                            '${l10n.profit}: ${product.profitMargin.toStringAsFixed(2)}% | ${l10n.totalPrice}: ৳${(product.unitPrice * product.stockQuantity).toStringAsFixed(2)}',
-                            style: TextStyle(
-                              fontSize: 11,
-                              color:
-                              themeConfig.getTextSecondaryColor(isDarkMode),
-                            ),
-                          ),
+                          Obx(() {
+                            final appConfig = Get.find<AppConfig>();
+                            return Text(
+                              '${l10n.profit}: ${product.profitMargin.toStringAsFixed(2)}% | ${l10n.totalPrice}: ${appConfig.getCurrencySymbol()}${(product.unitPrice * product.stockQuantity).toStringAsFixed(2)}',
+                              style: TextStyle(
+                                fontSize: 11,
+                                color:
+                                themeConfig.getTextSecondaryColor(isDarkMode),
+                              ),
+                            );
+                          }),
                         ],
                       ),
                     ),
@@ -549,7 +557,7 @@ class AllProductsView extends GetView<AllProductController> {
                 children: [
                   Text(
                     l10n.addNewProduct,
-                    style: GoogleFonts.poppins(
+                    style: SafeGoogleFonts.poppins(
                       fontSize: 24,
                       fontWeight: FontWeight.w600,
                       color: themeConfig.getTextPrimaryColor(isDarkMode),
@@ -668,7 +676,7 @@ class AllProductsView extends GetView<AllProductController> {
           );
         },
         label: Text(
-          'পণ্য যোগ করুন',
+          l10n.addProduct,
           style: TextStyle(
             color: themeConfig.getBackgroundColor(isDarkMode),
           ),
@@ -689,41 +697,50 @@ class AllProductsView extends GetView<AllProductController> {
       AppThemeConfig themeConfig,
       bool isDarkMode,
       bool isStockOut) {
+    final screenWidth = MediaQuery.of(context).size.width;
     return Container(
-      width: (MediaQuery.of(context).size.width - 48) / 3,
-      padding: const EdgeInsets.all(12),
+      width: (screenWidth - 40) / 3,
+      padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
         color: themeConfig.getPrimaryColor(isDarkMode).withOpacity(0.1),
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(8),
       ),
       child: Column(
+        mainAxisSize: MainAxisSize.min,
         children: [
           Icon(
             icon,
             color: isStockOut
                 ? themeConfig.getErrorColor(isDarkMode)
                 : themeConfig.getPrimaryColor(isDarkMode),
-            size: 24,
+            size: 20,
           ),
-          const SizedBox(height: 8),
+          const SizedBox(height: 6),
           Text(
             title,
-            style: GoogleFonts.poppins(
-              fontSize: 12,
+            style: SafeGoogleFonts.poppins(
+              fontSize: 10,
               color: isStockOut
                   ? themeConfig.getErrorColor(isDarkMode)
                   : themeConfig.getTextSecondaryColor(isDarkMode),
             ),
+            textAlign: TextAlign.center,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
           ),
+          const SizedBox(height: 2),
           Text(
             value,
-            style: GoogleFonts.poppins(
-              fontSize: 16,
+            style: SafeGoogleFonts.poppins(
+              fontSize: 14,
               fontWeight: FontWeight.w600,
               color: isStockOut
                   ? themeConfig.getErrorColor(isDarkMode)
                   : themeConfig.getTextPrimaryColor(isDarkMode),
             ),
+            textAlign: TextAlign.center,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
           ),
         ],
       ),

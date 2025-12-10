@@ -2,8 +2,8 @@
 import 'package:dokandar_app_inventory/app/utils/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
-import '../../../../l10n/app_localizations.dart';
+import '../../../utils/safe_google_fonts.dart';
+import 'package:dokandar_app_inventory/l10n/app_localizations.dart';
 import '../../../config/app_theme_config.dart';
 import '../../../data/models/customer.dart';
 import '../../../widgets/Custom_AppBar.dart';
@@ -293,59 +293,67 @@ class AllCustomerView extends GetView<AllCustomerController> {
               children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      l10n.customerInfo,
-                      style: GoogleFonts.poppins(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w600,
-                        color: themeConfig.getTextPrimaryColor(isDarkMode),
+                    Flexible(
+                      child: Text(
+                        l10n.customerInfo,
+                        style: SafeGoogleFonts.poppins(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w600,
+                          color: themeConfig.getTextPrimaryColor(isDarkMode),
+                        ),
                       ),
                     ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        Row(
-                          children: [
-                            Text(
-                              '${l10n.totalPurchases}: ${customer.totalPurchases.toStringAsFixed(
-                                  2)}৳',
-                              style: GoogleFonts.poppins(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w500,
-                                color: themeConfig.getPrimaryColor(isDarkMode),
+                    Flexible(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Wrap(
+                            alignment: WrapAlignment.end,
+                            children: [
+                              Text(
+                                '${l10n.totalPurchases}: ${customer.totalPurchases.toStringAsFixed(
+                                    2)}৳',
+                                style: SafeGoogleFonts.poppins(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w500,
+                                  color: themeConfig.getPrimaryColor(isDarkMode),
+                                ),
                               ),
-                            ),
-                            Text(
-                              '  |  ${l10n.dueAmount}: ${customer.totalDue.toStringAsFixed(2)}৳',
-                              style: GoogleFonts.poppins(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w500,
-                                color: themeConfig.getPrimaryColor(isDarkMode),
+                              Text(
+                                '  |  ${l10n.dueAmount}: ${customer.totalDue.toStringAsFixed(2)}৳',
+                                style: SafeGoogleFonts.poppins(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w500,
+                                  color: themeConfig.getPrimaryColor(isDarkMode),
+                                ),
                               ),
+                            ],
+                          ),
+                          Text(
+                            customer.hasDue ? l10n.customerHasDue : l10n.customerNoDue,
+                            style: SafeGoogleFonts.poppins(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w500,
+                              color: customer.hasDue
+                                  ? Colors.red
+                                  : themeConfig.getTextPrimaryColor(isDarkMode),
                             ),
-                          ],
-                        ),
-                        Text(
-                          customer.hasDue ? l10n.customerHasDue : l10n.customerNoDue,
-                          style: GoogleFonts.poppins(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w500,
-                            color: customer.hasDue
-                                ? Colors.red
-                                : themeConfig.getTextPrimaryColor(isDarkMode),
                           ),
-                        ),
-                        //last purchase date
-                        Text(
-                          '${l10n.lastPurchase}: ${customer.updatedAt != null ? customer.updatedAt!.toLocal().toString().split(' ')[0] : 'N/A'}',
-                          style: GoogleFonts.poppins(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w500,
-                            color: themeConfig.getTextSecondaryColor(isDarkMode),
+                          //last purchase date
+                          Text(
+                            '${l10n.lastPurchase}: ${customer.updatedAt != null ? customer.updatedAt!.toLocal().toString().split(' ')[0] : 'N/A'}',
+                            style: SafeGoogleFonts.poppins(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w500,
+                              color: themeConfig.getTextSecondaryColor(isDarkMode),
+                            ),
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 1,
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ],
                 ),
@@ -488,7 +496,7 @@ class AllCustomerView extends GetView<AllCustomerController> {
                 children: [
                   Text(
                     l10n.addCustomer,
-                    style: GoogleFonts.poppins(
+                    style: SafeGoogleFonts.poppins(
                       fontSize: 20,
                       fontWeight: FontWeight.w600,
                       color: themeConfig.getTextPrimaryColor(isDarkMode),

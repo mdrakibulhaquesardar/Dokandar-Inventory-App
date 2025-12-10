@@ -3,8 +3,8 @@ import 'package:dokandar_app_inventory/app/routes/app_pages.dart';
 import 'package:dokandar_app_inventory/app/utils/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
-import '../../../../l10n/app_localizations.dart';
+import 'package:dokandar_app_inventory/l10n/app_localizations.dart';
+import '../../../utils/safe_google_fonts.dart';
 import '../controllers/home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
@@ -19,291 +19,287 @@ class HomeView extends GetView<HomeController> {
     return Scaffold(
       backgroundColor: themeConfig.getBackgroundColor(isDarkMode),
       appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(140),
-        child: Container(
-          padding: const EdgeInsets.fromLTRB(16, 40, 16, 16),
-          decoration: BoxDecoration(
-            color: themeConfig.getSurfaceColor(isDarkMode),
-            borderRadius: const BorderRadius.only(
-              bottomLeft: Radius.circular(20),
-              bottomRight: Radius.circular(20),
+        preferredSize: const Size.fromHeight(130),
+        child: SafeArea(
+          child: Container(
+            padding: const EdgeInsets.fromLTRB(12, 12, 12, 10),
+            decoration: BoxDecoration(
+              color: themeConfig.getSurfaceColor(isDarkMode),
+              borderRadius: const BorderRadius.only(
+                bottomLeft: Radius.circular(16),
+                bottomRight: Radius.circular(16),
+              ),
             ),
-          ),
-          child: Column(
-
-            children: [
-              Row(
-                children: [
-                  CircleAvatar(
-                    radius: 20,
-                    backgroundColor: themeConfig
-                        .getPrimaryColor(isDarkMode)
-                        .withOpacity(0.1),
-                    child: const CircleAvatar(
-                      radius: 18,
-                      backgroundImage: AssetImage('assets/images/profile.jpg'),
-                    ),
-                  ),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Obx(() {
-                        return Text(
-                          controller.store.value?.name ??
-                              l10n.dataNotFound,
-                          style: GoogleFonts.notoSansBengali(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Row(
+                  children: [
+                    Obx(() {
+                      final storeName =
+                          controller.store.value?.name ?? l10n.dataNotFound;
+                      final firstLetter = storeName.isNotEmpty
+                          ? storeName[0].toUpperCase()
+                          : '?';
+                      return CircleAvatar(
+                        radius: 18,
+                        backgroundColor:
+                            themeConfig.getPrimaryColor(isDarkMode),
+                        child: Text(
+                          firstLetter,
+                          style: SafeGoogleFonts.notoSansBengali(
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
-                            color: themeConfig.getTextPrimaryColor(
-                                isDarkMode),
+                            color: Colors.white,
                           ),
-                        );
-                      }),
-                      Obx(() {
-                        return Text(
-                          controller.store.value?.businessType ??
-                              l10n.dataNotFound,
-                          style: GoogleFonts.notoSansBengali(
-                            fontSize: 12,
-                            color: themeConfig.getTextSecondaryColor(
-                                isDarkMode),
-                          ),
-                        );
-                      }),
-                    ],
-                  ),
-                  const Spacer(),
-                  Container(
-                    decoration: BoxDecoration(
-                      color: themeConfig
-                          .getErrorColor(isDarkMode)
-                          .withOpacity(0.1),
-                      shape: BoxShape.circle,
-                    ),
-                    child: IconButton(
-                      icon: Stack(
+                        ),
+                      );
+                    }),
+                    const SizedBox(width: 8),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Icon(Icons.notifications_outlined),
-                          Positioned(
-                            right: 0,
-                            top: 0,
-                            child: Container(
-                              padding: const EdgeInsets.all(2),
-                              decoration: BoxDecoration(
-                                color: themeConfig.getErrorColor(isDarkMode),
-                                shape: BoxShape.circle,
+                          Obx(() {
+                            return Text(
+                              controller.store.value?.name ?? l10n.dataNotFound,
+                              style: SafeGoogleFonts.notoSansBengali(
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                                color:
+                                    themeConfig.getTextPrimaryColor(isDarkMode),
                               ),
-                              constraints: const BoxConstraints(
-                                minWidth: 8,
-                                minHeight: 8,
+                            );
+                          }),
+                          Obx(() {
+                            return Text(
+                              controller.store.value?.businessType ??
+                                  l10n.dataNotFound,
+                              style: SafeGoogleFonts.notoSansBengali(
+                                fontSize: 11,
+                                color: themeConfig
+                                    .getTextSecondaryColor(isDarkMode),
                               ),
-                            ),
-                          ),
+                            );
+                          }),
                         ],
                       ),
-                      onPressed: () {},
-                      color: themeConfig.getTextPrimaryColor(isDarkMode),
                     ),
-                  ),
-                  const SizedBox(width: 8),
-                  Container(
-                    decoration: BoxDecoration(
-                      color: themeConfig
-                          .getPrimaryColor(isDarkMode)
-                          .withOpacity(0.1),
-                      shape: BoxShape.circle,
-                    ),
-                    child: IconButton(
-                      icon: const Icon(Icons.refresh),
-                      onPressed: () {
-                        controller.refresh();
-                      },
-                      color: themeConfig.getPrimaryColor(isDarkMode),
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 16),
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                decoration: BoxDecoration(
-                  color: themeConfig.getBackgroundColor(isDarkMode),
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: Row(
-                  children: [
-                    Icon(
-                      Icons.search,
-                      color: themeConfig.getTextSecondaryColor(isDarkMode),
-                    ),
-                    const SizedBox(width: 8),
-                    Text(
-                      l10n.searchProducts,
-                      style: GoogleFonts.notoSansBengali(
-                        fontSize: 14,
-                        color: themeConfig.getTextSecondaryColor(isDarkMode),
+                    const Spacer(),
+                    Container(
+                      width: 28,
+                      height: 28,
+                      decoration: BoxDecoration(
+                        color: themeConfig
+                            .getPrimaryColor(isDarkMode)
+                            .withOpacity(0.1),
+                        borderRadius: BorderRadius.circular(8),
                       ),
-                    ),
-                    //TODO : Add search functionality
-                    Spacer(),
-                    IconButton(
-                      icon: const Icon(Icons.tune),
-                      onPressed: () {},
-                      color: themeConfig.getTextSecondaryColor(isDarkMode),
+                      child: IconButton(
+                        icon: const Icon(Icons.refresh, size: 14),
+                        onPressed: () {
+                          controller.refresh();
+                        },
+                        color: themeConfig.getPrimaryColor(isDarkMode),
+                        padding: EdgeInsets.zero,
+                        constraints: const BoxConstraints(
+                          minWidth: 20,
+                          minHeight: 20,
+                        ),
+                      ),
                     ),
                   ],
                 ),
-              ),
-            ],
+                const SizedBox(height: 12),
+                InkWell(
+                  onTap: () {
+                    Get.toNamed(Routes.SEARCH);
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 12, vertical: 10),
+                    decoration: BoxDecoration(
+                      color: themeConfig.getBackgroundColor(isDarkMode),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: Row(
+                      children: [
+                        Icon(
+                          Icons.search,
+                          size: 18,
+                          color: themeConfig.getTextSecondaryColor(isDarkMode),
+                        ),
+                        const SizedBox(width: 8),
+                        Expanded(
+                          child: Text(
+                            l10n.searchProducts,
+                            style: SafeGoogleFonts.notoSansBengali(
+                              fontSize: 13,
+                              color:
+                                  themeConfig.getTextSecondaryColor(isDarkMode),
+                            ),
+                          ),
+                        ),
+                        Icon(
+                          Icons.chevron_right,
+                          size: 18,
+                          color: themeConfig.getTextSecondaryColor(isDarkMode),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // Summary Cards Grid
-            Text(
-              l10n.summaryInfo,
-              style: GoogleFonts.notoSansBengali(
-                fontSize: 20,
-                fontWeight: FontWeight.w600,
-                color: themeConfig.getTextPrimaryColor(isDarkMode),
+      body: SafeArea(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.all(12.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // Summary Cards Grid
+              Text(
+                l10n.summaryInfo,
+                style: SafeGoogleFonts.notoSansBengali(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w600,
+                  color: themeConfig.getTextPrimaryColor(isDarkMode),
+                ),
               ),
-            ),
-            Text(
-              l10n.summaryInfoDescription,
-              style: GoogleFonts.notoSansBengali(
-                fontSize: 14,
-                fontWeight: FontWeight.w500,
-                color: themeConfig.getTextSecondaryColor(isDarkMode),
+              const SizedBox(height: 2),
+              Text(
+                l10n.summaryInfoDescription,
+                style: SafeGoogleFonts.notoSansBengali(
+                  fontSize: 12,
+                  fontWeight: FontWeight.w400,
+                  color: themeConfig.getTextSecondaryColor(isDarkMode),
+                ),
               ),
-            ),
-            const SizedBox(height: 16),
-            GridView.count(
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              crossAxisCount: 2,
-              mainAxisSpacing: 16,
-              crossAxisSpacing: 16,
-              childAspectRatio: 1.5,
-              children: [
-                Obx(() {
-                  return _SummaryCard(
-                    title: l10n.totalProducts,
-                    value: controller.totalProducts.value.toString(),
-                    icon: Icons.inventory_2_outlined,
-                    color: Colors.blue,
-                    subtitle: l10n.totalProducts,
-                    context: context,
-                  );
-                }),
-                Obx(() {
-                  return _SummaryCard(
-                    title: l10n.totalSales,
-                    value: '৳${controller.totalSales.value.toString()}',
-                    icon: Icons.shopping_cart_outlined,
-                    color: Colors.green,
-                    subtitle: l10n.totalSales,
-                    context: context,
-                  );
-                }),
-                Obx(() {
-                  return _SummaryCard(
-                    title: l10n.categories,
-                    value: controller.totalCategories.value.toString(),
-                    icon: Icons.category_outlined,
-                    color: Colors.orange,
-                    subtitle: l10n.categories,
-                    context: context,
-                  );
-                }),
-                Obx(() {
-                  return _SummaryCard(
-                    title: l10n.customers,
-                    value: controller.totalCustomers.value.toString(),
-                    icon: Icons.people_outline,
-                    color: Colors.purple,
-                    subtitle: l10n.customers,
-                    context: context,
-                  );
-                }),
-                Obx(() {
-                  return _SummaryCard(
-                    title: l10n.todaysOrders,
-                    value: controller.recentSale.length.toString(),
-                    icon: Icons.shopping_bag_outlined,
-                    color: Colors.teal,
-                    subtitle: l10n.newOrder,
-                    context: context,
-                  );
-                }),
-                Obx(() {
-                  return _SummaryCard(
-                    title: l10n.totalProfit,
-                    value: controller.totalRevenue.value.toString(),
-                    icon: Icons.trending_up,
-                    color: Colors.indigo,
-                    subtitle: l10n.totalProfit,
-                    context: context,
-                  );
-                }),
-              ],
-            ),
+              const SizedBox(height: 12),
+              GridView.count(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                crossAxisCount: 2,
+                mainAxisSpacing: 10,
+                crossAxisSpacing: 10,
+                childAspectRatio: 1.6,
+                children: [
+                  Obx(() {
+                    return _SummaryCard(
+                      title: l10n.totalProducts,
+                      value: controller.totalProducts.value.toString(),
+                      icon: Icons.inventory_2_outlined,
+                      color: Colors.blue,
+                      subtitle: l10n.totalProducts,
+                      context: context,
+                    );
+                  }),
+                  Obx(() {
+                    return _SummaryCard(
+                      title: l10n.totalSales,
+                      value: '৳${controller.totalSales.value.toString()}',
+                      icon: Icons.shopping_cart_outlined,
+                      color: Colors.green,
+                      subtitle: l10n.totalSales,
+                      context: context,
+                    );
+                  }),
+                  Obx(() {
+                    return _SummaryCard(
+                      title: l10n.categories,
+                      value: controller.totalCategories.value.toString(),
+                      icon: Icons.category_outlined,
+                      color: Colors.orange,
+                      subtitle: l10n.categories,
+                      context: context,
+                    );
+                  }),
+                  Obx(() {
+                    return _SummaryCard(
+                      title: l10n.customers,
+                      value: controller.totalCustomers.value.toString(),
+                      icon: Icons.people_outline,
+                      color: Colors.purple,
+                      subtitle: l10n.customers,
+                      context: context,
+                    );
+                  }),
+                  Obx(() {
+                    return _SummaryCard(
+                      title: l10n.todaysOrders,
+                      value: controller.recentSale.length.toString(),
+                      icon: Icons.shopping_bag_outlined,
+                      color: Colors.teal,
+                      subtitle: l10n.newOrder,
+                      context: context,
+                    );
+                  }),
+                  Obx(() {
+                    return _SummaryCard(
+                      title: l10n.totalProfit,
+                      value: controller.totalRevenue.value.toString(),
+                      icon: Icons.trending_up,
+                      color: Colors.indigo,
+                      subtitle: l10n.totalProfit,
+                      context: context,
+                    );
+                  }),
+                ],
+              ),
 
-            const SizedBox(height: 24),
-            Text(
-              l10n.recentSales,
-              style: GoogleFonts.notoSansBengali(
-                fontSize: 20,
-                fontWeight: FontWeight.w600,
-                color: themeConfig.getTextPrimaryColor(isDarkMode),
+              const SizedBox(height: 20),
+              Text(
+                l10n.recentSales,
+                style: SafeGoogleFonts.notoSansBengali(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w600,
+                  color: themeConfig.getTextPrimaryColor(isDarkMode),
+                ),
               ),
-            ),
-            Text(
-              l10n.recentSalesDescription,
-              style: GoogleFonts.notoSansBengali(
-                fontSize: 14,
-                fontWeight: FontWeight.w500,
-                color: themeConfig.getTextSecondaryColor(isDarkMode),
+              const SizedBox(height: 2),
+              Text(
+                l10n.recentSalesDescription,
+                style: SafeGoogleFonts.notoSansBengali(
+                  fontSize: 12,
+                  fontWeight: FontWeight.w400,
+                  color: themeConfig.getTextSecondaryColor(isDarkMode),
+                ),
               ),
-            ),
-            const SizedBox(height: 16),
-            _RecentSalesList(),
+              const SizedBox(height: 12),
+              _RecentSalesList(),
 
-            const SizedBox(height: 24),
+              const SizedBox(height: 20),
 
+              controller.allLowStokeProduct.isEmpty
+                  ? const SizedBox()
+                  : Text(
+                      l10n.stockAlert,
+                      style: SafeGoogleFonts.notoSansBengali(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w600,
+                        color: themeConfig.getTextPrimaryColor(isDarkMode),
+                      ),
+                    ),
+              controller.allLowStokeProduct.isEmpty
+                  ? const SizedBox()
+                  : Text(
+                      l10n.stockAlertDescription,
+                      style: SafeGoogleFonts.notoSansBengali(
+                        fontSize: 12,
+                        fontWeight: FontWeight.w400,
+                        color: themeConfig.getTextSecondaryColor(isDarkMode),
+                      ),
+                    ),
 
-            controller.allLowStokeProduct.isEmpty
-                ? SizedBox()
-                : Text(
-              l10n.stockAlert,
-              style: GoogleFonts.notoSansBengali(
-                fontSize: 20,
-                fontWeight: FontWeight.w600,
-                color: themeConfig.getTextPrimaryColor(isDarkMode),
-              ),
-            ),
-            controller.allLowStokeProduct.isEmpty
-                ? SizedBox()
-                : Text(
-              l10n.stockAlertDescription,
-              style: GoogleFonts.notoSansBengali(
-                fontSize: 14,
-                fontWeight: FontWeight.w500,
-                color: themeConfig.getTextSecondaryColor(isDarkMode),
-              ),
-            ),
-
-            const SizedBox(height: 0),
-            controller.allLowStokeProduct.isEmpty
-                ? SizedBox()
-                : _LowStockProductsList(),
-          ],
+              const SizedBox(height: 2),
+              controller.allLowStokeProduct.isEmpty
+                  ? SizedBox()
+                  : _LowStockProductsList(),
+            ],
+          ),
         ),
       ),
     );
@@ -333,10 +329,10 @@ class _SummaryCard extends StatelessWidget {
     final isDarkMode = Get.isDarkMode;
 
     return Container(
-      padding: const EdgeInsets.all(16),
+      padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
         color: themeConfig.getSurfaceColor(isDarkMode),
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(8),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -346,42 +342,43 @@ class _SummaryCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Container(
-                padding: const EdgeInsets.all(8),
+                padding: const EdgeInsets.all(6),
                 decoration: BoxDecoration(
-                  color: color.withOpacity(0.2),
-                  borderRadius: BorderRadius.circular(12),
+                  color: color.withOpacity(0.15),
+                  borderRadius: BorderRadius.circular(8),
                 ),
                 child: Icon(
                   icon,
                   color: color,
-                  size: 24,
+                  size: 20,
                 ),
               ),
               Text(
                 value,
-                style: GoogleFonts.notoSansBengali(
-                  fontSize: 20,
+                style: SafeGoogleFonts.notoSansBengali(
+                  fontSize: 18,
                   fontWeight: FontWeight.bold,
                   color: color,
                 ),
               ),
             ],
           ),
+          const SizedBox(height: 8),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
                 title,
-                style: GoogleFonts.notoSansBengali(
-                  fontSize: 14,
+                style: SafeGoogleFonts.notoSansBengali(
+                  fontSize: 13,
                   fontWeight: FontWeight.w600,
                   color: themeConfig.getTextPrimaryColor(isDarkMode),
                 ),
               ),
               Text(
                 subtitle,
-                style: GoogleFonts.notoSansBengali(
-                  fontSize: 12,
+                style: SafeGoogleFonts.notoSansBengali(
+                  fontSize: 11,
                   color: themeConfig.getTextSecondaryColor(isDarkMode),
                 ),
               ),
@@ -400,71 +397,90 @@ class _RecentSalesList extends GetView<HomeController> {
     final isDarkMode = Get.isDarkMode;
     final l10n = AppLocalizations.of(context)!;
 
-
     return Container(
       decoration: BoxDecoration(
         color: themeConfig.getSurfaceColor(isDarkMode),
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(8),
       ),
       child: Obx(() {
         return controller.recentSale.isEmpty
             ? Container(
-          padding: const EdgeInsets.all(16),
-          decoration: BoxDecoration(
-            color: themeConfig.getSurfaceColor(isDarkMode),
-            borderRadius: BorderRadius.circular(12),
-          ),
-          child: Center(
-            child: Text(
-              l10n.noRecentSales,
-              style: GoogleFonts.poppins(
-                fontSize: 16,
-                color: themeConfig.getTextSecondaryColor(isDarkMode),
-              ),
-            ),
-          ),
-
-        )
+                padding: const EdgeInsets.all(12),
+                decoration: BoxDecoration(
+                  color: themeConfig.getSurfaceColor(isDarkMode),
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: Center(
+                  child: Text(
+                    l10n.noRecentSales,
+                    style: SafeGoogleFonts.poppins(
+                      fontSize: 14,
+                      color: themeConfig.getTextSecondaryColor(isDarkMode),
+                    ),
+                  ),
+                ),
+              )
             : ListView.builder(
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          itemCount: controller.recentSale.length,
-          itemBuilder: (context, index) {
-            return ListTile(
-              leading: CircleAvatar(
-                backgroundColor:
-                themeConfig.getPrimaryColor(isDarkMode).withOpacity(0.1),
-                child: Icon(
-                  Icons.shopping_bag_outlined,
-                  color: themeConfig.getPrimaryColor(isDarkMode),
-                ),
-              ),
-              title: Text(
-                controller.recentSale[index].items[0].productName,
-                style: GoogleFonts.poppins(
-                  fontWeight: FontWeight.w500,
-                  color: themeConfig.getTextPrimaryColor(isDarkMode),
-                ),
-              ),
-              subtitle: Text(
-                '৳${controller.recentSale[index].totalAmount
-                    .translateNumberToBengali()}',
-                style: GoogleFonts.poppins(
-                  color: themeConfig.getTextSecondaryColor(isDarkMode),
-                ),
-              ),
-              trailing: Text(
-                "${controller.recentSale[index].items[0].quantity.toInt()
-                    .translateNumberToBengali()} পিস",
-                style: GoogleFonts.poppins(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w500,
-                  color: themeConfig.getTextSecondaryColor(isDarkMode),
-                ),
-              ),
-            );
-          },
-        );
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                itemCount: controller.recentSale.length,
+                itemBuilder: (context, index) {
+                  return Container(
+                    decoration: BoxDecoration(
+                      border: Border(
+                        bottom: BorderSide(
+                          color: themeConfig
+                              .getBorderColor(isDarkMode)
+                              .withOpacity(0.1),
+                          width: 0.5,
+                        ),
+                      ),
+                    ),
+                    child: ListTile(
+                      contentPadding: const EdgeInsets.symmetric(
+                          horizontal: 12, vertical: 8),
+                      leading: Container(
+                        width: 36,
+                        height: 36,
+                        decoration: BoxDecoration(
+                          color: themeConfig
+                              .getPrimaryColor(isDarkMode)
+                              .withOpacity(0.1),
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: Icon(
+                          Icons.shopping_bag_outlined,
+                          size: 18,
+                          color: themeConfig.getPrimaryColor(isDarkMode),
+                        ),
+                      ),
+                      title: Text(
+                        controller.recentSale[index].items[0].productName,
+                        style: SafeGoogleFonts.poppins(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w500,
+                          color: themeConfig.getTextPrimaryColor(isDarkMode),
+                        ),
+                      ),
+                      subtitle: Text(
+                        '৳${controller.recentSale[index].totalAmount.translateNumberToBengali()}',
+                        style: SafeGoogleFonts.poppins(
+                          fontSize: 12,
+                          color: themeConfig.getTextSecondaryColor(isDarkMode),
+                        ),
+                      ),
+                      trailing: Text(
+                        "${controller.recentSale[index].items[0].quantity.toInt().translateNumberToBengali()} পিস",
+                        style: SafeGoogleFonts.poppins(
+                          fontSize: 12,
+                          fontWeight: FontWeight.w500,
+                          color: themeConfig.getTextSecondaryColor(isDarkMode),
+                        ),
+                      ),
+                    ),
+                  );
+                },
+              );
       }),
     );
   }
@@ -480,7 +496,7 @@ class _LowStockProductsList extends GetView<HomeController> {
     return Container(
       decoration: BoxDecoration(
         color: themeConfig.getSurfaceColor(isDarkMode),
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(8),
       ),
       child: Obx(() {
         return ListView.builder(
@@ -489,44 +505,72 @@ class _LowStockProductsList extends GetView<HomeController> {
           itemCount: controller.allLowStokeProduct.length,
           itemBuilder: (context, index) {
             return Obx(() {
-              return ListTile(
-                leading: CircleAvatar(
-                  backgroundColor:
-                  themeConfig.getWarningColor(isDarkMode).withOpacity(0.1),
-                  child: Icon(
-                    Icons.warning_amber_outlined,
-                    color: themeConfig.getWarningColor(isDarkMode),
-                  ),
-                ),
-                title: Text(
-                  controller.allLowStokeProduct[index].name,
-                  style: GoogleFonts.poppins(
-                    fontWeight: FontWeight.w500,
-                    color: themeConfig.getTextPrimaryColor(isDarkMode),
-                  ),
-                ),
-                subtitle: Text(
-                  'স্টকে ${controller.allLowStokeProduct[index].stockQuantity
-                      .toInt().translateNumberToBengali()} পিস',
-                  style: GoogleFonts.poppins(
-                    color: themeConfig.getWarningColor(isDarkMode),
-                  ),
-                ),
-                trailing: ElevatedButton(
-                  onPressed: () {
-                    Get.toNamed(Routes.ALL_PRODUCTS);
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: themeConfig.getPrimaryColor(isDarkMode),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8),
+              return Container(
+                decoration: BoxDecoration(
+                  border: Border(
+                    bottom: BorderSide(
+                      color: themeConfig
+                          .getBorderColor(isDarkMode)
+                          .withOpacity(0.1),
+                      width: 0.5,
                     ),
                   ),
-                  child: Text(
-                    l10n.addToStock,
-                    style: GoogleFonts.poppins(
-                      color: Colors.white,
+                ),
+                child: ListTile(
+                  contentPadding:
+                      const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                  leading: Container(
+                    width: 36,
+                    height: 36,
+                    decoration: BoxDecoration(
+                      color: themeConfig
+                          .getWarningColor(isDarkMode)
+                          .withOpacity(0.1),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: Icon(
+                      Icons.warning_amber_outlined,
+                      size: 18,
+                      color: themeConfig.getWarningColor(isDarkMode),
+                    ),
+                  ),
+                  title: Text(
+                    controller.allLowStokeProduct[index].name,
+                    style: SafeGoogleFonts.poppins(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500,
+                      color: themeConfig.getTextPrimaryColor(isDarkMode),
+                    ),
+                  ),
+                  subtitle: Text(
+                    l10n.stockInPieces(controller
+                        .allLowStokeProduct[index].stockQuantity
+                        .toInt()
+                        .translateNumberToBengali()),
+                    style: SafeGoogleFonts.poppins(
                       fontSize: 12,
+                      color: themeConfig.getWarningColor(isDarkMode),
+                    ),
+                  ),
+                  trailing: TextButton(
+                    onPressed: () {
+                      Get.toNamed(Routes.ALL_PRODUCTS);
+                    },
+                    style: TextButton.styleFrom(
+                      backgroundColor: themeConfig.getPrimaryColor(isDarkMode),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 12, vertical: 6),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(6),
+                      ),
+                    ),
+                    child: Text(
+                      l10n.addToStock,
+                      style: SafeGoogleFonts.poppins(
+                        color: Colors.white,
+                        fontSize: 11,
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
                   ),
                 ),

@@ -795,8 +795,9 @@ class AppLocalizationsBn extends AppLocalizations {
   String get createBackup => 'ব্যাকআপ তৈরি করুন';
 
   @override
-  String get backupInstructions =>
-      'ব্যাকআপ তৈরি করতে, আপনার ফোনের মেমরিতে পর্যাপ্ত স্থান থাকতে হবে এবং ব্যাকআপ ফাইলগুলি আপনার';
+  String backupInstructions(String folderName) {
+    return 'ব্যাকআপ তৈরি করতে, আপনার ফোনের মেমরিতে পর্যাপ্ত স্থান থাকতে হবে এবং ব্যাকআপ ফাইলগুলি আপনার $folderName ফোনের মেমরিতে এ সংরক্ষিত হবে।';
+  }
 
   @override
   String get dokandarFolder => 'দোকানদার নাম ফোল্ডার';
@@ -1060,4 +1061,154 @@ class AppLocalizationsBn extends AppLocalizations {
 
   @override
   String get add => 'যোগ করুন';
+
+  @override
+  String stockInPieces(String quantity) {
+    return 'স্টকে $quantity পিস';
+  }
+
+  @override
+  String get stock => 'স্টক';
+
+  @override
+  String get pieces => 'পিস';
+
+  @override
+  String serviceInitFailed(String error) {
+    return 'সেবা শুরু করতে ব্যর্থ: $error';
+  }
+
+  @override
+  String get backupSuccess => 'ব্যাকআপ সফল হয়েছে!';
+
+  @override
+  String backupFailed(String error) {
+    return 'ব্যাকআপ ব্যর্থ হয়েছে: $error';
+  }
+
+  @override
+  String get restoreSuccess => 'পুনরুদ্ধার সফল হয়েছে!';
+
+  @override
+  String restoreFailed(String error) {
+    return 'পুনরুদ্ধার ব্যর্থ হয়েছে: $error';
+  }
+
+  @override
+  String get failedToLoadDueCustomers =>
+      'বাকিদার তালিকা লোড করতে ব্যর্থ হয়েছে';
+
+  @override
+  String get paymentUpdated => 'পেমেন্ট আপডেট করা হয়েছে';
+
+  @override
+  String get failedToUpdatePayment => 'পেমেন্ট আপডেট করতে ব্যর্থ হয়েছে';
+
+  @override
+  String lastBackupDate(String date) {
+    return 'সর্বশেষ ব্যাকআপ $date';
+  }
+
+  @override
+  String get notifications => 'নোটিফিকেশন';
+
+  @override
+  String get enableNotifications => 'নোটিফিকেশন সক্রিয় করুন';
+
+  @override
+  String get autoBackup => 'স্বয়ংক্রিয় ব্যাকআপ';
+
+  @override
+  String get enableAutoBackup => 'স্বয়ংক্রিয় ব্যাকআপ সক্রিয় করুন';
+
+  @override
+  String get soundSettings => 'সাউন্ড সেটিংস';
+
+  @override
+  String get enableSound => 'সাউন্ড সক্রিয় করুন';
+
+  @override
+  String get vibration => 'ভাইব্রেশন';
+
+  @override
+  String get enableVibration => 'ভাইব্রেশন সক্রিয় করুন';
+
+  @override
+  String get fontSize => 'ফন্ট সাইজ';
+
+  @override
+  String get selectFontSize => 'ফন্ট সাইজ নির্বাচন করুন';
+
+  @override
+  String get currency => 'মুদ্রা';
+
+  @override
+  String get selectCurrency => 'মুদ্রা নির্বাচন করুন';
+
+  @override
+  String get dateFormat => 'তারিখ ফরম্যাট';
+
+  @override
+  String get selectDateFormat => 'তারিখ ফরম্যাট নির্বাচন করুন';
+
+  @override
+  String get timeFormat => 'সময় ফরম্যাট';
+
+  @override
+  String get selectTimeFormat => 'সময় ফরম্যাট নির্বাচন করুন';
+
+  @override
+  String get pageSize => 'পেজ সাইজ';
+
+  @override
+  String get selectPageSize => 'পেজ সাইজ নির্বাচন করুন';
+
+  @override
+  String get cacheDuration => 'ক্যাশে সময়কাল';
+
+  @override
+  String get selectCacheDuration => 'ক্যাশে সময়কাল নির্বাচন করুন';
+
+  @override
+  String get clearCache => 'ক্যাশে পরিষ্কার করুন';
+
+  @override
+  String get clearCacheDescription => 'সমস্ত ক্যাশে করা ডেটা পরিষ্কার করুন';
+
+  @override
+  String get cacheCleared => 'ক্যাশে সফলভাবে পরিষ্কার করা হয়েছে';
+
+  @override
+  String get resetSettings => 'সেটিংস রিসেট করুন';
+
+  @override
+  String get resetSettingsDescription => 'সমস্ত সেটিংস ডিফল্টে ফিরিয়ে দিন';
+
+  @override
+  String get resetSettingsConfirm =>
+      'আপনি কি নিশ্চিত যে আপনি সমস্ত সেটিংস ডিফল্টে ফিরিয়ে দিতে চান?';
+
+  @override
+  String get settingsReset => 'সেটিংস সফলভাবে রিসেট করা হয়েছে';
+
+  @override
+  String get small => 'ছোট';
+
+  @override
+  String get medium => 'মাঝারি';
+
+  @override
+  String get large => 'বড়';
+
+  @override
+  String get extraLarge => 'অতিরিক্ত বড়';
+
+  @override
+  String get minutes => 'মিনিট';
+
+  @override
+  String get hours => 'ঘন্টা';
+
+  @override
+  String get itemsPerPage => 'প্রতি পেজে আইটেম';
 }

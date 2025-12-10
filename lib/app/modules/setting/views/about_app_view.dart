@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
-import '../../../../l10n/app_localizations.dart';
+import '../../../utils/safe_google_fonts.dart';
+import 'package:dokandar_app_inventory/l10n/app_localizations.dart';
 import '../../../config/app_config.dart';
 import '../../../config/app_theme_config.dart';
 import '../../../widgets/Custom_AppBar.dart';
+import '../../../routes/app_pages.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class AboutAppView extends GetView {
   const AboutAppView({super.key});
@@ -59,7 +61,7 @@ class AboutAppView extends GetView {
                     const SizedBox(height: 16),
                     Text(
                       Get.find <AppConfig>().appCurrentName,
-                      style: GoogleFonts.poppins(
+                      style: SafeGoogleFonts.poppins(
                         fontSize: 24,
                         fontWeight: FontWeight.w600,
                         color: Colors.blue,
@@ -68,7 +70,7 @@ class AboutAppView extends GetView {
                     const SizedBox(height: 4),
                     Text(
                       Get.find<AppConfig>().appCurrentDescription,
-                      style: GoogleFonts.poppins(
+                      style: SafeGoogleFonts.poppins(
                         fontSize: 14,
                         color: Colors.grey[600],
                       ),
@@ -150,11 +152,15 @@ class AboutAppView extends GetView {
                   children: [
                     _buildLegalItem(
                       title: l10n.privacyPolicy,
-                      onTap: () {},
+                      onTap: () {
+                        Get.toNamed(Routes.PRIVACY_POLICY);
+                      },
                     ),
                     _buildLegalItem(
                       title: l10n.termsAndConditions,
-                      onTap: () {},
+                      onTap: () {
+                        Get.toNamed(Routes.TERMS);
+                      },
                     ),
                   ],
                 ),
@@ -193,14 +199,14 @@ class AboutAppView extends GetView {
                 children: [
                   Text(
                     title,
-                    style: GoogleFonts.poppins(
+                    style: SafeGoogleFonts.poppins(
                       fontSize: 18,
                       fontWeight: FontWeight.w600,
                     ),
                   ),
                   Text(
                     subtitle,
-                    style: GoogleFonts.poppins(
+                    style: SafeGoogleFonts.poppins(
                       fontSize: 14,
                       color: Colors.grey[600],
                     ),
@@ -239,14 +245,14 @@ class AboutAppView extends GetView {
         ),
         title: Text(
           title,
-          style: GoogleFonts.poppins(
+          style: SafeGoogleFonts.poppins(
             fontSize: 14,
             fontWeight: FontWeight.w500,
           ),
         ),
         trailing: Text(
           value,
-          style: GoogleFonts.poppins(
+          style: SafeGoogleFonts.poppins(
             fontSize: 14,
             color: Colors.grey[600],
           ),
@@ -276,14 +282,14 @@ class AboutAppView extends GetView {
               children: [
                 Text(
                   '${l10n.version} $version',
-                  style: GoogleFonts.poppins(
+                  style: SafeGoogleFonts.poppins(
                     fontSize: 16,
                     fontWeight: FontWeight.w600,
                   ),
                 ),
                 Text(
                   date,
-                  style: GoogleFonts.poppins(
+                  style: SafeGoogleFonts.poppins(
                     fontSize: 14,
                     color: Colors.grey[600],
                   ),
@@ -305,7 +311,7 @@ class AboutAppView extends GetView {
                       Expanded(
                         child: Text(
                           change,
-                          style: GoogleFonts.poppins(
+                          style: SafeGoogleFonts.poppins(
                             fontSize: 14,
                             color: Colors.grey[800],
                           ),
@@ -338,7 +344,7 @@ class AboutAppView extends GetView {
           children: [
             Text(
               name,
-              style: GoogleFonts.poppins(
+              style: SafeGoogleFonts.poppins(
                 fontSize: 16,
                 fontWeight: FontWeight.w600,
               ),
@@ -346,7 +352,7 @@ class AboutAppView extends GetView {
             const SizedBox(height: 4),
             Text(
               role,
-              style: GoogleFonts.poppins(
+              style: SafeGoogleFonts.poppins(
                 fontSize: 14,
                 color: Colors.grey[600],
               ),
@@ -355,10 +361,12 @@ class AboutAppView extends GetView {
             _buildContactItem(
               icon: Icons.email,
               text: email,
+              onTap: () => _launchUrl(Uri.parse('mailto:$email')),
             ),
             _buildContactItem(
               icon: Icons.language,
               text: website,
+              onTap: () => _launchUrl(Uri.parse(website)),
             ),
           ],
         ),
@@ -369,25 +377,29 @@ class AboutAppView extends GetView {
   Widget _buildContactItem({
     required IconData icon,
     required String text,
+    VoidCallback? onTap,
   }) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 8),
-      child: Row(
-        children: [
-          Icon(
-            icon,
-            size: 20,
-            color: Colors.grey[600],
-          ),
-          const SizedBox(width: 8),
-          Text(
-            text,
-            style: GoogleFonts.poppins(
-              fontSize: 14,
+      child: InkWell(
+        onTap: onTap,
+        child: Row(
+          children: [
+            Icon(
+              icon,
+              size: 20,
               color: Colors.grey[600],
             ),
-          ),
-        ],
+            const SizedBox(width: 8),
+            Text(
+              text,
+              style: SafeGoogleFonts.poppins(
+                fontSize: 14,
+                color: Colors.grey[600],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -405,7 +417,7 @@ class AboutAppView extends GetView {
         contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         title: Text(
           title,
-          style: GoogleFonts.poppins(
+          style: SafeGoogleFonts.poppins(
             fontSize: 14,
             fontWeight: FontWeight.w500,
           ),
@@ -418,5 +430,12 @@ class AboutAppView extends GetView {
         onTap: onTap,
       ),
     );
+  }
+
+  Future<void> _launchUrl(Uri uri) async {
+    if (!await launchUrl(uri)) {
+      Get.snackbar('Error', 'Could not open link',
+          snackPosition: SnackPosition.BOTTOM);
+    }
   }
 }

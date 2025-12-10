@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
+import '../utils/safe_google_fonts.dart';
 import '../config/app_theme_config.dart';
 
 class CustomProfileSection extends StatelessWidget {
@@ -49,7 +49,7 @@ class CustomProfileSection extends StatelessWidget {
                   children: [
                     Text(
                       name,
-                      style: GoogleFonts.poppins(
+                      style: SafeGoogleFonts.poppins(
                         fontSize: 18,
                         fontWeight: FontWeight.w600,
                         color: themeConfig.getTextPrimaryColor(isDarkMode),
@@ -57,7 +57,7 @@ class CustomProfileSection extends StatelessWidget {
                     ),
                     Text(
                       email,
-                      style: GoogleFonts.poppins(
+                      style: SafeGoogleFonts.poppins(
                         fontSize: 14,
                         color: themeConfig.getTextSecondaryColor(isDarkMode),
                       ),

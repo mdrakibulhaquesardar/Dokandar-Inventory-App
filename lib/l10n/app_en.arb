@@ -530,6 +530,104 @@
   "confirmDeleteCustomer": "Are you sure you want to delete this customer?",
   "nameRequired": "Name is required",
   "phoneRequired": "Phone number is required",
-  "add": "Add"
+  "add": "Add",
+  "stockInPieces": "Stock: {quantity} pieces",
+  "@stockInPieces": {
+    "description": "Stock quantity in pieces",
+    "placeholders": {
+      "quantity": {
+        "type": "String"
+      }
+    }
+  },
+  "stock": "Stock",
+  "pieces": "pieces",
+  "serviceInitFailed": "Failed to initialize service: {error}",
+  "@serviceInitFailed": {
+    "description": "Service initialization failed",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "backingUp": "Backing up...",
+  "backupSuccess": "Backup successful!",
+  "backupFailed": "Backup failed: {error}",
+  "@backupFailed": {
+    "description": "Backup failed",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "restoring": "Restoring...",
+  "restoreSuccess": "Restore successful!",
+  "restoreFailed": "Restore failed: {error}",
+  "@restoreFailed": {
+    "description": "Restore failed",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "failedToLoadDueCustomers": "Failed to load due customers list",
+  "paymentUpdated": "Payment updated",
+  "failedToUpdatePayment": "Failed to update payment",
+  "lastBackupDate": "Last backup {date}",
+  "@lastBackupDate": {
+    "description": "Last backup date",
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "backupInstructions": "To create a backup, you must have sufficient space on your phone memory and backup files will be saved in your {folderName} folder in phone memory.",
+  "@backupInstructions": {
+    "description": "Backup instructions",
+    "placeholders": {
+      "folderName": {
+        "type": "String"
+      }
+    }
+  },
+  "dokandarFolder": "Dokandar folder",
+  "notifications": "Notifications",
+  "enableNotifications": "Enable Notifications",
+  "autoBackup": "Auto Backup",
+  "enableAutoBackup": "Enable Auto Backup",
+  "soundSettings": "Sound Settings",
+  "enableSound": "Enable Sound",
+  "vibration": "Vibration",
+  "enableVibration": "Enable Vibration",
+  "fontSize": "Font Size",
+  "selectFontSize": "Select Font Size",
+  "currency": "Currency",
+  "selectCurrency": "Select Currency",
+  "dateFormat": "Date Format",
+  "selectDateFormat": "Select Date Format",
+  "timeFormat": "Time Format",
+  "selectTimeFormat": "Select Time Format",
+  "pageSize": "Page Size",
+  "selectPageSize": "Select Page Size",
+  "cacheDuration": "Cache Duration",
+  "selectCacheDuration": "Select Cache Duration",
+  "clearCache": "Clear Cache",
+  "clearCacheDescription": "Clear all cached data",
+  "cacheCleared": "Cache cleared successfully",
+  "resetSettings": "Reset Settings",
+  "resetSettingsDescription": "Reset all settings to default",
+  "resetSettingsConfirm": "Are you sure you want to reset all settings to default?",
+  "settingsReset": "Settings reset successfully",
+  "small": "Small",
+  "medium": "Medium",
+  "large": "Large",
+  "extraLarge": "Extra Large",
+  "minutes": "minutes",
+  "hours": "hour(s)",
+  "itemsPerPage": "items per page"
 }
 

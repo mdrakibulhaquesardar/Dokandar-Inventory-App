@@ -2,10 +2,10 @@ import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 /// AppConfig - Centralized Configuration Class
-/// 
+///
 /// This class contains all app configuration settings that can be easily customized
 /// by CodeCanyon buyers. Simply modify the values below to customize your app.
-/// 
+///
 /// IMPORTANT FOR CODECANYON USERS:
 /// - Change all "Your Company Name", "support@example.com", etc. to your own information
 /// - Modify subscription plans, limits, and features according to your needs
@@ -20,7 +20,7 @@ class AppConfig extends GetxService {
   static const String lastUpdate = 'এপ্রিল ২০, ২০২৫';
   static const String appSize = '৩০ MB';
   static const String appDescription = 'ইনভেন্টরি ম্যানেজমেন্ট সিস্টেম';
-  
+
   // Developer/Company Information - CHANGE THESE FOR YOUR COMPANY
   static const String developerName = 'Your Company Name';
   static const String supportEmail = 'support@example.com';
@@ -30,26 +30,26 @@ class AppConfig extends GetxService {
   // APP FEATURES CONFIGURATION - Enable/Disable features
   // ============================================================================
   /// Set to true to enable subscription features in the app
-  static const bool enableSubscription = true;
-  
+  static const bool enableSubscription = false;
+
   /// Set to true to enable dark mode support
   static const bool enableDarkMode = true;
-  
+
   /// Set to true to enable push notifications
-  static const bool enableNotifications = true;
-  
+  static const bool enableNotifications = false;
+
   /// Set to true to enable data backup functionality
   static const bool enableBackup = true;
-  
+
   /// Set to true to enable analytics tracking
   static const bool enableAnalytics = true;
-  
+
   /// Set to true to enable multi-language support
   static const bool enableMultiLanguage = true;
-  
+
   /// Set to true to show language selection in settings
   static const bool enableMultiLanguageSupport = true;
-  
+
   /// Set to true for personal use (hides support/feedback options)
   static const bool enablePersonalUse = true;
 
@@ -58,13 +58,13 @@ class AppConfig extends GetxService {
   // ============================================================================
   /// Maximum number of products allowed in free plan
   static const int freePlanProductLimit = 10;
-  
+
   /// Maximum number of customers allowed in free plan
   static const int freePlanCustomerLimit = 5;
-  
+
   /// Trial period duration in days
   static const int trialPeriodDays = 7;
-  
+
   /// Low stock threshold - Products below this quantity will be marked as low stock
   static const int lowStockThreshold = 10;
   static const Map<String, Map<String, dynamic>> subscriptionPlans = {
@@ -99,10 +99,10 @@ class AppConfig extends GetxService {
   // ============================================================================
   /// Database name - Change this if you want a different database name
   static const String databaseName = 'dokandar_db';
-  
+
   /// Database version - Increment this when you make schema changes
   static const int databaseVersion = 1;
-  
+
   /// Enable database encryption (if supported)
   static const bool enableDatabaseEncryption = true;
 
@@ -111,13 +111,13 @@ class AppConfig extends GetxService {
   // ============================================================================
   /// Base URL for API endpoints - CHANGE THIS TO YOUR API URL
   static const String baseUrl = 'https://api.example.com';
-  
+
   /// API request timeout in milliseconds
   static const int apiTimeout = 30000; // 30 seconds
-  
+
   /// Maximum number of retry attempts for failed API calls
   static const int maxRetryAttempts = 3;
-  
+
   /// Delay between retry attempts in milliseconds
   static const int retryDelay = 1000; // 1 second
 
@@ -141,16 +141,39 @@ class AppConfig extends GetxService {
   // CURRENCY CONFIGURATION - Currency and number formatting
   // ============================================================================
   final RxString currentCurrency = 'BDT'.obs;
-  
+
   /// Currency symbol to display (e.g., ৳, $, €, ₹)
   static const String currencySymbol = '৳';
-  
+
+  /// Available currencies
+  static const Map<String, String> availableCurrencies = {
+    'BDT': '৳ BDT (Taka)',
+    'USD': '\$ USD (Dollar)',
+    'EUR': '€ EUR (Euro)',
+    'INR': '₹ INR (Rupee)',
+    'GBP': '£ GBP (Pound)',
+  };
+
+  /// Currency symbols map
+  static const Map<String, String> currencySymbols = {
+    'BDT': '৳',
+    'USD': '\$',
+    'EUR': '€',
+    'INR': '₹',
+    'GBP': '£',
+  };
+
+  /// Get currency symbol for current currency
+  String getCurrencySymbol() {
+    return currencySymbols[currentCurrency.value] ?? currencySymbol;
+  }
+
   /// Number of decimal places for currency display
   static const int decimalPlaces = 2;
-  
+
   /// Thousand separator character
   static const String thousandSeparator = ',';
-  
+
   /// Decimal separator character
   static const String decimalSeparator = '.';
 
@@ -194,10 +217,10 @@ class AppConfig extends GetxService {
   // ============================================================================
   /// Maximum file size in bytes (5MB default)
   static const int maxFileSize = 5 * 1024 * 1024; // 5MB
-  
+
   /// Allowed file extensions for uploads
   static const List<String> allowedFileTypes = ['jpg', 'jpeg', 'png', 'pdf'];
-  
+
   /// Directory name for uploaded files
   static const String uploadDirectory = 'uploads';
 
@@ -206,10 +229,10 @@ class AppConfig extends GetxService {
   // ============================================================================
   /// Notification display timeout in milliseconds
   static const int notificationTimeout = 5000; // 5 seconds
-  
+
   /// Enable sound for notifications
   static const bool enableSound = true;
-  
+
   /// Enable vibration for notifications
   static const bool enableVibration = true;
 
@@ -218,10 +241,10 @@ class AppConfig extends GetxService {
   // ============================================================================
   /// Enable automatic backups
   static const bool enableAutoBackup = true;
-  
+
   /// Backup frequency in hours
   static const int backupFrequency = 24; // hours
-  
+
   /// Maximum number of backup files to keep
   static const int maxBackupFiles = 5;
 
@@ -230,10 +253,10 @@ class AppConfig extends GetxService {
   // ============================================================================
   /// Enable user behavior tracking
   static const bool enableUserTracking = true;
-  
+
   /// Enable error reporting
   static const bool enableErrorReporting = true;
-  
+
   /// Enable performance monitoring
   static const bool enablePerformanceMonitoring = true;
 
@@ -262,31 +285,32 @@ class AppConfig extends GetxService {
     'বিক্রয় ট্র্যাকিং সিস্টেম',
   ];
   List<String> get appChangeLog => changeLog;
-  
+
   // ============================================================================
   // SUBSCRIPTION PLANS GETTERS - Access subscription plan data
   // ============================================================================
   /// Get all subscription plans
-  Map<String, Map<String, dynamic>> get subscriptionPlansData => subscriptionPlans;
-  
+  Map<String, Map<String, dynamic>> get subscriptionPlansData =>
+      subscriptionPlans;
+
   /// Get monthly plan details
   Map<String, dynamic>? get monthlyPlan => subscriptionPlans['monthly'];
-  
+
   /// Get quarterly plan details
   Map<String, dynamic>? get quarterlyPlan => subscriptionPlans['quarterly'];
-  
+
   /// Get half-yearly plan details
   Map<String, dynamic>? get halfYearlyPlan => subscriptionPlans['halfYearly'];
-  
+
   /// Get free plan product limit
   int get freeProductLimit => freePlanProductLimit;
-  
+
   /// Get free plan customer limit
   int get freeCustomerLimit => freePlanCustomerLimit;
-  
+
   /// Get trial period days
   int get trialDays => trialPeriodDays;
-  
+
   /// Get low stock threshold
   int get lowStockLimit => lowStockThreshold;
 
@@ -306,6 +330,7 @@ class AppConfig extends GetxService {
       _loadDateFormatPreferences(),
       _loadPaginationPreferences(),
       _loadCachePreferences(),
+      _loadNotificationPreferences(),
     ]);
   }
 
@@ -333,32 +358,33 @@ class AppConfig extends GetxService {
   Future<void> _loadCurrencyPreferences() async {
     currentCurrency.value = _prefs.getString('currency') ?? defaultCurrency;
   }
-  
+
   // ============================================================================
   // HELPER METHODS - Utility methods for configuration
   // ============================================================================
-  
+
   /// Format currency amount with symbol
   String formatCurrency(double amount) {
     final formatted = amount.toStringAsFixed(decimalPlaces);
-    return '$currencySymbol$formatted';
+    final symbol = getCurrencySymbol();
+    return '$symbol$formatted';
   }
-  
+
   /// Check if subscription is enabled
   bool get isSubscriptionEnabled => enableSubscription;
-  
+
   /// Check if dark mode is enabled
   bool get isDarkModeEnabled => enableDarkMode;
-  
+
   /// Check if backup is enabled
   bool get isBackupEnabled => enableBackup;
-  
+
   /// Check if notifications are enabled
   bool get isNotificationsEnabled => enableNotifications;
-  
+
   /// Get database name
   String get dbName => databaseName;
-  
+
   /// Get database version
   int get dbVersion => databaseVersion;
 
@@ -373,9 +399,24 @@ class AppConfig extends GetxService {
     currentTimeFormat.value = _prefs.getString('timeFormat') ?? timeFormat;
   }
 
+  Future<void> saveDateFormat(String format) async {
+    currentDateFormat.value = format;
+    await _prefs.setString('dateFormat', format);
+  }
+
+  Future<void> saveTimeFormat(String format) async {
+    currentTimeFormat.value = format;
+    await _prefs.setString('timeFormat', format);
+  }
+
   // Pagination preferences
   Future<void> _loadPaginationPreferences() async {
     currentPageSize.value = _prefs.getInt('pageSize') ?? defaultPageSize;
+  }
+
+  Future<void> savePageSize(int size) async {
+    currentPageSize.value = size;
+    await _prefs.setInt('pageSize', size);
   }
 
   // Cache preferences
@@ -384,13 +425,99 @@ class AppConfig extends GetxService {
         _prefs.getInt('cacheDuration') ?? cacheDuration;
   }
 
+  Future<void> saveCacheDuration(int duration) async {
+    currentCacheDuration.value = duration;
+    await _prefs.setInt('cacheDuration', duration);
+  }
+
+  // Notification preferences
+  final RxBool notificationsEnabled = true.obs;
+  final RxBool autoBackupEnabled = true.obs;
+  final RxBool soundEnabled = true.obs;
+  final RxBool vibrationEnabled = true.obs;
+
+  Future<void> _loadNotificationPreferences() async {
+    notificationsEnabled.value =
+        _prefs.getBool('notificationsEnabled') ?? enableNotifications;
+    autoBackupEnabled.value =
+        _prefs.getBool('autoBackupEnabled') ?? enableAutoBackup;
+    soundEnabled.value = _prefs.getBool('soundEnabled') ?? enableSound;
+    vibrationEnabled.value =
+        _prefs.getBool('vibrationEnabled') ?? enableVibration;
+  }
+
+  Future<void> saveNotificationsEnabled(bool enabled) async {
+    notificationsEnabled.value = enabled;
+    await _prefs.setBool('notificationsEnabled', enabled);
+  }
+
+  Future<void> saveAutoBackupEnabled(bool enabled) async {
+    autoBackupEnabled.value = enabled;
+    await _prefs.setBool('autoBackupEnabled', enabled);
+  }
+
+  Future<void> saveSoundEnabled(bool enabled) async {
+    soundEnabled.value = enabled;
+    await _prefs.setBool('soundEnabled', enabled);
+  }
+
+  Future<void> saveVibrationEnabled(bool enabled) async {
+    vibrationEnabled.value = enabled;
+    await _prefs.setBool('vibrationEnabled', enabled);
+  }
+
+  Future<void> clearCache() async {
+    // Clear cache-related preferences
+    await _prefs.remove('cacheDuration');
+    currentCacheDuration.value = cacheDuration;
+  }
+
+  Future<void> resetAllSettings() async {
+    // Reset all preferences to default
+    await saveTheme(defaultTheme);
+    await saveFontSize(defaultFontSize);
+    await saveCurrency(defaultCurrency);
+    await saveDateFormat(dateFormat);
+    await saveTimeFormat(timeFormat);
+    await savePageSize(defaultPageSize);
+    await saveCacheDuration(cacheDuration);
+    await saveNotificationsEnabled(enableNotifications);
+    await saveAutoBackupEnabled(enableAutoBackup);
+    await saveSoundEnabled(enableSound);
+    await saveVibrationEnabled(enableVibration);
+  }
+
   // Date formatting methods
   String getFormattedDate(DateTime date) {
-    return '${date.day.toString().padLeft(2, '0')}/${date.month.toString().padLeft(2, '0')}/${date.year}';
+    final format = currentDateFormat.value;
+
+    switch (format) {
+      case 'dd/MM/yyyy':
+        return '${date.day.toString().padLeft(2, '0')}/${date.month.toString().padLeft(2, '0')}/${date.year}';
+      case 'MM/dd/yyyy':
+        return '${date.month.toString().padLeft(2, '0')}/${date.day.toString().padLeft(2, '0')}/${date.year}';
+      case 'yyyy-MM-dd':
+        return '${date.year}-${date.month.toString().padLeft(2, '0')}-${date.day.toString().padLeft(2, '0')}';
+      case 'dd-MM-yyyy':
+        return '${date.day.toString().padLeft(2, '0')}-${date.month.toString().padLeft(2, '0')}-${date.year}';
+      default:
+        return '${date.day.toString().padLeft(2, '0')}/${date.month.toString().padLeft(2, '0')}/${date.year}';
+    }
   }
 
   String getFormattedTime(DateTime time) {
-    return '${time.hour.toString().padLeft(2, '0')}:${time.minute.toString().padLeft(2, '0')} ${time.hour < 12 ? 'AM' : 'PM'}';
+    final format = currentTimeFormat.value;
+
+    if (format == 'HH:mm') {
+      // 24-hour format
+      return '${time.hour.toString().padLeft(2, '0')}:${time.minute.toString().padLeft(2, '0')}';
+    } else {
+      // 12-hour format (hh:mm a)
+      final hour12 =
+          time.hour > 12 ? time.hour - 12 : (time.hour == 0 ? 12 : time.hour);
+      final amPm = time.hour < 12 ? 'AM' : 'PM';
+      return '${hour12.toString().padLeft(2, '0')}:${time.minute.toString().padLeft(2, '0')} $amPm';
+    }
   }
 
   // Static constants

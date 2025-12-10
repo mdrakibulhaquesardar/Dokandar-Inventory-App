@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
-import '../../../../l10n/app_localizations.dart';
+import '../../../utils/safe_google_fonts.dart';
+import 'package:dokandar_app_inventory/l10n/app_localizations.dart';
 import '../../../config/app_theme_config.dart';
 import '../../../config/app_config.dart';
 import '../../../widgets/Custom_AppBar.dart';
@@ -64,7 +64,7 @@ class SubscriptionView extends GetView {
       children: [
         Text(
           l10n.premiumSubscription,
-          style: GoogleFonts.poppins(
+          style: SafeGoogleFonts.poppins(
             fontSize: 28,
             fontWeight: FontWeight.bold,
             color: themeConfig.getTextPrimaryColor(isDarkMode),
@@ -73,7 +73,7 @@ class SubscriptionView extends GetView {
         const SizedBox(height: 8),
         Text(
           l10n.premiumSubtitle,
-          style: GoogleFonts.poppins(
+          style: SafeGoogleFonts.poppins(
             fontSize: 16,
             color: themeConfig.getTextSecondaryColor(isDarkMode),
           ),
@@ -108,7 +108,7 @@ class SubscriptionView extends GetView {
               const SizedBox(width: 8),
               Text(
                 '${l10n.currentPlan} ${l10n.free}',
-                style: GoogleFonts.poppins(
+                style: SafeGoogleFonts.poppins(
                   fontSize: 20,
                   fontWeight: FontWeight.w600,
                   color: Colors.blue.shade700,
@@ -119,7 +119,7 @@ class SubscriptionView extends GetView {
           const SizedBox(height: 16),
           Text(
             l10n.freePlanFeatures,
-            style: GoogleFonts.poppins(
+            style: SafeGoogleFonts.poppins(
               fontSize: 16,
               fontWeight: FontWeight.w500,
               color: themeConfig.getTextPrimaryColor(isDarkMode),
@@ -142,7 +142,7 @@ class SubscriptionView extends GetView {
       children: [
         Text(
           l10n.subscriptionPackages,
-          style: GoogleFonts.poppins(
+          style: SafeGoogleFonts.poppins(
             fontSize: 20,
             fontWeight: FontWeight.bold,
             color: themeConfig.getTextPrimaryColor(isDarkMode),
@@ -211,7 +211,7 @@ class SubscriptionView extends GetView {
   Widget _buildAdditionalInfo(AppThemeConfig themeConfig, bool isDarkMode, AppLocalizations l10n) {
     return Text(
       l10n.subscriptionAdditionalInfo,
-      style: GoogleFonts.poppins(
+      style: SafeGoogleFonts.poppins(
         fontSize: 14,
         color: themeConfig.getTextSecondaryColor(isDarkMode),
       ),
@@ -254,7 +254,7 @@ class SubscriptionView extends GetView {
                 children: [
                   Text(
                     duration,
-                    style: GoogleFonts.poppins(
+                    style: SafeGoogleFonts.poppins(
                       fontSize: 24,
                       fontWeight: FontWeight.bold,
                       color: themeConfig.getTextPrimaryColor(isDarkMode),
@@ -270,7 +270,7 @@ class SubscriptionView extends GetView {
                       ),
                       child: Text(
                         '${l10n.save} $savePercentage%',
-                        style: GoogleFonts.poppins(
+                        style: SafeGoogleFonts.poppins(
                           fontSize: 12,
                           fontWeight: FontWeight.w600,
                           color: Colors.green.shade700,
@@ -282,7 +282,7 @@ class SubscriptionView extends GetView {
               const SizedBox(height: 8),
               Text(
                 details, // Display additional details
-                style: GoogleFonts.poppins(
+                style: SafeGoogleFonts.poppins(
                   fontSize: 14,
                   color: themeConfig.getTextSecondaryColor(isDarkMode),
                 ),
@@ -293,7 +293,7 @@ class SubscriptionView extends GetView {
                 children: [
                   Text(
                     price,
-                    style: GoogleFonts.poppins(
+                    style: SafeGoogleFonts.poppins(
                       fontSize: 36,
                       fontWeight: FontWeight.bold,
                       color: themeConfig.getTextPrimaryColor(isDarkMode),
@@ -302,7 +302,7 @@ class SubscriptionView extends GetView {
                   const SizedBox(width: 8),
                   Text(
                     perMonth,
-                    style: GoogleFonts.poppins(
+                    style: SafeGoogleFonts.poppins(
                       fontSize: 14,
                       color: themeConfig.getTextSecondaryColor(isDarkMode),
                     ),
@@ -312,7 +312,7 @@ class SubscriptionView extends GetView {
               const SizedBox(height: 8),
               Text(
                 l10n.subscriptionExpiryNote(startDate),
-                style: GoogleFonts.poppins(
+                style: SafeGoogleFonts.poppins(
                   fontSize: 12,
                   color: themeConfig.getTextSecondaryColor(isDarkMode),
                 ),
@@ -341,7 +341,7 @@ class SubscriptionView extends GetView {
         ),
         child: Text(
           l10n.buyNow,
-          style: GoogleFonts.poppins(
+          style: SafeGoogleFonts.poppins(
             fontSize: 16,
             fontWeight: FontWeight.w500,
             color: themeConfig.getSurfaceColor(isDarkMode),
@@ -366,7 +366,7 @@ class SubscriptionView extends GetView {
           Expanded(
             child: Text(
               text,
-              style: GoogleFonts.poppins(
+              style: SafeGoogleFonts.poppins(
                 fontSize: 14,
                 color: Colors.black87,
               ),

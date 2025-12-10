@@ -1,0 +1,43 @@
+import 'package:isar/isar.dart';
+import 'package:uuid/uuid.dart';
+
+part 'employee.g.dart';
+
+@collection
+class Employee {
+  Id id = Isar.autoIncrement;
+
+  @Index(unique: true)
+  String? employeeCode;
+
+  late String name;
+  String? role;
+  String? phone;
+  String? email;
+  String? address;
+
+  double salary = 0;
+  double paid = 0;
+  double due = 0;
+
+  DateTime? joinedAt;
+  DateTime? updatedAt;
+
+  Employee({
+    required this.name,
+    this.role,
+    this.phone,
+    this.email,
+    this.address,
+    double salary = 0,
+    String? employeeCode,
+  }) : salary = salary,
+       employeeCode = employeeCode ?? const Uuid().v4(),
+       joinedAt = DateTime.now();
+
+  void recordPayment(double amount) {
+    paid += amount;
+    due = salary - paid;
+    updatedAt = DateTime.now();
+  }
+}

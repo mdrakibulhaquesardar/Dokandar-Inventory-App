@@ -794,8 +794,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get createBackup => 'Create Backup';
 
   @override
-  String get backupInstructions =>
-      'To create a backup, you must have sufficient space on your phone memory and backup files will be saved in your';
+  String backupInstructions(String folderName) {
+    return 'To create a backup, you must have sufficient space on your phone memory and backup files will be saved in your $folderName folder in phone memory.';
+  }
 
   @override
   String get dokandarFolder => 'Dokandar folder';
@@ -1058,4 +1059,153 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get add => 'Add';
+
+  @override
+  String stockInPieces(String quantity) {
+    return 'Stock: $quantity pieces';
+  }
+
+  @override
+  String get stock => 'Stock';
+
+  @override
+  String get pieces => 'pieces';
+
+  @override
+  String serviceInitFailed(String error) {
+    return 'Failed to initialize service: $error';
+  }
+
+  @override
+  String get backupSuccess => 'Backup successful!';
+
+  @override
+  String backupFailed(String error) {
+    return 'Backup failed: $error';
+  }
+
+  @override
+  String get restoreSuccess => 'Restore successful!';
+
+  @override
+  String restoreFailed(String error) {
+    return 'Restore failed: $error';
+  }
+
+  @override
+  String get failedToLoadDueCustomers => 'Failed to load due customers list';
+
+  @override
+  String get paymentUpdated => 'Payment updated';
+
+  @override
+  String get failedToUpdatePayment => 'Failed to update payment';
+
+  @override
+  String lastBackupDate(String date) {
+    return 'Last backup $date';
+  }
+
+  @override
+  String get notifications => 'Notifications';
+
+  @override
+  String get enableNotifications => 'Enable Notifications';
+
+  @override
+  String get autoBackup => 'Auto Backup';
+
+  @override
+  String get enableAutoBackup => 'Enable Auto Backup';
+
+  @override
+  String get soundSettings => 'Sound Settings';
+
+  @override
+  String get enableSound => 'Enable Sound';
+
+  @override
+  String get vibration => 'Vibration';
+
+  @override
+  String get enableVibration => 'Enable Vibration';
+
+  @override
+  String get fontSize => 'Font Size';
+
+  @override
+  String get selectFontSize => 'Select Font Size';
+
+  @override
+  String get currency => 'Currency';
+
+  @override
+  String get selectCurrency => 'Select Currency';
+
+  @override
+  String get dateFormat => 'Date Format';
+
+  @override
+  String get selectDateFormat => 'Select Date Format';
+
+  @override
+  String get timeFormat => 'Time Format';
+
+  @override
+  String get selectTimeFormat => 'Select Time Format';
+
+  @override
+  String get pageSize => 'Page Size';
+
+  @override
+  String get selectPageSize => 'Select Page Size';
+
+  @override
+  String get cacheDuration => 'Cache Duration';
+
+  @override
+  String get selectCacheDuration => 'Select Cache Duration';
+
+  @override
+  String get clearCache => 'Clear Cache';
+
+  @override
+  String get clearCacheDescription => 'Clear all cached data';
+
+  @override
+  String get cacheCleared => 'Cache cleared successfully';
+
+  @override
+  String get resetSettings => 'Reset Settings';
+
+  @override
+  String get resetSettingsDescription => 'Reset all settings to default';
+
+  @override
+  String get resetSettingsConfirm =>
+      'Are you sure you want to reset all settings to default?';
+
+  @override
+  String get settingsReset => 'Settings reset successfully';
+
+  @override
+  String get small => 'Small';
+
+  @override
+  String get medium => 'Medium';
+
+  @override
+  String get large => 'Large';
+
+  @override
+  String get extraLarge => 'Extra Large';
+
+  @override
+  String get minutes => 'minutes';
+
+  @override
+  String get hours => 'hour(s)';
+
+  @override
+  String get itemsPerPage => 'items per page';
 }
