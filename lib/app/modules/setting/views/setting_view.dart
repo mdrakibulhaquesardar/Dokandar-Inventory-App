@@ -420,8 +420,8 @@ class SettingView extends GetView<SettingController> {
                     color: isLocked
                         ? themeConfig
                             .getBorderColor(isDarkMode)
-                            .withOpacity(0.1)
-                        : color.withOpacity(0.1),
+                            .withValues(alpha: 0.1)
+                        : color.withValues(alpha: 0.1),
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: Icon(
@@ -765,37 +765,17 @@ class SettingView extends GetView<SettingController> {
               ),
             ),
             const SizedBox(height: 12),
-            Obx(() => RadioListTile<String>(
-                  title: Text('Light'),
-                  value: 'light',
-                  groupValue: appConfig.currentTheme.value,
-                  onChanged: (value) async {
-                    if (value != null) {
-                      await appConfig.saveTheme(value);
-                      Get.back();
-                    }
-                  },
-                )),
-            Obx(() => RadioListTile<String>(
-                  title: Text('Dark'),
-                  value: 'dark',
-                  groupValue: appConfig.currentTheme.value,
-                  onChanged: (value) async {
-                    if (value != null) {
-                      await appConfig.saveTheme(value);
-                      Get.back();
-                    }
-                  },
-                )),
-            Obx(() => RadioListTile<String>(
-                  title: Text('System'),
-                  value: 'system',
-                  groupValue: appConfig.currentTheme.value,
-                  onChanged: (value) async {
-                    if (value != null) {
-                      await appConfig.saveTheme(value);
-                      Get.back();
-                    }
+            Obx(() => SegmentedButton<String>(
+                  segments: const [
+                    ButtonSegment(value: 'light', label: Text('Light')),
+                    ButtonSegment(value: 'dark', label: Text('Dark')),
+                    ButtonSegment(value: 'system', label: Text('System')),
+                  ],
+                  selected: {appConfig.currentTheme.value},
+                  onSelectionChanged: (newSelection) async {
+                    final value = newSelection.first;
+                    await appConfig.saveTheme(value);
+                    Get.back();
                   },
                 )),
           ],
@@ -828,7 +808,7 @@ class SettingView extends GetView<SettingController> {
               width: 36,
               height: 36,
               decoration: BoxDecoration(
-                color: color.withOpacity(0.1),
+                color: color.withValues(alpha: 0.12),
                 borderRadius: BorderRadius.circular(8),
               ),
               child: Icon(
@@ -1211,3 +1191,5 @@ class SettingView extends GetView<SettingController> {
     );
   }
 }
+
+

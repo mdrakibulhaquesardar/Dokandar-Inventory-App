@@ -1,6 +1,5 @@
 
 import 'package:flutter/material.dart';
-import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import '../../../utils/safe_google_fonts.dart';
 import 'package:dokandar_app_inventory/l10n/app_localizations.dart';
@@ -44,7 +43,7 @@ class SetupView extends GetView<SetupController> {
                     const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                 decoration: BoxDecoration(
                   color:
-                      themeConfig.getPrimaryColor(isDarkMode).withOpacity(0.1),
+                      themeConfig.getPrimaryColor(isDarkMode).withValues(alpha: 0.1),
                   borderRadius: BorderRadius.circular(20),
                 ),
                 child: Row(
@@ -85,7 +84,7 @@ class SetupView extends GetView<SetupController> {
                           radius: 60,
                           backgroundColor: themeConfig
                               .getPrimaryColor(isDarkMode)
-                              .withOpacity(0.1),
+                              .withValues(alpha: 0.1),
                           child: const CircleAvatar(
                             radius: 58,
                             backgroundImage:
@@ -181,7 +180,7 @@ class SetupView extends GetView<SetupController> {
                             borderSide: BorderSide(
                               color: themeConfig
                                   .getTextSecondaryColor(isDarkMode)
-                                  .withOpacity(0.3),
+                                  .withValues(alpha: 0.1),
                             ),
                           ),
                           focusedBorder: OutlineInputBorder(
@@ -229,7 +228,7 @@ class SetupView extends GetView<SetupController> {
                             borderSide: BorderSide(
                               color: themeConfig
                                   .getTextSecondaryColor(isDarkMode)
-                                  .withOpacity(0.3),
+                                  .withValues(alpha: 0.1),
                             ),
                           ),
                           focusedBorder: OutlineInputBorder(
@@ -277,7 +276,7 @@ class SetupView extends GetView<SetupController> {
                             borderSide: BorderSide(
                               color: themeConfig
                                   .getTextSecondaryColor(isDarkMode)
-                                  .withOpacity(0.3),
+                                  .withValues(alpha: 0.1),
                             ),
                           ),
                           focusedBorder: OutlineInputBorder(
@@ -326,7 +325,7 @@ class SetupView extends GetView<SetupController> {
                             borderSide: BorderSide(
                               color: themeConfig
                                   .getTextSecondaryColor(isDarkMode)
-                                  .withOpacity(0.3),
+                                  .withValues(alpha: 0.1),
                             ),
                           ),
                           focusedBorder: OutlineInputBorder(
@@ -409,3 +408,5 @@ class SetupView extends GetView<SetupController> {
     );
   }
 }
+
+

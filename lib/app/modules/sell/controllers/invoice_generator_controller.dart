@@ -298,7 +298,7 @@ class InvoiceGeneratorController extends GetxController {
           borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
           boxShadow: [
             BoxShadow(
-              color: Colors.grey.withOpacity(0.3),
+              color: Colors.grey.withValues(alpha: 0.1),
               spreadRadius: 2,
               blurRadius: 10,
               offset: Offset(0, -2),
@@ -354,7 +354,7 @@ class InvoiceGeneratorController extends GetxController {
                 color: Colors.white,
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.grey.withOpacity(0.1),
+                    color: Colors.grey.withValues(alpha: 0.1),
                     spreadRadius: 1,
                     blurRadius: 5,
                     offset: Offset(0, -3),
@@ -455,3 +455,5 @@ class InvoiceGeneratorController extends GetxController {
     super.onClose();
   }
 }
+
+

@@ -112,7 +112,7 @@ class AllSalesView extends GetView<AllSalesController> {
         color: themeConfig.getSurfaceColor(isDarkMode),
         borderRadius: BorderRadius.circular(12),
         border: Border.all(
-          color: themeConfig.getPrimaryColor(isDarkMode).withOpacity(0.1),
+          color: themeConfig.getPrimaryColor(isDarkMode).withValues(alpha: 0.1),
         ),
       ),
       child: ListTile(
@@ -183,7 +183,7 @@ class AllSalesView extends GetView<AllSalesController> {
                     padding:
                         const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
                     decoration: BoxDecoration(
-                      color: Colors.red.withOpacity(0.1),
+                      color: Colors.red.withValues(alpha: 0.1),
                       borderRadius: BorderRadius.circular(4),
                     ),
                     child: Obx(() {
@@ -345,3 +345,5 @@ Widget _buildStatCard(String title, String value, IconData icon,
     ],
   );
 }
+
+

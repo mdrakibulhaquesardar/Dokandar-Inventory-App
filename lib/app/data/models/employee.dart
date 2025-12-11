@@ -29,10 +29,9 @@ class Employee {
     this.phone,
     this.email,
     this.address,
-    double salary = 0,
+    this.salary = 0,
     String? employeeCode,
-  }) : salary = salary,
-       employeeCode = employeeCode ?? const Uuid().v4(),
+  }) : employeeCode = employeeCode ?? const Uuid().v4(),
        joinedAt = DateTime.now();
 
   void recordPayment(double amount) {

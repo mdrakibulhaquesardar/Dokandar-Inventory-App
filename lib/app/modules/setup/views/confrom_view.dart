@@ -40,7 +40,7 @@ class ConfromView extends GetView<SetupController> {
                     const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                 decoration: BoxDecoration(
                   color:
-                      themeConfig.getPrimaryColor(isDarkMode).withOpacity(0.1),
+                      themeConfig.getPrimaryColor(isDarkMode).withValues(alpha: 0.1),
                   borderRadius: BorderRadius.circular(20),
                 ),
                 child: Row(
@@ -121,7 +121,7 @@ class ConfromView extends GetView<SetupController> {
                   border: Border.all(
                     color: themeConfig
                         .getPrimaryColor(isDarkMode)
-                        .withOpacity(0.1),
+                        .withValues(alpha: 0.1),
                   ),
                 ),
                 child: Column(
@@ -186,7 +186,7 @@ class ConfromView extends GetView<SetupController> {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12),
         side: BorderSide(
-          color: themeConfig.getPrimaryColor(isDarkMode).withOpacity(0.1),
+          color: themeConfig.getPrimaryColor(isDarkMode).withValues(alpha: 0.1),
         ),
       ),
       child: Padding(
@@ -227,3 +227,5 @@ class ConfromView extends GetView<SetupController> {
     );
   }
 }
+
+

@@ -27,7 +27,7 @@ class LoadingOverlay {
                   BoxShadow(
                     color: themeConfig
                         .getTextPrimaryColor(Get.isDarkMode)
-                        .withOpacity(0.1),
+                        .withValues(alpha: 0.1),
                     blurRadius: 16,
                     offset: const Offset(0, 8),
                   ),
@@ -55,7 +55,7 @@ class LoadingOverlay {
         ),
         barrierDismissible: false,
         barrierColor:
-            themeConfig.getTextPrimaryColor(Get.isDarkMode).withOpacity(0.5),
+            themeConfig.getTextPrimaryColor(Get.isDarkMode).withValues(alpha: 0.1),
         useSafeArea: true,
       );
     }
@@ -68,3 +68,5 @@ class LoadingOverlay {
     }
   }
 }
+
+

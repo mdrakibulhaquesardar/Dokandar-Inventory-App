@@ -106,7 +106,7 @@ class AllCategoryView extends GetView<AllCategoryController> {
                 decoration: BoxDecoration(
                   color: themeConfig
                       .getTextSecondaryColor(isDarkMode)
-                      .withOpacity(0.3),
+                      .withValues(alpha: 0.1),
                   borderRadius: BorderRadius.circular(2),
                 ),
               ),
@@ -140,7 +140,7 @@ class AllCategoryView extends GetView<AllCategoryController> {
                   borderSide: BorderSide(
                     color: themeConfig
                         .getPrimaryColor(isDarkMode)
-                        .withOpacity(0.5),
+                        .withValues(alpha: 0.1),
                   ),
                 ),
                 focusedBorder: OutlineInputBorder(
@@ -176,7 +176,7 @@ class AllCategoryView extends GetView<AllCategoryController> {
                   borderSide: BorderSide(
                     color: themeConfig
                         .getPrimaryColor(isDarkMode)
-                        .withOpacity(0.5),
+                        .withValues(alpha: 0.1),
                   ),
                 ),
                 focusedBorder: OutlineInputBorder(
@@ -266,7 +266,7 @@ class AllCategoryView extends GetView<AllCategoryController> {
                 decoration: BoxDecoration(
                   color: themeConfig
                       .getTextSecondaryColor(isDarkMode)
-                      .withOpacity(0.3),
+                      .withValues(alpha: 0.1),
                   borderRadius: BorderRadius.circular(2),
                 ),
               ),
@@ -300,7 +300,7 @@ class AllCategoryView extends GetView<AllCategoryController> {
                   borderSide: BorderSide(
                     color: themeConfig
                         .getPrimaryColor(isDarkMode)
-                        .withOpacity(0.5),
+                        .withValues(alpha: 0.1),
                   ),
                 ),
                 focusedBorder: OutlineInputBorder(
@@ -336,7 +336,7 @@ class AllCategoryView extends GetView<AllCategoryController> {
                   borderSide: BorderSide(
                     color: themeConfig
                         .getPrimaryColor(isDarkMode)
-                        .withOpacity(0.5),
+                        .withValues(alpha: 0.1),
                   ),
                 ),
                 focusedBorder: OutlineInputBorder(
@@ -393,3 +393,5 @@ class AllCategoryView extends GetView<AllCategoryController> {
     );
   }
 }
+
+

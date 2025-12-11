@@ -134,7 +134,7 @@ class FeedbackView extends GetView<FeedbackController> {
               Container(
                 padding: const EdgeInsets.all(8),
                 decoration: BoxDecoration(
-                  color: Colors.blue.withOpacity(0.1),
+                  color: Colors.blue.withValues(alpha: 0.1),
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: Icon(icon, color: Colors.blue, size: 24),
@@ -295,7 +295,7 @@ class FeedbackView extends GetView<FeedbackController> {
                 Container(
                   padding: const EdgeInsets.all(10),
                   decoration: BoxDecoration(
-                    color: Colors.blue.withOpacity(0.1),
+                    color: Colors.blue.withValues(alpha: 0.1),
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: Icon(icon, color: Colors.blue, size: 24),
@@ -409,3 +409,5 @@ class FeedbackView extends GetView<FeedbackController> {
     );
   }
 }
+
+

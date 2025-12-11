@@ -34,7 +34,7 @@ class CustomProfileSection extends StatelessWidget {
             children: [
               CircleAvatar(
                 radius: 40,
-                backgroundColor: themeConfig.getPrimaryColor(isDarkMode).withOpacity(0.1),
+                backgroundColor: themeConfig.getPrimaryColor(isDarkMode).withValues(alpha: 0.1),
                 child: CircleAvatar(
                   radius: 38,
                   backgroundImage: imageUrl != null
@@ -80,3 +80,4 @@ class CustomProfileSection extends StatelessWidget {
     );
   }
 }
+

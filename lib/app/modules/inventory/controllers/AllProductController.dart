@@ -1,7 +1,6 @@
 import 'package:dokandar_app_inventory/app/data/models/category.dart';
 import 'package:dokandar_app_inventory/app/core/services/database_service.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/foundation.dart' hide Category;
 import 'package:get/get.dart';
 
 import '../../../data/models/product.dart';

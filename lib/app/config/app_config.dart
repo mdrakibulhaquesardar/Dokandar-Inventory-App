@@ -69,27 +69,27 @@ class AppConfig extends GetxService {
   static const int lowStockThreshold = 10;
   static const Map<String, Map<String, dynamic>> subscriptionPlans = {
     'monthly': {
-      'name': '১ মাস',
-      'price': '৳৯৯',
-      'perMonth': '৳৯৯/মাস',
+      'name': '1 Month',
+      'price': '৳99',
+      'perMonth': '৳99/month',
       'savePercentage': null,
-      'expiryDate': 'এপ্রিল ২০২৫',
+      'expiryDate': 'April 2025',
       'features': ['Access to basic features and support.'],
     },
     'quarterly': {
-      'name': '৩ মাস',
-      'price': '৳২৯৯',
-      'perMonth': '৳৯৯/মাস',
+      'name': '3 Months',
+      'price': '৳299',
+      'perMonth': '৳99/month',
       'savePercentage': 15,
-      'expiryDate': 'জুলাই ২০২৫',
+      'expiryDate': 'July 2025',
       'features': ['Access to basic features and support.'],
     },
     'halfYearly': {
-      'name': '৬ মাস',
-      'price': '৳৫৯৯',
-      'perMonth': '৳৯৯/মাস',
+      'name': '6 Months',
+      'price': '৳599',
+      'perMonth': '৳99/month',
       'savePercentage': 25,
-      'expiryDate': 'অক্টোবর ২০২৫',
+      'expiryDate': 'October 2025',
       'features': ['Includes premium features and priority support.'],
     },
   };
@@ -279,10 +279,17 @@ class AppConfig extends GetxService {
   // ============================================================================
   /// Change log entries - Update this list with each app version
   static const List<String> changeLog = [
-    'প্রথম সংস্করণ প্রকাশ',
-    'বেসিক ফিচার যোগ করা হয়েছে',
-    'ইনভেন্টরি ম্যানেজমেন্ট সিস্টেম',
-    'বিক্রয় ট্র্যাকিং সিস্টেম',
+    'first version release',
+    'basic features added',
+    'inventory management system',
+    'sales tracking system',
+    'customer management system',
+    'employee management system',
+    'expense management system',
+    'report management system',
+    'settings management system',
+    'user management system',
+    'role management system',
   ];
   List<String> get appChangeLog => changeLog;
 

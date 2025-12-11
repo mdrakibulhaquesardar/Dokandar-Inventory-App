@@ -41,12 +41,12 @@ class AboutAppView extends GetView {
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         border: Border.all(
-                          color: Colors.blue.withOpacity(0.2),
+                          color: Colors.blue.withValues(alpha: 0.1),
                           width: 2,
                         ),
                         boxShadow: [
                           BoxShadow(
-                            color: Colors.blue.withOpacity(0.1),
+                            color: Colors.blue.withValues(alpha: 0.1),
                             blurRadius: 10,
                             spreadRadius: 2,
                           ),
@@ -54,7 +54,7 @@ class AboutAppView extends GetView {
                       ),
                       child: CircleAvatar(
                         radius: 40,
-                        backgroundColor: Colors.blue.withOpacity(0.1),
+                        backgroundColor: Colors.blue.withValues(alpha: 0.1),
                         backgroundImage: const AssetImage('assets/icon.png'),
                       ),
                     ),
@@ -188,7 +188,7 @@ class AboutAppView extends GetView {
               Container(
                 padding: const EdgeInsets.all(8),
                 decoration: BoxDecoration(
-                  color: Colors.blue.withOpacity(0.1),
+                  color: Colors.blue.withValues(alpha: 0.1),
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: Icon(icon, color: Colors.blue, size: 24),
@@ -238,7 +238,7 @@ class AboutAppView extends GetView {
         leading: Container(
           padding: const EdgeInsets.all(8),
           decoration: BoxDecoration(
-            color: Colors.blue.withOpacity(0.1),
+            color: Colors.blue.withValues(alpha: 0.1),
             borderRadius: BorderRadius.circular(8),
           ),
           child: Icon(icon, color: Colors.blue, size: 24),
@@ -439,3 +439,5 @@ class AboutAppView extends GetView {
     }
   }
 }
+
+

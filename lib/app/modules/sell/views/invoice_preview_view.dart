@@ -134,7 +134,7 @@ class InvoicePreviewView extends GetView<InvoiceGeneratorController> {
                     color: Colors.white,
                     border: Border(
                       top: BorderSide(
-                        color: Colors.grey.withOpacity(0.2),
+                        color: Colors.grey.withValues(alpha: 0.1),
                         width: 1,
                       ),
                     ),
@@ -205,3 +205,5 @@ class InvoicePreviewView extends GetView<InvoiceGeneratorController> {
     );
   }
 }
+
+

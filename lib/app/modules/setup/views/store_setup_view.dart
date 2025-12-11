@@ -45,7 +45,7 @@ class StoreSetupView extends GetView<SetupController> {
                   decoration: BoxDecoration(
                     color: themeConfig
                         .getPrimaryColor(isDarkMode)
-                        .withOpacity(0.1),
+                        .withValues(alpha: 0.1),
                     borderRadius: BorderRadius.circular(20),
                   ),
                   child: Row(
@@ -86,7 +86,7 @@ class StoreSetupView extends GetView<SetupController> {
                             radius: 60,
                             backgroundColor: themeConfig
                                 .getPrimaryColor(isDarkMode)
-                                .withOpacity(0.1),
+                                .withValues(alpha: 0.1),
                             child: Icon(
                               Icons.store_outlined,
                               size: 60,
@@ -248,7 +248,7 @@ class StoreSetupView extends GetView<SetupController> {
                   decoration: BoxDecoration(
                     color: themeConfig
                         .getPrimaryColor(isDarkMode)
-                        .withOpacity(0.1),
+                        .withValues(alpha: 0.1),
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: Row(
@@ -284,7 +284,7 @@ class StoreSetupView extends GetView<SetupController> {
                         style: TextButton.styleFrom(
                           backgroundColor: themeConfig
                               .getPrimaryColor(isDarkMode)
-                              .withOpacity(0.1),
+                              .withValues(alpha: 0.1),
                           padding: const EdgeInsets.symmetric(vertical: 16),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(12),
@@ -338,3 +338,5 @@ class StoreSetupView extends GetView<SetupController> {
         ));
   }
 }
+
+

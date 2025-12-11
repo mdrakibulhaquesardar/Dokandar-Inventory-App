@@ -42,7 +42,7 @@ class AllCategoryController extends GetxController {
   void updateCategory(Category category) async {
     try {
       await _databaseService.saveCategory(category);
-      final index = categories.indexWhere((c) => c.id == category.id!);
+      final index = categories.indexWhere((c) => c.id == category.id);
       if (index != -1) {
         categories[index] = category;
       }

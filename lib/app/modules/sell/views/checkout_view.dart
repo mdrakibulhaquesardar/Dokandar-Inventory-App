@@ -53,7 +53,7 @@ class CheckoutView extends GetView<SellController> {
                               decoration: BoxDecoration(
                                 color: themeConfig
                                     .getPrimaryColor(isDarkMode)
-                                    .withOpacity(0.1),
+                                    .withValues(alpha: 0.1),
                                 borderRadius: BorderRadius.circular(8),
                               ),
                               child: Icon(
@@ -77,7 +77,7 @@ class CheckoutView extends GetView<SellController> {
                               padding: const EdgeInsets.symmetric(
                                   horizontal: 6, vertical: 3),
                               decoration: BoxDecoration(
-                                color: Colors.green.withOpacity(0.1),
+                                color: Colors.green.withValues(alpha: 0.1),
                                 borderRadius: BorderRadius.circular(6),
                               ),
                               child: Text(
@@ -122,7 +122,7 @@ class CheckoutView extends GetView<SellController> {
                                   decoration: BoxDecoration(
                                     color: themeConfig
                                         .getPrimaryColor(isDarkMode)
-                                        .withOpacity(0.1),
+                                        .withValues(alpha: 0.1),
                                     borderRadius: BorderRadius.circular(8),
                                   ),
                                   child: Row(
@@ -177,7 +177,7 @@ class CheckoutView extends GetView<SellController> {
                               decoration: BoxDecoration(
                                 color: themeConfig
                                     .getAccentColor(isDarkMode)
-                                    .withOpacity(0.1),
+                                    .withValues(alpha: 0.1),
                                 borderRadius: BorderRadius.circular(8),
                               ),
                               child: Icon(
@@ -214,7 +214,7 @@ class CheckoutView extends GetView<SellController> {
                             color: themeConfig.getBackgroundColor(isDarkMode),
                             borderRadius: BorderRadius.circular(8),
                             border: Border.all(
-                              color: themeConfig.getBorderColor(isDarkMode).withOpacity(0.2),
+                              color: themeConfig.getBorderColor(isDarkMode).withValues(alpha: 0.1),
                               width: 1,
                             ),
                           ),
@@ -265,13 +265,13 @@ class CheckoutView extends GetView<SellController> {
                                   border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(8),
                                     borderSide: BorderSide(
-                                      color: themeConfig.getBorderColor(isDarkMode).withOpacity(0.2),
+                                      color: themeConfig.getBorderColor(isDarkMode).withValues(alpha: 0.1),
                                     ),
                                   ),
                                   enabledBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(8),
                                     borderSide: BorderSide(
-                                      color: themeConfig.getBorderColor(isDarkMode).withOpacity(0.2),
+                                      color: themeConfig.getBorderColor(isDarkMode).withValues(alpha: 0.1),
                                     ),
                                   ),
                                   focusedBorder: OutlineInputBorder(
@@ -307,13 +307,13 @@ class CheckoutView extends GetView<SellController> {
                                   border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(8),
                                     borderSide: BorderSide(
-                                      color: themeConfig.getBorderColor(isDarkMode).withOpacity(0.2),
+                                      color: themeConfig.getBorderColor(isDarkMode).withValues(alpha: 0.1),
                                     ),
                                   ),
                                   enabledBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(8),
                                     borderSide: BorderSide(
-                                      color: themeConfig.getBorderColor(isDarkMode).withOpacity(0.2),
+                                      color: themeConfig.getBorderColor(isDarkMode).withValues(alpha: 0.1),
                                     ),
                                   ),
                                   focusedBorder: OutlineInputBorder(
@@ -350,13 +350,13 @@ class CheckoutView extends GetView<SellController> {
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(8),
                               borderSide: BorderSide(
-                                color: themeConfig.getBorderColor(isDarkMode).withOpacity(0.2),
+                                color: themeConfig.getBorderColor(isDarkMode).withValues(alpha: 0.1),
                               ),
                             ),
                             enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(8),
                               borderSide: BorderSide(
-                                color: themeConfig.getBorderColor(isDarkMode).withOpacity(0.2),
+                                color: themeConfig.getBorderColor(isDarkMode).withValues(alpha: 0.1),
                               ),
                             ),
                             focusedBorder: OutlineInputBorder(
@@ -399,7 +399,7 @@ class CheckoutView extends GetView<SellController> {
                 color: themeConfig.getSurfaceColor(isDarkMode),
                 border: Border(
                   top: BorderSide(
-                    color: themeConfig.getBorderColor(isDarkMode).withOpacity(0.1),
+                    color: themeConfig.getBorderColor(isDarkMode).withValues(alpha: 0.1),
                     width: 1,
                   ),
                 ),
@@ -520,3 +520,5 @@ class CheckoutView extends GetView<SellController> {
   }
 
 }
+
+

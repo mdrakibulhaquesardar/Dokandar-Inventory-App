@@ -345,7 +345,7 @@ class InventoryView extends GetView<InventoryController> {
                           height: 36,
                           decoration: BoxDecoration(
                             color: (items[index]['color'] as Color)
-                                .withOpacity(0.1),
+                                .withValues(alpha: 0.1),
                             borderRadius: BorderRadius.circular(8),
                           ),
                           child: Icon(
@@ -426,7 +426,7 @@ class InventoryView extends GetView<InventoryController> {
                       width: 42,
                       height: 42,
                       decoration: BoxDecoration(
-                        color: color.withOpacity(0.1),
+                        color: color.withValues(alpha: 0.1),
                         borderRadius: BorderRadius.circular(8),
                       ),
                       child: Icon(icon, color: color, size: 22),
@@ -453,7 +453,7 @@ class InventoryView extends GetView<InventoryController> {
                   padding:
                       const EdgeInsets.symmetric(horizontal: 4, vertical: 2),
                   decoration: BoxDecoration(
-                    color: color.withOpacity(0.15),
+                    color: color.withValues(alpha: 0.1),
                     borderRadius: BorderRadius.circular(6),
                   ),
                   child: isLocked
@@ -479,3 +479,5 @@ class InventoryView extends GetView<InventoryController> {
     );
   }
 }
+
+

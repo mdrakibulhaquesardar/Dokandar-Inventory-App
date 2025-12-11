@@ -38,7 +38,7 @@ class BackupDataView extends GetView<DataManagementController> {
                     BoxShadow(
                       color: themeConfig
                           .getPrimaryColor(isDarkMode)
-                          .withOpacity(0.3),
+                          .withValues(alpha: 0.1),
                       blurRadius: 8,
                       offset: const Offset(0, 4),
                     ),
@@ -176,7 +176,7 @@ class BackupDataView extends GetView<DataManagementController> {
                       value: controller.backupProgress.value,
                       backgroundColor: themeConfig
                           .getTextSecondaryColor(isDarkMode)
-                          .withOpacity(0.1),
+                          .withValues(alpha: 0.1),
                       valueColor: AlwaysStoppedAnimation<Color>(
                         themeConfig.getPrimaryColor(isDarkMode),
                       ),
@@ -207,7 +207,7 @@ class BackupDataView extends GetView<DataManagementController> {
                   gradient: LinearGradient(
                     colors: [
                       themeConfig.getPrimaryColor(isDarkMode),
-                      themeConfig.getPrimaryColor(isDarkMode).withOpacity(0.8),
+                      themeConfig.getPrimaryColor(isDarkMode).withValues(alpha: 0.1),
                     ],
                     begin: Alignment.centerLeft,
                     end: Alignment.centerRight,
@@ -217,7 +217,7 @@ class BackupDataView extends GetView<DataManagementController> {
                     BoxShadow(
                       color: themeConfig
                           .getPrimaryColor(isDarkMode)
-                          .withOpacity(0.3),
+                          .withValues(alpha: 0.1),
                       blurRadius: 8,
                       offset: const Offset(0, 4),
                     ),
@@ -267,10 +267,10 @@ class BackupDataView extends GetView<DataManagementController> {
     return Container(
       height: 200,
       decoration: BoxDecoration(
-        color: color.withOpacity(0.1),
+        color: color.withValues(alpha: 0.1),
         borderRadius: BorderRadius.circular(10),
         border: Border.all(
-          color: color.withOpacity(0.2),
+          color: color.withValues(alpha: 0.1),
         ),
       ),
       child: Column(
@@ -283,7 +283,7 @@ class BackupDataView extends GetView<DataManagementController> {
               width: 50,
               height: 50,
               decoration: BoxDecoration(
-                color: color.withOpacity(0.2),
+                color: color.withValues(alpha: 0.1),
                 borderRadius: BorderRadius.circular(15),
               ),
               child: Icon(
@@ -348,3 +348,5 @@ class BackupDataView extends GetView<DataManagementController> {
     );
   }
 }
+
+

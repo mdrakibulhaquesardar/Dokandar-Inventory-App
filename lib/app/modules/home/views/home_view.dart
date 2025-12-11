@@ -92,7 +92,7 @@ class HomeView extends GetView<HomeController> {
                       decoration: BoxDecoration(
                         color: themeConfig
                             .getPrimaryColor(isDarkMode)
-                            .withOpacity(0.1),
+                            .withValues(alpha: 0.1),
                         borderRadius: BorderRadius.circular(8),
                       ),
                       child: IconButton(
@@ -344,7 +344,7 @@ class _SummaryCard extends StatelessWidget {
               Container(
                 padding: const EdgeInsets.all(6),
                 decoration: BoxDecoration(
-                  color: color.withOpacity(0.15),
+                  color: color.withValues(alpha: 0.1),
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: Icon(
@@ -431,7 +431,7 @@ class _RecentSalesList extends GetView<HomeController> {
                         bottom: BorderSide(
                           color: themeConfig
                               .getBorderColor(isDarkMode)
-                              .withOpacity(0.1),
+                              .withValues(alpha: 0.1),
                           width: 0.5,
                         ),
                       ),
@@ -445,7 +445,7 @@ class _RecentSalesList extends GetView<HomeController> {
                         decoration: BoxDecoration(
                           color: themeConfig
                               .getPrimaryColor(isDarkMode)
-                              .withOpacity(0.1),
+                              .withValues(alpha: 0.1),
                           borderRadius: BorderRadius.circular(8),
                         ),
                         child: Icon(
@@ -511,7 +511,7 @@ class _LowStockProductsList extends GetView<HomeController> {
                     bottom: BorderSide(
                       color: themeConfig
                           .getBorderColor(isDarkMode)
-                          .withOpacity(0.1),
+                          .withValues(alpha: 0.1),
                       width: 0.5,
                     ),
                   ),
@@ -525,7 +525,7 @@ class _LowStockProductsList extends GetView<HomeController> {
                     decoration: BoxDecoration(
                       color: themeConfig
                           .getWarningColor(isDarkMode)
-                          .withOpacity(0.1),
+                          .withValues(alpha: 0.1),
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: Icon(
@@ -582,3 +582,5 @@ class _LowStockProductsList extends GetView<HomeController> {
     );
   }
 }
+
+

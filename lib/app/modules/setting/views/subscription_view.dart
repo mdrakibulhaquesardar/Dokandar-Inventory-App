@@ -234,7 +234,9 @@ class SubscriptionView extends GetView {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(16),
         color: isSelected
-            ? themeConfig.getPrimaryColor(isDarkMode).withOpacity(0.05)
+            ? themeConfig
+                .getPrimaryColor(isDarkMode)
+                .withValues(alpha: 0.08)
             : themeConfig.getSurfaceColor(isDarkMode),
         border: isSelected
             ? Border.all(
@@ -377,3 +379,4 @@ class SubscriptionView extends GetView {
     );
   }
 }
+

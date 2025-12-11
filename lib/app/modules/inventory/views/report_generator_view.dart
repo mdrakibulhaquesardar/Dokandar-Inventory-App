@@ -158,7 +158,7 @@ class ReportGeneratorView extends GetView<ReportController> {
       label: Text(label),
       selected: controller.reportType.value == value,
       onSelected: (_) => controller.setReportType(value),
-      selectedColor: themeConfig.getPrimaryColor(isDarkMode).withOpacity(0.2),
+      selectedColor: themeConfig.getPrimaryColor(isDarkMode).withValues(alpha: 0.1),
     );
   }
 
@@ -178,4 +178,6 @@ class ReportGeneratorView extends GetView<ReportController> {
     );
   }
 }
+
+
 

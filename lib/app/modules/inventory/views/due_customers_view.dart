@@ -86,7 +86,7 @@ class DueCustomersView extends GetView<DueCustomersController> {
                             color: themeConfig.getSurfaceColor(isDarkMode),
                             borderRadius: BorderRadius.circular(12),
                             border: Border.all(
-                              color: themeConfig.getPrimaryColor(isDarkMode).withOpacity(0.1),
+                              color: themeConfig.getPrimaryColor(isDarkMode).withValues(alpha: 0.1),
                             ),
                           ),
                           child: ListTile(
@@ -186,7 +186,7 @@ class DueCustomersView extends GetView<DueCustomersController> {
                 color: themeConfig.getBackgroundColor(isDarkMode),
                 borderRadius: BorderRadius.circular(12),
                 border: Border.all(
-                  color: themeConfig.getPrimaryColor(isDarkMode).withOpacity(0.1),
+                  color: themeConfig.getPrimaryColor(isDarkMode).withValues(alpha: 0.1),
                 ),
               ),
               child: Column(
@@ -316,3 +316,5 @@ class DueCustomersView extends GetView<DueCustomersController> {
     );
   }
 }
+
+

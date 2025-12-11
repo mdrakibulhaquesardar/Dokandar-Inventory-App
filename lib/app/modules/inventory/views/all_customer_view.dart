@@ -133,7 +133,7 @@ class AllCustomerView extends GetView<AllCustomerController> {
           color: themeConfig.getSurfaceColor(isDarkMode),
           borderRadius: BorderRadius.circular(12),
           border: Border.all(
-            color: themeConfig.getPrimaryColor(isDarkMode).withOpacity(0.1),
+            color: themeConfig.getPrimaryColor(isDarkMode).withValues(alpha: 0.1),
             width: 1,
           ),
         ),
@@ -144,7 +144,7 @@ class AllCustomerView extends GetView<AllCustomerController> {
               CircleAvatar(
                 radius: 20,
                 backgroundColor:
-                themeConfig.getPrimaryColor(isDarkMode).withOpacity(0.1),
+                themeConfig.getPrimaryColor(isDarkMode).withValues(alpha: 0.1),
                 child: Text(
                   customerName[0].toUpperCase(),
                   style: TextStyle(
@@ -196,7 +196,7 @@ class AllCustomerView extends GetView<AllCustomerController> {
                           decoration: BoxDecoration(
                             color: themeConfig
                                 .getPrimaryColor(isDarkMode)
-                                .withOpacity(0.1),
+                                .withValues(alpha: 0.1),
                             borderRadius: BorderRadius.circular(6),
                           ),
                           child: Text(
@@ -214,7 +214,7 @@ class AllCustomerView extends GetView<AllCustomerController> {
                           padding: const EdgeInsets.symmetric(
                               horizontal: 8, vertical: 4),
                           decoration: BoxDecoration(
-                            color: Colors.red.withOpacity(0.1),
+                            color: Colors.red.withValues(alpha: 0.1),
                             borderRadius: BorderRadius.circular(6),
                           ),
                           child: Text(
@@ -240,7 +240,7 @@ class AllCustomerView extends GetView<AllCustomerController> {
                   decoration: BoxDecoration(
                     color: themeConfig
                         .getPrimaryColor(isDarkMode)
-                        .withOpacity(0.5),
+                        .withValues(alpha: 0.1),
                     borderRadius: BorderRadius.circular(6),
                   ),
                   child: Text(
@@ -617,3 +617,5 @@ Widget _buildStatCard(String title, String value, IconData icon,
     ],
   );
 }
+
+

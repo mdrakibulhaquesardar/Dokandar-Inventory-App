@@ -206,7 +206,7 @@ class AllProductsView extends GetView<AllProductController> {
                                               color: themeConfig
                                                   .getTextSecondaryColor(
                                                   isDarkMode)
-                                                  .withOpacity(0.05),
+                                                  .withValues(alpha: 0.1),
                                               borderRadius:
                                               BorderRadius.circular(8),
                                             ),
@@ -445,7 +445,7 @@ class AllProductsView extends GetView<AllProductController> {
                         decoration: BoxDecoration(
                           color: themeConfig
                               .getPrimaryColor(isDarkMode)
-                              .withOpacity(0.1),
+                              .withValues(alpha: 0.1),
                           borderRadius: BorderRadius.circular(8),
                         ),
                         child: Icon(
@@ -472,8 +472,8 @@ class AllProductsView extends GetView<AllProductController> {
                                     horizontal: 8, vertical: 4),
                                 decoration: BoxDecoration(
                                   color: product.stockQuantity < AppConfig.lowStockThreshold
-                                      ? Colors.red.withOpacity(0.1)
-                                      : Colors.green.withOpacity(0.1),
+                                      ? Colors.red.withValues(alpha: 0.1)
+                                      : Colors.green.withValues(alpha: 0.1),
                                   borderRadius: BorderRadius.circular(4),
                                 ),
                                 child: Text(
@@ -494,7 +494,7 @@ class AllProductsView extends GetView<AllProductController> {
                                 decoration: BoxDecoration(
                                   color: themeConfig
                                       .getPrimaryColor(isDarkMode)
-                                      .withOpacity(0.1),
+                                      .withValues(alpha: 0.1),
                                   borderRadius: BorderRadius.circular(4),
                                 ),
                                 child: Obx(() {
@@ -702,7 +702,7 @@ class AllProductsView extends GetView<AllProductController> {
       width: (screenWidth - 40) / 3,
       padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
-        color: themeConfig.getPrimaryColor(isDarkMode).withOpacity(0.1),
+        color: themeConfig.getPrimaryColor(isDarkMode).withValues(alpha: 0.1),
         borderRadius: BorderRadius.circular(8),
       ),
       child: Column(
@@ -747,3 +747,5 @@ class AllProductsView extends GetView<AllProductController> {
     );
   }
 }
+
+

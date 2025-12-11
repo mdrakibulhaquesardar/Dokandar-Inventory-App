@@ -63,7 +63,7 @@ class TransactionHistoryView extends GetView<TransactionController> {
                             backgroundColor: (isSale
                                     ? themeConfig.getSuccessColor(isDarkMode)
                                     : themeConfig.getErrorColor(isDarkMode))
-                                .withOpacity(0.1),
+                                .withValues(alpha: 0.1),
                             child: Icon(
                               isSale ? Icons.arrow_upward : Icons.arrow_downward,
                               color: isSale
@@ -158,4 +158,6 @@ class TransactionHistoryView extends GetView<TransactionController> {
     );
   }
 }
+
+
 

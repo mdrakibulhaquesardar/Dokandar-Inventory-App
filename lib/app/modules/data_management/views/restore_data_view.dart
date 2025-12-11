@@ -73,7 +73,7 @@ class RestoreDataView extends GetView<DataManagementController> {
                 padding: const EdgeInsets.all(8),
                 decoration: BoxDecoration(
                   color:
-                      themeConfig.getPrimaryColor(isDarkMode).withOpacity(0.1),
+                      themeConfig.getPrimaryColor(isDarkMode).withValues(alpha: 0.1),
                   borderRadius: BorderRadius.circular(12),
                 ),
                 child: Icon(
@@ -149,7 +149,7 @@ class RestoreDataView extends GetView<DataManagementController> {
           Container(
             padding: const EdgeInsets.all(12),
             decoration: BoxDecoration(
-              color: color.withOpacity(0.1),
+              color: color.withValues(alpha: 0.1),
               borderRadius: BorderRadius.circular(12),
             ),
             child: Icon(
@@ -266,7 +266,7 @@ class RestoreDataView extends GetView<DataManagementController> {
                     value: controller.restoreProgress.value,
                     backgroundColor: themeConfig
                         .getTextSecondaryColor(isDarkMode)
-                        .withOpacity(0.1),
+                        .withValues(alpha: 0.1),
                     valueColor: AlwaysStoppedAnimation<Color>(
                       themeConfig.getPrimaryColor(isDarkMode),
                     ),
@@ -329,3 +329,5 @@ class RestoreDataView extends GetView<DataManagementController> {
         ));
   }
 }
+
+

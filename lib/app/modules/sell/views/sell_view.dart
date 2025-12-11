@@ -59,7 +59,7 @@ class SellView extends GetView<SellController> {
                       fontSize: 14,
                       color: themeConfig
                           .getTextPrimaryColor(isDarkMode)
-                          .withOpacity(0.5),
+                          .withValues(alpha: 0.1),
                     ),
                   ),
                 ),
@@ -81,7 +81,7 @@ class SellView extends GetView<SellController> {
                               decoration: BoxDecoration(
                                 border: Border(
                                   bottom: BorderSide(
-                                    color: themeConfig.getBorderColor(isDarkMode).withOpacity(0.1),
+                                    color: themeConfig.getBorderColor(isDarkMode).withValues(alpha: 0.1),
                                     width: 0.5,
                                   ),
                                 ),
@@ -143,7 +143,7 @@ class SellView extends GetView<SellController> {
                           decoration: BoxDecoration(
                             color: themeConfig
                                 .getPrimaryColor(isDarkMode)
-                                .withOpacity(0.1),
+                                .withValues(alpha: 0.1),
                             borderRadius: BorderRadius.circular(8),
                           ),
                           child: Icon(
@@ -179,7 +179,7 @@ class SellView extends GetView<SellController> {
                                 decoration: BoxDecoration(
                                   color: themeConfig
                                       .getPrimaryColor(isDarkMode)
-                                      .withOpacity(0.1),
+                                      .withValues(alpha: 0.1),
                                   borderRadius: BorderRadius.circular(8),
                                 ),
                                 child: Row(
@@ -307,3 +307,5 @@ class SellView extends GetView<SellController> {
     );
   }
 }
+
+
