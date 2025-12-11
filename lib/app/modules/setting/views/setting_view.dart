@@ -3,6 +3,7 @@ import 'package:dokandar_app_inventory/app/routes/app_pages.dart';
 import 'package:dokandar_app_inventory/app/utils/DateTimeUtils.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 import '../../../utils/safe_google_fonts.dart';
 import 'package:dokandar_app_inventory/l10n/app_localizations.dart';
 import '../../../core/services/localization_service.dart';
@@ -161,6 +162,19 @@ class SettingView extends GetView<SettingController> {
                 context: context,
               );
             }),
+            _buildSettingCard(
+              title: l10n.appLockTitle,
+              subtitle: l10n.appLockSubtitle,
+              icon: Icons.lock_outline,
+              color: Colors.redAccent,
+              onTap: () {
+                Get.toNamed(Routes.MANAGE_PIN);
+              },
+              themeConfig: themeConfig,
+              isDarkMode: isDarkMode,
+              isLocked: false,
+              context: context,
+            ),
             Obx(() {
               final appConfig = Get.find<AppConfig>();
               final fontSizeLabels = {
@@ -347,6 +361,15 @@ class SettingView extends GetView<SettingController> {
                 context: context,
               ),
             _buildSettingCard(
+              title: l10n.privacyPolicy,
+              icon: Icons.privacy_tip_outlined,
+              color: Colors.teal,
+              onTap: () => _launchUrl(AppConfig.privacyPolicyUrl),
+              themeConfig: themeConfig,
+              isDarkMode: isDarkMode,
+              context: context,
+            ),
+            _buildSettingCard(
               title: l10n.aboutApp,
               icon: Icons.info_outline,
               color: Colors.blueAccent,
@@ -469,6 +492,19 @@ class SettingView extends GetView<SettingController> {
         ),
       ),
     );
+  }
+
+  Future<void> _launchUrl(String url) async {
+    final ok = await launchUrlString(url);
+    if (!ok) {
+      Get.snackbar(
+        'Error',
+        'Could not open link',
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: Colors.red,
+        colorText: Colors.white,
+      );
+    }
   }
 
   void _showLanguageSelector(
@@ -765,19 +801,43 @@ class SettingView extends GetView<SettingController> {
               ),
             ),
             const SizedBox(height: 12),
-            Obx(() => SegmentedButton<String>(
-                  segments: const [
-                    ButtonSegment(value: 'light', label: Text('Light')),
-                    ButtonSegment(value: 'dark', label: Text('Dark')),
-                    ButtonSegment(value: 'system', label: Text('System')),
-                  ],
-                  selected: {appConfig.currentTheme.value},
-                  onSelectionChanged: (newSelection) async {
-                    final value = newSelection.first;
-                    await appConfig.saveTheme(value);
-                    Get.back();
-                  },
-                )),
+            Obx(() {
+              final current = appConfig.currentTheme.value;
+              final options = [
+                ('light', 'Light'),
+                ('dark', 'Dark'),
+                ('system', 'System'),
+              ];
+              return Column(
+                children: options.map((opt) {
+                  final value = opt.$1;
+                  final label = opt.$2;
+                  final selected = current == value;
+                  return ListTile(
+                    contentPadding:
+                        const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                    leading: Icon(
+                      selected ? Icons.check_circle : Icons.circle_outlined,
+                      color: selected
+                          ? themeConfig.getPrimaryColor(isDarkMode)
+                          : themeConfig.getTextSecondaryColor(isDarkMode),
+                    ),
+                    title: Text(
+                      label,
+                      style: SafeGoogleFonts.poppins(
+                        fontWeight:
+                            selected ? FontWeight.w600 : FontWeight.normal,
+                        color: themeConfig.getTextPrimaryColor(isDarkMode),
+                      ),
+                    ),
+                    onTap: () async {
+                      await appConfig.saveTheme(value);
+                      Get.back();
+                    },
+                  );
+                }).toList(),
+              );
+            }),
           ],
         ),
       ),
@@ -1191,5 +1251,3 @@ class SettingView extends GetView<SettingController> {
     );
   }
 }
-
-

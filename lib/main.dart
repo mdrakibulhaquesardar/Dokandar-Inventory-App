@@ -1,5 +1,6 @@
 import 'package:dokandar_app_inventory/app/modules/home/controllers/home_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
@@ -23,14 +24,8 @@ void main() async {
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
   // Initialize services
   final dbService = await Get.putAsync(() => DatabaseService().init());
-  await Get.putAsync(() => AppConfig().init());
+  final appConfig = await Get.putAsync(() => AppConfig().init());
   Get.put(AppThemeConfig());
-
-  // Initialize BackupService
-  await Get.putAsync(() => BackupService().init(dbService.isar));
-
-  // Initialize AutoBackupService (will start automatic backups if enabled)
-  Get.put(AutoBackupService());
 
   // Initialize LocalizationService if multi-language is enabled
   Locale initialLocale = Locale(AppConfig.defaultLanguage);
@@ -48,11 +43,28 @@ void main() async {
   Get.put(SellController());
   Get.put(InventoryController());
 
+  // Defer heavier non-UI initializations to after first frame
+  _initDeferredServices(dbService);
+
   // Check if user exists
   final hasUser = await dbService.hasUser();
-  final initialRoute = hasUser ? Routes.MAIN : Routes.SETUP;
+  final shouldLock =
+      hasUser && appConfig.isPinLockEnabled && !appConfig.isSessionUnlocked;
+  final initialRoute =
+      hasUser ? (shouldLock ? Routes.APP_LOCK : Routes.MAIN) : Routes.SETUP;
 
   runApp(MyApp(initialRoute: initialRoute, initialLocale: initialLocale));
+}
+
+void _initDeferredServices(DatabaseService dbService) {
+  WidgetsBinding.instance.addPostFrameCallback((_) async {
+    try {
+      await Get.putAsync(() => BackupService().init(dbService.isar));
+      Get.put(AutoBackupService());
+    } catch (e) {
+      debugPrint('Deferred service init failed: $e');
+    }
+  });
 }
 
 class MyApp extends StatelessWidget {

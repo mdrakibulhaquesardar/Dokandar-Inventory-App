@@ -1,6 +1,9 @@
 import 'package:dokandar_app_inventory/app/modules/setting/views/subscription_view.dart';
 import 'package:get/get.dart';
 
+import '../modules/app_lock/bindings/app_lock_binding.dart';
+import '../modules/app_lock/views/lock_screen_view.dart';
+import '../modules/app_lock/views/manage_pin_view.dart';
 import '../modules/data_management/bindings/data_management_binding.dart';
 import '../modules/data_management/views/backup_data_view.dart';
 import '../modules/data_management/views/restore_data_view.dart';
@@ -57,6 +60,12 @@ class AppPages {
       page: () => const MainView(),
     ),
     GetPage(
+      name: _Paths.APP_LOCK,
+      page: () => const LockScreenView(),
+      binding: AppLockBinding(),
+      transition: Transition.fadeIn,
+    ),
+    GetPage(
       name: _Paths.HOME,
       page: () => const HomeView(),
       binding: HomeBinding(),
@@ -70,6 +79,11 @@ class AppPages {
       name: _Paths.SETTING,
       page: () => const SettingView(),
       binding: SettingBinding(),
+    ),
+    GetPage(
+      name: _Paths.MANAGE_PIN,
+      page: () => const ManagePinView(),
+      binding: AppLockBinding(),
     ),
     GetPage(
       name: _Paths.SELL,

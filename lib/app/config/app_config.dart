@@ -1,3 +1,7 @@
+import 'dart:convert';
+import 'dart:math';
+
+import 'package:crypto/crypto.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -112,6 +116,9 @@ class AppConfig extends GetxService {
   /// Base URL for API endpoints - CHANGE THIS TO YOUR API URL
   static const String baseUrl = 'https://api.example.com';
 
+  /// Privacy policy URL (used in Settings -> Support & Help)
+  static const String privacyPolicyUrl = 'https://example.com/privacy-policy';
+
   /// API request timeout in milliseconds
   static const int apiTimeout = 30000; // 30 seconds
 
@@ -194,6 +201,14 @@ class AppConfig extends GetxService {
   // Pagination Configuration
   final RxInt currentPageSize = 20.obs;
   static const List<int> availablePageSizes = [10, 20, 50, 100];
+
+  // App Lock Configuration
+  final RxBool pinLockEnabled = false.obs;
+  String? _pinSalt;
+  String? _pinHash;
+  bool _sessionUnlocked = false;
+  static const int minPinLength = 4;
+  static const int maxPinLength = 8;
 
   // Cache Configuration
   final RxInt currentCacheDuration = 3600.obs; // 1 hour in seconds
@@ -338,6 +353,7 @@ class AppConfig extends GetxService {
       _loadPaginationPreferences(),
       _loadCachePreferences(),
       _loadNotificationPreferences(),
+      _loadLockPreferences(),
     ]);
   }
 
@@ -435,6 +451,68 @@ class AppConfig extends GetxService {
   Future<void> saveCacheDuration(int duration) async {
     currentCacheDuration.value = duration;
     await _prefs.setInt('cacheDuration', duration);
+  }
+
+  // Lock preferences
+  Future<void> _loadLockPreferences() async {
+    pinLockEnabled.value = _prefs.getBool('pinLockEnabled') ?? false;
+    _pinSalt = _prefs.getString('pinSalt');
+    _pinHash = _prefs.getString('pinHash');
+  }
+
+  bool get isPinLockEnabled =>
+      pinLockEnabled.value && _pinSalt != null && _pinHash != null;
+
+  bool get isSessionUnlocked => _sessionUnlocked;
+
+  Future<void> savePin(String pin) async {
+    final salt = _generateSalt();
+    final hash = _hashPin(pin, salt);
+    _pinSalt = salt;
+    _pinHash = hash;
+    pinLockEnabled.value = true;
+    await Future.wait([
+      _prefs.setBool('pinLockEnabled', true),
+      _prefs.setString('pinSalt', salt),
+      _prefs.setString('pinHash', hash),
+    ]);
+  }
+
+  Future<void> disablePinLock() async {
+    pinLockEnabled.value = false;
+    _pinSalt = null;
+    _pinHash = null;
+    _sessionUnlocked = false;
+    await Future.wait([
+      _prefs.remove('pinLockEnabled'),
+      _prefs.remove('pinSalt'),
+      _prefs.remove('pinHash'),
+    ]);
+  }
+
+  Future<bool> verifyPin(String pin) async {
+    if (_pinSalt == null || _pinHash == null) return false;
+    final computed = _hashPin(pin, _pinSalt!);
+    final match = computed == _pinHash;
+    if (match) {
+      _sessionUnlocked = true;
+    }
+    return match;
+  }
+
+  void markSessionUnlocked() {
+    _sessionUnlocked = true;
+  }
+
+  String _hashPin(String pin, String salt) {
+    final bytes = utf8.encode('$salt$pin');
+    return sha256.convert(bytes).toString();
+  }
+
+  String _generateSalt() {
+    final random = Random.secure();
+    final bytes = List<int>.generate(16, (_) => random.nextInt(256));
+    return base64Url.encode(bytes);
   }
 
   // Notification preferences

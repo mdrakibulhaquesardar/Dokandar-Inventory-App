@@ -1208,4 +1208,72 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get itemsPerPage => 'items per page';
+
+  @override
+  String get appLockTitle => 'App Lock';
+
+  @override
+  String get appLockSubtitle => 'Set PIN lock';
+
+  @override
+  String get enterPinToContinue => 'Enter your PIN to continue';
+
+  @override
+  String get invalidPinMessage => 'Invalid PIN, please try again';
+
+  @override
+  String get appLockEnabled => 'App lock is enabled';
+
+  @override
+  String get appLockDisabled => 'Protect your app with a PIN';
+
+  @override
+  String get setPin => 'Set PIN';
+
+  @override
+  String get changePin => 'Change PIN';
+
+  @override
+  String get currentPin => 'Current PIN';
+
+  @override
+  String get newPin => 'New PIN';
+
+  @override
+  String get confirmPin => 'Confirm PIN';
+
+  @override
+  String get saving => 'Saving...';
+
+  @override
+  String get enableAppLockButton => 'Enable App Lock';
+
+  @override
+  String get updatePinButton => 'Update PIN';
+
+  @override
+  String get disableAppLockButton => 'Disable App Lock';
+
+  @override
+  String get genericError => 'Something went wrong';
+
+  @override
+  String get pinEnabledSuccess => 'PIN enabled successfully';
+
+  @override
+  String get pinUpdatedSuccess => 'PIN updated successfully';
+
+  @override
+  String get pinDisabledSuccess => 'PIN lock disabled';
+
+  @override
+  String get oldPinIncorrect => 'Current PIN is incorrect';
+
+  @override
+  String pinLengthError(int min, int max) {
+    return 'PIN must be between $min and $max digits';
+  }
+
+  @override
+  String get pinMismatch => 'PIN and confirmation do not match';
 }

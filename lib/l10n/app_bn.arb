@@ -628,6 +628,38 @@
   "extraLarge": "অতিরিক্ত বড়",
   "minutes": "মিনিট",
   "hours": "ঘন্টা",
-  "itemsPerPage": "প্রতি পেজে আইটেম"
+  "itemsPerPage": "প্রতি পেজে আইটেম",
+  "appLockTitle": "অ্যাপ লক",
+  "appLockSubtitle": "পিন লক সেট করুন",
+  "enterPinToContinue": "চালিয়ে যেতে আপনার পিন দিন",
+  "invalidPinMessage": "ভুল পিন, আবার চেষ্টা করুন",
+  "appLockEnabled": "অ্যাপ লক চালু আছে",
+  "appLockDisabled": "অ্যাপকে পিন দিয়ে সুরক্ষিত করুন",
+  "setPin": "পিন সেট করুন",
+  "changePin": "পিন পরিবর্তন করুন",
+  "currentPin": "বর্তমান পিন",
+  "newPin": "নতুন পিন",
+  "confirmPin": "পিন নিশ্চিত করুন",
+  "saving": "সংরক্ষণ হচ্ছে...",
+  "enableAppLockButton": "অ্যাপ লক চালু করুন",
+  "updatePinButton": "পিন আপডেট করুন",
+  "disableAppLockButton": "অ্যাপ লক বন্ধ করুন",
+  "genericError": "কিছু ভুল হয়েছে",
+  "pinEnabledSuccess": "পিন সফলভাবে চালু হয়েছে",
+  "pinUpdatedSuccess": "পিন সফলভাবে আপডেট হয়েছে",
+  "pinDisabledSuccess": "পিন লক বন্ধ করা হয়েছে",
+  "oldPinIncorrect": "বর্তমান পিন সঠিক নয়",
+  "pinLengthError": "পিন {min} থেকে {max} সংখ্যার হতে হবে",
+  "@pinLengthError": {
+    "placeholders": {
+      "min": {
+        "type": "int"
+      },
+      "max": {
+        "type": "int"
+      }
+    }
+  },
+  "pinMismatch": "পিন এবং কনফার্মেশন মেলে না"
 }
 

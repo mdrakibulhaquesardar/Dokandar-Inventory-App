@@ -2383,6 +2383,138 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'items per page'**
   String get itemsPerPage;
+
+  /// No description provided for @appLockTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'App Lock'**
+  String get appLockTitle;
+
+  /// No description provided for @appLockSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Set PIN lock'**
+  String get appLockSubtitle;
+
+  /// No description provided for @enterPinToContinue.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your PIN to continue'**
+  String get enterPinToContinue;
+
+  /// No description provided for @invalidPinMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid PIN, please try again'**
+  String get invalidPinMessage;
+
+  /// No description provided for @appLockEnabled.
+  ///
+  /// In en, this message translates to:
+  /// **'App lock is enabled'**
+  String get appLockEnabled;
+
+  /// No description provided for @appLockDisabled.
+  ///
+  /// In en, this message translates to:
+  /// **'Protect your app with a PIN'**
+  String get appLockDisabled;
+
+  /// No description provided for @setPin.
+  ///
+  /// In en, this message translates to:
+  /// **'Set PIN'**
+  String get setPin;
+
+  /// No description provided for @changePin.
+  ///
+  /// In en, this message translates to:
+  /// **'Change PIN'**
+  String get changePin;
+
+  /// No description provided for @currentPin.
+  ///
+  /// In en, this message translates to:
+  /// **'Current PIN'**
+  String get currentPin;
+
+  /// No description provided for @newPin.
+  ///
+  /// In en, this message translates to:
+  /// **'New PIN'**
+  String get newPin;
+
+  /// No description provided for @confirmPin.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm PIN'**
+  String get confirmPin;
+
+  /// No description provided for @saving.
+  ///
+  /// In en, this message translates to:
+  /// **'Saving...'**
+  String get saving;
+
+  /// No description provided for @enableAppLockButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Enable App Lock'**
+  String get enableAppLockButton;
+
+  /// No description provided for @updatePinButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Update PIN'**
+  String get updatePinButton;
+
+  /// No description provided for @disableAppLockButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Disable App Lock'**
+  String get disableAppLockButton;
+
+  /// No description provided for @genericError.
+  ///
+  /// In en, this message translates to:
+  /// **'Something went wrong'**
+  String get genericError;
+
+  /// No description provided for @pinEnabledSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'PIN enabled successfully'**
+  String get pinEnabledSuccess;
+
+  /// No description provided for @pinUpdatedSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'PIN updated successfully'**
+  String get pinUpdatedSuccess;
+
+  /// No description provided for @pinDisabledSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'PIN lock disabled'**
+  String get pinDisabledSuccess;
+
+  /// No description provided for @oldPinIncorrect.
+  ///
+  /// In en, this message translates to:
+  /// **'Current PIN is incorrect'**
+  String get oldPinIncorrect;
+
+  /// No description provided for @pinLengthError.
+  ///
+  /// In en, this message translates to:
+  /// **'PIN must be between {min} and {max} digits'**
+  String pinLengthError(int min, int max);
+
+  /// No description provided for @pinMismatch.
+  ///
+  /// In en, this message translates to:
+  /// **'PIN and confirmation do not match'**
+  String get pinMismatch;
 }
 
 class _AppLocalizationsDelegate

@@ -1211,4 +1211,72 @@ class AppLocalizationsBn extends AppLocalizations {
 
   @override
   String get itemsPerPage => 'প্রতি পেজে আইটেম';
+
+  @override
+  String get appLockTitle => 'অ্যাপ লক';
+
+  @override
+  String get appLockSubtitle => 'পিন লক সেট করুন';
+
+  @override
+  String get enterPinToContinue => 'চালিয়ে যেতে আপনার পিন দিন';
+
+  @override
+  String get invalidPinMessage => 'ভুল পিন, আবার চেষ্টা করুন';
+
+  @override
+  String get appLockEnabled => 'অ্যাপ লক চালু আছে';
+
+  @override
+  String get appLockDisabled => 'অ্যাপকে পিন দিয়ে সুরক্ষিত করুন';
+
+  @override
+  String get setPin => 'পিন সেট করুন';
+
+  @override
+  String get changePin => 'পিন পরিবর্তন করুন';
+
+  @override
+  String get currentPin => 'বর্তমান পিন';
+
+  @override
+  String get newPin => 'নতুন পিন';
+
+  @override
+  String get confirmPin => 'পিন নিশ্চিত করুন';
+
+  @override
+  String get saving => 'সংরক্ষণ হচ্ছে...';
+
+  @override
+  String get enableAppLockButton => 'অ্যাপ লক চালু করুন';
+
+  @override
+  String get updatePinButton => 'পিন আপডেট করুন';
+
+  @override
+  String get disableAppLockButton => 'অ্যাপ লক বন্ধ করুন';
+
+  @override
+  String get genericError => 'কিছু ভুল হয়েছে';
+
+  @override
+  String get pinEnabledSuccess => 'পিন সফলভাবে চালু হয়েছে';
+
+  @override
+  String get pinUpdatedSuccess => 'পিন সফলভাবে আপডেট হয়েছে';
+
+  @override
+  String get pinDisabledSuccess => 'পিন লক বন্ধ করা হয়েছে';
+
+  @override
+  String get oldPinIncorrect => 'বর্তমান পিন সঠিক নয়';
+
+  @override
+  String pinLengthError(int min, int max) {
+    return 'পিন $min থেকে $max সংখ্যার হতে হবে';
+  }
+
+  @override
+  String get pinMismatch => 'পিন এবং কনফার্মেশন মেলে না';
 }

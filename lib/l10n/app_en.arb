@@ -628,6 +628,38 @@
   "extraLarge": "Extra Large",
   "minutes": "minutes",
   "hours": "hour(s)",
-  "itemsPerPage": "items per page"
+  "itemsPerPage": "items per page",
+  "appLockTitle": "App Lock",
+  "appLockSubtitle": "Set PIN lock",
+  "enterPinToContinue": "Enter your PIN to continue",
+  "invalidPinMessage": "Invalid PIN, please try again",
+  "appLockEnabled": "App lock is enabled",
+  "appLockDisabled": "Protect your app with a PIN",
+  "setPin": "Set PIN",
+  "changePin": "Change PIN",
+  "currentPin": "Current PIN",
+  "newPin": "New PIN",
+  "confirmPin": "Confirm PIN",
+  "saving": "Saving...",
+  "enableAppLockButton": "Enable App Lock",
+  "updatePinButton": "Update PIN",
+  "disableAppLockButton": "Disable App Lock",
+  "genericError": "Something went wrong",
+  "pinEnabledSuccess": "PIN enabled successfully",
+  "pinUpdatedSuccess": "PIN updated successfully",
+  "pinDisabledSuccess": "PIN lock disabled",
+  "oldPinIncorrect": "Current PIN is incorrect",
+  "pinLengthError": "PIN must be between {min} and {max} digits",
+  "@pinLengthError": {
+    "placeholders": {
+      "min": {
+        "type": "int"
+      },
+      "max": {
+        "type": "int"
+      }
+    }
+  },
+  "pinMismatch": "PIN and confirmation do not match"
 }
 
