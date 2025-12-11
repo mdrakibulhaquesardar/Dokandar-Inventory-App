@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, shrink-to-fit=no">
-<link href="assets/images/favicon.png" rel="icon" />
+<link href="assets/images/icon_bg_removed.png" rel="icon" />
   <title>Dokandar Inventory | Documentation</title>
   <meta name="description" content="Dokandar Inventory Flutter app documentation for CodeCanyon buyers">
   <meta name="author" content="Dokandar Team">
@@ -25,10 +25,10 @@
     <nav class="primary-menu navbar navbar-expand-lg navbar-dropdown-dark">
       <div class="container-fluid">
 		<button id="sidebarCollapse" class="navbar-toggler d-block d-md-none" type="button"><span></span><span class="w-75"></span><span class="w-50"></span></button>
-          <a class="logo ml-md-3" href="#overview" title="Dokandar Inventory">
-            <img src="assets/images/logo.png" alt="Dokandar Inventory"/>
+          <a class="logo ml-md-3" href="#overview" title="Dokandar Inventory" style="text-decoration: none; color: inherit;">
+            <span style="font-size: 24px; font-weight: bold; color: #000;">Dokandar</span>
           </a>
-          <span class="text-2 ml-2">v1.0.1</span>
+          <span class="text-2 ml-2">v1.0.0</span>
 		<button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#header-nav"><span></span><span></span><span></span></button>
 		<div id="header-nav" class="collapse navbar-collapse justify-content-end">
           <ul class="navbar-nav">
@@ -96,8 +96,8 @@
 		<div class="row">
 			<div class="col-sm-6 col-lg-4">
 				<ul class="list-unstyled">
-                  <li><strong>Version:</strong> 1.0.1</li>
-                  <li><strong>Framework:</strong> Flutter 3.5.4 / Dart 3.x</li>
+                  <li><strong>Version:</strong> 1.0.0</li>
+                  <li><strong>Framework:</strong> Flutter 3.5.4+ / Dart 3.5.4+</li>
                   <li><strong>State Management:</strong> GetX 4.7.2</li>
 				</ul>
 			</div>
@@ -112,14 +112,21 @@
             <p class="alert alert-success"><strong>Quick Path:</strong> Already have Flutter? Jump to <a href="#project-setup">Project Setup</a>. Complete beginner? Start with <a href="#flutter-install">Flutter Installation</a>.</p>
             <h4>Key Features</h4>
             <ul>
-              <li>Product inventory management with categories</li>
-              <li>Sales tracking with invoice generation (PDF)</li>
-              <li>Customer management with due payment tracking</li>
-              <li>Store setup and configuration</li>
-              <li>Local database backup/restore (JSON)</li>
-              <li>Multi-language support (Bengali/English)</li>
-              <li>Light &amp; Dark theme</li>
-              <li>Subscription plans (configurable)</li>
+              <li><strong>Inventory Management:</strong> Product management with categories, stock tracking, low stock alerts</li>
+              <li><strong>Sales Counter:</strong> Real-time sales with cart management, stock validation, invoice generation</li>
+              <li><strong>Invoice System:</strong> PDF invoice generation with full-screen preview, print &amp; share functionality</li>
+              <li><strong>Customer Management:</strong> Customer database with due payment tracking</li>
+              <li><strong>Supplier Management:</strong> Complete supplier database with purchase tracking</li>
+              <li><strong>Employee Management:</strong> Employee records with salary tracking</li>
+              <li><strong>Expense Tracking:</strong> Store expenses with categories and date filtering</li>
+              <li><strong>Transaction History:</strong> Combined view of all sales and expenses</li>
+              <li><strong>Reports:</strong> Sales reports (daily/weekly/monthly/custom)</li>
+              <li><strong>Stock Alerts:</strong> Automatic low stock notifications</li>
+              <li><strong>Store Configuration:</strong> Store setup with business information</li>
+              <li><strong>Backup &amp; Restore:</strong> Local database backup/restore (JSON format)</li>
+              <li><strong>Multi-language:</strong> Bengali &amp; English support</li>
+              <li><strong>Themes:</strong> Light, Dark &amp; System theme with dynamic switching</li>
+              <li><strong>Stock Validation:</strong> Prevents selling more than available stock</li>
             </ul>
         </section>
         
@@ -1412,9 +1419,9 @@ android {
             
             <h4>Set Version Number</h4>
             <p>Edit <code>pubspec.yaml</code>:</p>
-<pre><code class="yaml">version: 1.0.1+2  # 1.0.1 = versionName, +2 = versionCode
+<pre><code class="yaml">version: 1.0.0+1  # 1.0.0 = versionName, +1 = versionCode
 </code></pre>
-            <p>Increment versionCode (+3, +4...) for every upload to Play Store</p>
+            <p>Increment versionCode (+2, +3...) for every upload to Play Store</p>
             
             <h4>Build Release APK (for testing)</h4>
 <pre><code class="bash">flutter build apk --release
@@ -1552,7 +1559,7 @@ Future&lt;String&gt; exportIsarToFile() async {
             <ol>
               <li>Open app → Settings → Backup Data</li>
               <li>Tap <strong>Export Data</strong></li>
-              <li>Allow storage permission if prompted</li>
+              <li>Backup file is saved automatically (no permissions needed)</li>
               <li>Success message shows file path</li>
               <li>Copy file to cloud storage for safety</li>
             </ol>
@@ -1604,6 +1611,10 @@ Future&lt;String&gt; exportIsarToFile() async {
                 <tr><td>permission_handler</td><td>^12.0.0+1</td><td>Request runtime permissions</td></tr>
                 <tr><td>pdf</td><td>^3.11.3</td><td>Generate PDF invoices</td></tr>
                 <tr><td>syncfusion_flutter_pdfviewer</td><td>^31.1.21</td><td>View PDFs in-app</td></tr>
+                <tr><td>printing</td><td>^5.12.0</td><td>Print PDF invoices</td></tr>
+                <tr><td>share_plus</td><td>^7.2.2</td><td>Share invoices via system share dialog</td></tr>
+                <tr><td>url_launcher</td><td>^6.3.1</td><td>Open URLs (support links, etc.)</td></tr>
+                <tr><td>crypto</td><td>^3.0.5</td><td>Encryption for backup files</td></tr>
               </tbody>
             </table>
             
@@ -1962,33 +1973,42 @@ flutter pub global run devtools
           <h2>Changelog</h2>
             <p>Track all version updates here. Update this section when you release new versions.</p>
             
-            <h5 id="v101" class="mb-3 mt-4">Version 1.0.1 <span class="badge badge-success ml-2">Current</span></h5>
-            <p class="text-muted">Released: April 20, 2025</p>
+            <h5 id="v100" class="mb-3 mt-4">Version 1.0.0 <span class="badge badge-success ml-2">Current</span></h5>
+            <p class="text-muted">Released: December 2024</p>
             <ul>
               <li><strong>[NEW]</strong> Initial public release for CodeCanyon</li>
-              <li><strong>[FEATURE]</strong> Inventory management with products, categories, stock tracking</li>
-              <li><strong>[FEATURE]</strong> Sales tracking with invoice generation (PDF)</li>
+              <li><strong>[FEATURE]</strong> Complete inventory management with products, categories, stock tracking</li>
+              <li><strong>[FEATURE]</strong> Sales counter with real-time cart management and stock validation</li>
+              <li><strong>[FEATURE]</strong> PDF invoice generation with full-screen preview, print &amp; share</li>
               <li><strong>[FEATURE]</strong> Customer management with due payment tracking</li>
-              <li><strong>[FEATURE]</strong> Store setup flow for first-time users</li>
+              <li><strong>[FEATURE]</strong> Supplier management with purchase tracking</li>
+              <li><strong>[FEATURE]</strong> Employee management with salary tracking</li>
+              <li><strong>[FEATURE]</strong> Expense tracking with categories and date filtering</li>
+              <li><strong>[FEATURE]</strong> Transaction history (combined sales &amp; expenses)</li>
+              <li><strong>[FEATURE]</strong> Sales reports (daily/weekly/monthly/custom date range)</li>
+              <li><strong>[FEATURE]</strong> Stock alerts for low inventory products</li>
+              <li><strong>[FEATURE]</strong> Store setup and configuration</li>
               <li><strong>[FEATURE]</strong> Local backup/restore (JSON export/import)</li>
-              <li><strong>[FEATURE]</strong> Multi-language support (Bengali & English)</li>
-              <li><strong>[FEATURE]</strong> Light & dark theme with system auto-switch</li>
-              <li><strong>[FEATURE]</strong> Subscription plan configuration</li>
-              <li><strong>[FEATURE]</strong> Dashboard with sales stats and low stock alerts</li>
-              <li><strong>[TECH]</strong> Built with Flutter 3.5.4, GetX 4.7.2, Isar 3.1.0</li>
-              <li><strong>[TECH]</strong> Supports Android 5.0+ (API 21)</li>
+              <li><strong>[FEATURE]</strong> Multi-language support (Bengali &amp; English)</li>
+              <li><strong>[FEATURE]</strong> Light, Dark &amp; System theme with dynamic switching</li>
+              <li><strong>[FEATURE]</strong> Stock validation prevents selling more than available</li>
+              <li><strong>[FEATURE]</strong> Compact &amp; flat modern UI design</li>
+              <li><strong>[FEATURE]</strong> Responsive design for all screen sizes</li>
+              <li><strong>[TECH]</strong> Built with Flutter 3.5.4+, GetX 4.7.2, Isar 3.1.0</li>
+              <li><strong>[TECH]</strong> Supports Android 5.0+ (API 21), targetSdk 34</li>
+              <li><strong>[SECURITY]</strong> Minimal permissions (only VIBRATE for haptic feedback)</li>
             </ul>
             
             <h5 class="mb-3 mt-4">Upcoming Features (Roadmap)</h5>
             <ul>
               <li>Cloud sync with Firebase/Supabase</li>
-              <li>Barcode scanner for products</li>
+              <li>Barcode/QR scanner for products</li>
               <li>Email invoice to customers</li>
               <li>Export reports (Excel/CSV)</li>
               <li>Multi-store management</li>
-              <li>Staff/employee roles & permissions</li>
+              <li>Advanced employee roles &amp; permissions</li>
               <li>Purchase order management</li>
-              <li>Expense tracking</li>
+              <li>Advanced analytics &amp; charts</li>
             </ul>
             <p class="alert alert-info"><strong>Note:</strong> Roadmap items are planned but not guaranteed. Priority is given to buyer feature requests.</p>
           </section>
@@ -2171,34 +2191,6 @@ $(document).ready(function() {
 });
 </script>
 
-</body>
-</html>
-
-
-		  
-		  <hr class="divider">
-		  
-
-          <section id="support">
-            <h2>Support</h2>
-            <p>We respond within 1–2 business days.</p>
-            <ul>
-              <li>Email: <a href="mailto:support@example.com">support@example.com</a></li>
-              <li>Send: purchase code, app version, device/OS, and a short description or screenshot.</li>
-            </ul>
-            <p class="mb-0">Feature requests are welcome; small improvements ship in updates.</p>
-        </section>        
-      </div>
-    </div>
-  </div>
-    </div>
-
-
-<script src="assets/vendor/jquery/jquery.min.js"></script> 
-<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script> 
-<script src="assets/vendor/highlight.js/highlight.min.js"></script> 
-<script src="assets/vendor/magnific-popup/jquery.magnific-popup.min.js"></script> 
-<script src="assets/js/theme.js"></script>
 </body>
 </html>
 

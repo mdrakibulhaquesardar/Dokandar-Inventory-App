@@ -268,7 +268,7 @@ class HomeView extends GetView<HomeController> {
                   color: themeConfig.getTextSecondaryColor(isDarkMode),
                 ),
               ),
-              const SizedBox(height: 12),
+              const SizedBox(height: 10),
               _RecentSalesList(),
 
               const SizedBox(height: 20),
@@ -294,6 +294,7 @@ class HomeView extends GetView<HomeController> {
                       ),
                     ),
 
+              const SizedBox(height: 2),
               const SizedBox(height: 2),
               controller.allLowStokeProduct.isEmpty
                   ? SizedBox()
@@ -437,11 +438,14 @@ class _RecentSalesList extends GetView<HomeController> {
                       ),
                     ),
                     child: ListTile(
+                      dense: true,
+                      visualDensity:
+                          const VisualDensity(horizontal: 0, vertical: -3),
                       contentPadding: const EdgeInsets.symmetric(
-                          horizontal: 12, vertical: 8),
+                          horizontal: 12, vertical: 4),
                       leading: Container(
-                        width: 36,
-                        height: 36,
+                        width: 32,
+                        height: 32,
                         decoration: BoxDecoration(
                           color: themeConfig
                               .getPrimaryColor(isDarkMode)
@@ -450,30 +454,30 @@ class _RecentSalesList extends GetView<HomeController> {
                         ),
                         child: Icon(
                           Icons.shopping_bag_outlined,
-                          size: 18,
+                          size: 16,
                           color: themeConfig.getPrimaryColor(isDarkMode),
                         ),
                       ),
                       title: Text(
                         controller.recentSale[index].items[0].productName,
                         style: SafeGoogleFonts.poppins(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w500,
+                          fontSize: 13,
+                          fontWeight: FontWeight.w600,
                           color: themeConfig.getTextPrimaryColor(isDarkMode),
                         ),
                       ),
                       subtitle: Text(
                         '৳${controller.recentSale[index].totalAmount.translateNumberToBengali()}',
                         style: SafeGoogleFonts.poppins(
-                          fontSize: 12,
+                          fontSize: 11,
                           color: themeConfig.getTextSecondaryColor(isDarkMode),
                         ),
                       ),
                       trailing: Text(
                         "${controller.recentSale[index].items[0].quantity.toInt().translateNumberToBengali()} পিস",
                         style: SafeGoogleFonts.poppins(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w500,
+                          fontSize: 11,
+                          fontWeight: FontWeight.w600,
                           color: themeConfig.getTextSecondaryColor(isDarkMode),
                         ),
                       ),
@@ -517,11 +521,14 @@ class _LowStockProductsList extends GetView<HomeController> {
                   ),
                 ),
                 child: ListTile(
+                  dense: true,
+                  visualDensity:
+                      const VisualDensity(horizontal: 0, vertical: -3),
                   contentPadding:
-                      const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                      const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
                   leading: Container(
-                    width: 36,
-                    height: 36,
+                    width: 32,
+                    height: 32,
                     decoration: BoxDecoration(
                       color: themeConfig
                           .getWarningColor(isDarkMode)
@@ -530,15 +537,15 @@ class _LowStockProductsList extends GetView<HomeController> {
                     ),
                     child: Icon(
                       Icons.warning_amber_outlined,
-                      size: 18,
+                      size: 16,
                       color: themeConfig.getWarningColor(isDarkMode),
                     ),
                   ),
                   title: Text(
                     controller.allLowStokeProduct[index].name,
                     style: SafeGoogleFonts.poppins(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w500,
+                      fontSize: 13,
+                      fontWeight: FontWeight.w600,
                       color: themeConfig.getTextPrimaryColor(isDarkMode),
                     ),
                   ),
@@ -559,7 +566,7 @@ class _LowStockProductsList extends GetView<HomeController> {
                     style: TextButton.styleFrom(
                       backgroundColor: themeConfig.getPrimaryColor(isDarkMode),
                       padding: const EdgeInsets.symmetric(
-                          horizontal: 12, vertical: 6),
+                          horizontal: 10, vertical: 5),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(6),
                       ),
@@ -569,7 +576,7 @@ class _LowStockProductsList extends GetView<HomeController> {
                       style: SafeGoogleFonts.poppins(
                         color: Colors.white,
                         fontSize: 11,
-                        fontWeight: FontWeight.w500,
+                        fontWeight: FontWeight.w600,
                       ),
                     ),
                   ),

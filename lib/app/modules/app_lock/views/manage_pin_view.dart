@@ -109,12 +109,11 @@ class ManagePinView extends GetView<AppLockController> {
         const SizedBox(height: 16),
         Obx(() {
           final saving = controller.isSaving.value;
-          return SizedBox(
-            width: double.infinity,
-            child: ElevatedButton(
-              onPressed: saving ? null : () => _handleCreatePin(l10n),
-              child: Text(saving ? l10n.saving : l10n.enableAppLockButton),
-            ),
+          return _primaryActionButton(
+            label: saving ? l10n.saving : l10n.enableAppLockButton,
+            onTap: saving ? null : () => _handleCreatePin(l10n),
+            themeConfig: themeConfig,
+            isDarkMode: isDarkMode,
           );
         }),
       ],
@@ -158,12 +157,11 @@ class ManagePinView extends GetView<AppLockController> {
         const SizedBox(height: 16),
         Obx(() {
           final saving = controller.isSaving.value;
-          return SizedBox(
-            width: double.infinity,
-            child: ElevatedButton(
-              onPressed: saving ? null : () => _handleChangePin(l10n),
-              child: Text(saving ? l10n.saving : l10n.updatePinButton),
-            ),
+          return _primaryActionButton(
+            label: saving ? l10n.saving : l10n.updatePinButton,
+            onTap: saving ? null : () => _handleChangePin(l10n),
+            themeConfig: themeConfig,
+            isDarkMode: isDarkMode,
           );
         }),
       ],
@@ -292,6 +290,38 @@ class ManagePinView extends GetView<AppLockController> {
           message,
           style: SafeGoogleFonts.poppins(
             color: themeConfig.getTextPrimaryColor(isDark),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _primaryActionButton({
+    required String label,
+    required VoidCallback? onTap,
+    required AppThemeConfig themeConfig,
+    required bool isDarkMode,
+  }) {
+    return SizedBox(
+      width: double.infinity,
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          elevation: 0,
+          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+          backgroundColor: themeConfig.getPrimaryColor(isDarkMode),
+          disabledBackgroundColor:
+              themeConfig.getBorderColor(isDarkMode).withValues(alpha: 0.3),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
+        ),
+        onPressed: onTap,
+        child: Text(
+          label,
+          style: SafeGoogleFonts.poppins(
+            fontSize: 14,
+            fontWeight: FontWeight.w600,
+            color: Colors.white,
           ),
         ),
       ),

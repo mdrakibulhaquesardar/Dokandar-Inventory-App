@@ -156,87 +156,82 @@ class InventoryView extends GetView<InventoryController> {
                 color: themeConfig.getTextSecondaryColor(isDarkMode),
               ),
             ),
-            const SizedBox(height: 12),
-            GridView.count(
-              crossAxisCount: MediaQuery.of(context).size.width > 400 ? 3 : 2,
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              mainAxisSpacing: 8,
-              crossAxisSpacing: 8,
-              childAspectRatio:
-                  MediaQuery.of(context).size.width > 400 ? 2.0 : 1.8,
+            const SizedBox(height: 8),
+            Wrap(
+              spacing: 8,
+              runSpacing: 8,
               children: [
-                _buildOptionCard(
-                  l10n.allProducts,
-                  Icons.inventory_2_outlined,
-                  themeConfig.getPrimaryColor(isDarkMode),
-                  () {
-                    Get.toNamed(Routes.ALL_PRODUCTS);
-                  },
-                  themeConfig,
-                  isDarkMode,
-                  false,
-                  context,
+                _buildQuickChip(
+                  label: l10n.allProducts,
+                  icon: Icons.inventory_2_outlined,
+                  color: themeConfig.getPrimaryColor(isDarkMode),
+                  onTap: () => Get.toNamed(Routes.ALL_PRODUCTS),
+                  themeConfig: themeConfig,
+                  isDarkMode: isDarkMode,
                 ),
-                _buildOptionCard(
-                  l10n.salesHistory,
-                  Icons.receipt_long_outlined,
-                  themeConfig.getPrimaryColor(isDarkMode),
-                  () {
-                    Get.toNamed(Routes.ALL_SALES);
-                  },
-                  themeConfig,
-                  isDarkMode,
-                  false,
-                  context,
+                _buildQuickChip(
+                  label: l10n.salesHistory,
+                  icon: Icons.receipt_long_outlined,
+                  color: themeConfig.getPrimaryColor(isDarkMode),
+                  onTap: () => Get.toNamed(Routes.ALL_SALES),
+                  themeConfig: themeConfig,
+                  isDarkMode: isDarkMode,
                 ),
-                _buildOptionCard(
-                  l10n.allCustomers,
-                  Icons.person_outline,
-                  themeConfig.getInfoColor(isDarkMode),
-                  () {
-                    Get.toNamed(Routes.ALL_CUSTOMER);
-                  },
-                  themeConfig,
-                  isDarkMode,
-                  false,
-                  context,
+                _buildQuickChip(
+                  label: l10n.allCustomers,
+                  icon: Icons.person_outline,
+                  color: themeConfig.getInfoColor(isDarkMode),
+                  onTap: () => Get.toNamed(Routes.ALL_CUSTOMER),
+                  themeConfig: themeConfig,
+                  isDarkMode: isDarkMode,
                 ),
-                _buildOptionCard(
-                  l10n.allSuppliers,
-                  Icons.people_outline,
-                  themeConfig.getInfoColor(isDarkMode),
-                  () {
-                    Get.toNamed(Routes.ALL_SUPPLIERS);
-                  },
-                  themeConfig,
-                  isDarkMode,
-                  false,
-                  context,
+                _buildQuickChip(
+                  label: l10n.allSuppliers,
+                  icon: Icons.people_outline,
+                  color: themeConfig.getInfoColor(isDarkMode),
+                  onTap: () => Get.toNamed(Routes.ALL_SUPPLIERS),
+                  themeConfig: themeConfig,
+                  isDarkMode: isDarkMode,
                 ),
-                _buildOptionCard(
-                  l10n.storeExpenses,
-                  Icons.attach_money_outlined,
-                  themeConfig.getInfoColor(isDarkMode),
-                  () {
-                    Get.toNamed(Routes.STORE_EXPENSES);
-                  },
-                  themeConfig,
-                  isDarkMode,
-                  false,
-                  context,
+                _buildQuickChip(
+                  label: l10n.storeExpenses,
+                  icon: Icons.attach_money_outlined,
+                  color: themeConfig.getInfoColor(isDarkMode),
+                  onTap: () => Get.toNamed(Routes.STORE_EXPENSES),
+                  themeConfig: themeConfig,
+                  isDarkMode: isDarkMode,
                 ),
-                _buildOptionCard(
-                  l10n.allEmployees,
-                  Icons.person_add_alt_1_outlined,
-                  themeConfig.getInfoColor(isDarkMode),
-                  () {
-                    Get.toNamed(Routes.ALL_EMPLOYEES);
-                  },
-                  themeConfig,
-                  isDarkMode,
-                  false,
-                  context,
+                _buildQuickChip(
+                  label: l10n.allEmployees,
+                  icon: Icons.person_add_alt_1_outlined,
+                  color: themeConfig.getInfoColor(isDarkMode),
+                  onTap: () => Get.toNamed(Routes.ALL_EMPLOYEES),
+                  themeConfig: themeConfig,
+                  isDarkMode: isDarkMode,
+                ),
+                _buildQuickChip(
+                  label: l10n.duePayment,
+                  icon: Icons.payments_outlined,
+                  color: themeConfig.getWarningColor(isDarkMode),
+                  onTap: () => Get.toNamed(Routes.PAY_DUE),
+                  themeConfig: themeConfig,
+                  isDarkMode: isDarkMode,
+                ),
+                _buildQuickChip(
+                  label: l10n.stockAlert,
+                  icon: Icons.warning_amber_outlined,
+                  color: themeConfig.getWarningColor(isDarkMode),
+                  onTap: () => Get.toNamed(Routes.STOCK_ALERT),
+                  themeConfig: themeConfig,
+                  isDarkMode: isDarkMode,
+                ),
+                _buildQuickChip(
+                  label: l10n.transactionHistory,
+                  icon: Icons.swap_horiz_outlined,
+                  color: themeConfig.getSuccessColor(isDarkMode),
+                  onTap: () => Get.toNamed(Routes.TRANSACTION_HISTORY),
+                  themeConfig: themeConfig,
+                  isDarkMode: isDarkMode,
                 ),
               ],
             ),
@@ -257,7 +252,7 @@ class InventoryView extends GetView<InventoryController> {
                 color: themeConfig.getTextSecondaryColor(isDarkMode),
               ),
             ),
-            const SizedBox(height: 12),
+            const SizedBox(height: 6),
             ListView.builder(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
@@ -303,7 +298,7 @@ class InventoryView extends GetView<InventoryController> {
                   },
                 ];
                 return Container(
-                  margin: const EdgeInsets.only(bottom: 6),
+                  margin: const EdgeInsets.only(bottom: 2),
                   decoration: BoxDecoration(
                     color: themeConfig.getSurfaceColor(isDarkMode),
                     borderRadius: BorderRadius.circular(8),
@@ -336,13 +331,16 @@ class InventoryView extends GetView<InventoryController> {
                       },
                       borderRadius: BorderRadius.circular(8),
                       child: ListTile(
+                        dense: true,
+                        visualDensity:
+                            const VisualDensity(horizontal: 0, vertical: -3),
                         contentPadding: const EdgeInsets.symmetric(
                           horizontal: 12,
-                          vertical: 8,
+                          vertical: 4,
                         ),
                         leading: Container(
-                          width: 36,
-                          height: 36,
+                          width: 32,
+                          height: 32,
                           decoration: BoxDecoration(
                             color: (items[index]['color'] as Color)
                                 .withValues(alpha: 0.1),
@@ -478,6 +476,43 @@ class InventoryView extends GetView<InventoryController> {
       ),
     );
   }
+
+  Widget _buildQuickChip({
+    required String label,
+    required IconData icon,
+    required Color color,
+    required VoidCallback onTap,
+    required AppThemeConfig themeConfig,
+    required bool isDarkMode,
+  }) {
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(10),
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+        decoration: BoxDecoration(
+          color: themeConfig.getSurfaceColor(isDarkMode),
+          borderRadius: BorderRadius.circular(10),
+          border: Border.all(
+            color: color.withValues(alpha: 0.25),
+          ),
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(icon, size: 18, color: color),
+            const SizedBox(width: 8),
+            Text(
+              label,
+              style: SafeGoogleFonts.poppins(
+                fontSize: 13,
+                fontWeight: FontWeight.w500,
+                color: themeConfig.getTextPrimaryColor(isDarkMode),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 }
-
-
