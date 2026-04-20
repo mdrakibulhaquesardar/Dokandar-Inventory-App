@@ -10,10 +10,9 @@ import '../../../utils/vibration_helper.dart';
 import '../../home/controllers/home_controller.dart';
 
 class AllProductController extends GetxController {
-
   final products = <Product>[].obs;
   final newProduct = <String, dynamic>{}.obs;
-  final DatabaseService _databaseService = Get.find<DatabaseService>();
+  DatabaseService get _databaseService => Get.find<DatabaseService>();
   RxList<Category> allCategories = <Category>[].obs;
 
   @override
@@ -51,7 +50,8 @@ class AllProductController extends GetxController {
         if (totalProducts >= AppConfig.freePlanProductLimit) {
           showCustomSnackbar(
             title: 'Limit Reached',
-            message: 'You have reached the free plan limit of ${AppConfig.freePlanProductLimit} products. Please upgrade to add more products.',
+            message:
+                'You have reached the free plan limit of ${AppConfig.freePlanProductLimit} products. Please upgrade to add more products.',
             backgroundColor: Colors.orange,
             icon: Icons.warning,
           );
@@ -114,8 +114,9 @@ class AllProductController extends GetxController {
     }
   }
 
-  void deleteProduct(int id) async {
+  void deleteProduct(int? id) async {
     try {
+      if (id == null) return;
       await _databaseService.deleteProduct(id);
       products.removeWhere((product) => product.id == id);
       VibrationHelper.onImportantAction();

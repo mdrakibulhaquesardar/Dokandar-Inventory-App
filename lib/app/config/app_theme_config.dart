@@ -82,10 +82,17 @@ class AppThemeConfig extends GetxService {
         elevation: 0,
       ),
       cardTheme: CardThemeData(
+        // Use the surface color defined in AppConfig, which is now
+        // slightly different from background, so cards are visible
+        // in light mode similar to dark mode.
         color: surfaceColor,
-        elevation: 2,
+        elevation: 3,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(8),
+          side: const BorderSide(
+            color: borderColor,
+            width: 0.6,
+          ),
         ),
       ),
       textTheme: TextTheme(

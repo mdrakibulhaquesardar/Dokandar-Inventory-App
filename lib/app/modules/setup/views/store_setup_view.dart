@@ -307,9 +307,8 @@ class StoreSetupView extends GetView<SetupController> {
                         onPressed: () {
                           if (controller.storeFormKey.currentState!
                               .validate()) {
-                            // TODO: Save store data and navigate to next screen
-                            // Store will be saved in SetupController.saveSetupData()
-                            Get.toNamed(Routes.CONFROM_SETUP);
+                            // Setup screens removed - navigate to main dashboard
+                            Get.offAllNamed(Routes.MAIN);
                           }
                         },
                         style: ElevatedButton.styleFrom(
@@ -338,5 +337,3 @@ class StoreSetupView extends GetView<SetupController> {
         ));
   }
 }
-
-

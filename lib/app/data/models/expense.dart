@@ -1,12 +1,6 @@
-import 'package:isar/isar.dart';
-
-part 'expense.g.dart';
-
-@collection
 class Expense {
-  Id id = Isar.autoIncrement;
+  int? id;
 
-  @Index()
   DateTime? date;
 
   late String title;
@@ -24,4 +18,3 @@ class Expense {
     this.date = date ?? DateTime.now();
   }
 }
-

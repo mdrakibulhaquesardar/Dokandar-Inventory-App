@@ -9,10 +9,10 @@ class AppLocalizationsEn extends AppLocalizations {
   AppLocalizationsEn([String locale = 'en']) : super(locale);
 
   @override
-  String get appName => 'Dokandar';
+  String get appName => 'BizDash';
 
   @override
-  String get appDescription => 'Inventory Management System';
+  String get appDescription => 'Business Admin UI Kit';
 
   @override
   String get settings => 'Settings';
@@ -24,22 +24,22 @@ class AppLocalizationsEn extends AppLocalizations {
   String get subscription => 'Subscription';
 
   @override
-  String get products => 'Products';
+  String get products => 'Items';
 
   @override
-  String get customers => 'Customers';
+  String get customers => 'Contacts';
 
   @override
-  String get sales => 'Sales';
+  String get sales => 'Activities';
 
   @override
-  String get inventory => 'Inventory';
+  String get inventory => 'Records';
 
   @override
-  String get addProduct => 'Add Product';
+  String get addProduct => 'Add Item';
 
   @override
-  String get addCustomer => 'Add Customer';
+  String get addCustomer => 'Add Contact';
 
   @override
   String get save => 'Save';
@@ -153,12 +153,12 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String productsLimit(int count) {
-    return 'You can add up to $count products';
+    return 'You can add up to $count items';
   }
 
   @override
   String customersLimit(int count) {
-    return 'You can add up to $count customers';
+    return 'You can add up to $count contacts';
   }
 
   @override
@@ -178,89 +178,86 @@ class AppLocalizationsEn extends AppLocalizations {
       'View summary information and related details';
 
   @override
-  String get totalProducts => 'Total Products';
+  String get totalProducts => 'Total Items';
 
   @override
-  String get totalSales => 'Total Sales';
+  String get totalSales => 'Total Activities';
 
   @override
   String get categories => 'Categories';
 
   @override
-  String get todaysOrders => 'Today\'s Orders';
+  String get todaysOrders => 'Today\'s Records';
 
   @override
-  String get totalProfit => 'Total Profit';
+  String get totalProfit => 'Total Margin';
 
   @override
-  String get recentSales => 'Recent Sales';
+  String get recentSales => 'Recent Activities';
 
   @override
-  String get recentSalesDescription =>
-      'View recent sales list and transactions';
+  String get recentSalesDescription => 'View recent activity list';
 
   @override
   String get stockAlert => 'Stock Alert';
 
   @override
-  String get stockAlertDescription =>
-      'Some products are running low on stock, 3 days before stock runs out';
+  String get stockAlertDescription => 'Some items are running low on stock';
 
   @override
-  String get noRecentSales => 'No recent sales';
+  String get noRecentSales => 'No recent activities';
 
   @override
   String get addToStock => 'Add to Stock';
 
   @override
-  String get searchProducts => 'Search Products';
+  String get searchProducts => 'Search Items';
 
   @override
-  String get totalPrice => 'Total Price';
+  String get totalPrice => 'Total Value';
 
   @override
   String get quickAccess => 'Quick Access';
 
   @override
   String get quickAccessDescription =>
-      'Use the options below to quickly access your inventory';
+      'Use the options below to quickly access your records';
 
   @override
-  String get allProducts => 'All Products';
+  String get allProducts => 'All Items';
 
   @override
-  String get salesHistory => 'Sales History';
+  String get salesHistory => 'Activity History';
 
   @override
-  String get allCustomers => 'All Customers';
+  String get allCustomers => 'All Contacts';
 
   @override
-  String get allSuppliers => 'All Suppliers';
+  String get allSuppliers => 'All Partners';
 
   @override
-  String get storeExpenses => 'Store Expenses';
+  String get storeExpenses => 'Expenses';
 
   @override
-  String get allEmployees => 'All Employees';
+  String get allEmployees => 'All Team Members';
 
   @override
-  String get otherFunctions => 'Other Functions';
+  String get otherFunctions => 'Other Sections';
 
   @override
-  String get otherFunctionsDescription =>
-      'Use other functions for your inventory';
+  String get otherFunctionsDescription => 'Use other sections of your admin UI';
 
   @override
-  String get duePayment => 'Due Payment';
+  String get duePayment => 'Outstanding Value';
 
   @override
-  String get productCategories => 'Product Categories';
+  String get productCategories => 'Item Categories';
 
   @override
-  String get transactionHistory => 'Transaction History';
+  String get transactionHistory => 'Activity Log';
 
   @override
-  String get supplierManagement => 'Supplier Management';
+  String get supplierManagement => 'Partner Management';
 
   @override
   String get generateReport => 'Generate Report';
@@ -272,64 +269,64 @@ class AppLocalizationsEn extends AppLocalizations {
   String get newLabel => 'New';
 
   @override
-  String get sellCounter => 'Sales Counter';
+  String get sellCounter => 'Activity Counter';
 
   @override
-  String get searchProduct => 'Search products...';
+  String get searchProduct => 'Search items...';
 
   @override
   String totalProductsCount(int count) {
-    return 'Total Products: $count';
+    return 'Total Items: $count';
   }
 
   @override
-  String get completeSale => 'Complete Sale';
+  String get completeSale => 'Complete Action';
 
   @override
-  String get noProductsAdded => 'No products added';
+  String get noProductsAdded => 'No items added';
 
   @override
-  String get salesCounter => 'Sales Counter';
+  String get salesCounter => 'Activity Counter';
 
   @override
-  String get yourProducts => 'Your Products';
+  String get yourProducts => 'Your Items';
 
   @override
-  String get stockOut => 'Stock Out';
+  String get stockOut => 'Low Stock';
 
   @override
-  String get recentProducts => 'Recent Products';
+  String get recentProducts => 'Recent Items';
 
   @override
-  String get editProduct => 'Edit Product';
+  String get editProduct => 'Edit Item';
 
   @override
-  String get productName => 'Product Name';
+  String get productName => 'Item Name';
 
   @override
   String get stockQuantity => 'Stock Quantity';
 
   @override
-  String get sellingPrice => 'Selling Price';
+  String get sellingPrice => 'Unit Price';
 
   @override
-  String get buyingPrice => 'Buying Price';
+  String get buyingPrice => 'Base Price';
 
   @override
-  String get profit => 'Profit';
+  String get profit => 'Margin';
 
   @override
-  String get unitProfit => 'Unit Profit';
+  String get unitProfit => 'Unit Margin';
 
   @override
   String get createdAt => 'Created At';
 
   @override
-  String get deleteProduct => 'Delete Product';
+  String get deleteProduct => 'Delete Item';
 
   @override
   String get confirmDeleteProduct =>
-      'Are you sure you want to delete this product?';
+      'Are you sure you want to delete this item?';
 
   @override
   String get no => 'No';
@@ -338,52 +335,52 @@ class AppLocalizationsEn extends AppLocalizations {
   String get yesDelete => 'Yes, Delete';
 
   @override
-  String get addNewProduct => 'Add New Product';
+  String get addNewProduct => 'Add New Item';
 
   @override
   String get category => 'Category';
 
   @override
-  String get customerList => 'Customer List';
+  String get customerList => 'Contacts List';
 
   @override
-  String get totalCustomers => 'Total Customers';
+  String get totalCustomers => 'Total Contacts';
 
   @override
-  String get newCustomers => 'New Customers';
+  String get newCustomers => 'New Contacts';
 
   @override
-  String get totalDue => 'Total Due';
+  String get totalDue => 'Total Outstanding';
 
   @override
-  String get customerName => 'Customer Name';
+  String get customerName => 'Contact Name';
 
   @override
-  String get customerPhone => 'Customer Phone';
+  String get customerPhone => 'Contact Phone';
 
   @override
-  String get customerAddress => 'Customer Address';
+  String get customerAddress => 'Contact Address';
 
   @override
-  String get totalPurchases => 'Total Purchases';
+  String get totalPurchases => 'Total Value';
 
   @override
   String get due => 'Due';
 
   @override
-  String get customer => 'Customer';
+  String get customer => 'Contact';
 
   @override
-  String get salesList => 'Sales List';
+  String get salesList => 'Activity List';
 
   @override
-  String get totalTransactions => 'Total Transactions';
+  String get totalTransactions => 'Total Activities';
 
   @override
-  String get noSales => 'No Sales';
+  String get noSales => 'No Activities';
 
   @override
-  String get invoiceNumber => 'Invoice Number';
+  String get invoiceNumber => 'Record ID';
 
   @override
   String get date => 'Date';
@@ -392,34 +389,34 @@ class AppLocalizationsEn extends AppLocalizations {
   String get paid => 'Paid';
 
   @override
-  String get saleDetails => 'Sale Details';
+  String get saleDetails => 'Activity Details';
 
   @override
-  String get productList => 'Product List';
+  String get productList => 'Item List';
 
   @override
   String get selectLanguage => 'Select Language';
 
   @override
-  String get dueCustomersList => 'Due Customers List';
+  String get dueCustomersList => 'Outstanding Contacts';
 
   @override
-  String get totalDueCustomers => 'Total Due Customers';
+  String get totalDueCustomers => 'Total With Due';
 
   @override
-  String get noDueCustomers => 'No Due Customers';
+  String get noDueCustomers => 'No Outstanding Contacts';
 
   @override
   String get people => 'people';
 
   @override
-  String get payDue => 'Pay Due';
+  String get payDue => 'Settle Amount';
 
   @override
   String get enterAmount => 'Enter amount';
 
   @override
-  String get pay => 'Pay';
+  String get pay => 'Apply';
 
   @override
   String get yourCategories => 'Your Categories';
@@ -456,14 +453,14 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get provideRequiredInfo =>
-      'Provide the necessary information to manage your business';
+      'Provide the necessary information to use this UI kit';
 
   @override
   String get userInformation => 'User Information';
 
   @override
   String get setupProfileAndProvideInfo =>
-      'Set up your profile and provide necessary information for your business';
+      'Set up your profile for demo purposes';
 
   @override
   String get enterYourFullName => 'Enter your full name';
@@ -488,14 +485,13 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get completeProfileDescription =>
-      'Provide necessary information to manage your business';
+      'Provide sample information for the demo';
 
   @override
   String get userInfo => 'User Information';
 
   @override
-  String get userInfoDescription =>
-      'Set up your profile and provide information for your business';
+  String get userInfoDescription => 'Set up your profile information';
 
   @override
   String get fullName => 'Enter your full name';
@@ -513,25 +509,25 @@ class AppLocalizationsEn extends AppLocalizations {
   String get nextStep => 'Go to Next Step';
 
   @override
-  String get pinCodeSetup => 'You can optionally set up the PIN code next';
+  String get pinCodeSetup => 'You can optionally set up a PIN next';
 
   @override
-  String get storeSetup => 'Store Setup';
+  String get storeSetup => 'Workspace Setup';
 
   @override
-  String get addStoreLogo => 'Add Store Logo';
+  String get addStoreLogo => 'Add Logo';
 
   @override
-  String get storeInfo => 'Store Information';
+  String get storeInfo => 'Workspace Information';
 
   @override
-  String get storeInfoDescription => 'Enter your store information';
+  String get storeInfoDescription => 'Enter your workspace information';
 
   @override
-  String get storeName => 'Store Name';
+  String get storeName => 'Workspace Name';
 
   @override
-  String get storeNameRequired => 'Please enter store name';
+  String get storeNameRequired => 'Please enter workspace name';
 
   @override
   String get addressRequired => 'Please enter address';
@@ -543,7 +539,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get phoneNumberRequired => 'Please enter phone number';
 
   @override
-  String get emailRequired => 'Please enter email';
+  String get emailRequired => 'Email is required';
 
   @override
   String get validEmailRequired => 'Please enter valid email';
@@ -555,10 +551,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get businessTypeRequired => 'Please enter business type';
 
   @override
-  String get retailer => 'Retailer';
+  String get retailer => 'Retail';
 
   @override
-  String get wholesaler => 'Wholesaler';
+  String get wholesaler => 'Wholesale';
 
   @override
   String get restaurant => 'Restaurant';
@@ -577,7 +573,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get storeInfoNote =>
-      'Please enter your store information correctly. This information is important for your business.';
+      'Enter demo information. This UI kit does not store real data.';
 
   @override
   String get previous => 'Previous';
@@ -586,44 +582,44 @@ class AppLocalizationsEn extends AppLocalizations {
   String get next => 'Next';
 
   @override
-  String get improveStoreManagement => 'Improve Your Store Management';
+  String get improveStoreManagement => 'Design Better Admin Experiences';
 
   @override
   String get startWithPowerfulTool =>
-      'Start managing your store with our powerful store management tool.';
+      'Start exploring this business admin UI kit.';
 
   @override
-  String get trackAllActivities => 'Track All Your Store Activities';
+  String get trackAllActivities => 'Track All Activities';
 
   @override
   String get trackActivitiesDescription =>
-      'Manage inventory, sales, and transactions in one convenient place.';
+      'View records, activities and reports in one place.';
 
   @override
-  String get smartBusinessInsights => 'Smart Business Insights';
+  String get smartBusinessInsights => 'Smart Insights';
 
   @override
   String get smartInsightsDescription =>
-      'Get detailed reports and analytics to make informed decisions.';
+      'Use the analytics UI to present key metrics.';
 
   @override
-  String get secureAndPrivate => 'Secure and Private';
+  String get secureAndPrivate => 'UI Only';
 
   @override
   String get secureDescription =>
-      'Your store information is secure and accessible only to you.';
+      'This kit does not store or sync any real data.';
 
   @override
-  String get startManagingStore => 'Start Managing Your Store';
+  String get startManagingStore => 'Open Dashboard';
 
   @override
-  String get startWithTool => 'Start with our powerful store management tool';
+  String get startWithTool => 'Start with this UI kit';
 
   @override
   String get start => 'Start';
 
   @override
-  String get customizeAppSettings => 'Customize your app settings';
+  String get customizeAppSettings => 'Customize your UI preferences';
 
   @override
   String get appSettings => 'App Settings';
@@ -635,19 +631,19 @@ class AppLocalizationsEn extends AppLocalizations {
   String get language => 'Language';
 
   @override
-  String get dataManagement => 'Data Management';
+  String get dataManagement => 'Data (UI Only)';
 
   @override
-  String get dataBackup => 'Data Backup';
+  String get dataBackup => 'Backup (UI Only)';
 
   @override
-  String get dataRestore => 'Data Restore';
+  String get dataRestore => 'Restore (UI Only)';
 
   @override
-  String get storeSettings => 'Store Settings';
+  String get storeSettings => 'Workspace Settings';
 
   @override
-  String get dokandarSubscription => 'Dokandar Subscription';
+  String get dokandarSubscription => 'Subscription (UI Only)';
 
   @override
   String get supportAndHelp => 'Support and Help';
@@ -659,7 +655,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get feedback => 'Feedback';
 
   @override
-  String get store => 'Store';
+  String get store => 'Workspace';
 
   @override
   String get joinDate => 'Join Date';
@@ -677,7 +673,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get dateNotFound => 'Date not found';
 
   @override
-  String get defaultName => 'Rakib';
+  String get defaultName => 'Demo User';
 
   @override
   String get joined => 'Joined';
@@ -686,8 +682,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get premiumSubscription => 'Get Premium Subscription!';
 
   @override
-  String get premiumSubtitle =>
-      'Choose subscription packages according to your needs and get great benefits';
+  String get premiumSubtitle => 'Sample subscription cards for your own plans';
 
   @override
   String get freePlanFeatures => 'Free Plan Features';
@@ -696,40 +691,40 @@ class AppLocalizationsEn extends AppLocalizations {
   String get subscriptionPackages => 'Subscription Packages';
 
   @override
-  String get productsUpTo => ' products up to';
+  String get productsUpTo => ' items up to';
 
   @override
-  String get customersUpTo => ' customers up to';
+  String get customersUpTo => ' contacts up to';
 
   @override
   String get trialPeriodDays => ' days trial period';
 
   @override
   String get subscriptionAdditionalInfo =>
-      'Choose your subscription package and get more benefits. With our premium plan, you will get even more benefits.';
+      'Replace this copy with your own subscription details.';
 
   @override
   String subscriptionExpiryNote(String startDate) {
-    return 'Regular plus rate will apply from $startDate when your current offer ends.';
+    return 'From $startDate, your regular rate will apply.';
   }
 
   @override
   String get free => 'Free';
 
   @override
-  String get basicReports => 'You can view basic reports';
+  String get basicReports => 'You can view basic demo reports';
 
   @override
-  String get completeOrder => 'Complete Order';
+  String get completeOrder => 'Complete Review';
 
   @override
-  String get orderSummary => 'Order Summary';
+  String get orderSummary => 'Summary';
 
   @override
-  String get newOrder => 'New Order';
+  String get newOrder => 'New Record';
 
   @override
-  String get customerInfo => 'Customer Information';
+  String get customerInfo => 'Contact Information';
 
   @override
   String get optional => 'Optional';
@@ -744,16 +739,16 @@ class AppLocalizationsEn extends AppLocalizations {
   String get dueAmountField => 'Due Amount (৳)';
 
   @override
-  String get orderNote => 'Order Note (if any)';
+  String get orderNote => 'Note (if any)';
 
   @override
-  String get invoice => 'Invoice';
+  String get invoice => 'Report';
 
   @override
   String get generating => 'Generating...';
 
   @override
-  String get confirmOrder => 'Confirm Order';
+  String get confirmOrder => 'Confirm';
 
   @override
   String get localBackup => 'Local Backup';
@@ -762,15 +757,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get backupToLocalStorage => 'Backup to Local Storage';
 
   @override
-  String get backupToLocalDescription =>
-      'Backup files to your phone memory or USB flash drive.';
+  String get backupToLocalDescription => 'UI-only backup description text.';
 
   @override
   String get restoreFromLocal => 'Restore from Local Storage';
 
   @override
-  String get restoreFromLocalDescription =>
-      'You can restore backup files from memory';
+  String get restoreFromLocalDescription => 'UI-only restore description text.';
 
   @override
   String get lastBackup => 'Last Backup';
@@ -780,26 +773,24 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get backupPrevention =>
-      'It is recommended to backup files to your PC or USB flash drive to prevent data loss.';
+      'Example text for explaining backup precautions.';
 
   @override
-  String get backupStorage =>
-      'If you backup files to phone memory, backup files will be saved in internal storage/backup.';
+  String get backupStorage => 'Example text about storage location.';
 
   @override
-  String get sharedDevice =>
-      'If you send data to a shared device, backup files will be saved on a device that cannot decrypt it.';
+  String get sharedDevice => 'Example text about shared devices.';
 
   @override
   String get createBackup => 'Create Backup';
 
   @override
   String backupInstructions(String folderName) {
-    return 'To create a backup, you must have sufficient space on your phone memory and backup files will be saved in your $folderName folder in phone memory.';
+    return 'This text describes how backups work in a real app.';
   }
 
   @override
-  String get dokandarFolder => 'Dokandar folder';
+  String get dokandarFolder => 'BizDash folder';
 
   @override
   String get backupStorageLocation => 'in phone memory.';
@@ -814,29 +805,26 @@ class AppLocalizationsEn extends AppLocalizations {
   String get selectBackupFile => 'Select Backup File';
 
   @override
-  String get selectBackupDescription =>
-      'Select backup file from your phone memory.';
+  String get selectBackupDescription => 'Select a backup file (UI only).';
 
   @override
   String get restoreData => 'Restore Data';
 
   @override
-  String get restoreDataDescription => 'Restore data from selected backup file';
+  String get restoreDataDescription => 'Restore from a backup file (UI only).';
 
   @override
   String get importantInfo => 'Important Information';
 
   @override
   String get backupBeforeRestore =>
-      'Before restoring, it is recommended to backup your current data.';
+      'In a real app, always backup before restore.';
 
   @override
-  String get restoreWarning =>
-      'When restoring, current data will be deleted and replaced with backup file data.';
+  String get restoreWarning => 'Current data would be replaced in a real app.';
 
   @override
-  String get validBackupOnly =>
-      'Data can only be restored from valid backup files.';
+  String get validBackupOnly => 'Only valid backup files can be restored.';
 
   @override
   String get restoring => 'Restoring...';
@@ -851,11 +839,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get updateDate => 'Update Date';
 
   @override
-  String get changelogDescription =>
-      'What changes have been made in the latest update';
+  String get changelogDescription => 'What changed in the latest UI update';
 
   @override
-  String get developerInfoDescription => 'Who created the app';
+  String get developerInfoDescription => 'Who created this UI kit';
 
   @override
   String get legalInfo => 'Legal Information';
@@ -873,59 +860,58 @@ class AppLocalizationsEn extends AppLocalizations {
   String get supportAndHelpTitle => 'Support and Help';
 
   @override
-  String get howToUseApp => 'How to Use the App';
+  String get howToUseApp => 'How to Use this UI Kit';
 
   @override
   String get gettingStarted => 'Getting Started';
 
   @override
   String get gettingStartedDescription =>
-      'Learn the basics of our inventory management system';
+      'Learn the basics of this admin UI kit';
 
   @override
-  String get productManagement => 'Product Management';
+  String get productManagement => 'Item Management';
 
   @override
-  String get productManagementDescription => 'Add, edit and track products';
+  String get productManagementDescription => 'Add, edit and view items';
 
   @override
-  String get salesAndReports => 'Sales and Reports';
+  String get salesAndReports => 'Activities and Reports';
 
   @override
   String get salesAndReportsDescription =>
-      'Track sales and create detailed reports';
+      'Track activities and present reports';
 
   @override
   String get availableModules => 'Available Modules';
 
   @override
-  String get availableModulesDescription => 'Suitable for your business';
+  String get availableModulesDescription =>
+      'Suitable for your business admin needs';
 
   @override
-  String get inventoryManagement => 'Inventory Management';
+  String get inventoryManagement => 'Record Management';
 
   @override
-  String get inventoryManagementDescription => 'Track and manage stock levels';
+  String get inventoryManagementDescription => 'Track and manage records';
 
   @override
-  String get salesTracking => 'Sales Tracking';
+  String get salesTracking => 'Activity Tracking';
 
   @override
-  String get salesTrackingDescription => 'Monitor sales and revenue';
+  String get salesTrackingDescription => 'Monitor activities and metrics';
 
   @override
-  String get customerManagement => 'Customer Management';
+  String get customerManagement => 'Contact Management';
 
   @override
-  String get customerManagementDescription =>
-      'Manage customer information and orders';
+  String get customerManagementDescription => 'Manage contact information';
 
   @override
   String get reportsAndAnalytics => 'Reports and Analytics';
 
   @override
-  String get reportsAndAnalyticsDescription =>
-      'Create detailed business insights';
+  String get reportsAndAnalyticsDescription => 'Create business insights';
 
   @override
   String get videoTutorials => 'Video Tutorials';
@@ -940,7 +926,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get someTipsToGetStarted => 'Some tips to get started';
 
   @override
-  String get learnBasicIn5Minutes => 'Learn basic in 5 minutes';
+  String get learnBasicIn5Minutes => 'Learn basics in 5 minutes';
 
   @override
   String get advancedFeatures => 'Advanced Features';
@@ -952,8 +938,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get giveFeedback => 'Give Your Feedback';
 
   @override
-  String get feedbackDescription =>
-      'Your valuable feedback for our improvement';
+  String get feedbackDescription => 'Your feedback helps improve this kit';
 
   @override
   String get feedbackCategories => 'Feedback Categories';
@@ -966,13 +951,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get bugReport => 'Bug Report';
 
   @override
-  String get bugReportDescription => 'Found any issues in the app?';
+  String get bugReportDescription => 'Found any UI issues?';
 
   @override
   String get featureRequest => 'Feature Request';
 
   @override
-  String get featureRequestDescription => 'Want any new features?';
+  String get featureRequestDescription => 'Want any new components?';
 
   @override
   String get generalFeedback => 'General Feedback';
@@ -987,23 +972,24 @@ class AppLocalizationsEn extends AppLocalizations {
   String get recentFeedbackDescription => 'Feedback from other users';
 
   @override
-  String get appIsGreat => 'App is great';
+  String get appIsGreat => 'Great UI';
 
   @override
   String get appIsGreatDescription =>
-      'My business has improved a lot using this app';
+      'This UI kit is very helpful for prototypes';
 
   @override
   String get someIssues => 'Some issues';
 
   @override
-  String get someIssuesDescription => 'Sometimes the app becomes slow';
+  String get someIssuesDescription =>
+      'Sometimes performance may vary on devices';
 
   @override
   String get veryHelpful => 'Very helpful';
 
   @override
-  String get veryHelpfulDescription => 'Support team responds very quickly';
+  String get veryHelpfulDescription => 'The structure is easy to customize';
 
   @override
   String get writeYourFeedback => 'Write Your Feedback';
@@ -1033,43 +1019,43 @@ class AppLocalizationsEn extends AppLocalizations {
   String get newFeaturesNeeded => 'New Features Needed';
 
   @override
-  String get needToAddNewFeatures => 'Need to add some new features to the app';
+  String get needToAddNewFeatures => 'Need to add some new UI features';
 
   @override
-  String get customerHasDue => 'Customer has due';
+  String get customerHasDue => 'Contact has outstanding amount';
 
   @override
-  String get customerNoDue => 'Customer has no due';
+  String get customerNoDue => 'Contact has no outstanding amount';
 
   @override
-  String get lastPurchase => 'Last Purchase';
+  String get lastPurchase => 'Last Activity';
 
   @override
-  String get deleteCustomer => 'Delete Customer';
+  String get deleteCustomer => 'Delete Contact';
 
   @override
   String get confirmDeleteCustomer =>
-      'Are you sure you want to delete this customer?';
+      'Are you sure you want to delete this contact?';
 
   @override
   String get nameRequired => 'Name is required';
 
   @override
-  String get phoneRequired => 'Phone number is required';
+  String get phoneRequired => 'Phone is required';
 
   @override
   String get add => 'Add';
 
   @override
   String stockInPieces(String quantity) {
-    return 'Stock: $quantity pieces';
+    return 'Stock: $quantity units';
   }
 
   @override
   String get stock => 'Stock';
 
   @override
-  String get pieces => 'pieces';
+  String get pieces => 'units';
 
   @override
   String serviceInitFailed(String error) {
@@ -1093,7 +1079,7 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String get failedToLoadDueCustomers => 'Failed to load due customers list';
+  String get failedToLoadDueCustomers => 'Failed to load list';
 
   @override
   String get paymentUpdated => 'Payment updated';
@@ -1276,4 +1262,178 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get pinMismatch => 'PIN and confirmation do not match';
+
+  @override
+  String get fileManagement => 'File Management';
+
+  @override
+  String get analytics => 'Analytics';
+
+  @override
+  String get searchFiles => 'Search files...';
+
+  @override
+  String get noFilesFound => 'No Files Found';
+
+  @override
+  String get uploadFile => 'Upload File';
+
+  @override
+  String get chartsReports => 'Charts & Reports';
+
+  @override
+  String get all => 'All';
+
+  @override
+  String get unread => 'Unread';
+
+  @override
+  String get noNotifications => 'No Notifications';
+
+  @override
+  String get allCaughtUp => 'You\'re all caught up!';
+
+  @override
+  String get notificationDetails => 'Notification Details';
+
+  @override
+  String get message => 'Message';
+
+  @override
+  String get takeAction => 'Take Action';
+
+  @override
+  String get users => 'Users';
+
+  @override
+  String get searchUsers => 'Search users...';
+
+  @override
+  String get noUsersFound => 'No Users Found';
+
+  @override
+  String get active => 'Active';
+
+  @override
+  String get inactive => 'Inactive';
+
+  @override
+  String get suspended => 'Suspended';
+
+  @override
+  String get filters => 'Filters';
+
+  @override
+  String get role => 'Role';
+
+  @override
+  String get allRoles => 'All Roles';
+
+  @override
+  String get status => 'Status';
+
+  @override
+  String get allStatus => 'All Status';
+
+  @override
+  String get clearFilters => 'Clear Filters';
+
+  @override
+  String get rolesPermissions => 'Roles & Permissions';
+
+  @override
+  String get noRolesFound => 'No Roles Found';
+
+  @override
+  String get permissions => 'Permissions';
+
+  @override
+  String get editRole => 'Edit Role';
+
+  @override
+  String get addRole => 'Add Role';
+
+  @override
+  String get roleName => 'Role Name';
+
+  @override
+  String get updateRole => 'Update Role';
+
+  @override
+  String get open => 'Open';
+
+  @override
+  String get filePreviewDemo => 'File preview would open here';
+
+  @override
+  String get fileUploadDemo =>
+      'File upload functionality would be implemented here';
+
+  @override
+  String get fileUploadUIOnly => 'File upload is UI-only';
+
+  @override
+  String get chartPreview => 'Chart Preview';
+
+  @override
+  String dataPoints(int count) {
+    return '$count data points';
+  }
+
+  @override
+  String get justNow => 'Just now';
+
+  @override
+  String get yesterday => 'Yesterday';
+
+  @override
+  String minutesAgo(int minutes) {
+    return '${minutes}m ago';
+  }
+
+  @override
+  String hoursAgo(int hours) {
+    return '${hours}h ago';
+  }
+
+  @override
+  String daysAgo(int days) {
+    return '${days}d ago';
+  }
+
+  @override
+  String get department => 'Department';
+
+  @override
+  String get editUser => 'Edit User';
+
+  @override
+  String get addUser => 'Add User';
+
+  @override
+  String get updateUser => 'Update User';
+
+  @override
+  String get departmentRequired => 'Department is required';
+
+  @override
+  String get roleRequired => 'Role is required';
+
+  @override
+  String get permissionsLabel => 'permissions';
+
+  @override
+  String get ok => 'OK';
+
+  @override
+  String get dashboard => 'Dashboard';
+
+  @override
+  String get records => 'Records';
+
+  @override
+  String get reports => 'Reports';
+
+  @override
+  String get userManagement => 'User Management';
 }

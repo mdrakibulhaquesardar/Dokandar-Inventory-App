@@ -29,7 +29,13 @@ PreferredSize customAppBar(
             if (isBackButtonVisible)
               IconButton(
                 icon: const Icon(Icons.arrow_back, size: 20),
-                onPressed: () => Get.back(),
+                onPressed: () {
+                  // Use Navigator directly to avoid snackbar-related back issues.
+                  final navigator = Get.key.currentState;
+                  if (navigator != null && navigator.canPop()) {
+                    navigator.pop();
+                  }
+                },
                 color: themeConfig.getTextPrimaryColor(isDarkMode),
                 padding: EdgeInsets.zero,
                 constraints: const BoxConstraints(),

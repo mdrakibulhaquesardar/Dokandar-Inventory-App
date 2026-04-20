@@ -1,9 +1,9 @@
-import 'package:dokandar_app_inventory/app/core/services/database_service.dart';
 import 'package:get/get.dart';
 import '../../../data/models/sale.dart';
+import '../../../../mock/mock_data_service.dart';
 
 class AllSalesController extends GetxController {
-  final DatabaseService _databaseService = Get.find<DatabaseService>();
+  final _mock = const MockDataService();
   final RxList<Sale> sales = <Sale>[].obs;
   final RxDouble totalSales = 0.0.obs;
   final RxDouble totalDue = 0.0.obs;
@@ -15,14 +15,13 @@ class AllSalesController extends GetxController {
     loadSales();
   }
 
-  // Add new variables for date filtering
-  final Rx<DateTime?> startDate = Rx<DateTime?>(null); 
+  final Rx<DateTime?> startDate = Rx<DateTime?>(null);
   final Rx<DateTime?> endDate = Rx<DateTime?>(null);
   final RxList<Sale> filteredSales = <Sale>[].obs;
 
   Future<void> loadSales() async {
-    sales.value = await _databaseService.getAllSales();
-    filterSales(); // Apply filters after loading
+    sales.value = await _mock.getAllSales();
+    filterSales();
     _calculateStats();
   }
 
@@ -38,8 +37,8 @@ class AllSalesController extends GetxController {
         );
 
         if (startDate.value != null && endDate.value != null) {
-          return saleDate.isAfter(startDate.value!) && 
-                 saleDate.isBefore(endDate.value!.add(const Duration(days: 1)));
+          return saleDate.isAfter(startDate.value!) &&
+              saleDate.isBefore(endDate.value!.add(const Duration(days: 1)));
         } else if (startDate.value != null) {
           return saleDate.isAfter(startDate.value!);
         } else {
@@ -47,7 +46,7 @@ class AllSalesController extends GetxController {
         }
       }).toList();
     }
-    _calculateStats(); // Recalculate stats based on filtered data
+    _calculateStats();
   }
 
   void setDateRange(DateTime? start, DateTime? end) {
@@ -63,19 +62,10 @@ class AllSalesController extends GetxController {
   }
 
   void _calculateStats() {
-    // Use filteredSales instead of sales for calculations
-    totalSales.value = filteredSales.fold(0.0, (sum, sale) => sum + sale.totalAmount);
-    totalDue.value = filteredSales.fold(0.0, (sum, sale) => sum + sale.dueAmount);
+    totalSales.value =
+        filteredSales.fold(0.0, (sum, sale) => sum + sale.totalAmount);
+    totalDue.value =
+        filteredSales.fold(0.0, (sum, sale) => sum + sale.dueAmount);
     totalTransactions.value = filteredSales.length;
   }
-
-  Future<void> deleteSale(int id) async {
-    await _databaseService.deleteSale(id);
-    await loadSales();
-  }
-
-
-
-
-
 }

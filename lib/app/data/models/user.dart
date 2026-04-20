@@ -1,8 +1,3 @@
-import 'package:isar/isar.dart';
-
-part 'user.g.dart';
-
-@collection
 class User {
   static final User _instance = User._internal();
 
@@ -12,7 +7,7 @@ class User {
 
   User._internal();
 
-  Id id = Isar.autoIncrement;
+  int? id;
 
   late String name;
   late String email;

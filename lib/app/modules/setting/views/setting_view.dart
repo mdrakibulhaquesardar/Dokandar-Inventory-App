@@ -11,6 +11,7 @@ import '../controllers/setting_controller.dart';
 import '../../../config/app_theme_config.dart';
 import '../../../widgets/custom_switch.dart';
 import '../../../utils/vibration_helper.dart';
+import 'components_showcase_view.dart';
 
 class SettingView extends GetView<SettingController> {
   const SettingView({super.key});
@@ -316,6 +317,19 @@ class SettingView extends GetView<SettingController> {
               isLocked: false,
               context: context,
             ),
+            _buildSettingCard(
+              title: 'Components Showcase',
+              subtitle: 'Preview core UI components',
+              icon: Icons.widgets_outlined,
+              color: Colors.deepOrange,
+              onTap: () {
+                Get.to(() => const ComponentsShowcaseView());
+              },
+              themeConfig: themeConfig,
+              isDarkMode: isDarkMode,
+              isLocked: false,
+              context: context,
+            ),
             if (AppConfig.enableSubscription)
               _buildSettingCard(
                 title: l10n.subscription,
@@ -537,7 +551,7 @@ class SettingView extends GetView<SettingController> {
                   ),
                 ),
                 IconButton(
-                  onPressed: () => Get.back(),
+                  onPressed: () => Navigator.of(context).pop(),
                   icon: Icon(
                     Icons.close,
                     color: themeConfig.getTextSecondaryColor(isDarkMode),
@@ -832,7 +846,7 @@ class SettingView extends GetView<SettingController> {
                     ),
                     onTap: () async {
                       await appConfig.saveTheme(value);
-                      Get.back();
+                      Navigator.of(context).pop();
                     },
                   );
                 }).toList(),
@@ -950,7 +964,7 @@ class SettingView extends GetView<SettingController> {
                   ),
                   onTap: () async {
                     await appConfig.saveFontSize(entry.key);
-                    Get.back();
+                    Navigator.of(context).pop();
                   },
                 );
               });
@@ -1008,7 +1022,7 @@ class SettingView extends GetView<SettingController> {
                   ),
                   onTap: () async {
                     await appConfig.saveCurrency(entry.key);
-                    Get.back();
+                    Navigator.of(context).pop();
                   },
                 );
               });
@@ -1067,7 +1081,7 @@ class SettingView extends GetView<SettingController> {
                   ),
                   onTap: () async {
                     await appConfig.saveDateFormat(entry.key);
-                    Get.back();
+                    Navigator.of(context).pop();
                   },
                 );
               });
@@ -1126,7 +1140,7 @@ class SettingView extends GetView<SettingController> {
                   ),
                   onTap: () async {
                     await appConfig.saveTimeFormat(entry.key);
-                    Get.back();
+                    Navigator.of(context).pop();
                   },
                 );
               });
@@ -1184,7 +1198,7 @@ class SettingView extends GetView<SettingController> {
                   ),
                   onTap: () async {
                     await appConfig.savePageSize(size);
-                    Get.back();
+                    Navigator.of(context).pop();
                   },
                 );
               });
@@ -1219,7 +1233,7 @@ class SettingView extends GetView<SettingController> {
         ),
         actions: [
           TextButton(
-            onPressed: () => Get.back(),
+            onPressed: () => Navigator.of(context).pop(),
             child: Text(
               l10n.cancel,
               style: SafeGoogleFonts.poppins(
@@ -1230,7 +1244,7 @@ class SettingView extends GetView<SettingController> {
           TextButton(
             onPressed: () async {
               await appConfig.clearCache();
-              Get.back();
+              Navigator.of(context).pop();
               Get.snackbar(
                 l10n.clearCache,
                 l10n.cacheCleared,

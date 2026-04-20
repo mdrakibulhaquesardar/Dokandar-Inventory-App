@@ -1,13 +1,8 @@
-import 'package:isar/isar.dart';
 import 'package:uuid/uuid.dart';
 
-part 'supplier.g.dart';
-
-@collection
 class Supplier {
-  Id id = Isar.autoIncrement;
+  int? id;
 
-  @Index(unique: true)
   String? supplierCode;
 
   late String name;
@@ -47,4 +42,3 @@ class Supplier {
     updatedAt = DateTime.now();
   }
 }
-

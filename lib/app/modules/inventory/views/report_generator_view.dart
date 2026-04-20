@@ -125,11 +125,13 @@ class ReportGeneratorView extends GetView<ReportController> {
             SizedBox(
               width: double.infinity,
               child: ElevatedButton.icon(
-                onPressed: () async {
-                  final bytes = await controller.generatePdf();
-                  if (context.mounted) {
-                    _showPdf(context, bytes, themeConfig, isDarkMode);
-                  }
+                onPressed: () {
+                  // UI Kit: no real PDF generation, just a demo message.
+                  Get.snackbar(
+                    'Demo only',
+                    'In a real app, this could generate a PDF report.',
+                    snackPosition: SnackPosition.BOTTOM,
+                  );
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: themeConfig.getPrimaryColor(isDarkMode),
@@ -158,26 +160,15 @@ class ReportGeneratorView extends GetView<ReportController> {
       label: Text(label),
       selected: controller.reportType.value == value,
       onSelected: (_) => controller.setReportType(value),
-      selectedColor: themeConfig.getPrimaryColor(isDarkMode).withValues(alpha: 0.1),
+      selectedColor:
+          themeConfig.getPrimaryColor(isDarkMode).withValues(alpha: 0.1),
     );
   }
 
-  void _showPdf(BuildContext context, Uint8List bytes,
-      AppThemeConfig themeConfig, bool isDarkMode) {
-    Get.dialog(
-      Dialog(
-        child: SizedBox(
-          height: Get.height * 0.8,
-          width: Get.width * 0.9,
-          child: SfPdfViewer.memory(
-            bytes,
-            canShowScrollHead: true,
-          ),
-        ),
-      ),
-    );
-  }
+  void _showPdf(
+    BuildContext context,
+    Uint8List bytes,
+    AppThemeConfig themeConfig,
+    bool isDarkMode,
+  ) {}
 }
-
-
-

@@ -134,8 +134,11 @@ class AppConfig extends GetxService {
   static const Map<String, dynamic> themeColors = {
     'primary': 0xFF2196F3,
     'secondary': 0xFF03DAC6,
+    // Use a pure white background for the app shell
     'background': 0xFFFFFFFF,
-    'surface': 0xFFFFFFFF,
+    // Slightly off-white surface so cards and panels
+    // are clearly visible in light mode (similar contrast to dark mode)
+    'surface': 0xFFF5F5F5,
     'error': 0xFFB00020,
     'onPrimary': 0xFFFFFFFF,
     'onSecondary': 0xFF000000,

@@ -9,10 +9,10 @@ class AppLocalizationsBn extends AppLocalizations {
   AppLocalizationsBn([String locale = 'bn']) : super(locale);
 
   @override
-  String get appName => 'দোকানদার';
+  String get appName => 'BizDash';
 
   @override
-  String get appDescription => 'ইনভেন্টরি ম্যানেজমেন্ট সিস্টেম';
+  String get appDescription => 'বিজনেস অ্যাডমিন UI কিট';
 
   @override
   String get settings => 'সেটিংস';
@@ -24,22 +24,22 @@ class AppLocalizationsBn extends AppLocalizations {
   String get subscription => 'সাবস্ক্রিপশন';
 
   @override
-  String get products => 'পণ্য';
+  String get products => 'আইটেম';
 
   @override
-  String get customers => 'গ্রাহক';
+  String get customers => 'কনট্যাক্ট';
 
   @override
-  String get sales => 'বিক্রয়';
+  String get sales => 'কার্যকলাপ';
 
   @override
-  String get inventory => 'ইনভেন্টরি';
+  String get inventory => 'রেকর্ড';
 
   @override
-  String get addProduct => 'পণ্য যোগ করুন';
+  String get addProduct => 'আইটেম যোগ করুন';
 
   @override
-  String get addCustomer => 'গ্রাহক যোগ করুন';
+  String get addCustomer => 'কনট্যাক্ট যোগ করুন';
 
   @override
   String get save => 'সংরক্ষণ করুন';
@@ -48,7 +48,7 @@ class AppLocalizationsBn extends AppLocalizations {
   String get cancel => 'বাতিল';
 
   @override
-  String get delete => 'ডিলিট করুন';
+  String get delete => 'মুছুন';
 
   @override
   String get edit => 'সম্পাদনা';
@@ -117,7 +117,7 @@ class AppLocalizationsBn extends AppLocalizations {
   String get currentVersionAndDescription => 'বর্তমান সংস্করণ এবং বিবরণ';
 
   @override
-  String get developer => 'Developer';
+  String get developer => 'ডেভেলপার';
 
   @override
   String get changelog => 'পরিবর্তনসমূহ';
@@ -141,7 +141,7 @@ class AppLocalizationsBn extends AppLocalizations {
   String get upgrade => 'আপগ্রেড';
 
   @override
-  String get buyNow => 'এখনি কিনুন';
+  String get buyNow => 'এখনই কিনুন';
 
   @override
   String get trialPeriod => 'ট্রায়াল পিরিয়ড';
@@ -153,12 +153,12 @@ class AppLocalizationsBn extends AppLocalizations {
 
   @override
   String productsLimit(int count) {
-    return 'আপনি $countটি পর্যন্ত পণ্য যোগ করতে পারবেন';
+    return 'আপনি $countটি পর্যন্ত আইটেম যোগ করতে পারবেন';
   }
 
   @override
   String customersLimit(int count) {
-    return 'আপনি $countটি পর্যন্ত গ্রাহক যোগ করতে পারবেন';
+    return 'আপনি $countটি পর্যন্ত কনট্যাক্ট যোগ করতে পারবেন';
   }
 
   @override
@@ -171,99 +171,96 @@ class AppLocalizationsBn extends AppLocalizations {
   String get home => 'হোম';
 
   @override
-  String get summaryInfo => 'সারাংশিক তথ্য';
+  String get summaryInfo => 'সারাংশ তথ্য';
 
   @override
-  String get summaryInfoDescription =>
-      'সারাংশিক তথ্য সম্পর্কিত বিবরণ শো করুন সম্পর্কিত বিবরণ শো করুন';
+  String get summaryInfoDescription => 'সারাংশ তথ্য এবং সম্পর্কিত বিবরণ দেখুন';
 
   @override
-  String get totalProducts => 'মোট পণ্য';
+  String get totalProducts => 'মোট আইটেম';
 
   @override
-  String get totalSales => 'মোট বিক্রয়';
+  String get totalSales => 'মোট কার্যকলাপ';
 
   @override
   String get categories => 'ক্যাটাগরি';
 
   @override
-  String get todaysOrders => 'আজকের অর্ডার';
+  String get todaysOrders => 'আজকের রেকর্ড';
 
   @override
-  String get totalProfit => 'মোট মুনাফা';
+  String get totalProfit => 'মোট মার্জিন';
 
   @override
-  String get recentSales => 'সাম্প্রতিক বিক্রয়';
+  String get recentSales => 'সাম্প্রতিক কার্যকলাপ';
 
   @override
-  String get recentSalesDescription =>
-      'সাম্প্রতিক বিক্রয় তালিকা শো করুন সম্প্রতিক বিক্রয় তালিকা শো করুন';
+  String get recentSalesDescription => 'সাম্প্রতিক কার্যকলাপের তালিকা দেখুন';
 
   @override
   String get stockAlert => 'স্টক অ্যালার্ট';
 
   @override
-  String get stockAlertDescription =>
-      'স্টক শেষ হতে ৩ দিন আগে কয়েকটি পণ্যের স্টক শেষ হচ্ছে';
+  String get stockAlertDescription => 'কিছু আইটেমের স্টক কমে যাচ্ছে';
 
   @override
-  String get noRecentSales => 'কোনো সাম্প্রতিক বিক্রয় নেই';
+  String get noRecentSales => 'কোনো সাম্প্রতিক কার্যকলাপ নেই';
 
   @override
   String get addToStock => 'স্টকে যোগ করুন';
 
   @override
-  String get searchProducts => 'পণ্য অনুসন্ধান করুন';
+  String get searchProducts => 'আইটেম অনুসন্ধান করুন';
 
   @override
-  String get totalPrice => 'মোট মূল্য';
+  String get totalPrice => 'মোট মান';
 
   @override
   String get quickAccess => 'দ্রুত অ্যাক্সেস';
 
   @override
   String get quickAccessDescription =>
-      'আপনার ইনভেন্টরির জন্য দ্রুত অ্যাক্সেস পেতে নিচের অপশনগুলো ব্যবহার করুন।';
+      'আপনার রেকর্ডে দ্রুত যেতে নিচের অপশনগুলো ব্যবহার করুন।';
 
   @override
-  String get allProducts => 'সকল পণ্য';
+  String get allProducts => 'সব আইটেম';
 
   @override
-  String get salesHistory => 'বিক্রয় ইতিহাস';
+  String get salesHistory => 'কার্যকলাপ ইতিহাস';
 
   @override
-  String get allCustomers => 'সকল কাস্টমার';
+  String get allCustomers => 'সব কনট্যাক্ট';
 
   @override
-  String get allSuppliers => 'সকল সাপ্লায়ার';
+  String get allSuppliers => 'সব পার্টনার';
 
   @override
-  String get storeExpenses => 'দোকান খরচ';
+  String get storeExpenses => 'খরচ';
 
   @override
-  String get allEmployees => 'সকল কর্মচারী';
+  String get allEmployees => 'সব টিম মেম্বার';
 
   @override
-  String get otherFunctions => 'অন্যান্য ফাংশন';
+  String get otherFunctions => 'অন্যান্য সেকশন';
 
   @override
   String get otherFunctionsDescription =>
-      'আপনার ইনভেন্টরির জন্য অন্যান্য ফাংশনগুলো ব্যবহার করুন।';
+      'অ্যাডমিন UI এর অন্যান্য সেকশন ব্যবহার করুন।';
 
   @override
-  String get duePayment => 'বাকি প্রতিশোধ';
+  String get duePayment => 'বকেয়া মান';
 
   @override
-  String get productCategories => 'পণ্যের ক্যাটাগরি';
+  String get productCategories => 'আইটেম ক্যাটাগরি';
 
   @override
-  String get transactionHistory => 'ট্রানজেকশন ইতিহাস';
+  String get transactionHistory => 'অ্যাকটিভিটি লগ';
 
   @override
-  String get supplierManagement => 'সাপ্লায়ার ম্যানেজমেন্ট';
+  String get supplierManagement => 'পার্টনার ম্যানেজমেন্ট';
 
   @override
-  String get generateReport => 'রিপোর্ট জেনারেট';
+  String get generateReport => 'রিপোর্ট তৈরি করুন';
 
   @override
   String get viewDetails => 'বিস্তারিত দেখুন';
@@ -272,154 +269,154 @@ class AppLocalizationsBn extends AppLocalizations {
   String get newLabel => 'নতুন';
 
   @override
-  String get sellCounter => 'বিক্রয় কাউন্টার';
+  String get sellCounter => 'কার্যকলাপ কাউন্টার';
 
   @override
-  String get searchProduct => 'পণ্য খুঁজুন...';
+  String get searchProduct => 'আইটেম খুঁজুন...';
 
   @override
   String totalProductsCount(int count) {
-    return 'মোট পণ্য: $count';
+    return 'মোট আইটেম: $count';
   }
 
   @override
-  String get completeSale => 'বিক্রয় সম্পন্ন করুন';
+  String get completeSale => 'অ্যাকশন সম্পন্ন করুন';
 
   @override
-  String get noProductsAdded => 'কোন পণ্য যোগ করা হয়নি';
+  String get noProductsAdded => 'কোন আইটেম যোগ করা হয়নি';
 
   @override
-  String get salesCounter => 'বিক্রয় কাউন্টার';
+  String get salesCounter => 'কার্যকলাপ কাউন্টার';
 
   @override
-  String get yourProducts => 'আপনার পণ্যসমূহ';
+  String get yourProducts => 'আপনার আইটেমসমূহ';
 
   @override
-  String get stockOut => 'স্টক আউট';
+  String get stockOut => 'স্টক কম';
 
   @override
-  String get recentProducts => 'সাম্রতিক পণ্যসমূহ';
+  String get recentProducts => 'সাম্প্রতিক আইটেম';
 
   @override
-  String get editProduct => 'পণ্য সম্পাদনা করুন';
+  String get editProduct => 'আইটেম সম্পাদনা করুন';
 
   @override
-  String get productName => 'পণ্যের নাম';
+  String get productName => 'আইটেমের নাম';
 
   @override
-  String get stockQuantity => 'স্টক পরিমাণ';
+  String get stockQuantity => 'স্টকের পরিমাণ';
 
   @override
-  String get sellingPrice => 'বিক্রয় মূল্য';
+  String get sellingPrice => 'ইউনিট মূল্য';
 
   @override
-  String get buyingPrice => 'ক্রয় মূল্য';
+  String get buyingPrice => 'বেস মূল্য';
 
   @override
-  String get profit => 'মুনাফা';
+  String get profit => 'মার্জিন';
 
   @override
-  String get unitProfit => 'একক মুনাফা';
+  String get unitProfit => 'প্রতি ইউনিট মার্জিন';
 
   @override
   String get createdAt => 'তৈরি হয়েছে';
 
   @override
-  String get deleteProduct => 'পণ্য মুছে ফেলুন';
+  String get deleteProduct => 'আইটেম মুছে ফেলুন';
 
   @override
   String get confirmDeleteProduct =>
-      'আপনি কি নিশ্চিত যে আপনি এই পণ্যটি মুছে ফেলতে চান?';
+      'আপনি কি নিশ্চিত যে আপনি এই আইটেমটি মুছে ফেলতে চান?';
 
   @override
   String get no => 'না';
 
   @override
-  String get yesDelete => 'হ্যাঁ, মুছে ফেলুন';
+  String get yesDelete => 'হ্যাঁ, মুছুন';
 
   @override
-  String get addNewProduct => 'নতুন পণ্য যোগ করুন';
+  String get addNewProduct => 'নতুন আইটেম যোগ করুন';
 
   @override
   String get category => 'ক্যাটাগরি';
 
   @override
-  String get customerList => 'গ্রাহক তালিকা';
+  String get customerList => 'কনট্যাক্ট তালিকা';
 
   @override
-  String get totalCustomers => 'মোট গ্রাহক';
+  String get totalCustomers => 'মোট কনট্যাক্ট';
 
   @override
-  String get newCustomers => 'নতুন গ্রাহক';
+  String get newCustomers => 'নতুন কনট্যাক্ট';
 
   @override
-  String get totalDue => 'মোট বাকি টাকা';
+  String get totalDue => 'মোট বকেয়া মান';
 
   @override
-  String get customerName => 'গ্রাহকের নাম';
+  String get customerName => 'কনট্যাক্টের নাম';
 
   @override
-  String get customerPhone => 'গ্রাহকের ফোন';
+  String get customerPhone => 'কনট্যাক্টের ফোন';
 
   @override
-  String get customerAddress => 'গ্রাহকের ঠিকানা';
+  String get customerAddress => 'কনট্যাক্টের ঠিকানা';
 
   @override
-  String get totalPurchases => 'মোট ক্রয়';
+  String get totalPurchases => 'মোট মান';
 
   @override
-  String get due => 'বাকি';
+  String get due => 'বকি';
 
   @override
-  String get customer => 'গ্রাহক';
+  String get customer => 'কনট্যাক্ট';
 
   @override
-  String get salesList => 'বিক্রয় তালিকা';
+  String get salesList => 'কার্যকলাপ তালিকা';
 
   @override
-  String get totalTransactions => 'মোট লেনদেন';
+  String get totalTransactions => 'মোট কার্যকলাপ';
 
   @override
-  String get noSales => 'কোন বিক্রয় নেই';
+  String get noSales => 'কোন কার্যকলাপ নেই';
 
   @override
-  String get invoiceNumber => 'ইনভয়েস নং';
+  String get invoiceNumber => 'রেকর্ড আইডি';
 
   @override
   String get date => 'তারিখ';
 
   @override
-  String get paid => 'প্রদত্ত';
+  String get paid => 'পরিশোধিত';
 
   @override
-  String get saleDetails => 'বিক্রয় বিবরণ';
+  String get saleDetails => 'কার্যকলাপ বিবরণ';
 
   @override
-  String get productList => 'পণ্য তালিকা';
+  String get productList => 'আইটেম তালিকা';
 
   @override
   String get selectLanguage => 'ভাষা নির্বাচন করুন';
 
   @override
-  String get dueCustomersList => 'বাকিদার তালিকা';
+  String get dueCustomersList => 'বকেয়া কনট্যাক্ট তালিকা';
 
   @override
-  String get totalDueCustomers => 'মোট বাকিদার';
+  String get totalDueCustomers => 'মোট বকেয়া কনট্যাক্ট';
 
   @override
-  String get noDueCustomers => 'কোন বাকিদার নেই';
+  String get noDueCustomers => 'কোন বকেয়া নেই';
 
   @override
   String get people => 'জন';
 
   @override
-  String get payDue => 'বাকি পরিশোধ';
+  String get payDue => 'বকেয়া স্যাটেল করুন';
 
   @override
   String get enterAmount => 'টাকার পরিমাণ লিখুন';
 
   @override
-  String get pay => 'পরিশোধ করুন';
+  String get pay => 'প্রয়োগ করুন';
 
   @override
   String get yourCategories => 'আপনার ক্যাটাগরি';
@@ -440,13 +437,13 @@ class AppLocalizationsBn extends AppLocalizations {
   String get update => 'হালনাগাদ করুন';
 
   @override
-  String get userSetup => 'ব্যবহারকারী সেটআপ';
+  String get userSetup => 'ইউজার সেটআপ';
 
   @override
-  String get step1of2 => 'ধাপ 1/2';
+  String get step1of2 => 'ধাপ ১/২';
 
   @override
-  String get step2of2 => 'ধাপ 2/2';
+  String get step2of2 => 'ধাপ ২/২';
 
   @override
   String get step3of3 => 'ধাপ ৩/৩';
@@ -456,14 +453,13 @@ class AppLocalizationsBn extends AppLocalizations {
 
   @override
   String get provideRequiredInfo =>
-      'আপনার ব্যবসা পরিচালনার জন্য প্রয়োজনীয় তথ্য দিন';
+      'এই UI কিট ব্যবহার করার জন্য প্রয়োজনীয় ডেমো তথ্য দিন';
 
   @override
-  String get userInformation => 'ব্যবহারকারীর তথ্য';
+  String get userInformation => 'ইউজার তথ্য';
 
   @override
-  String get setupProfileAndProvideInfo =>
-      'আপনার প্রোফাইল সেটআপ করুন এবং ব্যবসার জন্য প্রয়োজনীয় তথ্য দিন';
+  String get setupProfileAndProvideInfo => 'ডেমো প্রোফাইল সেটআপ করুন';
 
   @override
   String get enterYourFullName => 'আপনার পূর্ণ নাম লিখুন';
@@ -484,18 +480,16 @@ class AppLocalizationsBn extends AppLocalizations {
   String get step => 'ধাপ';
 
   @override
-  String get completeProfile => 'আপনার প্রোফাইল সম্পূর্ণ করুন';
+  String get completeProfile => 'প্রোফাইল সম্পূর্ণ করুন';
 
   @override
-  String get completeProfileDescription =>
-      'আপনার ব্যবসা পরিচালনার জন্য প্রয়োজনীয় তথ্য দিন';
+  String get completeProfileDescription => 'ডেমো উদ্দেশ্যে তথ্য দিন';
 
   @override
-  String get userInfo => 'ব্যবহারকারীর তথ্য';
+  String get userInfo => 'ইউজার তথ্য';
 
   @override
-  String get userInfoDescription =>
-      'আপনার প্রোফাইল সেটআপ করুন এবং ব্যবসার জন্য প্রয়োজনীয় তথ্য দিন';
+  String get userInfoDescription => 'আপনার প্রোফাইল তথ্য সেট করুন';
 
   @override
   String get fullName => 'আপনার পূর্ণ নাম লিখুন';
@@ -513,25 +507,25 @@ class AppLocalizationsBn extends AppLocalizations {
   String get nextStep => 'পরবর্তী ধাপে যান';
 
   @override
-  String get pinCodeSetup => 'আপনি চাইলে পরবর্তী পিন কোডটি সেটআপ করতে পারে';
+  String get pinCodeSetup => 'আপনি চাইলে পরবর্তী ধাপে পিন সেটআপ করতে পারেন';
 
   @override
-  String get storeSetup => 'দোকান সেটআপ';
+  String get storeSetup => 'ওয়ার্কস্পেস সেটআপ';
 
   @override
-  String get addStoreLogo => 'দোকানের লোগো যোগ করুন';
+  String get addStoreLogo => 'লোগো যোগ করুন';
 
   @override
-  String get storeInfo => 'দোকানের তথ্য';
+  String get storeInfo => 'ওয়ার্কস্পেস তথ্য';
 
   @override
-  String get storeInfoDescription => 'আপনার দোকানের তথ্য দিন';
+  String get storeInfoDescription => 'আপনার ওয়ার্কস্পেসের তথ্য দিন';
 
   @override
-  String get storeName => 'দোকানের নাম';
+  String get storeName => 'ওয়ার্কস্পেসের নাম';
 
   @override
-  String get storeNameRequired => 'দোকানের নাম দিন';
+  String get storeNameRequired => 'ওয়ার্কস্পেসের নাম দিন';
 
   @override
   String get addressRequired => 'ঠিকানা দিন';
@@ -543,7 +537,7 @@ class AppLocalizationsBn extends AppLocalizations {
   String get phoneNumberRequired => 'ফোন নম্বর দিন';
 
   @override
-  String get emailRequired => 'ইমেইল দিন';
+  String get emailRequired => 'ইমেইল প্রয়োজন';
 
   @override
   String get validEmailRequired => 'সঠিক ইমেইল দিন';
@@ -555,13 +549,13 @@ class AppLocalizationsBn extends AppLocalizations {
   String get businessTypeRequired => 'ব্যবসার ধরন দিন';
 
   @override
-  String get retailer => 'খুচরা বিক্রেতা';
+  String get retailer => 'রিটেইল';
 
   @override
-  String get wholesaler => 'পাইকারি বিক্রেতা';
+  String get wholesaler => 'হোলসেল';
 
   @override
-  String get restaurant => 'রেস্তোরাঁ';
+  String get restaurant => 'রেস্টুরেন্ট';
 
   @override
   String get pharmacy => 'ফার্মেসি';
@@ -577,7 +571,7 @@ class AppLocalizationsBn extends AppLocalizations {
 
   @override
   String get storeInfoNote =>
-      'আপনার দোকানের তথ্য সঠিকভাবে দিন। এই তথ্য আপনার ব্যবসার জন্য গুরুত্বপূর্ণ।';
+      'এটি শুধুমাত্র UI ডেমো, কোন বাস্তব ডেটা সংরক্ষণ হয় না।';
 
   @override
   String get previous => 'পূর্ববর্তী';
@@ -586,45 +580,44 @@ class AppLocalizationsBn extends AppLocalizations {
   String get next => 'পরবর্তী';
 
   @override
-  String get improveStoreManagement => 'আপনার দোকান ব্যবস্থাপনার উন্নতি করুন';
+  String get improveStoreManagement => 'আপনার অ্যাডমিন অভিজ্ঞতা উন্নত করুন';
 
   @override
   String get startWithPowerfulTool =>
-      'আমাদের শক্তিশালী দোকান ব্যবস্থাপনা টুল দিয়ে আপনার দোকান পরিচালনা শুরু করুন।';
+      'এই বিজনেস অ্যাডমিন UI কিট দিয়ে শুরু করুন।';
 
   @override
-  String get trackAllActivities => 'আপনার দোকানের সকল কার্যক্রম ট্র্যাক করুন';
+  String get trackAllActivities => 'সকল কার্যক্রম ট্র্যাক করুন';
 
   @override
   String get trackActivitiesDescription =>
-      'একটি সুবিধাজনক স্থানে ইনভেন্টরি, বিক্রয় এবং লেনদেন পরিচালনা করুন।';
+      'এক জায়গায় রেকর্ড, কার্যকলাপ এবং রিপোর্ট দেখুন।';
 
   @override
-  String get smartBusinessInsights => 'স্মার্ট ব্যবসায়িক অন্তর্দৃষ্টি';
+  String get smartBusinessInsights => 'স্মার্ট ইনসাইট';
 
   @override
   String get smartInsightsDescription =>
-      'সঠিক সিদ্ধান্ত নেওয়ার জন্য বিস্তারিত রিপোর্ট এবং বিশ্লেষণ পান।';
+      'অ্যানালিটিক্স UI দিয়ে গুরুত্বপূর্ণ মেট্রিক দেখান।';
 
   @override
-  String get secureAndPrivate => 'নিরাপদ এবং গোপনীয়';
+  String get secureAndPrivate => 'শুধু UI';
 
   @override
   String get secureDescription =>
-      'আপনার দোকানের তথ্য সুরক্ষিত এবং শুধুমাত্র আপনার জন্য অ্যাক্সেসযোগ্য।';
+      'এই কিট কোন বাস্তব ডেটা সংরক্ষণ বা সিঙ্ক করে না।';
 
   @override
-  String get startManagingStore => 'আপনার দোকান পরিচালনা শুরু করুন';
+  String get startManagingStore => 'ড্যাশবোর্ড খুলুন';
 
   @override
-  String get startWithTool =>
-      'আমাদের শক্তিশালী দোকান ব্যবস্থাপনা টুল দিয়ে শুরু করুন';
+  String get startWithTool => 'এই UI কিট দিয়ে শুরু করুন';
 
   @override
   String get start => 'শুরু করুন';
 
   @override
-  String get customizeAppSettings => 'আপনার অ্যাপ সেটিংস কাস্টমাইজ করুন';
+  String get customizeAppSettings => 'আপনার UI পছন্দ কাস্টমাইজ করুন';
 
   @override
   String get appSettings => 'অ্যাপ সেটিংস';
@@ -636,19 +629,19 @@ class AppLocalizationsBn extends AppLocalizations {
   String get language => 'ভাষা';
 
   @override
-  String get dataManagement => 'ডাটা ম্যানেজমেন্ট';
+  String get dataManagement => 'ডাটা (শুধু UI)';
 
   @override
-  String get dataBackup => 'ডাটা ব্যাকআপ';
+  String get dataBackup => 'ব্যাকআপ (শুধু UI)';
 
   @override
-  String get dataRestore => 'ডাটা রিস্টোর';
+  String get dataRestore => 'রিস্টোর (শুধু UI)';
 
   @override
-  String get storeSettings => 'দোকান সেটিংস';
+  String get storeSettings => 'ওয়ার্কস্পেস সেটিংস';
 
   @override
-  String get dokandarSubscription => 'দোকানদার সাবস্ক্রিপশন';
+  String get dokandarSubscription => 'সাবস্ক্রিপশন (শুধু UI)';
 
   @override
   String get supportAndHelp => 'সাপোর্ট এবং সহায়তা';
@@ -660,118 +653,118 @@ class AppLocalizationsBn extends AppLocalizations {
   String get feedback => 'ফিডব্যাক';
 
   @override
-  String get store => 'স্টোর';
+  String get store => 'ওয়ার্কস্পেস';
 
   @override
-  String get joinDate => 'যোগদান';
+  String get joinDate => 'যোগদান তারিখ';
 
   @override
   String get mobile => 'মোবাইল';
 
   @override
-  String get noMobileNumber => 'মোবাইল নাম্বার নেই';
+  String get noMobileNumber => 'মোবাইল নম্বর নেই';
 
   @override
-  String get dataNotFound => 'তথ্য খুজে পাওয়া যায়নি';
+  String get dataNotFound => 'তথ্য পাওয়া যায়নি';
 
   @override
-  String get dateNotFound => 'তারিখ খুজে পাওয়া যায়নি';
+  String get dateNotFound => 'তারিখ পাওয়া যায়নি';
 
   @override
-  String get defaultName => 'রাকিব';
+  String get defaultName => 'ডেমো ইউজার';
 
   @override
   String get joined => 'যোগদান';
 
   @override
-  String get premiumSubscription => 'প্রিমিয়াম সাবস্ক্রিপশন নিন!';
+  String get premiumSubscription => 'প্রিমিয়াম সাবস্ক্রিপশন কার্ড';
 
   @override
   String get premiumSubtitle =>
-      'আপনার প্রয়োজন অনুযায়ী সাবস্ক্রিপশন প্যাকেজ বেছে নিয়ে বড় সুবিধা পান';
+      'নিজের সাবস্ক্রিপশন প্ল্যানের জন্য এই UI ব্যবহার করুন';
 
   @override
-  String get freePlanFeatures => 'ফ্রি প্ল্যানের সুবিধাসমূহ';
+  String get freePlanFeatures => 'ফ্রি প্ল্যানের সুবিধা';
 
   @override
-  String get subscriptionPackages => 'সাবস্ক্রিপশন প্যাকেজসমূহ';
+  String get subscriptionPackages => 'সাবস্ক্রিপশন প্যাকেজ';
 
   @override
-  String get productsUpTo => 'টি পর্যন্ত পণ্য যোগ করতে পারবেন';
+  String get productsUpTo => 'টি পর্যন্ত আইটেম যোগ করতে পারবেন';
 
   @override
-  String get customersUpTo => 'টি পর্যন্ত গ্রাহক যোগ করতে পারবেন';
+  String get customersUpTo => 'টি পর্যন্ত কনট্যাক্ট যোগ করতে পারবেন';
 
   @override
   String get trialPeriodDays => 'দিনের ট্রায়াল পিরিয়ড';
 
   @override
   String get subscriptionAdditionalInfo =>
-      'আপনার সাবস্ক্রিপশন প্যাকেজ বেছে নিয়ে আরও সুবিধা নিন। আমাদের প্রিমিয়াম প্ল্যানের মাধ্যমে আপনি আরও বেশি সুবিধা পাবেন।';
+      'নিজের সাবস্ক্রিপশন তথ্য এখানে দেখাতে পারবেন।';
 
   @override
   String subscriptionExpiryNote(String startDate) {
-    return 'আপনার বর্তমান অফার শেষ হলে $startDate থেকে নিয়মিত প্লাস রেট প্রযোজ্য হবে।';
+    return 'আপনার বর্তমান অফার শেষ হলে $startDate থেকে নিয়মিত রেট প্রযোজ্য হবে।';
   }
 
   @override
   String get free => 'ফ্রি';
 
   @override
-  String get basicReports => 'বেসিক রিপোর্ট দেখতে পারবেন';
+  String get basicReports => 'বেসিক ডেমো রিপোর্ট দেখতে পারবেন';
 
   @override
-  String get completeOrder => 'অর্ডার চূড়ান্ত করুন';
+  String get completeOrder => 'রিভিউ সম্পন্ন করুন';
 
   @override
-  String get orderSummary => 'অর্ডার সারাংশ';
+  String get orderSummary => 'সারাংশ';
 
   @override
-  String get newOrder => 'নতুন অর্ডার';
+  String get newOrder => 'নতুন রেকর্ড';
 
   @override
-  String get customerInfo => 'গ্রাহক তথ্য';
+  String get customerInfo => 'কনট্যাক্ট তথ্য';
 
   @override
-  String get optional => 'অবশ্যই নয়';
+  String get optional => 'ঐচ্ছিক';
 
   @override
-  String get unknown => 'অজ্ঞাতপরিচয়';
+  String get unknown => 'অজানা';
 
   @override
-  String get discountAmount => 'ডিসকাউন্ক (৳)';
+  String get discountAmount => 'ডিসকাউন্ট (৳)';
 
   @override
   String get dueAmountField => 'বাকি টাকা (৳)';
 
   @override
-  String get orderNote => 'অর্ডার নোট (যদি থাকে)';
+  String get orderNote => 'নোট (যদি থাকে)';
 
   @override
-  String get invoice => 'ইনভয়েস';
+  String get invoice => 'রিপোর্ট';
 
   @override
-  String get generating => 'তৈরি হছে...';
+  String get generating => 'তৈরি হচ্ছে...';
 
   @override
-  String get confirmOrder => 'অর্ডার নিশ্চিত করুন';
+  String get confirmOrder => 'নিশ্চিত করুন';
 
   @override
-  String get localBackup => 'স্থানীয় ব্যাকআপ';
+  String get localBackup => 'লোকাল ব্যাকআপ';
 
   @override
-  String get backupToLocalStorage => 'স্থানীয় স্টোরেজে ব্যাকআপ';
+  String get backupToLocalStorage => 'লোকাল স্টোরেজে ব্যাকআপ';
 
   @override
   String get backupToLocalDescription =>
-      'আপনার ফোনের মেমরি বা ইউএসবি ফ্ল্যাশ ড্রাইভে ফাইল ব্যাকআপ করুন।';
+      'রিয়েল অ্যাপে ব্যাকআপ কীভাবে কাজ করবে তার উদাহরণ টেক্সট।';
 
   @override
-  String get restoreFromLocal => 'স্থানীয় স্টোরেজ থেকে পুনরুদ্ধার';
+  String get restoreFromLocal => 'লোকাল স্টোরেজ থেকে রিস্টোর';
 
   @override
   String get restoreFromLocalDescription =>
-      'মেমরি থেকে ব্যাকআপ ফাইল পুনরুদ্ধার করতে পারেন';
+      'রিয়েল অ্যাপে রিস্টোর করার উদাহরণ টেক্সট।';
 
   @override
   String get lastBackup => 'সর্বশেষ ব্যাকআপ';
@@ -781,29 +774,27 @@ class AppLocalizationsBn extends AppLocalizations {
 
   @override
   String get backupPrevention =>
-      'ডেটা লস প্রতিরোধের জন্য আপনার পিসি বা ইউএসবি ফ্ল্যাশ ড্রাইভে ফাইল ব্যাকআপ করার পরামর্শ দেওয়া হয়।';
+      'ডাটা লস প্রতিরোধের জন্য পিসি বা ইউএসবি-তে ব্যাকআপ করার উদাহরণ টেক্সট।';
 
   @override
-  String get backupStorage =>
-      'আপনি যদি ফোনের মেমরিতে ফাইল ব্যাকআপ করেন, ব্যাকআপ ফাইলগুলি অভ্যন্তরীণ স্টোরেজ/ব্যাকআপে সংরক্ষিত হবে।';
+  String get backupStorage => 'ব্যাকআপ কোথায় সংরক্ষিত হবে তার উদাহরণ টেক্সট।';
 
   @override
-  String get sharedDevice =>
-      'আপনি যদি একটি শেয়ার করা ডিভাইসে ডেটা পাঠান, ব্যাকআপ ফাইলগুলি এমন একটি ডিভাইসে সংরক্ষিত হবে যা এটি ডিক্রিপ্ট করতে পারে না।';
+  String get sharedDevice => 'শেয়ারড ডিভাইসে ব্যাকআপ নিয়ে উদাহরণ টেক্সট।';
 
   @override
   String get createBackup => 'ব্যাকআপ তৈরি করুন';
 
   @override
   String backupInstructions(String folderName) {
-    return 'ব্যাকআপ তৈরি করতে, আপনার ফোনের মেমরিতে পর্যাপ্ত স্থান থাকতে হবে এবং ব্যাকআপ ফাইলগুলি আপনার $folderName ফোনের মেমরিতে এ সংরক্ষিত হবে।';
+    return 'রিয়েল অ্যাপে ব্যাকআপ কিভাবে কাজ করবে তার বর্ণনা এখানে দেখাতে পারেন।';
   }
 
   @override
-  String get dokandarFolder => 'দোকানদার নাম ফোল্ডার';
+  String get dokandarFolder => 'BizDash ফোল্ডার';
 
   @override
-  String get backupStorageLocation => 'ফোনের মেমরিতে এ সংরক্ষিত হবে।';
+  String get backupStorageLocation => 'ফোনের মেমরিতে।';
 
   @override
   String get backingUp => 'ব্যাকআপ করা হচ্ছে...';
@@ -816,35 +807,33 @@ class AppLocalizationsBn extends AppLocalizations {
 
   @override
   String get selectBackupDescription =>
-      'আপনার ফোনের মেমরি থেকে ব্যাকআপ ফাইল নির্বাচন করুন।';
+      'আপনার ফোনের মেমরি থেকে ব্যাকআপ ফাইল নির্বাচন করুন (ডেমো মাত্র)।';
 
   @override
-  String get restoreData => 'ডেটা পুনরুদ্ধার করুন';
+  String get restoreData => 'ডাটা রিস্টোর করুন';
 
   @override
-  String get restoreDataDescription =>
-      'নির্বাচিত ব্যাকআপ ফাইল থেকে ডেটা পুনরুদ্ধার করুন';
+  String get restoreDataDescription => 'ব্যাকআপ থেকে ডাটা রিস্টোরের উদাহরণ UI।';
 
   @override
   String get importantInfo => 'গুরুত্বপূর্ণ তথ্য';
 
   @override
   String get backupBeforeRestore =>
-      'পুনরুদ্ধার করার আগে, আপনার বর্তমান ডেটা ব্যাকআপ করার পরামর্শ দেওয়া হয়।';
+      'রিয়েল অ্যাপে রিস্টোরের আগে ব্যাকআপ নেওয়া উচিত।';
 
   @override
   String get restoreWarning =>
-      'পুনরুদ্ধার করার সময়, বর্তমান ডেটা মুছে যাবে এবং ব্যাকআপ ফাইলের ডেটা দিয়ে প্রতিস্থাপিত হবে।';
+      'রিয়েল অ্যাপে রিস্টোর করলে বর্তমান ডাটা প্রতিস্থাপিত হবে।';
 
   @override
-  String get validBackupOnly =>
-      'শুধুমাত্র বৈধ ব্যাকআপ ফাইল থেকে ডেটা পুনরুদ্ধার করা যাবে।';
+  String get validBackupOnly => 'শুধু বৈধ ব্যাকআপ ফাইল থেকে রিস্টোর করা যাবে।';
 
   @override
-  String get restoring => 'পুনরুদ্ধার করা হচ্ছে...';
+  String get restoring => 'রিস্টোর করা হচ্ছে...';
 
   @override
-  String get restoreDataButton => 'ডেটা পুনরুদ্ধার করুন';
+  String get restoreDataButton => 'ডাটা রিস্টোর করুন';
 
   @override
   String get currentVersion => 'বর্তমান সংস্করণ';
@@ -853,19 +842,19 @@ class AppLocalizationsBn extends AppLocalizations {
   String get updateDate => 'আপডেট তারিখ';
 
   @override
-  String get changelogDescription => 'সর্বশেষ আপডেটে কি কি পরিবর্তন হয়েছে';
+  String get changelogDescription => 'সর্বশেষ UI আপডেটে কি কি পরিবর্তন হয়েছে';
 
   @override
-  String get developerInfoDescription => 'অ্যাপটি কে তৈরি করেছেন';
+  String get developerInfoDescription => 'এই UI কিট কে তৈরি করেছে';
 
   @override
   String get legalInfo => 'আইনি তথ্য';
 
   @override
-  String get legalInfoDescription => 'গোপনীয়তা নীতি এবং শর্তাবলী';
+  String get legalInfoDescription => 'প্রাইভেসি পলিসি ও শর্তাবলী';
 
   @override
-  String get privacyPolicy => 'গোপনীয়তা নীতি';
+  String get privacyPolicy => 'প্রাইভেসি পলিসি';
 
   @override
   String get termsAndConditions => 'শর্তাবলী';
@@ -874,67 +863,64 @@ class AppLocalizationsBn extends AppLocalizations {
   String get supportAndHelpTitle => 'সাপোর্ট এন্ড হেল্প';
 
   @override
-  String get howToUseApp => 'অ্যাপটি কিভাবে ব্যবহার করবেন';
+  String get howToUseApp => 'এই UI কিট কিভাবে ব্যবহার করবেন';
 
   @override
   String get gettingStarted => 'শুরু করার জন্য';
 
   @override
-  String get gettingStartedDescription =>
-      'আমাদের ইনভেন্টরি ম্যানেজমেন্ট সিস্টেমের বেসিক শিখুন';
+  String get gettingStartedDescription => 'এই অ্যাডমিন UI কিটের বেসিক শিখুন';
 
   @override
-  String get productManagement => 'পণ্য ব্যবস্থাপনা';
+  String get productManagement => 'আইটেম ম্যানেজমেন্ট';
 
   @override
-  String get productManagementDescription =>
-      'পণ্য যোগ করুন, সম্পাদনা করুন এবং ট্র্যাক করুন';
+  String get productManagementDescription => 'আইটেম যোগ, সম্পাদনা ও দেখুন';
 
   @override
-  String get salesAndReports => 'বিক্রয় ও রিপোর্ট';
+  String get salesAndReports => 'কার্যকলাপ ও রিপোর্ট';
 
   @override
   String get salesAndReportsDescription =>
-      'বিক্রয় ট্র্যাক করুন এবং বিস্তারিত রিপোর্ট তৈরি করুন';
+      'কার্যকলাপ ট্র্যাক করুন এবং রিপোর্ট দেখান';
 
   @override
   String get availableModules => 'উপলব্ধ মডিউলসমূহ';
 
   @override
-  String get availableModulesDescription => 'আপনার ব্যবসার জন্য উপযোগী';
+  String get availableModulesDescription =>
+      'আপনার বিজনেস অ্যাডমিনের জন্য উপযোগী';
 
   @override
-  String get inventoryManagement => 'ইনভেন্টরি ম্যানেজমেন্ট';
+  String get inventoryManagement => 'রেকর্ড ম্যানেজমেন্ট';
 
   @override
   String get inventoryManagementDescription =>
-      'স্টক লেভেল ট্র্যাক এবং ম্যানেজ করুন';
+      'স্টক ও রেকর্ড ট্র্যাক ও ম্যানেজ করুন';
 
   @override
-  String get salesTracking => 'বিক্রয় ট্র্যাকিং';
+  String get salesTracking => 'কার্যকলাপ ট্র্যাকিং';
 
   @override
-  String get salesTrackingDescription => 'বিক্রয় এবং আয় মনিটর করুন';
+  String get salesTrackingDescription => 'কার্যকলাপ ও মেট্রিক মনিটর করুন';
 
   @override
-  String get customerManagement => 'গ্রাহক ব্যবস্থাপনা';
+  String get customerManagement => 'কনট্যাক্ট ম্যানেজমেন্ট';
 
   @override
-  String get customerManagementDescription =>
-      'গ্রাহকের তথ্য এবং অর্ডার ম্যানেজ করুন';
+  String get customerManagementDescription => 'কনট্যাক্ট তথ্য ম্যানেজ করুন';
 
   @override
   String get reportsAndAnalytics => 'রিপোর্ট ও অ্যানালিটিক্স';
 
   @override
-  String get reportsAndAnalyticsDescription =>
-      'বিস্তারিত ব্যবসায়িক ইনসাইট তৈরি করুন';
+  String get reportsAndAnalyticsDescription => 'বিজনেস ইনসাইট তৈরি করুন';
 
   @override
   String get videoTutorials => 'ভিডিও টিউটোরিয়াল';
 
   @override
-  String get videoTutorialsDescription => 'শিখুন এবং দক্ষতা অর্জন করুন';
+  String get videoTutorialsDescription => 'শিখুন এবং দক্ষতা বাড়ান';
 
   @override
   String get gettingStartedGuide => 'শুরু করার গাইড';
@@ -946,16 +932,16 @@ class AppLocalizationsBn extends AppLocalizations {
   String get learnBasicIn5Minutes => '৫ মিনিটে বেসিক শিখুন';
 
   @override
-  String get advancedFeatures => 'এডভান্সড ফিচার';
+  String get advancedFeatures => 'অ্যাডভান্সড ফিচার';
 
   @override
-  String get masterAdvancedFeatures => 'এডভান্সড ফিচারগুলো আয়ত্ত করুন';
+  String get masterAdvancedFeatures => 'অ্যাডভান্সড ফিচার আয়ত্ত করুন';
 
   @override
   String get giveFeedback => 'আপনার মতামত দিন';
 
   @override
-  String get feedbackDescription => 'আমাদের উন্নতির জন্য আপনার মূল্যবান মতামত';
+  String get feedbackDescription => 'এই কিট উন্নত করতে আপনার মতামত দিন';
 
   @override
   String get feedbackCategories => 'ফিডব্যাক ক্যাটাগরি';
@@ -968,13 +954,13 @@ class AppLocalizationsBn extends AppLocalizations {
   String get bugReport => 'বাগ রিপোর্ট';
 
   @override
-  String get bugReportDescription => 'অ্যাপে কোন সমস্যা খুঁজে পেয়েছেন?';
+  String get bugReportDescription => 'UI তে কোন সমস্যা পেয়েছেন?';
 
   @override
   String get featureRequest => 'ফিচার রিকোয়েস্ট';
 
   @override
-  String get featureRequestDescription => 'নতুন কোন ফিচার চান?';
+  String get featureRequestDescription => 'নতুন কোন কম্পোনেন্ট চান?';
 
   @override
   String get generalFeedback => 'সাধারণ ফিডব্যাক';
@@ -986,26 +972,25 @@ class AppLocalizationsBn extends AppLocalizations {
   String get recentFeedback => 'সাম্প্রতিক ফিডব্যাক';
 
   @override
-  String get recentFeedbackDescription => 'অন্যান্য ব্যবহারকারীদের মতামত';
+  String get recentFeedbackDescription => 'অন্যান্য ইউজারের মতামত';
 
   @override
-  String get appIsGreat => 'অ্যাপটি খুব ভালো';
+  String get appIsGreat => 'UI খুব ভালো';
 
   @override
-  String get appIsGreatDescription =>
-      'এই অ্যাপটি ব্যবহার করে আমার ব্যবসার অনেক উন্নতি হয়েছে';
+  String get appIsGreatDescription => 'প্রোটোটাইপের জন্য এই UI কিট খুব সহায়ক';
 
   @override
   String get someIssues => 'কিছু সমস্যা আছে';
 
   @override
-  String get someIssuesDescription => 'কখনও কখনও অ্যাপটি ধীর হয়ে যায়';
+  String get someIssuesDescription => 'কখনও কখনও কিছু ডিভাইসে স্লো হতে পারে';
 
   @override
   String get veryHelpful => 'অত্যন্ত সহায়ক';
 
   @override
-  String get veryHelpfulDescription => 'সাপোর্ট টিম খুব দ্রুত সাড়া দেয়';
+  String get veryHelpfulDescription => 'স্ট্রাকচার কাস্টমাইজ করা সহজ';
 
   @override
   String get writeYourFeedback => 'আপনার ফিডব্যাক লিখুন';
@@ -1035,47 +1020,47 @@ class AppLocalizationsBn extends AppLocalizations {
   String get newFeaturesNeeded => 'নতুন ফিচার দরকার';
 
   @override
-  String get needToAddNewFeatures => 'অ্যাপে কিছু নতুন ফিচার যুক্ত করা দরকার';
+  String get needToAddNewFeatures => 'UI কিটে কিছু নতুন ফিচার দরকার';
 
   @override
-  String get customerHasDue => 'গ্রাহক বাকি আছে';
+  String get customerHasDue => 'কনট্যাক্ট এর বকেয়া আছে';
 
   @override
-  String get customerNoDue => 'গ্রাহক বাকি নেই';
+  String get customerNoDue => 'কনট্যাক্ট এর বকেয়া নেই';
 
   @override
-  String get lastPurchase => 'সর্বশেষ ক্রয়';
+  String get lastPurchase => 'সর্বশেষ কার্যকলাপ';
 
   @override
-  String get deleteCustomer => 'গ্রাহক মুছে ফেলুন';
+  String get deleteCustomer => 'কনট্যাক্ট মুছে ফেলুন';
 
   @override
   String get confirmDeleteCustomer =>
-      'আপনি কি নিশ্চিত যে আপনি এই গ্রাহককে মুছে ফেলতে চান?';
+      'আপনি কি নিশ্চিত যে আপনি এই কনট্যাক্টকে মুছে ফেলতে চান?';
 
   @override
-  String get nameRequired => 'নাম অবশ্যই পূরণ করতে হবে';
+  String get nameRequired => 'নাম প্রয়োজন';
 
   @override
-  String get phoneRequired => 'ফোন নম্বর অবশ্যই পূরণ করতে হবে';
+  String get phoneRequired => 'ফোন প্রয়োজন';
 
   @override
   String get add => 'যোগ করুন';
 
   @override
   String stockInPieces(String quantity) {
-    return 'স্টকে $quantity পিস';
+    return 'স্টকে $quantity ইউনিট';
   }
 
   @override
   String get stock => 'স্টক';
 
   @override
-  String get pieces => 'পিস';
+  String get pieces => 'ইউনিট';
 
   @override
   String serviceInitFailed(String error) {
-    return 'সেবা শুরু করতে ব্যর্থ: $error';
+    return 'সার্ভিস শুরু করতে ব্যর্থ: $error';
   }
 
   @override
@@ -1087,19 +1072,18 @@ class AppLocalizationsBn extends AppLocalizations {
   }
 
   @override
-  String get restoreSuccess => 'পুনরুদ্ধার সফল হয়েছে!';
+  String get restoreSuccess => 'রিস্টোর সফল হয়েছে!';
 
   @override
   String restoreFailed(String error) {
-    return 'পুনরুদ্ধার ব্যর্থ হয়েছে: $error';
+    return 'রিস্টোর ব্যর্থ হয়েছে: $error';
   }
 
   @override
-  String get failedToLoadDueCustomers =>
-      'বাকিদার তালিকা লোড করতে ব্যর্থ হয়েছে';
+  String get failedToLoadDueCustomers => 'তালিকা লোড করতে ব্যর্থ হয়েছে';
 
   @override
-  String get paymentUpdated => 'পেমেন্ট আপডেট করা হয়েছে';
+  String get paymentUpdated => 'পেমেন্ট আপডেট হয়েছে';
 
   @override
   String get failedToUpdatePayment => 'পেমেন্ট আপডেট করতে ব্যর্থ হয়েছে';
@@ -1113,25 +1097,25 @@ class AppLocalizationsBn extends AppLocalizations {
   String get notifications => 'নোটিফিকেশন';
 
   @override
-  String get enableNotifications => 'নোটিফিকেশন সক্রিয় করুন';
+  String get enableNotifications => 'নোটিফিকেশন চালু করুন';
 
   @override
-  String get autoBackup => 'স্বয়ংক্রিয় ব্যাকআপ';
+  String get autoBackup => 'অটো ব্যাকআপ';
 
   @override
-  String get enableAutoBackup => 'স্বয়ংক্রিয় ব্যাকআপ সক্রিয় করুন';
+  String get enableAutoBackup => 'অটো ব্যাকআপ চালু করুন';
 
   @override
   String get soundSettings => 'সাউন্ড সেটিংস';
 
   @override
-  String get enableSound => 'সাউন্ড সক্রিয় করুন';
+  String get enableSound => 'সাউন্ড চালু করুন';
 
   @override
   String get vibration => 'ভাইব্রেশন';
 
   @override
-  String get enableVibration => 'ভাইব্রেশন সক্রিয় করুন';
+  String get enableVibration => 'ভাইব্রেশন চালু করুন';
 
   @override
   String get fontSize => 'ফন্ট সাইজ';
@@ -1279,4 +1263,178 @@ class AppLocalizationsBn extends AppLocalizations {
 
   @override
   String get pinMismatch => 'পিন এবং কনফার্মেশন মেলে না';
+
+  @override
+  String get fileManagement => 'ফাইল ম্যানেজমেন্ট';
+
+  @override
+  String get analytics => 'এনালিটিক্স';
+
+  @override
+  String get searchFiles => 'ফাইল খুঁজুন...';
+
+  @override
+  String get noFilesFound => 'কোন ফাইল পাওয়া যায়নি';
+
+  @override
+  String get uploadFile => 'ফাইল আপলোড করুন';
+
+  @override
+  String get chartsReports => 'চার্ট ও রিপোর্ট';
+
+  @override
+  String get all => 'সব';
+
+  @override
+  String get unread => 'অপঠিত';
+
+  @override
+  String get noNotifications => 'কোন নোটিফিকেশন নেই';
+
+  @override
+  String get allCaughtUp => 'আপনি সব দেখে ফেলেছেন!';
+
+  @override
+  String get notificationDetails => 'নোটিফিকেশন বিস্তারিত';
+
+  @override
+  String get message => 'বার্তা';
+
+  @override
+  String get takeAction => 'কার্যক্রম নিন';
+
+  @override
+  String get users => 'ব্যবহারকারী';
+
+  @override
+  String get searchUsers => 'ব্যবহারকারী খুঁজুন...';
+
+  @override
+  String get noUsersFound => 'কোন ব্যবহারকারী পাওয়া যায়নি';
+
+  @override
+  String get active => 'সক্রিয়';
+
+  @override
+  String get inactive => 'নিষ্ক্রিয়';
+
+  @override
+  String get suspended => 'স্থগিত';
+
+  @override
+  String get filters => 'ফিল্টার';
+
+  @override
+  String get role => 'ভূমিকা';
+
+  @override
+  String get allRoles => 'সব ভূমিকা';
+
+  @override
+  String get status => 'অবস্থা';
+
+  @override
+  String get allStatus => 'সব অবস্থা';
+
+  @override
+  String get clearFilters => 'ফিল্টার সাফ করুন';
+
+  @override
+  String get rolesPermissions => 'ভূমিকা ও অনুমতি';
+
+  @override
+  String get noRolesFound => 'কোন ভূমিকা পাওয়া যায়নি';
+
+  @override
+  String get permissions => 'অনুমতি';
+
+  @override
+  String get editRole => 'ভূমিকা সম্পাদনা';
+
+  @override
+  String get addRole => 'ভূমিকা যোগ করুন';
+
+  @override
+  String get roleName => 'ভূমিকার নাম';
+
+  @override
+  String get updateRole => 'ভূমিকা আপডেট করুন';
+
+  @override
+  String get open => 'খুলুন';
+
+  @override
+  String get filePreviewDemo => 'ফাইল প্রিভিউ এখানে খুলবে';
+
+  @override
+  String get fileUploadDemo =>
+      'ফাইল আপলোড কার্যকারিতা এখানে বাস্তবায়ন করা হবে';
+
+  @override
+  String get fileUploadUIOnly => 'ফাইল আপলোড শুধু UI';
+
+  @override
+  String get chartPreview => 'চার্ট প্রিভিউ';
+
+  @override
+  String dataPoints(int count) {
+    return '$count ডেটা পয়েন্ট';
+  }
+
+  @override
+  String get justNow => 'এখনই';
+
+  @override
+  String get yesterday => 'গতকাল';
+
+  @override
+  String minutesAgo(int minutes) {
+    return '$minutes মিনিট আগে';
+  }
+
+  @override
+  String hoursAgo(int hours) {
+    return '$hours ঘণ্টা আগে';
+  }
+
+  @override
+  String daysAgo(int days) {
+    return '$days দিন আগে';
+  }
+
+  @override
+  String get department => 'বিভাগ';
+
+  @override
+  String get editUser => 'ব্যবহারকারী সম্পাদনা';
+
+  @override
+  String get addUser => 'ব্যবহারকারী যোগ করুন';
+
+  @override
+  String get updateUser => 'ব্যবহারকারী আপডেট করুন';
+
+  @override
+  String get departmentRequired => 'বিভাগ প্রয়োজন';
+
+  @override
+  String get roleRequired => 'ভূমিকা প্রয়োজন';
+
+  @override
+  String get permissionsLabel => 'অনুমতি';
+
+  @override
+  String get ok => 'ঠিক আছে';
+
+  @override
+  String get dashboard => 'ড্যাশবোর্ড';
+
+  @override
+  String get records => 'রেকর্ড';
+
+  @override
+  String get reports => 'রিপোর্ট';
+
+  @override
+  String get userManagement => 'ব্যবহারকারী ব্যবস্থাপনা';
 }

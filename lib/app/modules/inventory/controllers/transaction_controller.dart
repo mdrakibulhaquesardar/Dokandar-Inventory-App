@@ -22,7 +22,7 @@ class TransactionController extends GetxController {
   DateTimeRange? filterRange;
   final RxString filterType = 'all'.obs; // all, sale, expense
 
-  final _db = Get.find<DatabaseService>();
+  DatabaseService get _db => Get.find<DatabaseService>();
 
   @override
   void onInit() {
@@ -41,14 +41,12 @@ class TransactionController extends GetxController {
             amount: s.totalAmount,
             date: s.saleDate,
           )),
-      ...expenses
-          .where((e) => e.date != null)
-          .map((e) => TransactionEntry(
-                type: 'expense',
-                title: e.title,
-                amount: -e.amount,
-                date: e.date!,
-              )),
+      ...expenses.where((e) => e.date != null).map((e) => TransactionEntry(
+            type: 'expense',
+            title: e.title,
+            amount: -e.amount,
+            date: e.date!,
+          )),
     ];
 
     combined.sort((a, b) => b.date.compareTo(a.date));
@@ -59,7 +57,8 @@ class TransactionController extends GetxController {
     return transactions.where((tx) {
       final inType = filterType.value == 'all' || tx.type == filterType.value;
       final inRange = filterRange == null ||
-          (tx.date.isAfter(filterRange!.start.subtract(const Duration(days: 1))) &&
+          (tx.date.isAfter(
+                  filterRange!.start.subtract(const Duration(days: 1))) &&
               tx.date.isBefore(filterRange!.end.add(const Duration(days: 1))));
       return inType && inRange;
     }).toList();
@@ -74,4 +73,3 @@ class TransactionController extends GetxController {
     update();
   }
 }
-

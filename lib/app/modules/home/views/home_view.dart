@@ -6,6 +6,8 @@ import 'package:get/get.dart';
 import 'package:dokandar_app_inventory/l10n/app_localizations.dart';
 import '../../../utils/safe_google_fonts.dart';
 import '../controllers/home_controller.dart';
+import '../../notifications/controllers/notifications_controller.dart';
+import '../../../routes/app_pages.dart';
 
 class HomeView extends GetView<HomeController> {
   const HomeView({super.key});
@@ -19,10 +21,10 @@ class HomeView extends GetView<HomeController> {
     return Scaffold(
       backgroundColor: themeConfig.getBackgroundColor(isDarkMode),
       appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(130),
+        preferredSize: const Size.fromHeight(140),
         child: SafeArea(
           child: Container(
-            padding: const EdgeInsets.fromLTRB(12, 12, 12, 10),
+            padding: const EdgeInsets.fromLTRB(12, 12, 12, 12),
             decoration: BoxDecoration(
               color: themeConfig.getSurfaceColor(isDarkMode),
               borderRadius: const BorderRadius.only(
@@ -32,6 +34,7 @@ class HomeView extends GetView<HomeController> {
             ),
             child: Column(
               mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Row(
                   children: [
@@ -86,31 +89,93 @@ class HomeView extends GetView<HomeController> {
                       ),
                     ),
                     const Spacer(),
-                    Container(
-                      width: 28,
-                      height: 28,
-                      decoration: BoxDecoration(
-                        color: themeConfig
-                            .getPrimaryColor(isDarkMode)
-                            .withValues(alpha: 0.1),
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      child: IconButton(
-                        icon: const Icon(Icons.refresh, size: 14),
-                        onPressed: () {
-                          controller.refresh();
-                        },
-                        color: themeConfig.getPrimaryColor(isDarkMode),
-                        padding: EdgeInsets.zero,
-                        constraints: const BoxConstraints(
-                          minWidth: 20,
-                          minHeight: 20,
-                        ),
-                      ),
+                    Builder(
+                      builder: (context) {
+                        try {
+                          final notificationsController =
+                              Get.find<NotificationsController>();
+                          return Stack(
+                            children: [
+                              Container(
+                                width: 36,
+                                height: 36,
+                                decoration: BoxDecoration(
+                                  color: themeConfig
+                                      .getPrimaryColor(isDarkMode)
+                                      .withValues(alpha: 0.1),
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                                child: IconButton(
+                                  icon: const Icon(Icons.notifications_outlined,
+                                      size: 22),
+                                  onPressed: () {
+                                    Get.toNamed(Routes.NOTIFICATIONS);
+                                  },
+                                  color:
+                                      themeConfig.getPrimaryColor(isDarkMode),
+                                  padding: EdgeInsets.zero,
+                                  constraints: const BoxConstraints(
+                                    minWidth: 24,
+                                    minHeight: 24,
+                                  ),
+                                ),
+                              ),
+                              Obx(() {
+                                if (notificationsController.unreadCount > 0) {
+                                  return Positioned(
+                                    right: 0,
+                                    top: 0,
+                                    child: Container(
+                                      padding: const EdgeInsets.all(4),
+                                      decoration: BoxDecoration(
+                                        color: Colors.red,
+                                        shape: BoxShape.circle,
+                                      ),
+                                      child: Text(
+                                        '${notificationsController.unreadCount}',
+                                        style: SafeGoogleFonts.poppins(
+                                          fontSize: 8,
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                  );
+                                }
+                                return const SizedBox.shrink();
+                              }),
+                            ],
+                          );
+                        } catch (e) {
+                          return Container(
+                            width: 36,
+                            height: 36,
+                            decoration: BoxDecoration(
+                              color: themeConfig
+                                  .getPrimaryColor(isDarkMode)
+                                  .withValues(alpha: 0.1),
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            child: IconButton(
+                              icon: const Icon(Icons.notifications_outlined,
+                                  size: 22),
+                              onPressed: () {
+                                Get.toNamed(Routes.NOTIFICATIONS);
+                              },
+                              color: themeConfig.getPrimaryColor(isDarkMode),
+                              padding: EdgeInsets.zero,
+                              constraints: const BoxConstraints(
+                                minWidth: 24,
+                                minHeight: 24,
+                              ),
+                            ),
+                          );
+                        }
+                      },
                     ),
                   ],
                 ),
-                const SizedBox(height: 12),
+                const SizedBox(height: 10),
                 InkWell(
                   onTap: () {
                     Get.toNamed(Routes.SEARCH);
@@ -589,5 +654,3 @@ class _LowStockProductsList extends GetView<HomeController> {
     );
   }
 }
-
-

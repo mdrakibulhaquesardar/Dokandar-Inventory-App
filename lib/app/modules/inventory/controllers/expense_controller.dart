@@ -6,67 +6,31 @@ import '../../../data/models/expense.dart';
 import '../../../utils/vibration_helper.dart';
 
 class ExpenseController extends GetxController {
-  final RxList<Expense> expenses = <Expense>[].obs;
+  DatabaseService get _db => Get.find<DatabaseService>();
+  final expenses = <Expense>[].obs;
 
+  // Form controllers
   final titleController = TextEditingController();
   final amountController = TextEditingController();
   final categoryController = TextEditingController();
   final noteController = TextEditingController();
-  DateTime selectedDate = DateTime.now();
 
-  final _db = Get.find<DatabaseService>();
+  DateTime selectedDate = DateTime.now();
 
   @override
   void onInit() {
     super.onInit();
-    fetchExpenses();
+    loadExpenses();
   }
 
-  Future<void> fetchExpenses() async {
+  Future<void> loadExpenses() async {
     final data = await _db.getAllExpenses();
     expenses.assignAll(data);
   }
 
-  Future<void> addExpense() async {
-    if (titleController.text.trim().isEmpty ||
-        amountController.text.trim().isEmpty) {
-      Get.snackbar('Error', 'Title and amount are required',
-          snackPosition: SnackPosition.BOTTOM);
-      return;
-    }
-    final amount = double.tryParse(amountController.text.trim()) ?? 0;
-    final expense = Expense(
-      title: titleController.text.trim(),
-      amount: amount,
-      category: categoryController.text.trim().isEmpty
-          ? null
-          : categoryController.text.trim(),
-      note:
-          noteController.text.trim().isEmpty ? null : noteController.text.trim(),
-      date: selectedDate,
-    );
-    await _db.saveExpense(expense);
-    await fetchExpenses();
-    VibrationHelper.onSuccess();
-    clearForm();
-  }
-
-  Future<void> updateExpense(Expense original, Expense updated) async {
-    updated.id = original.id;
-    await _db.updateExpense(updated);
-    await fetchExpenses();
-    VibrationHelper.onSuccess();
-  }
-
-  Future<void> deleteExpense(int id) async {
-    await _db.deleteExpense(id);
-    expenses.removeWhere((e) => e.id == id);
-    VibrationHelper.onImportantAction();
-  }
-
   void setFormFromExpense(Expense expense) {
     titleController.text = expense.title;
-    amountController.text = expense.amount.toStringAsFixed(0);
+    amountController.text = expense.amount.toStringAsFixed(2);
     categoryController.text = expense.category ?? '';
     noteController.text = expense.note ?? '';
     selectedDate = expense.date ?? DateTime.now();
@@ -80,18 +44,35 @@ class ExpenseController extends GetxController {
       category: categoryController.text.trim().isEmpty
           ? null
           : categoryController.text.trim(),
-      note:
-          noteController.text.trim().isEmpty ? null : noteController.text.trim(),
+      note: noteController.text.trim().isEmpty
+          ? null
+          : noteController.text.trim(),
       date: selectedDate,
     );
   }
 
-  void clearForm() {
-    titleController.clear();
-    amountController.clear();
-    categoryController.clear();
-    noteController.clear();
-    selectedDate = DateTime.now();
+  Future<void> addExpense() async {
+    final expense = buildExpenseFromForm();
+    await _db.saveExpense(expense);
+    expenses.add(expense);
+    VibrationHelper.onSuccess();
+  }
+
+  Future<void> updateExpense(Expense original, Expense updated) async {
+    updated.id = original.id;
+    await _db.updateExpense(updated);
+    final index = expenses.indexWhere((e) => e.id == original.id);
+    if (index != -1) {
+      expenses[index] = updated;
+    }
+    VibrationHelper.onSuccess();
+  }
+
+  Future<void> deleteExpense(int? id) async {
+    if (id == null) return;
+    await _db.deleteExpense(id);
+    expenses.removeWhere((e) => e.id == id);
+    VibrationHelper.onImportantAction();
   }
 
   @override
@@ -103,4 +84,3 @@ class ExpenseController extends GetxController {
     super.onClose();
   }
 }
-

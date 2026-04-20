@@ -101,13 +101,13 @@ abstract class AppLocalizations {
   /// Application name
   ///
   /// In en, this message translates to:
-  /// **'Dokandar'**
+  /// **'BizDash'**
   String get appName;
 
   /// Application description
   ///
   /// In en, this message translates to:
-  /// **'Inventory Management System'**
+  /// **'Business Admin UI Kit'**
   String get appDescription;
 
   /// Settings screen title
@@ -128,40 +128,40 @@ abstract class AppLocalizations {
   /// **'Subscription'**
   String get subscription;
 
-  /// Products label
+  /// Items label
   ///
   /// In en, this message translates to:
-  /// **'Products'**
+  /// **'Items'**
   String get products;
 
-  /// Customers label
+  /// Contacts label
   ///
   /// In en, this message translates to:
-  /// **'Customers'**
+  /// **'Contacts'**
   String get customers;
 
-  /// Sales label
+  /// Activities label
   ///
   /// In en, this message translates to:
-  /// **'Sales'**
+  /// **'Activities'**
   String get sales;
 
-  /// Inventory label
+  /// Records label
   ///
   /// In en, this message translates to:
-  /// **'Inventory'**
+  /// **'Records'**
   String get inventory;
 
-  /// Add product button text
+  /// Add item button text
   ///
   /// In en, this message translates to:
-  /// **'Add Product'**
+  /// **'Add Item'**
   String get addProduct;
 
-  /// Add customer button text
+  /// Add contact button text
   ///
   /// In en, this message translates to:
-  /// **'Add Customer'**
+  /// **'Add Contact'**
   String get addCustomer;
 
   /// Save button text
@@ -176,13 +176,13 @@ abstract class AppLocalizations {
   /// **'Cancel'**
   String get cancel;
 
-  /// Delete button text
+  /// Delete menu item
   ///
   /// In en, this message translates to:
   /// **'Delete'**
   String get delete;
 
-  /// Edit button text
+  /// Edit menu item
   ///
   /// In en, this message translates to:
   /// **'Edit'**
@@ -380,16 +380,16 @@ abstract class AppLocalizations {
   /// **'{count} days'**
   String days(int count);
 
-  /// Products limit message
+  /// Items limit message
   ///
   /// In en, this message translates to:
-  /// **'You can add up to {count} products'**
+  /// **'You can add up to {count} items'**
   String productsLimit(int count);
 
-  /// Customers limit message
+  /// Contacts limit message
   ///
   /// In en, this message translates to:
-  /// **'You can add up to {count} customers'**
+  /// **'You can add up to {count} contacts'**
   String customersLimit(int count);
 
   /// Limit reached message
@@ -425,13 +425,13 @@ abstract class AppLocalizations {
   /// No description provided for @totalProducts.
   ///
   /// In en, this message translates to:
-  /// **'Total Products'**
+  /// **'Total Items'**
   String get totalProducts;
 
   /// No description provided for @totalSales.
   ///
   /// In en, this message translates to:
-  /// **'Total Sales'**
+  /// **'Total Activities'**
   String get totalSales;
 
   /// No description provided for @categories.
@@ -443,25 +443,25 @@ abstract class AppLocalizations {
   /// No description provided for @todaysOrders.
   ///
   /// In en, this message translates to:
-  /// **'Today\'s Orders'**
+  /// **'Today\'s Records'**
   String get todaysOrders;
 
   /// No description provided for @totalProfit.
   ///
   /// In en, this message translates to:
-  /// **'Total Profit'**
+  /// **'Total Margin'**
   String get totalProfit;
 
   /// No description provided for @recentSales.
   ///
   /// In en, this message translates to:
-  /// **'Recent Sales'**
+  /// **'Recent Activities'**
   String get recentSales;
 
   /// No description provided for @recentSalesDescription.
   ///
   /// In en, this message translates to:
-  /// **'View recent sales list and transactions'**
+  /// **'View recent activity list'**
   String get recentSalesDescription;
 
   /// No description provided for @stockAlert.
@@ -473,13 +473,13 @@ abstract class AppLocalizations {
   /// No description provided for @stockAlertDescription.
   ///
   /// In en, this message translates to:
-  /// **'Some products are running low on stock, 3 days before stock runs out'**
+  /// **'Some items are running low on stock'**
   String get stockAlertDescription;
 
   /// No description provided for @noRecentSales.
   ///
   /// In en, this message translates to:
-  /// **'No recent sales'**
+  /// **'No recent activities'**
   String get noRecentSales;
 
   /// No description provided for @addToStock.
@@ -491,13 +491,13 @@ abstract class AppLocalizations {
   /// No description provided for @searchProducts.
   ///
   /// In en, this message translates to:
-  /// **'Search Products'**
+  /// **'Search Items'**
   String get searchProducts;
 
   /// No description provided for @totalPrice.
   ///
   /// In en, this message translates to:
-  /// **'Total Price'**
+  /// **'Total Value'**
   String get totalPrice;
 
   /// No description provided for @quickAccess.
@@ -509,79 +509,79 @@ abstract class AppLocalizations {
   /// No description provided for @quickAccessDescription.
   ///
   /// In en, this message translates to:
-  /// **'Use the options below to quickly access your inventory'**
+  /// **'Use the options below to quickly access your records'**
   String get quickAccessDescription;
 
   /// No description provided for @allProducts.
   ///
   /// In en, this message translates to:
-  /// **'All Products'**
+  /// **'All Items'**
   String get allProducts;
 
   /// No description provided for @salesHistory.
   ///
   /// In en, this message translates to:
-  /// **'Sales History'**
+  /// **'Activity History'**
   String get salesHistory;
 
   /// No description provided for @allCustomers.
   ///
   /// In en, this message translates to:
-  /// **'All Customers'**
+  /// **'All Contacts'**
   String get allCustomers;
 
   /// No description provided for @allSuppliers.
   ///
   /// In en, this message translates to:
-  /// **'All Suppliers'**
+  /// **'All Partners'**
   String get allSuppliers;
 
   /// No description provided for @storeExpenses.
   ///
   /// In en, this message translates to:
-  /// **'Store Expenses'**
+  /// **'Expenses'**
   String get storeExpenses;
 
   /// No description provided for @allEmployees.
   ///
   /// In en, this message translates to:
-  /// **'All Employees'**
+  /// **'All Team Members'**
   String get allEmployees;
 
   /// No description provided for @otherFunctions.
   ///
   /// In en, this message translates to:
-  /// **'Other Functions'**
+  /// **'Other Sections'**
   String get otherFunctions;
 
   /// No description provided for @otherFunctionsDescription.
   ///
   /// In en, this message translates to:
-  /// **'Use other functions for your inventory'**
+  /// **'Use other sections of your admin UI'**
   String get otherFunctionsDescription;
 
   /// No description provided for @duePayment.
   ///
   /// In en, this message translates to:
-  /// **'Due Payment'**
+  /// **'Outstanding Value'**
   String get duePayment;
 
   /// No description provided for @productCategories.
   ///
   /// In en, this message translates to:
-  /// **'Product Categories'**
+  /// **'Item Categories'**
   String get productCategories;
 
   /// No description provided for @transactionHistory.
   ///
   /// In en, this message translates to:
-  /// **'Transaction History'**
+  /// **'Activity Log'**
   String get transactionHistory;
 
   /// No description provided for @supplierManagement.
   ///
   /// In en, this message translates to:
-  /// **'Supplier Management'**
+  /// **'Partner Management'**
   String get supplierManagement;
 
   /// No description provided for @generateReport.
@@ -590,7 +590,7 @@ abstract class AppLocalizations {
   /// **'Generate Report'**
   String get generateReport;
 
-  /// No description provided for @viewDetails.
+  /// View details menu item
   ///
   /// In en, this message translates to:
   /// **'View Details'**
@@ -605,67 +605,67 @@ abstract class AppLocalizations {
   /// No description provided for @sellCounter.
   ///
   /// In en, this message translates to:
-  /// **'Sales Counter'**
+  /// **'Activity Counter'**
   String get sellCounter;
 
   /// No description provided for @searchProduct.
   ///
   /// In en, this message translates to:
-  /// **'Search products...'**
+  /// **'Search items...'**
   String get searchProduct;
 
-  /// Total products count
+  /// Total items count
   ///
   /// In en, this message translates to:
-  /// **'Total Products: {count}'**
+  /// **'Total Items: {count}'**
   String totalProductsCount(int count);
 
   /// No description provided for @completeSale.
   ///
   /// In en, this message translates to:
-  /// **'Complete Sale'**
+  /// **'Complete Action'**
   String get completeSale;
 
   /// No description provided for @noProductsAdded.
   ///
   /// In en, this message translates to:
-  /// **'No products added'**
+  /// **'No items added'**
   String get noProductsAdded;
 
   /// No description provided for @salesCounter.
   ///
   /// In en, this message translates to:
-  /// **'Sales Counter'**
+  /// **'Activity Counter'**
   String get salesCounter;
 
   /// No description provided for @yourProducts.
   ///
   /// In en, this message translates to:
-  /// **'Your Products'**
+  /// **'Your Items'**
   String get yourProducts;
 
   /// No description provided for @stockOut.
   ///
   /// In en, this message translates to:
-  /// **'Stock Out'**
+  /// **'Low Stock'**
   String get stockOut;
 
   /// No description provided for @recentProducts.
   ///
   /// In en, this message translates to:
-  /// **'Recent Products'**
+  /// **'Recent Items'**
   String get recentProducts;
 
   /// No description provided for @editProduct.
   ///
   /// In en, this message translates to:
-  /// **'Edit Product'**
+  /// **'Edit Item'**
   String get editProduct;
 
   /// No description provided for @productName.
   ///
   /// In en, this message translates to:
-  /// **'Product Name'**
+  /// **'Item Name'**
   String get productName;
 
   /// No description provided for @stockQuantity.
@@ -677,25 +677,25 @@ abstract class AppLocalizations {
   /// No description provided for @sellingPrice.
   ///
   /// In en, this message translates to:
-  /// **'Selling Price'**
+  /// **'Unit Price'**
   String get sellingPrice;
 
   /// No description provided for @buyingPrice.
   ///
   /// In en, this message translates to:
-  /// **'Buying Price'**
+  /// **'Base Price'**
   String get buyingPrice;
 
   /// No description provided for @profit.
   ///
   /// In en, this message translates to:
-  /// **'Profit'**
+  /// **'Margin'**
   String get profit;
 
   /// No description provided for @unitProfit.
   ///
   /// In en, this message translates to:
-  /// **'Unit Profit'**
+  /// **'Unit Margin'**
   String get unitProfit;
 
   /// No description provided for @createdAt.
@@ -707,13 +707,13 @@ abstract class AppLocalizations {
   /// No description provided for @deleteProduct.
   ///
   /// In en, this message translates to:
-  /// **'Delete Product'**
+  /// **'Delete Item'**
   String get deleteProduct;
 
   /// No description provided for @confirmDeleteProduct.
   ///
   /// In en, this message translates to:
-  /// **'Are you sure you want to delete this product?'**
+  /// **'Are you sure you want to delete this item?'**
   String get confirmDeleteProduct;
 
   /// No description provided for @no.
@@ -731,7 +731,7 @@ abstract class AppLocalizations {
   /// No description provided for @addNewProduct.
   ///
   /// In en, this message translates to:
-  /// **'Add New Product'**
+  /// **'Add New Item'**
   String get addNewProduct;
 
   /// No description provided for @category.
@@ -743,49 +743,49 @@ abstract class AppLocalizations {
   /// No description provided for @customerList.
   ///
   /// In en, this message translates to:
-  /// **'Customer List'**
+  /// **'Contacts List'**
   String get customerList;
 
   /// No description provided for @totalCustomers.
   ///
   /// In en, this message translates to:
-  /// **'Total Customers'**
+  /// **'Total Contacts'**
   String get totalCustomers;
 
   /// No description provided for @newCustomers.
   ///
   /// In en, this message translates to:
-  /// **'New Customers'**
+  /// **'New Contacts'**
   String get newCustomers;
 
   /// No description provided for @totalDue.
   ///
   /// In en, this message translates to:
-  /// **'Total Due'**
+  /// **'Total Outstanding'**
   String get totalDue;
 
   /// No description provided for @customerName.
   ///
   /// In en, this message translates to:
-  /// **'Customer Name'**
+  /// **'Contact Name'**
   String get customerName;
 
   /// No description provided for @customerPhone.
   ///
   /// In en, this message translates to:
-  /// **'Customer Phone'**
+  /// **'Contact Phone'**
   String get customerPhone;
 
   /// No description provided for @customerAddress.
   ///
   /// In en, this message translates to:
-  /// **'Customer Address'**
+  /// **'Contact Address'**
   String get customerAddress;
 
   /// No description provided for @totalPurchases.
   ///
   /// In en, this message translates to:
-  /// **'Total Purchases'**
+  /// **'Total Value'**
   String get totalPurchases;
 
   /// No description provided for @due.
@@ -797,31 +797,31 @@ abstract class AppLocalizations {
   /// No description provided for @customer.
   ///
   /// In en, this message translates to:
-  /// **'Customer'**
+  /// **'Contact'**
   String get customer;
 
   /// No description provided for @salesList.
   ///
   /// In en, this message translates to:
-  /// **'Sales List'**
+  /// **'Activity List'**
   String get salesList;
 
   /// No description provided for @totalTransactions.
   ///
   /// In en, this message translates to:
-  /// **'Total Transactions'**
+  /// **'Total Activities'**
   String get totalTransactions;
 
   /// No description provided for @noSales.
   ///
   /// In en, this message translates to:
-  /// **'No Sales'**
+  /// **'No Activities'**
   String get noSales;
 
   /// No description provided for @invoiceNumber.
   ///
   /// In en, this message translates to:
-  /// **'Invoice Number'**
+  /// **'Record ID'**
   String get invoiceNumber;
 
   /// No description provided for @date.
@@ -839,13 +839,13 @@ abstract class AppLocalizations {
   /// No description provided for @saleDetails.
   ///
   /// In en, this message translates to:
-  /// **'Sale Details'**
+  /// **'Activity Details'**
   String get saleDetails;
 
   /// No description provided for @productList.
   ///
   /// In en, this message translates to:
-  /// **'Product List'**
+  /// **'Item List'**
   String get productList;
 
   /// No description provided for @selectLanguage.
@@ -857,19 +857,19 @@ abstract class AppLocalizations {
   /// No description provided for @dueCustomersList.
   ///
   /// In en, this message translates to:
-  /// **'Due Customers List'**
+  /// **'Outstanding Contacts'**
   String get dueCustomersList;
 
   /// No description provided for @totalDueCustomers.
   ///
   /// In en, this message translates to:
-  /// **'Total Due Customers'**
+  /// **'Total With Due'**
   String get totalDueCustomers;
 
   /// No description provided for @noDueCustomers.
   ///
   /// In en, this message translates to:
-  /// **'No Due Customers'**
+  /// **'No Outstanding Contacts'**
   String get noDueCustomers;
 
   /// No description provided for @people.
@@ -881,7 +881,7 @@ abstract class AppLocalizations {
   /// No description provided for @payDue.
   ///
   /// In en, this message translates to:
-  /// **'Pay Due'**
+  /// **'Settle Amount'**
   String get payDue;
 
   /// No description provided for @enterAmount.
@@ -893,7 +893,7 @@ abstract class AppLocalizations {
   /// No description provided for @pay.
   ///
   /// In en, this message translates to:
-  /// **'Pay'**
+  /// **'Apply'**
   String get pay;
 
   /// No description provided for @yourCategories.
@@ -914,7 +914,7 @@ abstract class AppLocalizations {
   /// **'Category Name'**
   String get categoryName;
 
-  /// No description provided for @description.
+  /// Description label
   ///
   /// In en, this message translates to:
   /// **'Description'**
@@ -965,7 +965,7 @@ abstract class AppLocalizations {
   /// No description provided for @provideRequiredInfo.
   ///
   /// In en, this message translates to:
-  /// **'Provide the necessary information to manage your business'**
+  /// **'Provide the necessary information to use this UI kit'**
   String get provideRequiredInfo;
 
   /// No description provided for @userInformation.
@@ -977,7 +977,7 @@ abstract class AppLocalizations {
   /// No description provided for @setupProfileAndProvideInfo.
   ///
   /// In en, this message translates to:
-  /// **'Set up your profile and provide necessary information for your business'**
+  /// **'Set up your profile for demo purposes'**
   String get setupProfileAndProvideInfo;
 
   /// No description provided for @enterYourFullName.
@@ -1025,7 +1025,7 @@ abstract class AppLocalizations {
   /// No description provided for @completeProfileDescription.
   ///
   /// In en, this message translates to:
-  /// **'Provide necessary information to manage your business'**
+  /// **'Provide sample information for the demo'**
   String get completeProfileDescription;
 
   /// No description provided for @userInfo.
@@ -1037,7 +1037,7 @@ abstract class AppLocalizations {
   /// No description provided for @userInfoDescription.
   ///
   /// In en, this message translates to:
-  /// **'Set up your profile and provide information for your business'**
+  /// **'Set up your profile information'**
   String get userInfoDescription;
 
   /// No description provided for @fullName.
@@ -1073,43 +1073,43 @@ abstract class AppLocalizations {
   /// No description provided for @pinCodeSetup.
   ///
   /// In en, this message translates to:
-  /// **'You can optionally set up the PIN code next'**
+  /// **'You can optionally set up a PIN next'**
   String get pinCodeSetup;
 
   /// No description provided for @storeSetup.
   ///
   /// In en, this message translates to:
-  /// **'Store Setup'**
+  /// **'Workspace Setup'**
   String get storeSetup;
 
   /// No description provided for @addStoreLogo.
   ///
   /// In en, this message translates to:
-  /// **'Add Store Logo'**
+  /// **'Add Logo'**
   String get addStoreLogo;
 
   /// No description provided for @storeInfo.
   ///
   /// In en, this message translates to:
-  /// **'Store Information'**
+  /// **'Workspace Information'**
   String get storeInfo;
 
   /// No description provided for @storeInfoDescription.
   ///
   /// In en, this message translates to:
-  /// **'Enter your store information'**
+  /// **'Enter your workspace information'**
   String get storeInfoDescription;
 
   /// No description provided for @storeName.
   ///
   /// In en, this message translates to:
-  /// **'Store Name'**
+  /// **'Workspace Name'**
   String get storeName;
 
   /// No description provided for @storeNameRequired.
   ///
   /// In en, this message translates to:
-  /// **'Please enter store name'**
+  /// **'Please enter workspace name'**
   String get storeNameRequired;
 
   /// No description provided for @addressRequired.
@@ -1130,10 +1130,10 @@ abstract class AppLocalizations {
   /// **'Please enter phone number'**
   String get phoneNumberRequired;
 
-  /// No description provided for @emailRequired.
+  /// Email required validation message
   ///
   /// In en, this message translates to:
-  /// **'Please enter email'**
+  /// **'Email is required'**
   String get emailRequired;
 
   /// No description provided for @validEmailRequired.
@@ -1157,13 +1157,13 @@ abstract class AppLocalizations {
   /// No description provided for @retailer.
   ///
   /// In en, this message translates to:
-  /// **'Retailer'**
+  /// **'Retail'**
   String get retailer;
 
   /// No description provided for @wholesaler.
   ///
   /// In en, this message translates to:
-  /// **'Wholesaler'**
+  /// **'Wholesale'**
   String get wholesaler;
 
   /// No description provided for @restaurant.
@@ -1199,7 +1199,7 @@ abstract class AppLocalizations {
   /// No description provided for @storeInfoNote.
   ///
   /// In en, this message translates to:
-  /// **'Please enter your store information correctly. This information is important for your business.'**
+  /// **'Enter demo information. This UI kit does not store real data.'**
   String get storeInfoNote;
 
   /// No description provided for @previous.
@@ -1217,61 +1217,61 @@ abstract class AppLocalizations {
   /// No description provided for @improveStoreManagement.
   ///
   /// In en, this message translates to:
-  /// **'Improve Your Store Management'**
+  /// **'Design Better Admin Experiences'**
   String get improveStoreManagement;
 
   /// No description provided for @startWithPowerfulTool.
   ///
   /// In en, this message translates to:
-  /// **'Start managing your store with our powerful store management tool.'**
+  /// **'Start exploring this business admin UI kit.'**
   String get startWithPowerfulTool;
 
   /// No description provided for @trackAllActivities.
   ///
   /// In en, this message translates to:
-  /// **'Track All Your Store Activities'**
+  /// **'Track All Activities'**
   String get trackAllActivities;
 
   /// No description provided for @trackActivitiesDescription.
   ///
   /// In en, this message translates to:
-  /// **'Manage inventory, sales, and transactions in one convenient place.'**
+  /// **'View records, activities and reports in one place.'**
   String get trackActivitiesDescription;
 
   /// No description provided for @smartBusinessInsights.
   ///
   /// In en, this message translates to:
-  /// **'Smart Business Insights'**
+  /// **'Smart Insights'**
   String get smartBusinessInsights;
 
   /// No description provided for @smartInsightsDescription.
   ///
   /// In en, this message translates to:
-  /// **'Get detailed reports and analytics to make informed decisions.'**
+  /// **'Use the analytics UI to present key metrics.'**
   String get smartInsightsDescription;
 
   /// No description provided for @secureAndPrivate.
   ///
   /// In en, this message translates to:
-  /// **'Secure and Private'**
+  /// **'UI Only'**
   String get secureAndPrivate;
 
   /// No description provided for @secureDescription.
   ///
   /// In en, this message translates to:
-  /// **'Your store information is secure and accessible only to you.'**
+  /// **'This kit does not store or sync any real data.'**
   String get secureDescription;
 
   /// No description provided for @startManagingStore.
   ///
   /// In en, this message translates to:
-  /// **'Start Managing Your Store'**
+  /// **'Open Dashboard'**
   String get startManagingStore;
 
   /// No description provided for @startWithTool.
   ///
   /// In en, this message translates to:
-  /// **'Start with our powerful store management tool'**
+  /// **'Start with this UI kit'**
   String get startWithTool;
 
   /// No description provided for @start.
@@ -1283,7 +1283,7 @@ abstract class AppLocalizations {
   /// No description provided for @customizeAppSettings.
   ///
   /// In en, this message translates to:
-  /// **'Customize your app settings'**
+  /// **'Customize your UI preferences'**
   String get customizeAppSettings;
 
   /// No description provided for @appSettings.
@@ -1307,31 +1307,31 @@ abstract class AppLocalizations {
   /// No description provided for @dataManagement.
   ///
   /// In en, this message translates to:
-  /// **'Data Management'**
+  /// **'Data (UI Only)'**
   String get dataManagement;
 
   /// No description provided for @dataBackup.
   ///
   /// In en, this message translates to:
-  /// **'Data Backup'**
+  /// **'Backup (UI Only)'**
   String get dataBackup;
 
   /// No description provided for @dataRestore.
   ///
   /// In en, this message translates to:
-  /// **'Data Restore'**
+  /// **'Restore (UI Only)'**
   String get dataRestore;
 
   /// No description provided for @storeSettings.
   ///
   /// In en, this message translates to:
-  /// **'Store Settings'**
+  /// **'Workspace Settings'**
   String get storeSettings;
 
   /// No description provided for @dokandarSubscription.
   ///
   /// In en, this message translates to:
-  /// **'Dokandar Subscription'**
+  /// **'Subscription (UI Only)'**
   String get dokandarSubscription;
 
   /// No description provided for @supportAndHelp.
@@ -1355,7 +1355,7 @@ abstract class AppLocalizations {
   /// No description provided for @store.
   ///
   /// In en, this message translates to:
-  /// **'Store'**
+  /// **'Workspace'**
   String get store;
 
   /// No description provided for @joinDate.
@@ -1391,10 +1391,10 @@ abstract class AppLocalizations {
   /// No description provided for @defaultName.
   ///
   /// In en, this message translates to:
-  /// **'Rakib'**
+  /// **'Demo User'**
   String get defaultName;
 
-  /// No description provided for @joined.
+  /// Joined label
   ///
   /// In en, this message translates to:
   /// **'Joined'**
@@ -1409,7 +1409,7 @@ abstract class AppLocalizations {
   /// No description provided for @premiumSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Choose subscription packages according to your needs and get great benefits'**
+  /// **'Sample subscription cards for your own plans'**
   String get premiumSubtitle;
 
   /// No description provided for @freePlanFeatures.
@@ -1427,13 +1427,13 @@ abstract class AppLocalizations {
   /// No description provided for @productsUpTo.
   ///
   /// In en, this message translates to:
-  /// **' products up to'**
+  /// **' items up to'**
   String get productsUpTo;
 
   /// No description provided for @customersUpTo.
   ///
   /// In en, this message translates to:
-  /// **' customers up to'**
+  /// **' contacts up to'**
   String get customersUpTo;
 
   /// No description provided for @trialPeriodDays.
@@ -1445,13 +1445,13 @@ abstract class AppLocalizations {
   /// No description provided for @subscriptionAdditionalInfo.
   ///
   /// In en, this message translates to:
-  /// **'Choose your subscription package and get more benefits. With our premium plan, you will get even more benefits.'**
+  /// **'Replace this copy with your own subscription details.'**
   String get subscriptionAdditionalInfo;
 
   /// No description provided for @subscriptionExpiryNote.
   ///
   /// In en, this message translates to:
-  /// **'Regular plus rate will apply from {startDate} when your current offer ends.'**
+  /// **'From {startDate}, your regular rate will apply.'**
   String subscriptionExpiryNote(String startDate);
 
   /// No description provided for @free.
@@ -1463,31 +1463,31 @@ abstract class AppLocalizations {
   /// No description provided for @basicReports.
   ///
   /// In en, this message translates to:
-  /// **'You can view basic reports'**
+  /// **'You can view basic demo reports'**
   String get basicReports;
 
   /// No description provided for @completeOrder.
   ///
   /// In en, this message translates to:
-  /// **'Complete Order'**
+  /// **'Complete Review'**
   String get completeOrder;
 
   /// No description provided for @orderSummary.
   ///
   /// In en, this message translates to:
-  /// **'Order Summary'**
+  /// **'Summary'**
   String get orderSummary;
 
   /// No description provided for @newOrder.
   ///
   /// In en, this message translates to:
-  /// **'New Order'**
+  /// **'New Record'**
   String get newOrder;
 
   /// No description provided for @customerInfo.
   ///
   /// In en, this message translates to:
-  /// **'Customer Information'**
+  /// **'Contact Information'**
   String get customerInfo;
 
   /// No description provided for @optional.
@@ -1517,13 +1517,13 @@ abstract class AppLocalizations {
   /// No description provided for @orderNote.
   ///
   /// In en, this message translates to:
-  /// **'Order Note (if any)'**
+  /// **'Note (if any)'**
   String get orderNote;
 
   /// No description provided for @invoice.
   ///
   /// In en, this message translates to:
-  /// **'Invoice'**
+  /// **'Report'**
   String get invoice;
 
   /// No description provided for @generating.
@@ -1535,7 +1535,7 @@ abstract class AppLocalizations {
   /// No description provided for @confirmOrder.
   ///
   /// In en, this message translates to:
-  /// **'Confirm Order'**
+  /// **'Confirm'**
   String get confirmOrder;
 
   /// No description provided for @localBackup.
@@ -1553,7 +1553,7 @@ abstract class AppLocalizations {
   /// No description provided for @backupToLocalDescription.
   ///
   /// In en, this message translates to:
-  /// **'Backup files to your phone memory or USB flash drive.'**
+  /// **'UI-only backup description text.'**
   String get backupToLocalDescription;
 
   /// No description provided for @restoreFromLocal.
@@ -1565,7 +1565,7 @@ abstract class AppLocalizations {
   /// No description provided for @restoreFromLocalDescription.
   ///
   /// In en, this message translates to:
-  /// **'You can restore backup files from memory'**
+  /// **'UI-only restore description text.'**
   String get restoreFromLocalDescription;
 
   /// No description provided for @lastBackup.
@@ -1583,19 +1583,19 @@ abstract class AppLocalizations {
   /// No description provided for @backupPrevention.
   ///
   /// In en, this message translates to:
-  /// **'It is recommended to backup files to your PC or USB flash drive to prevent data loss.'**
+  /// **'Example text for explaining backup precautions.'**
   String get backupPrevention;
 
   /// No description provided for @backupStorage.
   ///
   /// In en, this message translates to:
-  /// **'If you backup files to phone memory, backup files will be saved in internal storage/backup.'**
+  /// **'Example text about storage location.'**
   String get backupStorage;
 
   /// No description provided for @sharedDevice.
   ///
   /// In en, this message translates to:
-  /// **'If you send data to a shared device, backup files will be saved on a device that cannot decrypt it.'**
+  /// **'Example text about shared devices.'**
   String get sharedDevice;
 
   /// No description provided for @createBackup.
@@ -1607,13 +1607,13 @@ abstract class AppLocalizations {
   /// Backup instructions
   ///
   /// In en, this message translates to:
-  /// **'To create a backup, you must have sufficient space on your phone memory and backup files will be saved in your {folderName} folder in phone memory.'**
+  /// **'This text describes how backups work in a real app.'**
   String backupInstructions(String folderName);
 
   /// No description provided for @dokandarFolder.
   ///
   /// In en, this message translates to:
-  /// **'Dokandar folder'**
+  /// **'BizDash folder'**
   String get dokandarFolder;
 
   /// No description provided for @backupStorageLocation.
@@ -1643,7 +1643,7 @@ abstract class AppLocalizations {
   /// No description provided for @selectBackupDescription.
   ///
   /// In en, this message translates to:
-  /// **'Select backup file from your phone memory.'**
+  /// **'Select a backup file (UI only).'**
   String get selectBackupDescription;
 
   /// No description provided for @restoreData.
@@ -1655,7 +1655,7 @@ abstract class AppLocalizations {
   /// No description provided for @restoreDataDescription.
   ///
   /// In en, this message translates to:
-  /// **'Restore data from selected backup file'**
+  /// **'Restore from a backup file (UI only).'**
   String get restoreDataDescription;
 
   /// No description provided for @importantInfo.
@@ -1667,19 +1667,19 @@ abstract class AppLocalizations {
   /// No description provided for @backupBeforeRestore.
   ///
   /// In en, this message translates to:
-  /// **'Before restoring, it is recommended to backup your current data.'**
+  /// **'In a real app, always backup before restore.'**
   String get backupBeforeRestore;
 
   /// No description provided for @restoreWarning.
   ///
   /// In en, this message translates to:
-  /// **'When restoring, current data will be deleted and replaced with backup file data.'**
+  /// **'Current data would be replaced in a real app.'**
   String get restoreWarning;
 
   /// No description provided for @validBackupOnly.
   ///
   /// In en, this message translates to:
-  /// **'Data can only be restored from valid backup files.'**
+  /// **'Only valid backup files can be restored.'**
   String get validBackupOnly;
 
   /// No description provided for @restoring.
@@ -1709,13 +1709,13 @@ abstract class AppLocalizations {
   /// No description provided for @changelogDescription.
   ///
   /// In en, this message translates to:
-  /// **'What changes have been made in the latest update'**
+  /// **'What changed in the latest UI update'**
   String get changelogDescription;
 
   /// No description provided for @developerInfoDescription.
   ///
   /// In en, this message translates to:
-  /// **'Who created the app'**
+  /// **'Who created this UI kit'**
   String get developerInfoDescription;
 
   /// No description provided for @legalInfo.
@@ -1751,7 +1751,7 @@ abstract class AppLocalizations {
   /// No description provided for @howToUseApp.
   ///
   /// In en, this message translates to:
-  /// **'How to Use the App'**
+  /// **'How to Use this UI Kit'**
   String get howToUseApp;
 
   /// No description provided for @gettingStarted.
@@ -1763,31 +1763,31 @@ abstract class AppLocalizations {
   /// No description provided for @gettingStartedDescription.
   ///
   /// In en, this message translates to:
-  /// **'Learn the basics of our inventory management system'**
+  /// **'Learn the basics of this admin UI kit'**
   String get gettingStartedDescription;
 
   /// No description provided for @productManagement.
   ///
   /// In en, this message translates to:
-  /// **'Product Management'**
+  /// **'Item Management'**
   String get productManagement;
 
   /// No description provided for @productManagementDescription.
   ///
   /// In en, this message translates to:
-  /// **'Add, edit and track products'**
+  /// **'Add, edit and view items'**
   String get productManagementDescription;
 
   /// No description provided for @salesAndReports.
   ///
   /// In en, this message translates to:
-  /// **'Sales and Reports'**
+  /// **'Activities and Reports'**
   String get salesAndReports;
 
   /// No description provided for @salesAndReportsDescription.
   ///
   /// In en, this message translates to:
-  /// **'Track sales and create detailed reports'**
+  /// **'Track activities and present reports'**
   String get salesAndReportsDescription;
 
   /// No description provided for @availableModules.
@@ -1799,43 +1799,43 @@ abstract class AppLocalizations {
   /// No description provided for @availableModulesDescription.
   ///
   /// In en, this message translates to:
-  /// **'Suitable for your business'**
+  /// **'Suitable for your business admin needs'**
   String get availableModulesDescription;
 
   /// No description provided for @inventoryManagement.
   ///
   /// In en, this message translates to:
-  /// **'Inventory Management'**
+  /// **'Record Management'**
   String get inventoryManagement;
 
   /// No description provided for @inventoryManagementDescription.
   ///
   /// In en, this message translates to:
-  /// **'Track and manage stock levels'**
+  /// **'Track and manage records'**
   String get inventoryManagementDescription;
 
   /// No description provided for @salesTracking.
   ///
   /// In en, this message translates to:
-  /// **'Sales Tracking'**
+  /// **'Activity Tracking'**
   String get salesTracking;
 
   /// No description provided for @salesTrackingDescription.
   ///
   /// In en, this message translates to:
-  /// **'Monitor sales and revenue'**
+  /// **'Monitor activities and metrics'**
   String get salesTrackingDescription;
 
   /// No description provided for @customerManagement.
   ///
   /// In en, this message translates to:
-  /// **'Customer Management'**
+  /// **'Contact Management'**
   String get customerManagement;
 
   /// No description provided for @customerManagementDescription.
   ///
   /// In en, this message translates to:
-  /// **'Manage customer information and orders'**
+  /// **'Manage contact information'**
   String get customerManagementDescription;
 
   /// No description provided for @reportsAndAnalytics.
@@ -1847,7 +1847,7 @@ abstract class AppLocalizations {
   /// No description provided for @reportsAndAnalyticsDescription.
   ///
   /// In en, this message translates to:
-  /// **'Create detailed business insights'**
+  /// **'Create business insights'**
   String get reportsAndAnalyticsDescription;
 
   /// No description provided for @videoTutorials.
@@ -1877,7 +1877,7 @@ abstract class AppLocalizations {
   /// No description provided for @learnBasicIn5Minutes.
   ///
   /// In en, this message translates to:
-  /// **'Learn basic in 5 minutes'**
+  /// **'Learn basics in 5 minutes'**
   String get learnBasicIn5Minutes;
 
   /// No description provided for @advancedFeatures.
@@ -1901,7 +1901,7 @@ abstract class AppLocalizations {
   /// No description provided for @feedbackDescription.
   ///
   /// In en, this message translates to:
-  /// **'Your valuable feedback for our improvement'**
+  /// **'Your feedback helps improve this kit'**
   String get feedbackDescription;
 
   /// No description provided for @feedbackCategories.
@@ -1925,7 +1925,7 @@ abstract class AppLocalizations {
   /// No description provided for @bugReportDescription.
   ///
   /// In en, this message translates to:
-  /// **'Found any issues in the app?'**
+  /// **'Found any UI issues?'**
   String get bugReportDescription;
 
   /// No description provided for @featureRequest.
@@ -1937,7 +1937,7 @@ abstract class AppLocalizations {
   /// No description provided for @featureRequestDescription.
   ///
   /// In en, this message translates to:
-  /// **'Want any new features?'**
+  /// **'Want any new components?'**
   String get featureRequestDescription;
 
   /// No description provided for @generalFeedback.
@@ -1967,13 +1967,13 @@ abstract class AppLocalizations {
   /// No description provided for @appIsGreat.
   ///
   /// In en, this message translates to:
-  /// **'App is great'**
+  /// **'Great UI'**
   String get appIsGreat;
 
   /// No description provided for @appIsGreatDescription.
   ///
   /// In en, this message translates to:
-  /// **'My business has improved a lot using this app'**
+  /// **'This UI kit is very helpful for prototypes'**
   String get appIsGreatDescription;
 
   /// No description provided for @someIssues.
@@ -1985,7 +1985,7 @@ abstract class AppLocalizations {
   /// No description provided for @someIssuesDescription.
   ///
   /// In en, this message translates to:
-  /// **'Sometimes the app becomes slow'**
+  /// **'Sometimes performance may vary on devices'**
   String get someIssuesDescription;
 
   /// No description provided for @veryHelpful.
@@ -1997,7 +1997,7 @@ abstract class AppLocalizations {
   /// No description provided for @veryHelpfulDescription.
   ///
   /// In en, this message translates to:
-  /// **'Support team responds very quickly'**
+  /// **'The structure is easy to customize'**
   String get veryHelpfulDescription;
 
   /// No description provided for @writeYourFeedback.
@@ -2057,49 +2057,49 @@ abstract class AppLocalizations {
   /// No description provided for @needToAddNewFeatures.
   ///
   /// In en, this message translates to:
-  /// **'Need to add some new features to the app'**
+  /// **'Need to add some new UI features'**
   String get needToAddNewFeatures;
 
   /// No description provided for @customerHasDue.
   ///
   /// In en, this message translates to:
-  /// **'Customer has due'**
+  /// **'Contact has outstanding amount'**
   String get customerHasDue;
 
   /// No description provided for @customerNoDue.
   ///
   /// In en, this message translates to:
-  /// **'Customer has no due'**
+  /// **'Contact has no outstanding amount'**
   String get customerNoDue;
 
   /// No description provided for @lastPurchase.
   ///
   /// In en, this message translates to:
-  /// **'Last Purchase'**
+  /// **'Last Activity'**
   String get lastPurchase;
 
   /// No description provided for @deleteCustomer.
   ///
   /// In en, this message translates to:
-  /// **'Delete Customer'**
+  /// **'Delete Contact'**
   String get deleteCustomer;
 
   /// No description provided for @confirmDeleteCustomer.
   ///
   /// In en, this message translates to:
-  /// **'Are you sure you want to delete this customer?'**
+  /// **'Are you sure you want to delete this contact?'**
   String get confirmDeleteCustomer;
 
-  /// No description provided for @nameRequired.
+  /// Name required validation message
   ///
   /// In en, this message translates to:
   /// **'Name is required'**
   String get nameRequired;
 
-  /// No description provided for @phoneRequired.
+  /// Phone required validation message
   ///
   /// In en, this message translates to:
-  /// **'Phone number is required'**
+  /// **'Phone is required'**
   String get phoneRequired;
 
   /// No description provided for @add.
@@ -2108,10 +2108,10 @@ abstract class AppLocalizations {
   /// **'Add'**
   String get add;
 
-  /// Stock quantity in pieces
+  /// Stock quantity
   ///
   /// In en, this message translates to:
-  /// **'Stock: {quantity} pieces'**
+  /// **'Stock: {quantity} units'**
   String stockInPieces(String quantity);
 
   /// No description provided for @stock.
@@ -2123,7 +2123,7 @@ abstract class AppLocalizations {
   /// No description provided for @pieces.
   ///
   /// In en, this message translates to:
-  /// **'pieces'**
+  /// **'units'**
   String get pieces;
 
   /// Service initialization failed
@@ -2159,7 +2159,7 @@ abstract class AppLocalizations {
   /// No description provided for @failedToLoadDueCustomers.
   ///
   /// In en, this message translates to:
-  /// **'Failed to load due customers list'**
+  /// **'Failed to load list'**
   String get failedToLoadDueCustomers;
 
   /// No description provided for @paymentUpdated.
@@ -2180,7 +2180,7 @@ abstract class AppLocalizations {
   /// **'Last backup {date}'**
   String lastBackupDate(String date);
 
-  /// No description provided for @notifications.
+  /// Notifications screen title
   ///
   /// In en, this message translates to:
   /// **'Notifications'**
@@ -2515,6 +2515,336 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'PIN and confirmation do not match'**
   String get pinMismatch;
+
+  /// File Management screen title
+  ///
+  /// In en, this message translates to:
+  /// **'File Management'**
+  String get fileManagement;
+
+  /// Analytics screen title
+  ///
+  /// In en, this message translates to:
+  /// **'Analytics'**
+  String get analytics;
+
+  /// Search files placeholder
+  ///
+  /// In en, this message translates to:
+  /// **'Search files...'**
+  String get searchFiles;
+
+  /// No files found message
+  ///
+  /// In en, this message translates to:
+  /// **'No Files Found'**
+  String get noFilesFound;
+
+  /// Upload file button text
+  ///
+  /// In en, this message translates to:
+  /// **'Upload File'**
+  String get uploadFile;
+
+  /// Charts and reports section title
+  ///
+  /// In en, this message translates to:
+  /// **'Charts & Reports'**
+  String get chartsReports;
+
+  /// All filter option
+  ///
+  /// In en, this message translates to:
+  /// **'All'**
+  String get all;
+
+  /// Unread filter option
+  ///
+  /// In en, this message translates to:
+  /// **'Unread'**
+  String get unread;
+
+  /// No notifications message
+  ///
+  /// In en, this message translates to:
+  /// **'No Notifications'**
+  String get noNotifications;
+
+  /// All caught up message
+  ///
+  /// In en, this message translates to:
+  /// **'You\'re all caught up!'**
+  String get allCaughtUp;
+
+  /// Notification details screen title
+  ///
+  /// In en, this message translates to:
+  /// **'Notification Details'**
+  String get notificationDetails;
+
+  /// Message label
+  ///
+  /// In en, this message translates to:
+  /// **'Message'**
+  String get message;
+
+  /// Take action button text
+  ///
+  /// In en, this message translates to:
+  /// **'Take Action'**
+  String get takeAction;
+
+  /// Users screen title
+  ///
+  /// In en, this message translates to:
+  /// **'Users'**
+  String get users;
+
+  /// Search users placeholder
+  ///
+  /// In en, this message translates to:
+  /// **'Search users...'**
+  String get searchUsers;
+
+  /// No users found message
+  ///
+  /// In en, this message translates to:
+  /// **'No Users Found'**
+  String get noUsersFound;
+
+  /// Active status
+  ///
+  /// In en, this message translates to:
+  /// **'Active'**
+  String get active;
+
+  /// Inactive status
+  ///
+  /// In en, this message translates to:
+  /// **'Inactive'**
+  String get inactive;
+
+  /// Suspended status
+  ///
+  /// In en, this message translates to:
+  /// **'Suspended'**
+  String get suspended;
+
+  /// Filters title
+  ///
+  /// In en, this message translates to:
+  /// **'Filters'**
+  String get filters;
+
+  /// Role label
+  ///
+  /// In en, this message translates to:
+  /// **'Role'**
+  String get role;
+
+  /// All roles filter option
+  ///
+  /// In en, this message translates to:
+  /// **'All Roles'**
+  String get allRoles;
+
+  /// Status label
+  ///
+  /// In en, this message translates to:
+  /// **'Status'**
+  String get status;
+
+  /// All status filter option
+  ///
+  /// In en, this message translates to:
+  /// **'All Status'**
+  String get allStatus;
+
+  /// Clear filters button text
+  ///
+  /// In en, this message translates to:
+  /// **'Clear Filters'**
+  String get clearFilters;
+
+  /// Roles and permissions screen title
+  ///
+  /// In en, this message translates to:
+  /// **'Roles & Permissions'**
+  String get rolesPermissions;
+
+  /// No roles found message
+  ///
+  /// In en, this message translates to:
+  /// **'No Roles Found'**
+  String get noRolesFound;
+
+  /// Permissions label
+  ///
+  /// In en, this message translates to:
+  /// **'Permissions'**
+  String get permissions;
+
+  /// Edit role title
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Role'**
+  String get editRole;
+
+  /// Add role title
+  ///
+  /// In en, this message translates to:
+  /// **'Add Role'**
+  String get addRole;
+
+  /// Role name label
+  ///
+  /// In en, this message translates to:
+  /// **'Role Name'**
+  String get roleName;
+
+  /// Update role button text
+  ///
+  /// In en, this message translates to:
+  /// **'Update Role'**
+  String get updateRole;
+
+  /// Open menu item
+  ///
+  /// In en, this message translates to:
+  /// **'Open'**
+  String get open;
+
+  /// File preview demo message
+  ///
+  /// In en, this message translates to:
+  /// **'File preview would open here'**
+  String get filePreviewDemo;
+
+  /// File upload demo message
+  ///
+  /// In en, this message translates to:
+  /// **'File upload functionality would be implemented here'**
+  String get fileUploadDemo;
+
+  /// File upload UI only message
+  ///
+  /// In en, this message translates to:
+  /// **'File upload is UI-only'**
+  String get fileUploadUIOnly;
+
+  /// Chart preview label
+  ///
+  /// In en, this message translates to:
+  /// **'Chart Preview'**
+  String get chartPreview;
+
+  /// Data points count
+  ///
+  /// In en, this message translates to:
+  /// **'{count} data points'**
+  String dataPoints(int count);
+
+  /// Just now time format
+  ///
+  /// In en, this message translates to:
+  /// **'Just now'**
+  String get justNow;
+
+  /// Yesterday time format
+  ///
+  /// In en, this message translates to:
+  /// **'Yesterday'**
+  String get yesterday;
+
+  /// Minutes ago format
+  ///
+  /// In en, this message translates to:
+  /// **'{minutes}m ago'**
+  String minutesAgo(int minutes);
+
+  /// Hours ago format
+  ///
+  /// In en, this message translates to:
+  /// **'{hours}h ago'**
+  String hoursAgo(int hours);
+
+  /// Days ago format
+  ///
+  /// In en, this message translates to:
+  /// **'{days}d ago'**
+  String daysAgo(int days);
+
+  /// Department label
+  ///
+  /// In en, this message translates to:
+  /// **'Department'**
+  String get department;
+
+  /// Edit user title
+  ///
+  /// In en, this message translates to:
+  /// **'Edit User'**
+  String get editUser;
+
+  /// Add user title
+  ///
+  /// In en, this message translates to:
+  /// **'Add User'**
+  String get addUser;
+
+  /// Update user button text
+  ///
+  /// In en, this message translates to:
+  /// **'Update User'**
+  String get updateUser;
+
+  /// Department required validation message
+  ///
+  /// In en, this message translates to:
+  /// **'Department is required'**
+  String get departmentRequired;
+
+  /// Role required validation message
+  ///
+  /// In en, this message translates to:
+  /// **'Role is required'**
+  String get roleRequired;
+
+  /// Permissions label
+  ///
+  /// In en, this message translates to:
+  /// **'permissions'**
+  String get permissionsLabel;
+
+  /// OK button text
+  ///
+  /// In en, this message translates to:
+  /// **'OK'**
+  String get ok;
+
+  /// Dashboard label
+  ///
+  /// In en, this message translates to:
+  /// **'Dashboard'**
+  String get dashboard;
+
+  /// Records label
+  ///
+  /// In en, this message translates to:
+  /// **'Records'**
+  String get records;
+
+  /// Reports label
+  ///
+  /// In en, this message translates to:
+  /// **'Reports'**
+  String get reports;
+
+  /// User Management label
+  ///
+  /// In en, this message translates to:
+  /// **'User Management'**
+  String get userManagement;
 }
 
 class _AppLocalizationsDelegate

@@ -1,11 +1,7 @@
-import 'package:isar/isar.dart';
 import 'package:uuid/uuid.dart';
 
-part 'sale.g.dart';
-
-@collection
 class Sale {
-  Id id = Isar.autoIncrement;
+  int? id;
 
   late String invoiceNumber;
   late int customerId;
@@ -30,7 +26,6 @@ class Sale {
     required this.invoiceNumber,
     this.notes,
     this.isCompleted = true,
-
   }) {
     createdAt = DateTime.now();
     updatedAt = null;
@@ -58,11 +53,8 @@ class Sale {
       isCompleted: isCompleted,
     );
   }
-
-
 }
 
-@embedded
 class SaleItem {
   late String productName;
   late int productId;

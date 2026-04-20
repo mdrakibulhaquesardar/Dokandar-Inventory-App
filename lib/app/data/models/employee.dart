@@ -1,13 +1,8 @@
-import 'package:isar/isar.dart';
 import 'package:uuid/uuid.dart';
 
-part 'employee.g.dart';
-
-@collection
 class Employee {
-  Id id = Isar.autoIncrement;
+  int? id;
 
-  @Index(unique: true)
   String? employeeCode;
 
   late String name;

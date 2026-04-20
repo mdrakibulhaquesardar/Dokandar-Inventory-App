@@ -14,7 +14,7 @@ class SupplierController extends GetxController {
   final companyController = TextEditingController();
   final addressController = TextEditingController();
 
-  final _db = Get.find<DatabaseService>();
+  DatabaseService get _db => Get.find<DatabaseService>();
 
   @override
   void onInit() {
@@ -29,8 +29,11 @@ class SupplierController extends GetxController {
 
   Future<void> addSupplier() async {
     if (nameController.text.trim().isEmpty) {
-      Get.snackbar('Error', 'Supplier name is required',
-          snackPosition: SnackPosition.BOTTOM);
+      Get.snackbar(
+        'Info',
+        'This is a UI demo only. Supplier name is required.',
+        snackPosition: SnackPosition.BOTTOM,
+      );
       return;
     }
     final supplier = Supplier(
@@ -61,7 +64,8 @@ class SupplierController extends GetxController {
     VibrationHelper.onSuccess();
   }
 
-  Future<void> deleteSupplier(int id) async {
+  Future<void> deleteSupplier(int? id) async {
+    if (id == null) return;
     await _db.deleteSupplier(id);
     suppliers.removeWhere((s) => s.id == id);
     VibrationHelper.onImportantAction();
@@ -112,4 +116,3 @@ class SupplierController extends GetxController {
     super.onClose();
   }
 }
-

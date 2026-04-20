@@ -1,17 +1,10 @@
-import 'package:dokandar_app_inventory/app/modules/home/controllers/home_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
-import 'app/core/services/database_service.dart';
 import 'app/core/services/localization_service.dart';
-import 'app/core/services/backup_service.dart';
-import 'app/core/services/auto_backup_service.dart';
-import 'app/controllers/persistent_navigation_controller.dart';
-import 'app/modules/inventory/controllers/inventory_controller.dart';
-import 'app/modules/sell/controllers/sell_controller.dart';
-import 'app/modules/setting/controllers/setting_controller.dart';
+import 'app/core/services/database_service.dart';
 import 'app/routes/app_pages.dart';
 import 'app/config/app_config.dart';
 import 'app/config/app_theme_config.dart';
@@ -22,12 +15,15 @@ void main() async {
 
   // Enable edge-to-edge mode to use native status bar
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
-  // Initialize services
-  final dbService = await Get.putAsync(() => DatabaseService().init());
-  final appConfig = await Get.putAsync(() => AppConfig().init());
-  Get.put(AppThemeConfig());
+  // Initialize basic configuration (no database, UI only)
+  await Get.putAsync(() => AppConfig().init());
+  Get.put(AppThemeConfig(), permanent: true);
+  // Register DatabaseService (mock-only implementation for UI kit)
+  // Initialize synchronously since init() is fast for mock data
+  final dbService = DatabaseService();
+  await dbService.init();
+  Get.put(dbService, permanent: true);
 
-  // Initialize LocalizationService if multi-language is enabled
   Locale initialLocale = Locale(AppConfig.defaultLanguage);
   if (AppConfig.enableMultiLanguageSupport) {
     final localizationService = await Get.putAsync(
@@ -36,35 +32,10 @@ void main() async {
     initialLocale = localizationService.currentLocale.value;
   }
 
-  // Initialize controllers
-  Get.put(PersistentNavigationController());
-  Get.put(SettingController());
-  Get.put(HomeController());
-  Get.put(SellController());
-  Get.put(InventoryController());
-
-  // Defer heavier non-UI initializations to after first frame
-  _initDeferredServices(dbService);
-
-  // Check if user exists
-  final hasUser = await dbService.hasUser();
-  final shouldLock =
-      hasUser && appConfig.isPinLockEnabled && !appConfig.isSessionUnlocked;
-  final initialRoute =
-      hasUser ? (shouldLock ? Routes.APP_LOCK : Routes.MAIN) : Routes.SETUP;
+  // For UI kit, start from login screen
+  const initialRoute = Routes.LOGIN;
 
   runApp(MyApp(initialRoute: initialRoute, initialLocale: initialLocale));
-}
-
-void _initDeferredServices(DatabaseService dbService) {
-  WidgetsBinding.instance.addPostFrameCallback((_) async {
-    try {
-      await Get.putAsync(() => BackupService().init(dbService.isar));
-      Get.put(AutoBackupService());
-    } catch (e) {
-      debugPrint('Deferred service init failed: $e');
-    }
-  });
 }
 
 class MyApp extends StatelessWidget {
@@ -131,10 +102,13 @@ class MyApp extends StatelessWidget {
             Locale('en', ''), // English
           ],
           initialBinding: BindingsBuilder(() {
-            Get.lazyPut<DatabaseService>(() => DatabaseService());
-            Get.lazyPut<HomeController>(() => HomeController());
             Get.lazyPut<AppConfig>(() => AppConfig());
             Get.lazyPut<AppThemeConfig>(() => AppThemeConfig());
+            // Ensure DatabaseService is always available for all controllers
+            // Since DatabaseService.init() is fast (just returns this), we can register it synchronously
+            if (!Get.isRegistered<DatabaseService>()) {
+              Get.put(DatabaseService(), permanent: true);
+            }
             if (AppConfig.enableMultiLanguageSupport) {
               Get.lazyPut<LocalizationService>(() => LocalizationService());
             }

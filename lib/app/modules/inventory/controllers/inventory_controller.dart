@@ -3,10 +3,9 @@ import 'package:get/get.dart';
 import '../../../core/services/database_service.dart';
 
 class InventoryController extends GetxController {
-   var currentIndex = 1.obs;
-   RxInt totalProducts = 0.obs;
-   RxInt totalProductsPrice = 0.obs;
-
+  var currentIndex = 1.obs;
+  RxInt totalProducts = 0.obs;
+  RxInt totalProductsPrice = 0.obs;
 
   void changePage(int index) {
     currentIndex.value = index;
@@ -24,18 +23,19 @@ class InventoryController extends GetxController {
   }
 
   final count = 0.obs;
-   @override
-   void onInit() {
-     super.onInit();
-     Get.find<DatabaseService>().getTotalProducts().then((value) {
-       totalProducts.value = value;
-     });
+  @override
+  void onInit() {
+    super.onInit();
+    // Ensure DatabaseService is available before accessing it
+    if (Get.isRegistered<DatabaseService>()) {
+      Get.find<DatabaseService>().getTotalProducts().then((value) {
+        totalProducts.value = value;
+      });
       Get.find<DatabaseService>().getTotalProductsPrice().then((value) {
         totalProductsPrice.value = value.toInt();
       });
-   }
-
-
+    }
+  }
 
   void increment() => count.value++;
 }

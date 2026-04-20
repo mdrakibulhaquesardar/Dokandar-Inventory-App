@@ -1,14 +1,8 @@
-import 'package:isar/isar.dart';
-
-part 'stock_history.g.dart';
-
-@collection
 class StockHistory {
-  Id id = Isar.autoIncrement;
+  int? id;
 
   late int productId;
   late double quantity;
-  @enumerated
   late StockOperation operation;
   late DateTime timestamp;
   String? notes;
@@ -23,9 +17,4 @@ class StockHistory {
   }) : timestamp = DateTime.now();
 }
 
-enum StockOperation {
-  purchase,
-  sale,
-  adjustment,
-  returnItem,
-}
+enum StockOperation { purchase, sale, adjustment, returnItem }

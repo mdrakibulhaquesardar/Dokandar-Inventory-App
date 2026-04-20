@@ -6,12 +6,12 @@ import 'package:get/get.dart';
 import '../../../core/services/database_service.dart';
 
 class SettingController extends GetxController {
-
   User? user;
 
   Store? store;
 
   void getUserInfo() async {
+    if (!Get.isRegistered<DatabaseService>()) return;
     user = await Get.find<DatabaseService>().getUser();
     if (user != null) {
       debugPrint("User found: ${user!.name}");
@@ -19,7 +19,9 @@ class SettingController extends GetxController {
       debugPrint("No user found");
     }
   }
+
   void getStoreInfo() async {
+    if (!Get.isRegistered<DatabaseService>()) return;
     store = await Get.find<DatabaseService>().getStore();
     if (store != null) {
       if (kDebugMode) {
@@ -32,9 +34,6 @@ class SettingController extends GetxController {
     }
   }
 
-
-
-
   @override
   void onInit() {
     super.onInit();
@@ -43,12 +42,14 @@ class SettingController extends GetxController {
   }
 
   Future<void> updateStore(Store updated) async {
+    if (!Get.isRegistered<DatabaseService>()) return;
     await Get.find<DatabaseService>().updateStore(updated);
     store = updated;
     update();
   }
 
   Future<void> updateUser(User updated) async {
+    if (!Get.isRegistered<DatabaseService>()) return;
     await Get.find<DatabaseService>().saveUser(updated);
     user = updated;
     update();

@@ -5,7 +5,7 @@ import '../../../data/models/product.dart';
 
 class StockAlertController extends GetxController {
   final RxList<Product> lowStockProducts = <Product>[].obs;
-  final _db = Get.find<DatabaseService>();
+  DatabaseService get _db => Get.find<DatabaseService>();
 
   @override
   void onInit() {
@@ -18,4 +18,3 @@ class StockAlertController extends GetxController {
     lowStockProducts.assignAll(items);
   }
 }
-

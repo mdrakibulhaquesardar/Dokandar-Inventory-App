@@ -3,14 +3,14 @@ part of 'app_pages.dart';
 
 abstract class Routes {
   Routes._();
+  static const LOGIN = _Paths.LOGIN;
+  static const SIGNUP = _Paths.SIGNUP;
+  static const FORGOT_PASSWORD = _Paths.FORGOT_PASSWORD;
   static const HOME = _Paths.HOME;
   static const INVENTORY = _Paths.INVENTORY;
   static const SETTING = _Paths.SETTING;
   static const SELL = _Paths.SELL;
   static const MAIN = _Paths.MAIN;
-  static const SETUP = _Paths.SETUP;
-  static const STORE_SETUP = _Paths.STORE_SETUP;
-  static const CONFROM_SETUP = _Paths.CONFROM_SETUP;
   static const CATEGORY = _Paths.CATEGORY;
   static const ALL_PRODUCTS = _Paths.ALL_PRODUCTS;
   static const ALL_CUSTOMER = _Paths.ALL_CUSTOMER;
@@ -37,19 +37,26 @@ abstract class Routes {
   static const INVOICE_PREVIEW = _Paths.INVOICE_PREVIEW;
   static const APP_LOCK = _Paths.APP_LOCK;
   static const MANAGE_PIN = _Paths.MANAGE_PIN;
-
+  static const NOTIFICATIONS = _Paths.NOTIFICATIONS;
+  static const NOTIFICATION_DETAIL = _Paths.NOTIFICATION_DETAIL;
+  static const USERS = _Paths.USERS;
+  static const USER_DETAIL = _Paths.USER_DETAIL;
+  static const ROLES = _Paths.ROLES;
+  static const PERMISSIONS = _Paths.PERMISSIONS;
+  static const FILES = _Paths.FILES;
+  static const ANALYTICS = _Paths.ANALYTICS;
 }
 
 abstract class _Paths {
   _Paths._();
+  static const LOGIN = '/login';
+  static const SIGNUP = '/signup';
+  static const FORGOT_PASSWORD = '/forgot-password';
   static const HOME = '/home';
   static const INVENTORY = '/inventory';
   static const SETTING = '/setting';
   static const SELL = '/sell';
   static const MAIN = '/main';
-  static const SETUP = '/setup';
-  static const STORE_SETUP = '/store-setup';
-  static const CONFROM_SETUP = '/confrom-setup';
   static const CATEGORY = '/category';
   static const ALL_PRODUCTS = '/all-products';
   static const ALL_CUSTOMER = '/all-customer';
@@ -60,7 +67,7 @@ abstract class _Paths {
   static const FEEDBACK = '/feedback';
   static const ABOUT_APP = '/about-app';
   static const ALL_SALES = '/all-sales';
-  static const PAY_DUE= '/pay-due';
+  static const PAY_DUE = '/pay-due';
   static const SUBSCRIPTION = '/subscription';
   static const ALL_SUPPLIERS = '/all-suppliers';
   static const ALL_EMPLOYEES = '/all-employees';
@@ -76,4 +83,12 @@ abstract class _Paths {
   static const INVOICE_PREVIEW = '/invoice-preview';
   static const APP_LOCK = '/app-lock';
   static const MANAGE_PIN = '/manage-pin';
+  static const NOTIFICATIONS = '/notifications';
+  static const NOTIFICATION_DETAIL = '/notification-detail';
+  static const USERS = '/users';
+  static const USER_DETAIL = '/user-detail';
+  static const ROLES = '/roles';
+  static const PERMISSIONS = '/permissions';
+  static const FILES = '/files';
+  static const ANALYTICS = '/analytics';
 }

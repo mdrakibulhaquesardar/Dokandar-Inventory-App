@@ -1,10 +1,5 @@
-import 'package:isar/isar.dart';
-
-part 'customer.g.dart';
-
-@collection
 class Customer {
-  Id id = Isar.autoIncrement;
+  int? id;
 
   late String name;
   late String phone;
@@ -72,6 +67,4 @@ class Customer {
       isActive: isActive ?? this.isActive,
     );
   }
-
-
 }

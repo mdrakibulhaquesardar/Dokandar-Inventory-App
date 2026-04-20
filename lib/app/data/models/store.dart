@@ -1,10 +1,5 @@
-import 'package:isar/isar.dart';
-
-part 'store.g.dart';
-
-@collection
 class Store {
-  Id id = Isar.autoIncrement;
+  int? id;
 
   late String name;
   late String address;

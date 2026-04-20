@@ -1,141 +1,218 @@
 <!DOCTYPE html>
+
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
-<title>Dokandar Inventory - Complete Flutter Inventory Management System</title>
+
+<title>BizDash – Flutter Business Admin UI Kit (UI Only)</title>
+
 </head>
+
 <body>
 
-<p>Dokandar Inventory is a mobile inventory management application that works with Android devices. It is built with Flutter, a fast and powerful framework for creating beautiful cross-platform apps. Perfect for small to medium businesses, retail stores, and shop owners who need a comprehensive solution to manage products, track sales, handle customers, and generate invoices - all offline without requiring internet connectivity.</p>
-
-<button onclick="window.open('https://drive.google.com/file/d/1MMP8CKc1p5p5yCt50KQU7wW1lnXSYQu5/view?usp=sharing', '_blank')">Demo APK</button>
-
-<p>Check the screenshots section below for app preview images showing all features and screens.</p>
 
 
-<img src="https://res.cloudinary.com/do7p8mg3q/image/upload/v1765620338/1_n343wq.png" alt="Dokandar Inventory Screen 01" />
+<p><strong>BizDash</strong> is a <strong>pure Flutter UI Kit</strong> for building modern business, admin, and management applications. It provides ready-made screens, dashboard layouts, and reusable components – all powered by <strong>static mock data</strong>.</p>
 
-<img src="https://res.cloudinary.com/do7p8mg3q/image/upload/v1765620339/2_h35wpz.png" alt="Dokandar Inventory Screen 02" />
-<img src="https://res.cloudinary.com/do7p8mg3q/image/upload/v1765620339/3_ifjjuk.png" alt="Dokandar Inventory Screen 03" />
-<img src="https://res.cloudinary.com/do7p8mg3q/image/upload/v1765620339/4_ux5qyb.png" alt="Dokandar Inventory Screen 04" />
 
-<p>Dokandar Inventory provides a complete inventory management solution with modern UI and powerful features.</p>
 
-<h2>Installation</h2>
+<p><strong>Important:</strong> This is a <strong>UI template only</strong>. It is <strong>not</strong> a complete app, not a SaaS, and not a ready-made business solution.</p>
 
-<p>Complete installation guide is included in the documentation. Quick setup steps:</p>
+
+
+<h2>Key UI Screens (Included)</h2>
+
+
+
+<ul>
+
+<li>Login screen (UI only)</li>
+
+<li>Forgot Password screen (UI only)</li>
+
+<li>Main Dashboard</li>
+
+<li>Records List (generic items/records)</li>
+
+<li>Create / Edit Record (forms & bottom sheets)</li>
+
+<li>Reports & Analytics (summary tiles & filters with mock data)</li>
+
+<li>Profile screen</li>
+
+<li>Settings screen (theme, language, toggles)</li>
+
+<li>Notifications screen</li>
+
+<li>Components Showcase screen</li>
+
+<li>Empty & Error States (no data / no internet / error)</li>
+
+<li>Search & Filter (modal / bottom sheet)</li>
+
+</ul>
+
+
+
+<h2>What You Get</h2>
+
+
+
+<ul>
+
+<li>Beautiful dashboard screen with cards & stats (mock data)</li>
+
+<li>Generic records list screens</li>
+
+<li>Contacts / partners / team list UIs</li>
+
+<li>Expense & basic report summary UIs</li>
+
+<li>Profile, settings & support screens</li>
+
+<li>Login & setup screens (UI only, no auth)</li>
+
+<li>Components & states showcase screen</li>
+
+<li>Reusable widgets & consistent design system</li>
+
+</ul>
+
+
+
+<h2>What Is NOT Included (Very Important)</h2>
+
+
+
+<ul>
+
+<li>No backend / server</li>
+
+<li>No database or local storage (no Isar, SQLite, etc.)</li>
+
+<li>No authentication logic (login is just UI)</li>
+
+<li>No POS / checkout / billing / payment logic</li>
+
+<li>No real reporting engine</li>
+
+<li>No real PDF invoice generation (only basic UI parts)</li>
+
+<li>No real data backup / restore</li>
+
+</ul>
+
+
+
+<p>All the numbers, charts, and lists you see in the screenshots are driven by <strong>mock data only</strong>. Buyers must connect their own backend or local database to make it functional.</p>
+
+
+
+<h2>Target Audience</h2>
+
+
+
+<ul>
+
+<li>Flutter developers</li>
+
+<li>Startup teams & SaaS builders</li>
+
+<li>Freelancers building admin panels</li>
+
+<li>Designers who need a working Flutter UI reference</li>
+
+</ul>
+
+
+
+<h2>Tech Stack</h2>
+
+
+
+<ul>
+
+<li>Flutter 3.x / Dart 3.x</li>
+
+<li>GetX (navigation & simple state)</li>
+
+<li>Custom light / dark theme</li>
+
+<li>Localization-ready (Bengali & English example)</li>
+
+</ul>
+
+
+
+<h2>Folder Structure</h2>
+
+
+
+<pre><code>lib/
+
+├─ app/
+
+│  ├─ config/       (config & theme)
+
+│  ├─ data/         (plain Dart models, no DB)
+
+│  ├─ modules/      (feature UIs: dashboard, records, settings, etc.)
+
+│  ├─ routes/       (navigation)
+
+│  ├─ utils/        (helpers)
+
+│  ├─ views/        (main shell)
+
+│  └─ widgets/      (reusable UI)
+
+├─ mock/            (mock_data.dart, mock_data_service.dart)
+
+└─ l10n/            (localization)
+
+</code></pre>
+
+
+
+<h2>How to Use</h2>
+
+
 
 <ol>
-<li>Extract the downloaded package</li>
+
 <li>Open the project in Android Studio or VS Code</li>
-<li>Run <code>flutter pub get</code> to install dependencies</li>
-<li>Connect an Android device or start an emulator</li>
-<li>Run <code>flutter run</code> to launch the app</li>
+
+<li>Run <code>flutter pub get</code></li>
+
+<li>Run <code>flutter run</code> on an emulator or device</li>
+
 </ol>
 
-<p><strong>Requirements:</strong></p>
-<ul>
-<li>Flutter SDK 3.5.4 or higher</li>
-<li>Dart SDK 3.x</li>
-<li>Android Studio 2022.3+ or VS Code 1.80+</li>
-<li>JDK 17</li>
-<li>Android SDK (API 21 to 35)</li>
-</ul>
 
-<h2>Key Features</h2>
 
-<p>With Dokandar Inventory, you can manage your business with ease and efficiency. Some of the features are:</p>
+<p>All data is static and lives in <code>lib/mock/mock_data.dart</code>. You can replace this file with your own repository/API integration.</p>
 
-<p><strong>Inventory Management:</strong> You can manage your products with SKU tracking, organize them into categories, track stock levels in real-time, and receive automatic alerts when stock runs low.</p>
 
-<p><strong>Sales Counter & POS:</strong> You can process sales with a simple and intuitive interface, manage cart items, apply discounts and taxes, accept multiple payment methods, and track due payments.</p>
 
-<p><strong>Invoice System:</strong> You can generate professional PDF invoices instantly, preview them in full-screen, print directly, or share via email, WhatsApp, and other apps.</p>
+<h2>Disclaimer</h2>
 
-<p><strong>Customer & Supplier Management:</strong> You can maintain complete databases of customers and suppliers, track due payments, payment history, and contact information.</p>
 
-<p><strong>Reports & Analytics:</strong> You can monitor your business performance, track sales, inventory, and expenses, and generate reports with daily, weekly, monthly, or custom date ranges.</p>
-
-<p><strong>Expense Tracking:</strong> You can track and categorize your business expenses, and see how they affect your profit.</p>
-
-<p><strong>Employee Management:</strong> You can manage employee records and track salaries.</p>
-
-<p><strong>Data Backup & Restore:</strong> You can export all your data to JSON format and restore from backup files whenever needed.</p>
-
-<p><strong>Multi-Language Support:</strong> You can use the app in Bengali or English with easy language switching.</p>
-
-<p><strong>Theme System:</strong> You can choose between Light, Dark, or System theme for comfortable viewing.</p>
-
-<p>Dokandar Inventory is the ultimate mobile inventory management app for small businesses. It is fast, reliable, and works completely offline. Download Dokandar Inventory today and take your business to the next level.</p>
-
-<h2>Technical Specifications</h2>
-
-<p><strong>Framework:</strong> Flutter 3.5.4+ / Dart 3.5.4+</p>
-
-<p><strong>Architecture:</strong> MVC (Model-View-Controller) pattern with GetX 4.7.2 for state management</p>
-
-<p><strong>Database:</strong> Isar Database 3.1.0 (local NoSQL, offline-first)</p>
-
-<p><strong>Platform Support:</strong> Android 5.0+ (API 21), Target SDK: API 34 (Android 14)</p>
-
-<h2>What's Included</h2>
 
 <ul>
-<li>Complete Flutter source code (fully commented)</li>
-<li>Comprehensive documentation (setup guide, customization, troubleshooting)</li>
-<li>Pre-built database schemas and models</li>
-<li>Reusable UI components and widgets</li>
-<li>Theme system (light/dark mode)</li>
-<li>Localization files (Bengali & English)</li>
-<li>Build configurations and deployment guides</li>
+
+<li>This item is marketed strictly as a <strong>UI Kit / UI Template</strong>.</li>
+
+<li>It is <strong>not</strong> a complete inventory system, POS system, or business solution.</li>
+
+<li>No refunds will be given for expecting a backend or complete system – please read the description carefully.</li>
+
 </ul>
 
-<h2>Version History</h2>
 
-<h3>Version 1.0.0 (December 2024) - Initial Release</h3>
-
-<p><strong>Features:</strong></p>
-<ul>
-<li>Complete inventory management system</li>
-<li>Sales counter with cart management</li>
-<li>PDF invoice generation with print & share</li>
-<li>Customer and supplier management</li>
-<li>Employee and expense tracking</li>
-<li>Sales reports and analytics</li>
-<li>Local backup/restore functionality</li>
-<li>Multi-language support (Bengali & English)</li>
-<li>Light/Dark theme system</li>
-<li>Stock validation and low stock alerts</li>
-</ul>
-
-<p><strong>Technical:</strong></p>
-<ul>
-<li>Built with Flutter 3.5.4+, GetX 4.7.2, Isar 3.1.0</li>
-<li>Supports Android 5.0+ (API 21)</li>
-<li>Minimal permissions required</li>
-</ul>
-
-<h2>Important Links</h2>
-
-<p><strong>Documentation:</strong> Complete setup guide included in the package (check iDocs folder)</p>
-
-<p><strong>Support:</strong> Email support available for all buyers</p>
-
-<p><strong>Source Code:</strong> Fully commented and organized Flutter project</p>
-
-<p><strong>Demo:</strong> Check screenshots section for app preview images</p>
-
-<h2>License</h2>
-
-<p>This is a CodeCanyon item. Please check your license type (Regular or Extended) for usage terms and restrictions.</p>
-
-<p><strong>Important Notes:</strong></p>
-<ul>
-<li>This app works completely offline - no backend server required</li>
-<li>All data is stored locally on the device using Isar database</li>
-<li>Source code is well-organized and fully commented for easy customization</li>
-<li>Regular updates and bug fixes are provided</li>
-</ul>
 
 </body>
+
 </html>
+

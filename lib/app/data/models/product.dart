@@ -1,14 +1,9 @@
-import 'package:isar/isar.dart';
 import 'package:uuid/uuid.dart';
 import '../../config/app_config.dart';
 
-part 'product.g.dart';
-
-@collection
 class Product {
-  Id id = Isar.autoIncrement;
+  int? id;
 
-  @Index(unique: true)
   late String sku;
 
   late String name;

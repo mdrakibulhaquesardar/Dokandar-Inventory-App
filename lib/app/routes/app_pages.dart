@@ -24,10 +24,8 @@ import '../modules/inventory/views/stock_alert_view.dart';
 import '../modules/inventory/views/report_generator_view.dart';
 import '../modules/setting/views/store_settings_view.dart';
 
-import '../modules/sell/bindings/sell_binding.dart';
-import '../modules/sell/views/checkout_view.dart';
-import '../modules/sell/views/invoice_preview_view.dart';
-import '../modules/sell/views/sell_view.dart';
+// Sell/Checkout module is kept in code as a reference only
+// but is not part of the BizDash UI Kit navigation.
 import '../modules/setting/bindings/setting_binding.dart';
 import '../modules/setting/views/about_app_view.dart';
 import '../modules/setting/views/feedback_view.dart';
@@ -37,27 +35,59 @@ import '../modules/setting/views/edit_profile_view.dart';
 import '../modules/setting/views/privacy_policy_view.dart';
 import '../modules/setting/views/terms_view.dart';
 import '../modules/home/views/search_view.dart';
-import '../modules/setup/bindings/setup_binding.dart';
-import '../modules/setup/views/confrom_view.dart';
-import '../modules/setup/views/setup_view.dart';
-import '../modules/setup/views/store_setup_view.dart';
+import '../modules/auth/bindings/auth_binding.dart';
+import '../modules/auth/views/login_view.dart';
+import '../modules/auth/views/signup_view.dart';
+import '../modules/auth/views/forgot_password_view.dart';
+import '../modules/notifications/bindings/notifications_binding.dart';
+import '../modules/notifications/views/notifications_view.dart';
+import '../modules/notifications/views/notification_detail_view.dart';
+import '../modules/users/bindings/users_binding.dart';
+import '../modules/users/views/users_view.dart';
+import '../modules/users/views/user_detail_view.dart';
+import '../modules/users/views/roles_view.dart';
+import '../modules/users/views/permissions_view.dart';
+import '../modules/files/bindings/files_binding.dart';
+import '../modules/files/views/files_view.dart';
+import '../modules/analytics/bindings/analytics_binding.dart';
+import '../modules/analytics/views/analytics_view.dart';
 import '../views/main_view.dart';
+import '../controllers/persistent_navigation_controller.dart';
 
 part 'app_routes.dart';
 
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.MAIN;
+  static const INITIAL = Routes.LOGIN;
 
   static final routes = [
     GetPage(
-      name: _Paths.CONFROM_SETUP,
-      page: () => const ConfromView(),
+      name: _Paths.LOGIN,
+      page: () => const LoginView(),
+      binding: AuthBinding(),
+      transition: Transition.fadeIn,
+    ),
+    GetPage(
+      name: _Paths.SIGNUP,
+      page: () => const SignupView(),
+      binding: AuthBinding(),
+      transition: Transition.fadeIn,
+    ),
+    GetPage(
+      name: _Paths.FORGOT_PASSWORD,
+      page: () => const ForgotPasswordView(),
+      binding: AuthBinding(),
+      transition: Transition.fadeIn,
     ),
     GetPage(
       name: _Paths.MAIN,
       page: () => const MainView(),
+      binding: BindingsBuilder(() {
+        Get.lazyPut<PersistentNavigationController>(
+          () => PersistentNavigationController(),
+        );
+      }),
     ),
     GetPage(
       name: _Paths.APP_LOCK,
@@ -84,23 +114,6 @@ class AppPages {
       name: _Paths.MANAGE_PIN,
       page: () => const ManagePinView(),
       binding: AppLockBinding(),
-    ),
-    GetPage(
-      name: _Paths.SELL,
-      page: () => const SellView(),
-      binding: SellBinding(),
-    ),
-    GetPage(
-      name: _Paths.SETUP,
-      page: () => const SetupView(),
-      binding: SetupBinding(),
-      transition: Transition.fadeIn,
-    ),
-    GetPage(
-      name: _Paths.STORE_SETUP,
-      page: () => const StoreSetupView(),
-      binding: SetupBinding(),
-      transition: Transition.fadeIn,
     ),
     GetPage(
       name: _Paths.CATEGORY,
@@ -193,12 +206,6 @@ class AppPages {
       transition: Transition.fadeIn,
     ),
     GetPage(
-      name: _Paths.CHECKOUT,
-      page: () => const CheckoutView(),
-      binding: SellBinding(),
-      transition: Transition.fadeIn,
-    ),
-    GetPage(
       name: _Paths.BACKUP_DATA,
       page: () => const BackupDataView(),
       binding: DataManagementBinding(),
@@ -235,9 +242,51 @@ class AppPages {
       transition: Transition.fadeIn,
     ),
     GetPage(
-      name: _Paths.INVOICE_PREVIEW,
-      page: () => const InvoicePreviewView(),
-      binding: SellBinding(),
+      name: _Paths.NOTIFICATIONS,
+      page: () => const NotificationsView(),
+      binding: NotificationsBinding(),
+      transition: Transition.fadeIn,
+    ),
+    GetPage(
+      name: _Paths.USERS,
+      page: () => const UsersView(),
+      binding: UsersBinding(),
+      transition: Transition.fadeIn,
+    ),
+    GetPage(
+      name: _Paths.USER_DETAIL,
+      page: () {
+        final user = Get.arguments as dynamic;
+        return UserDetailView(user: user);
+      },
+      binding: UsersBinding(),
+      transition: Transition.fadeIn,
+    ),
+    GetPage(
+      name: _Paths.ROLES,
+      page: () => const RolesView(),
+      binding: UsersBinding(),
+      transition: Transition.fadeIn,
+    ),
+    GetPage(
+      name: _Paths.PERMISSIONS,
+      page: () {
+        final role = Get.arguments as dynamic;
+        return PermissionsView(role: role);
+      },
+      binding: UsersBinding(),
+      transition: Transition.fadeIn,
+    ),
+    GetPage(
+      name: _Paths.FILES,
+      page: () => const FilesView(),
+      binding: FilesBinding(),
+      transition: Transition.fadeIn,
+    ),
+    GetPage(
+      name: _Paths.ANALYTICS,
+      page: () => const AnalyticsView(),
+      binding: AnalyticsBinding(),
       transition: Transition.fadeIn,
     ),
   ];

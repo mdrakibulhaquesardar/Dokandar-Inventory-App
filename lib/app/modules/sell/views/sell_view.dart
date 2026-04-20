@@ -1,4 +1,3 @@
-import 'package:dokandar_app_inventory/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
@@ -24,18 +23,7 @@ class SellView extends GetView<SellController> {
         l10n.salesCounter,
         false,
         true,
-        actions: [
-          IconButton(
-            icon: Icon(
-              Icons.inventory_2_outlined,
-              color: themeConfig.getTextPrimaryColor(isDarkMode),
-            ),
-            onPressed: () {
-              Get.toNamed(Routes.ALL_PRODUCTS);
-            },
-            tooltip: l10n.allProducts,
-          ),
-        ],
+        actions: const [],
       ),
       body: Column(
         children: [
@@ -53,8 +41,8 @@ class SellView extends GetView<SellController> {
                   decoration: InputDecoration(
                     hintText: l10n.searchProducts,
                     border: InputBorder.none,
-                    contentPadding:
-                        const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+                    contentPadding: const EdgeInsets.symmetric(
+                        horizontal: 12, vertical: 12),
                     hintStyle: TextStyle(
                       fontSize: 14,
                       color: themeConfig
@@ -81,14 +69,16 @@ class SellView extends GetView<SellController> {
                               decoration: BoxDecoration(
                                 border: Border(
                                   bottom: BorderSide(
-                                    color: themeConfig.getBorderColor(isDarkMode).withValues(alpha: 0.1),
+                                    color: themeConfig
+                                        .getBorderColor(isDarkMode)
+                                        .withValues(alpha: 0.1),
                                     width: 0.5,
                                   ),
                                 ),
                               ),
                               child: ListTile(
-                                contentPadding:
-                                    const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                                contentPadding: const EdgeInsets.symmetric(
+                                    horizontal: 12, vertical: 8),
                                 title: Text(
                                   product.name,
                                   style: TextStyle(
@@ -103,8 +93,8 @@ class SellView extends GetView<SellController> {
                                     '${appConfig.getCurrencySymbol()} ${product.unitPrice}',
                                     style: TextStyle(
                                       fontSize: 12,
-                                      color:
-                                          themeConfig.getPrimaryColor(isDarkMode),
+                                      color: themeConfig
+                                          .getPrimaryColor(isDarkMode),
                                     ),
                                   );
                                 }),
@@ -121,7 +111,7 @@ class SellView extends GetView<SellController> {
               ],
             ),
           ),
-          // Product List
+          // Selected Records List
           Expanded(
             child: Obx(() => ListView.builder(
                   padding: const EdgeInsets.all(12),
@@ -155,8 +145,7 @@ class SellView extends GetView<SellController> {
                         title: Text(
                           product.productName,
                           style: TextStyle(
-                            color:
-                                themeConfig.getTextPrimaryColor(isDarkMode),
+                            color: themeConfig.getTextPrimaryColor(isDarkMode),
                             fontWeight: FontWeight.w500,
                             fontSize: 14,
                           ),
@@ -172,67 +161,67 @@ class SellView extends GetView<SellController> {
                             ),
                           );
                         }),
-                          trailing: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Container(
-                                decoration: BoxDecoration(
-                                  color: themeConfig
-                                      .getPrimaryColor(isDarkMode)
-                                      .withValues(alpha: 0.1),
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    IconButton(
-                                      icon: Icon(
-                                        Icons.remove,
-                                        color: themeConfig
-                                            .getPrimaryColor(isDarkMode),
-                                        size: 18,
-                                      ),
-                                      onPressed: () =>
-                                          controller.decreaseQuantity(index),
-                                      padding: const EdgeInsets.all(4),
-                                      constraints: const BoxConstraints(),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 6),
-                                      child: Text(
-                                        '${controller.getQuantity(index).toInt()}',
-                                        style: TextStyle(
-                                          color: themeConfig
-                                              .getTextPrimaryColor(isDarkMode),
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 14,
-                                        ),
-                                      ),
-                                    ),
-                                    IconButton(
-                                      icon: Icon(
-                                        Icons.add,
-                                        color: themeConfig
-                                            .getPrimaryColor(isDarkMode),
-                                        size: 18,
-                                      ),
-                                      onPressed: () =>
-                                          controller.increaseQuantity(index),
-                                      padding: const EdgeInsets.all(4),
-                                      constraints: const BoxConstraints(),
-                                    ),
-                                  ],
-                                ),
+                        trailing: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Container(
+                              decoration: BoxDecoration(
+                                color: themeConfig
+                                    .getPrimaryColor(isDarkMode)
+                                    .withValues(alpha: 0.1),
+                                borderRadius: BorderRadius.circular(8),
                               ),
-                            ],
-                          ),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  IconButton(
+                                    icon: Icon(
+                                      Icons.remove,
+                                      color: themeConfig
+                                          .getPrimaryColor(isDarkMode),
+                                      size: 18,
+                                    ),
+                                    onPressed: () =>
+                                        controller.decreaseQuantity(index),
+                                    padding: const EdgeInsets.all(4),
+                                    constraints: const BoxConstraints(),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 6),
+                                    child: Text(
+                                      '${controller.getQuantity(index).toInt()}',
+                                      style: TextStyle(
+                                        color: themeConfig
+                                            .getTextPrimaryColor(isDarkMode),
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 14,
+                                      ),
+                                    ),
+                                  ),
+                                  IconButton(
+                                    icon: Icon(
+                                      Icons.add,
+                                      color: themeConfig
+                                          .getPrimaryColor(isDarkMode),
+                                      size: 18,
+                                    ),
+                                    onPressed: () =>
+                                        controller.increaseQuantity(index),
+                                    padding: const EdgeInsets.all(4),
+                                    constraints: const BoxConstraints(),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
                         ),
+                      ),
                     );
                   },
                 )),
           ),
-          // Cart Summary
+          // Summary (UI only)
           Container(
             padding: const EdgeInsets.all(12),
             decoration: BoxDecoration(
@@ -268,15 +257,25 @@ class SellView extends GetView<SellController> {
                 SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
-                    onPressed:  () {
+                    onPressed: () {
                       if (controller.cartItems.isNotEmpty) {
-                        Get.toNamed(Routes.CHECKOUT);
+                        // In the UI kit version we just show a toast.
+                        Fluttertoast.showToast(
+                          msg:
+                              'Review screen removed in UI Kit version (UI only).',
+                          toastLength: Toast.LENGTH_SHORT,
+                          gravity: ToastGravity.BOTTOM,
+                          backgroundColor:
+                              themeConfig.getPrimaryColor(isDarkMode),
+                          textColor: Colors.white,
+                        );
                       } else {
                         Fluttertoast.showToast(
                           msg: l10n.noProductsAdded,
                           toastLength: Toast.LENGTH_SHORT,
                           gravity: ToastGravity.BOTTOM,
-                          backgroundColor: themeConfig.getErrorColor(isDarkMode),
+                          backgroundColor:
+                              themeConfig.getErrorColor(isDarkMode),
                           textColor: Colors.white,
                           fontSize: 14.0,
                         );
@@ -307,5 +306,3 @@ class SellView extends GetView<SellController> {
     );
   }
 }
-
-

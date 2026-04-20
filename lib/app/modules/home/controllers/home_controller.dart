@@ -6,11 +6,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../data/models/store.dart';
-import '../../../core/services/database_service.dart';
+import '../../../../mock/mock_data_service.dart';
+import '../../notifications/controllers/notifications_controller.dart';
 
 class HomeController extends GetxController {
+  final _mock = const MockDataService();
+
   var currentIndex = 0.obs;
-  var store = Rxn<Store>(); // Made store observable
+  var store = Rxn<Store>();
 
   RxInt totalProducts = 0.obs;
   RxInt totalCustomers = 0.obs;
@@ -19,10 +22,7 @@ class HomeController extends GetxController {
   RxInt todaySalesCount = 0.obs;
   RxDouble totalRevenue = 0.0.obs;
 
-  // all sale variable
   RxList<Sale> recentSale = <Sale>[].obs;
-
-  // all products variable
   RxList<Product> allLowStokeProduct = <Product>[].obs;
 
   final searchController = TextEditingController();
@@ -30,10 +30,6 @@ class HomeController extends GetxController {
   final RxString searchQuery = ''.obs;
   final RxList<Product> searchResults = <Product>[].obs;
   final RxString filterType = 'all'.obs;
-
-
-
-
 
   void changePage(int index) {
     currentIndex.value = index;
@@ -50,62 +46,34 @@ class HomeController extends GetxController {
     }
   }
 
-  void getStoreInfo() async {
-    try {
-      final storeData = await Get.find<DatabaseService>().getStore();
-      store.value = storeData;
-      if (store.value != null) {
-        debugPrint("Store found: ${store.value!.name}");
-      } else {
-        debugPrint("No store found");
-      }
-    } catch (e) {
-      debugPrint("Error fetching store info: $e");
-    }
+  Future<void> getStoreInfo() async {
+    store.value = await _mock.getStore();
   }
 
   Future<void> getAllStatistics() async {
-    try {
-      // Fetch all statistics from the database
-      final allProducts = await Get.find<DatabaseService>().getAllProducts();
-      final allCustomers = await Get.find<DatabaseService>().getAllCustomers();
-      final allSales = await Get.find<DatabaseService>().getTotalSalesToday();
-      final allCategories = await Get.find<DatabaseService>().getAllCategories();
+    final products = await _mock.getAllProducts();
+    final customers = await _mock.getAllCustomers();
+    final sales = await _mock.getAllSales();
+    final categories = await _mock.getAllCategories();
 
-      // Update the observable variables
-      totalProducts.value = allProducts.length;
-      totalCustomers.value = allCustomers.length;
-      totalSales.value = allSales;
-      totalCategories.value = allCategories.length;
-
-      debugPrint("Total Products: ${totalProducts.value}");
-      debugPrint("Total Customers: ${totalCustomers.value}");
-      debugPrint("Total Sales: ${totalSales.value}");
-    } catch (e) {
-      debugPrint("Error fetching statistics: $e");
-    }
+    totalProducts.value = products.length;
+    totalCustomers.value = customers.length;
+    totalSales.value = sales.fold(0.0, (sum, s) => sum + s.totalAmount);
+    totalCategories.value = categories.length;
   }
 
   Future<void> getRecentSales() async {
-    final allSales = await Get.find<DatabaseService>().getSalesToday();
-    recentSale.assignAll(allSales);
-  }
-
-  Future<void> getTodaySales() async {
-    final allSales = await Get.find<DatabaseService>().getSalesToday();
-    recentSale.assignAll(allSales);
+    final allSales = await _mock.getAllSales();
+    recentSale.assignAll(allSales.take(5));
   }
 
   Future<void> getLowStockProducts() async {
-    final lowStockProducts = await Get.find<DatabaseService>().getLowStockProducts();
+    final lowStockProducts = await _mock.getLowStockProducts();
     allLowStokeProduct.assignAll(lowStockProducts);
-    printInfo(info: "Low stock products: ${allLowStokeProduct.length}");
   }
 
-  // totalRevenue
   Future<void> getTotalRevenue() async {
-    final revenue = await Get.find<DatabaseService>().totalRevenue();
-    totalRevenue.value = revenue;
+    totalRevenue.value = await _mock.getTotalRevenue();
   }
 
   Future<void> searchProducts(String query) async {
@@ -114,7 +82,7 @@ class HomeController extends GetxController {
       searchResults.clear();
       return;
     }
-    final results = await Get.find<DatabaseService>().searchProducts(query);
+    final results = await _mock.searchProducts(query);
     final filtered = _applyFilter(results);
     searchResults.assignAll(filtered);
   }
@@ -135,35 +103,16 @@ class HomeController extends GetxController {
     }
   }
 
-
-
-  //Refresh the statistics
-
-  // void refreshStatistics() {
-  //   Future.wait([
-  //     getAllStatistics(),
-  //     getRecentSales(),
-  //     getLowStockProducts(),
-  //   ]).then((_) {
-  //     // Show a toast message after refreshing
-  //     Fluttertoast.showToast(
-  //       msg: "রিফ্রেশ করা হয়েছে",
-  //       toastLength: Toast.LENGTH_SHORT,
-  //       gravity: ToastGravity.BOTTOM,
-  //       backgroundColor: Colors.black,
-  //       textColor: Colors.white,
-  //       fontSize: 16.0,
-  //     );
-  //   });
-  // }
-
   @override
   void onInit() {
     super.onInit();
     getAllStatistics();
     getRecentSales();
     getLowStockProducts();
-
+    // Ensure NotificationsController is available for dashboard badge
+    if (!Get.isRegistered<NotificationsController>()) {
+      Get.lazyPut<NotificationsController>(() => NotificationsController());
+    }
   }
 
   @override
@@ -172,17 +121,15 @@ class HomeController extends GetxController {
     getStoreInfo();
   }
 
-
   @override
   void refresh() {
     super.refresh();
     getAllStatistics();
     getRecentSales();
     getLowStockProducts();
-    getTodaySales();
     getTotalRevenue();
-
   }
+
   void unfocusSearch() {
     searchFocusNode.unfocus();
   }

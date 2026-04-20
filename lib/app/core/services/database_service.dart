@@ -1,459 +1,409 @@
 import 'package:get/get.dart';
-import 'package:isar/isar.dart';
-import 'package:path_provider/path_provider.dart';
 
 import '../../data/models/category.dart';
-import '../../data/models/product.dart';
 import '../../data/models/customer.dart';
-import '../../data/models/sale.dart';
-import '../../data/models/stock_history.dart';
-import '../../data/models/user.dart';
-import '../../data/models/store.dart';
-import '../../data/models/supplier.dart';
 import '../../data/models/employee.dart';
 import '../../data/models/expense.dart';
+import '../../data/models/product.dart';
+import '../../data/models/sale.dart';
+import '../../data/models/stock_history.dart';
+import '../../data/models/store.dart';
+import '../../data/models/supplier.dart';
+import '../../data/models/user.dart';
+import '../../data/models/notification.dart';
+import '../../data/models/team_member.dart';
+import '../../data/models/role.dart';
+import '../../data/models/permission.dart';
+import '../../data/models/file_item.dart';
+import '../../data/models/analytics_data.dart';
 import '../repository/database_service_repository.dart';
-import '../../config/app_config.dart';
-import 'backup_service.dart';
-import 'database_seeder.dart';
+import '../../../../mock/mock_data.dart';
 
+/// Lightweight in-memory implementation of [DatabaseServiceRepository]
+/// used only to support the UI kit with mock data.
+///
+/// All methods either read from [MockData] or are no-ops.
 class DatabaseService extends GetxService implements DatabaseServiceRepository {
-  late Isar isar;
-  late BackupService backupService;
-  late DatabaseSeeder seeder;
-
   @override
   Future<DatabaseService> init() async {
-    final dir = await getApplicationDocumentsDirectory();
-    // Database name is configured in AppConfig.databaseName
-    // Note: Isar uses the directory path, but the name is referenced for documentation
-    isar = await Isar.open(
-      [
-        ProductSchema,
-        CustomerSchema,
-        SaleSchema,
-        StockHistorySchema,
-        UserSchema,
-        StoreSchema,
-        CategorySchema,
-        SupplierSchema,
-        EmployeeSchema,
-        ExpenseSchema,
-      ],
-      directory: dir.path,
-    );
-
-    // Initialize backup service
-    backupService = await BackupService().init(isar);
-
-    // Initialize database seeder
-    seeder = DatabaseSeeder(isar);
-
-    // Seed initial data (only if database is empty)
-    // To enable automatic seeding on app start, uncomment the line below:
-    //await seeder.seedData();
-    //
-    // Or manually seed data anytime using:
-    // Get.find<DatabaseService>().seedInitialData();
-
+    // Nothing to initialize for mock-only implementation
     return this;
   }
 
   @override
-  Future<void> close() async {
-    await isar.close();
-  }
+  Future<void> close() async {}
 
   @override
-  Future<void> clear() async {
-    await isar.writeTxn(() async {
-      await isar.clear();
-    });
-  }
+  Future<void> clear() async {}
+
+  // ---------------------------------------------------------------------------
+  // User operations (mock-only)
+  // ---------------------------------------------------------------------------
 
   @override
-  Future<bool> hasUser() async {
-    final userCount = await isar.users.count();
-    return userCount > 0;
-  }
+  Future<bool> hasUser() async => false;
 
   @override
-  Future<User?> getUser() async {
-    return await isar.users.where().findFirst();
-  }
+  Future<User?> getUser() async => null;
 
   @override
-  Future<void> saveUser(User user) async {
-    await isar.writeTxn(() async {
-      await isar.users.put(user);
-    });
-  }
+  Future<void> saveUser(User user) async {}
 
   @override
-  Future<Store?> getStore() async {
-    return await isar.stores.where().findFirst();
-  }
+  Future<List<User>> getAllUsers() async => [];
 
   @override
-  Future<void> saveStore(Store store) async {
-    await isar.writeTxn(() async {
-      await isar.stores.put(store);
-    });
-  }
+  Future<User?> getUserById(int id) async => null;
 
   @override
-  Future<List<Product>> getAllProducts() async {
-    return await isar.products.where().findAll();
-  }
+  Future<void> deleteUser(int id) async {}
+
+  // ---------------------------------------------------------------------------
+  // Store operations (use MockData.store)
+  // ---------------------------------------------------------------------------
 
   @override
-  Future<int> getTotalProducts() async {
-    return await isar.products.count();
-  }
+  Future<Store?> getStore() async => MockData.store;
 
   @override
-  Future<double> getTotalProductsPrice() async {
-    final products = await isar.products.where().findAll();
-    double total = 0;
-    for (var product in products) {
-      total += product.unitPrice * product.stockQuantity;
-    }
-    return total;
-  }
+  Future<void> saveStore(Store store) async {}
 
   @override
-  Future<List<Product>> getLowStockProducts() async {
-    return await isar.products
-        .filter()
-        .stockQuantityLessThan(AppConfig.lowStockThreshold.toDouble())
-        .findAll();
-  }
+  Future<void> updateStore(Store store) async {}
+
+  // ---------------------------------------------------------------------------
+  // Product operations (use MockData.products)
+  // ---------------------------------------------------------------------------
 
   @override
-  Future<Product?> getProductById(int id) async {
-    return await isar.products.get(id);
-  }
+  Future<List<Product>> getAllProducts() async => MockData.products;
 
   @override
-  Future<void> saveProduct(Product product) async {
-    await isar.writeTxn(() async {
-      await isar.products.put(product);
-    });
-  }
+  Future<int> getTotalProducts() async => MockData.products.length;
 
   @override
-  Future<void> deleteProduct(int id) async {
-    await isar.writeTxn(() async {
-      await isar.products.delete(id);
-    });
-  }
+  Future<double> getTotalProductsPrice() async => MockData.products
+      .fold<double>(0.0, (sum, p) => sum + p.unitPrice * p.stockQuantity);
 
   @override
-  Future<List<Customer>> getAllCustomers() async {
-    return await isar.customers.where().findAll();
-  }
+  Future<List<Product>> getLowStockProducts() async =>
+      MockData.products.where((p) => p.stockQuantity < 5).toList();
 
   @override
-  Future<int> getTotalCustomers() async {
-    return await isar.customers.count();
-  }
+  Future<Product?> getProductById(int id) async =>
+      MockData.products.firstWhereOrNull((p) => p.id == id);
 
   @override
-  Future<Customer?> getCustomerById(int id) async {
-    return await isar.customers.get(id);
-  }
+  Future<void> saveProduct(Product product) async {}
 
   @override
-  Future<String?> getCustomerNameById(int id) async {
-    final customer = await isar.customers.get(id);
-    return customer?.name;
-  }
-
-  @override
-  Future<void> saveCustomer(Customer customer) async {
-    await isar.writeTxn(() async {
-      await isar.customers.put(customer);
-    });
-  }
-
-  @override
-  Future<void> updateCustomer(Customer customer) async {
-    await isar.writeTxn(() async {
-      await isar.customers.put(customer);
-    });
-  }
-
-  @override
-  Future<void> deleteCustomer(int id) async {
-    await isar.writeTxn(() async {
-      await isar.customers.delete(id);
-    });
-  }
-
-  @override
-  Future<List<Sale>> getAllSales() async {
-    return await isar.sales.where().findAll();
-  }
-
-  @override
-  Future<double> getTotalSales() async {
-    final sales = await isar.sales.where().findAll();
-    double total = 0;
-    for (var sale in sales) {
-      total += sale.totalAmount;
-    }
-    return total;
-  }
-
-  @override
-  //totalRevenue
-  Future<double> totalRevenue() async {
-    final sales = await isar.sales.where().findAll();
-    double total = 0;
-    for (var sale in sales) {
-      total += sale.totalAmount;
-    }
-    return total;
-  }
-
-  @override
-  Future<List<Sale>> getSalesToday() async {
-    final today = DateTime.now();
-    final startOfDay = DateTime(today.year, today.month, today.day);
-    final endOfDay = startOfDay.add(const Duration(days: 1));
-
-    return await isar.sales
-        .filter()
-        .createdAtGreaterThan(startOfDay, include: true)
-        .and()
-        .createdAtLessThan(endOfDay, include: false)
-        .findAll();
-  }
-
-  @override
-  Future<double> getTotalSalesToday() async {
-    final today = DateTime.now();
-    final startOfDay = DateTime(today.year, today.month, today.day);
-    final endOfDay = startOfDay.add(const Duration(days: 1));
-
-    final sales = await isar.sales
-        .filter()
-        .createdAtGreaterThan(startOfDay, include: true)
-        .and()
-        .createdAtLessThan(endOfDay, include: false)
-        .findAll();
-
-    double total = 0;
-    for (var sale in sales) {
-      total += sale.totalAmount;
-    }
-    return total;
-  }
-
-  @override
-  Future<void> saveSale(Sale sale) async {
-    await isar.writeTxn(() async {
-      await isar.sales.put(sale);
-    });
-  }
-
-  @override
-  Future<void> deleteSale(int id) async {
-    await isar.writeTxn(() async {
-      await isar.sales.delete(id);
-    });
-  }
-
-  @override
-  Future<void> updateSalePayment(
-      int id, double paidAmount, double dueAmount) async {
-    await isar.writeTxn(() async {
-      final sale = await isar.sales.get(id);
-      if (sale != null) {
-        sale.paidAmount = paidAmount;
-        sale.dueAmount = dueAmount;
-        await isar.sales.put(sale);
-      }
-    });
-  }
-
-  @override
-  Future<void> updateStore(Store store) async {
-    await isar.writeTxn(() async {
-      await isar.stores.put(store);
-    });
-  }
+  Future<void> deleteProduct(int id) async {}
 
   @override
   Future<List<Product>> searchProducts(String query) async {
-    return await isar.products
-        .filter()
-        .nameContains(query, caseSensitive: false)
-        .or()
-        .skuContains(query, caseSensitive: false)
-        .findAll();
+    if (query.isEmpty) return [];
+    final lower = query.toLowerCase();
+    return MockData.products
+        .where((p) =>
+            p.name.toLowerCase().contains(lower) ||
+            p.category.toLowerCase().contains(lower) ||
+            p.sku.toLowerCase().contains(lower))
+        .toList();
   }
+
+  // ---------------------------------------------------------------------------
+  // Customer operations (use MockData.customers)
+  // ---------------------------------------------------------------------------
 
   @override
-  Future<List<StockHistory>> getStockHistory(int productId) async {
-    return await isar.stockHistorys
-        .filter()
-        .productIdEqualTo(productId)
-        .findAll();
-  }
+  Future<List<Customer>> getAllCustomers() async => MockData.customers;
 
   @override
-  Future<void> saveStockHistory(StockHistory history) async {
-    await isar.writeTxn(() async {
-      await isar.stockHistorys.put(history);
-    });
-  }
+  Future<int> getTotalCustomers() async => MockData.customers.length;
 
   @override
-  Future<List<User>> getAllUsers() async {
-    return await isar.users.where().findAll();
-  }
+  Future<Customer?> getCustomerById(int id) async =>
+      MockData.customers.firstWhereOrNull((c) => c.id == id);
 
   @override
-  Future<User?> getUserById(int id) async {
-    return await isar.users.get(id);
-  }
+  Future<String?> getCustomerNameById(int id) async =>
+      (await getCustomerById(id))?.name;
 
   @override
-  Future<void> deleteUser(int id) async {
-    await isar.writeTxn(() async {
-      await isar.users.delete(id);
-    });
-  }
+  Future<void> saveCustomer(Customer customer) async {}
 
   @override
-  Future<List<Category>> getAllCategories() async {
-    return await isar.categorys.where().findAll();
-  }
+  Future<void> updateCustomer(Customer customer) async {}
 
   @override
-  Future<Category?> getCategoryById(int id) async {
-    return await isar.categorys.get(id);
-  }
+  Future<void> deleteCustomer(int id) async {}
+
+  // ---------------------------------------------------------------------------
+  // Sale operations (use MockData.sales)
+  // ---------------------------------------------------------------------------
 
   @override
-  Future<void> saveCategory(Category category) async {
-    await isar.writeTxn(() async {
-      await isar.categorys.put(category);
-    });
-  }
+  Future<List<Sale>> getAllSales() async => MockData.sales;
 
   @override
-  Future<void> deleteCategory(int id) async {
-    await isar.writeTxn(() async {
-      await isar.categorys.delete(id);
-    });
-  }
-
-  // Supplier operations
-  @override
-  Future<List<Supplier>> getAllSuppliers() async {
-    return await isar.suppliers.where().findAll();
-  }
+  Future<double> getTotalSales() async =>
+      MockData.sales.fold<double>(0.0, (sum, s) => sum + s.totalAmount);
 
   @override
-  Future<Supplier?> getSupplierById(int id) async {
-    return await isar.suppliers.get(id);
-  }
+  Future<List<Sale>> getSalesToday() async => MockData.sales;
 
   @override
-  Future<void> saveSupplier(Supplier supplier) async {
-    await isar.writeTxn(() async {
-      await isar.suppliers.put(supplier);
-    });
-  }
+  Future<double> getTotalSalesToday() async =>
+      MockData.sales.fold<double>(0.0, (sum, s) => sum + s.totalAmount);
 
   @override
-  Future<void> updateSupplier(Supplier supplier) async {
-    await isar.writeTxn(() async {
-      await isar.suppliers.put(supplier);
-    });
-  }
+  Future<void> saveSale(Sale sale) async {}
 
   @override
-  Future<void> deleteSupplier(int id) async {
-    await isar.writeTxn(() async {
-      await isar.suppliers.delete(id);
-    });
-  }
-
-  // Employee operations
-  @override
-  Future<List<Employee>> getAllEmployees() async {
-    return await isar.employees.where().findAll();
-  }
+  Future<void> totalRevenue() async {}
 
   @override
-  Future<Employee?> getEmployeeById(int id) async {
-    return await isar.employees.get(id);
-  }
+  Future<void> deleteSale(int id) async {}
 
   @override
-  Future<void> saveEmployee(Employee employee) async {
-    await isar.writeTxn(() async {
-      await isar.employees.put(employee);
-    });
-  }
+  Future<void> updateSalePayment(
+      int id, double paidAmount, double dueAmount) async {}
+
+  // ---------------------------------------------------------------------------
+  // Stock History operations (not modeled in mock data)
+  // ---------------------------------------------------------------------------
 
   @override
-  Future<void> updateEmployee(Employee employee) async {
-    await isar.writeTxn(() async {
-      await isar.employees.put(employee);
-    });
-  }
+  Future<List<StockHistory>> getStockHistory(int productId) async => [];
 
   @override
-  Future<void> deleteEmployee(int id) async {
-    await isar.writeTxn(() async {
-      await isar.employees.delete(id);
-    });
-  }
+  Future<void> saveStockHistory(StockHistory history) async {}
 
-  // Expense operations
-  @override
-  Future<List<Expense>> getAllExpenses() async {
-    return await isar.expenses.where().sortByDateDesc().findAll();
-  }
+  // ---------------------------------------------------------------------------
+  // Category operations (use MockData.categories)
+  // ---------------------------------------------------------------------------
 
   @override
-  Future<Expense?> getExpenseById(int id) async {
-    return await isar.expenses.get(id);
-  }
+  Future<List<Category>> getAllCategories() async => MockData.categories;
 
   @override
-  Future<void> saveExpense(Expense expense) async {
-    await isar.writeTxn(() async {
-      await isar.expenses.put(expense);
-    });
-  }
+  Future<Category?> getCategoryById(int id) async =>
+      MockData.categories.firstWhereOrNull((c) => c.id == id);
 
   @override
-  Future<void> updateExpense(Expense expense) async {
-    await isar.writeTxn(() async {
-      await isar.expenses.put(expense);
-    });
-  }
+  Future<void> saveCategory(Category category) async {}
 
   @override
-  Future<void> deleteExpense(int id) async {
-    await isar.writeTxn(() async {
-      await isar.expenses.delete(id);
-    });
+  Future<void> deleteCategory(int id) async {}
+
+  // ---------------------------------------------------------------------------
+  // Supplier operations (use MockData.suppliers)
+  // ---------------------------------------------------------------------------
+
+  @override
+  Future<List<Supplier>> getAllSuppliers() async => MockData.suppliers;
+
+  @override
+  Future<Supplier?> getSupplierById(int id) async =>
+      MockData.suppliers.firstWhereOrNull((s) => s.id == id);
+
+  @override
+  Future<void> saveSupplier(Supplier supplier) async {}
+
+  @override
+  Future<void> updateSupplier(Supplier supplier) async {}
+
+  @override
+  Future<void> deleteSupplier(int id) async {}
+
+  // ---------------------------------------------------------------------------
+  // Employee operations (use MockData.employees)
+  // ---------------------------------------------------------------------------
+
+  @override
+  Future<List<Employee>> getAllEmployees() async => MockData.employees;
+
+  @override
+  Future<Employee?> getEmployeeById(int id) async =>
+      MockData.employees.firstWhereOrNull((e) => e.id == id);
+
+  @override
+  Future<void> saveEmployee(Employee employee) async {}
+
+  @override
+  Future<void> updateEmployee(Employee employee) async {}
+
+  @override
+  Future<void> deleteEmployee(int id) async {}
+
+  // ---------------------------------------------------------------------------
+  // Expense operations (use MockData.expenses)
+  // ---------------------------------------------------------------------------
+
+  @override
+  Future<List<Expense>> getAllExpenses() async => MockData.expenses;
+
+  @override
+  Future<Expense?> getExpenseById(int id) async =>
+      MockData.expenses.firstWhereOrNull((e) => e.id == id);
+
+  @override
+  Future<void> saveExpense(Expense expense) async {}
+
+  @override
+  Future<void> updateExpense(Expense expense) async {}
+
+  @override
+  Future<void> deleteExpense(int id) async {}
+
+  // ---------------------------------------------------------------------------
+  // Notification operations (use MockData.notifications)
+  // ---------------------------------------------------------------------------
+
+  Future<List<Notification>> getAllNotifications() async =>
+      MockData.notifications;
+
+  Future<Notification?> getNotificationById(int id) async =>
+      MockData.notifications.firstWhereOrNull((n) => n.id == id);
+
+  Future<void> markNotificationAsRead(int id) async {
+    final notification =
+        MockData.notifications.firstWhereOrNull((n) => n.id == id);
+    if (notification != null) {
+      notification.isRead = true;
+    }
   }
 
-  /// Seed initial data into the database
-  /// This will only seed if the database is empty
-  Future<void> seedInitialData() async {
-    await seeder.seedData();
+  Future<void> markAllNotificationsAsRead() async {
+    for (var notification in MockData.notifications) {
+      notification.isRead = true;
+    }
   }
 
-  /// Clear all seeded data (for testing/resetting)
-  Future<void> clearSeededData() async {
-    await seeder.clearSeededData();
+  Future<void> deleteNotification(int id) async {
+    MockData.notifications.removeWhere((n) => n.id == id);
   }
+
+  // ---------------------------------------------------------------------------
+  // Team Member operations (use MockData.teamMembers)
+  // ---------------------------------------------------------------------------
+
+  Future<List<TeamMember>> getAllTeamMembers() async => MockData.teamMembers;
+
+  Future<TeamMember?> getTeamMemberById(int id) async =>
+      MockData.teamMembers.firstWhereOrNull((m) => m.id == id);
+
+  Future<void> saveTeamMember(TeamMember member) async {
+    // In real app, this would save to database
+    // For UI kit, just add to mock data
+    final newId = (MockData.teamMembers
+            .map((m) => m.id ?? 0)
+            .reduce((a, b) => a > b ? a : b)) +
+        1;
+    final newMember = TeamMember(
+      id: newId,
+      name: member.name,
+      email: member.email,
+      phone: member.phone,
+      role: member.role,
+      department: member.department,
+      status: member.status,
+      avatarUrl: member.avatarUrl,
+      createdAt: member.createdAt,
+      updatedAt: DateTime.now(),
+      assignedRoleIds: member.assignedRoleIds,
+    );
+    MockData.teamMembers.add(newMember);
+  }
+
+  Future<void> updateTeamMember(TeamMember member) async {
+    final index = MockData.teamMembers.indexWhere((m) => m.id == member.id);
+    if (index != -1) {
+      MockData.teamMembers[index] = member;
+    }
+  }
+
+  Future<void> deleteTeamMember(int id) async {
+    MockData.teamMembers.removeWhere((m) => m.id == id);
+  }
+
+  // ---------------------------------------------------------------------------
+  // Role operations (use MockData.roles)
+  // ---------------------------------------------------------------------------
+
+  Future<List<Role>> getAllRoles() async => MockData.roles;
+
+  Future<Role?> getRoleById(int id) async =>
+      MockData.roles.firstWhereOrNull((r) => r.id == id);
+
+  Future<void> saveRole(Role role) async {
+    final newId =
+        (MockData.roles.map((r) => r.id ?? 0).reduce((a, b) => a > b ? a : b)) +
+            1;
+    final newRole = Role(
+      id: newId,
+      name: role.name,
+      description: role.description,
+      permissionIds: role.permissionIds,
+      createdAt: role.createdAt,
+      updatedAt: DateTime.now(),
+    );
+    MockData.roles.add(newRole);
+  }
+
+  Future<void> updateRole(Role role) async {
+    final index = MockData.roles.indexWhere((r) => r.id == role.id);
+    if (index != -1) {
+      MockData.roles[index] = role;
+    }
+  }
+
+  Future<void> deleteRole(int id) async {
+    MockData.roles.removeWhere((r) => r.id == id);
+  }
+
+  // ---------------------------------------------------------------------------
+  // Permission operations (use MockData.permissions)
+  // ---------------------------------------------------------------------------
+
+  Future<List<Permission>> getAllPermissions() async => MockData.permissions;
+
+  Future<Permission?> getPermissionById(String id) async =>
+      MockData.permissions.firstWhereOrNull((p) => p.id == id);
+
+  // ---------------------------------------------------------------------------
+  // File Management operations (use MockData.files)
+  // ---------------------------------------------------------------------------
+
+  Future<List<FileItem>> getAllFiles({String? path}) async {
+    if (path == null || path == '/') {
+      return MockData.files
+          .where((f) => f.path.split('/').length == 2)
+          .toList();
+    }
+    return MockData.files.where((f) => f.path.startsWith(path)).toList();
+  }
+
+  Future<FileItem?> getFileById(String id) async =>
+      MockData.files.firstWhereOrNull((f) => f.id == id);
+
+  Future<void> uploadFile(FileItem file) async {
+    MockData.files.add(file);
+  }
+
+  Future<void> deleteFile(String id) async {
+    MockData.files.removeWhere((f) => f.id == id);
+  }
+
+  // ---------------------------------------------------------------------------
+  // Analytics operations (use MockData.analyticsData)
+  // ---------------------------------------------------------------------------
+
+  Future<List<AnalyticsData>> getAllAnalytics() async => MockData.analyticsData;
+
+  Future<AnalyticsData?> getAnalyticsById(String id) async =>
+      MockData.analyticsData.firstWhereOrNull((a) => a.id == id);
+
+  Future<List<AnalyticsSummary>> getAnalyticsSummary() async =>
+      MockData.analyticsSummary;
 }

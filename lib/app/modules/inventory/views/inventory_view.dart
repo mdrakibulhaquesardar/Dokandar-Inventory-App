@@ -256,7 +256,7 @@ class InventoryView extends GetView<InventoryController> {
             ListView.builder(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
-              itemCount: 6,
+              itemCount: 10,
               itemBuilder: (context, index) {
                 final l10nLocal = AppLocalizations.of(context)!;
                 final items = [
@@ -296,6 +296,30 @@ class InventoryView extends GetView<InventoryController> {
                     'color': themeConfig.getWarningColor(isDarkMode),
                     'isLocked': false,
                   },
+                  {
+                    'title': l10nLocal.userManagement,
+                    'icon': Icons.people_outlined,
+                    'color': Colors.purple,
+                    'isLocked': false,
+                  },
+                  {
+                    'title': l10nLocal.rolesPermissions,
+                    'icon': Icons.shield_outlined,
+                    'color': Colors.orange,
+                    'isLocked': false,
+                  },
+                  {
+                    'title': l10nLocal.analytics,
+                    'icon': Icons.analytics_outlined,
+                    'color': Colors.teal,
+                    'isLocked': false,
+                  },
+                  {
+                    'title': l10nLocal.fileManagement,
+                    'icon': Icons.folder_outlined,
+                    'color': Colors.indigo,
+                    'isLocked': false,
+                  },
                 ];
                 return Container(
                   margin: const EdgeInsets.only(bottom: 2),
@@ -326,6 +350,18 @@ class InventoryView extends GetView<InventoryController> {
                             break;
                           case 5:
                             Get.toNamed(Routes.GENERATE_REPORT);
+                            break;
+                          case 6:
+                            Get.toNamed(Routes.USERS);
+                            break;
+                          case 7:
+                            Get.toNamed(Routes.ROLES);
+                            break;
+                          case 8:
+                            Get.toNamed(Routes.ANALYTICS);
+                            break;
+                          case 9:
+                            Get.toNamed(Routes.FILES);
                             break;
                         }
                       },

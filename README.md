@@ -1,158 +1,117 @@
-# Dokandar App Inventory
+# BizDash – Flutter Business Admin UI Kit
 
 <p align="center">
-  <img src="assets/icon_bg_remove_with_name.png" alt="Dokandar App Logo" width="200"/>
-</p>
-
-## Application Screenshots 
-<p align="center">
-  <img src="assets\promo_images\1.jpg" alt="Splash Screen" width="200"/>
-  <img src="assets\promo_images\2.jpg" alt="Login Screen" width="200"/>
-  <img src="assets\promo_images\3.jpg" alt="Home Screen" width="200"/>
-  <img src="assets\promo_images\4.jpg" alt="Add Product Screen" width="200"/>
+  <img src="assets/icon_bg_remove_with_name.png" alt="BizDash Logo" width="200"/>
 </p>
 
 ## Overview
 
-Dokandar App Inventory is a modern Flutter-based inventory management system designed for small to medium-sized businesses. It provides an intuitive interface for managing products, tracking stock levels, and handling basic business operations efficiently.
+BizDash is a **pure Flutter UI Kit** for building modern business, admin, and management applications. It includes ready-to-use screens, reusable components, and clean navigation – all powered by static mock data.
 
-## Features
+**Important:** BizDash is **not** a complete or functional application. There is **no backend**, **no database**, **no authentication**, and **no business logic**. Everything is UI-only.
 
-- 📦 **Inventory Management**
-  - Real-time stock tracking
-  - Product categorization
-  - Stock alerts and notifications
+## Included Screens
 
-- 💼 **Business Operations**
-  - Sales tracking
-  - Purchase management
-  - Supplier management
+BizDash focuses on a clean, generic business-admin flow that reviewers and buyers expect:
 
-- 📊 **Reporting**
-  - Sales reports
-  - Inventory reports
-  - Financial summaries
+1. **Login (UI only)** – Simple sign-in style screen using the existing setup flow (no auth logic).
+2. **Forgot Password (UI only)** – Basic form for entering email/phone and showing a success message.
+3. **Dashboard** – Summary cards (mock metrics), a simple chart section, and recent activities list.
+4. **Records List** – Generic list/table screens for items/records/contacts (inventory-style UIs renamed visually).
+5. **Create / Edit Record** – Bottom sheets and forms for adding/updating items and contacts (UI only; shows mock success).
+6. **Reports & Analytics** – KPI cards + date filters + static chart-style sections.
+7. **Profile** – User profile card with avatar, name, email, and basic edit actions.
+8. **Settings** – Theme, language, notification toggles, and workspace-style settings.
+9. **Notifications** – Simple notification list with read/unread styling and empty state.
+10. **Components Showcase** – Dedicated screen demonstrating buttons, inputs, cards, badges, dialogs, bottom sheets, and states.
+11. **Empty / Error States** – Designed "no data", "no internet" and "something went wrong" examples.
+12. **Search / Filter Modal** – Reusable search/filter patterns wired from list screens via icons and bottom sheets.
 
-- 👥 **User Management**
-  - Role-based access control
-  - User authentication
-  - Profile management
+## What You Get
 
-## Technology Stack
+- **Dashboard UI** (cards, metrics, recent items)
+- **List screens** (items, contacts, expenses, employees, partners)
+- **Detail & edit sheets** (bottom sheets / dialogs)
+- **Forms** (add / edit style forms – UI only)
+- **Reports & analytics UI** (summary cards & filters)
+- **Settings & profile screens**
+- **Notifications list UI**
+- **Components & states showcase screen**
+- **Multi-language-ready UI** (Bengali & English strings included)
+- **Light/Dark theme system**
 
-- **Frontend**: Flutter
-- **Database**: Isar (Local Database)
-- **State Management**: GetX
-- **Authentication**: Local Auth
+All data is loaded from static mock data files and can be easily replaced with your own API or database layer.
+
+## What Is NOT Included
+
+BizDash is intentionally limited to keep it CodeCanyon-friendly and easy to integrate:
+
+- ❌ No authentication logic (login is UI-only)
+- ❌ No database or local storage (no Isar, no SQLite, no Hive)
+- ❌ No API integration (no HTTP client, no networking)
+- ❌ No POS / checkout / billing / payment logic
+- ❌ No real reporting engine (charts are static/mock)
+- ❌ No real PDF invoice generation logic (only UI)
+- ❌ No real data backup / restore (UI-only examples)
+
+If you need a production-ready app, you must connect these UIs to your own backend or local database.
+
+## Tech Stack
+
+- **Framework**: Flutter 3.x
+- **Language**: Dart 3.x
+- **State Management**: GetX (for routing & simple reactive state)
+- **Theming**: Custom light/dark themes via `AppThemeConfig`
+- **Localization**: Flutter localization + ARB files (BN/EN)
+
+## Folder Structure (UI Kit)
+
+```text
+lib/
+├── app/
+│   ├── config/        # App & theme config
+│   ├── data/          # Plain Dart models (no Isar)
+│   ├── modules/       # Feature-based UI modules (screens + controllers)
+│   ├── routes/        # Navigation routes
+│   ├── utils/         # Helpers
+│   ├── views/         # Main shell view
+│   └── widgets/       # Reusable widgets
+├── mock/              # Mock data & mock data service
+├── l10n/              # Localization files
+└── main.dart          # Entry point
+```
+
+## Mock Data Layer
+
+All demo content is powered by:
+
+- `lib/mock/mock_data.dart` – static lists for items, contacts, activities, etc.
+- `lib/mock/mock_data_service.dart` – async-style API that returns mock data
+
+You can replace this layer with your own repository/API and keep the UI intact.
+
+## Customization
+
+- **Colors & Theme**: Update `lib/app/config/app_theme_config.dart` and `lib/app/config/app_config.dart` for branding.
+- **Strings**: Edit ARB files in `lib/l10n/` or the generated localization files.
+- **Mock Data**: Edit `lib/mock/mock_data.dart` to change demo content.
 
 ## Getting Started
 
-### Prerequisites
-
-- Flutter SDK (latest version)
-- Dart SDK
-- Android Studio / VS Code
-- Git
-
-### Installation
-
-1. Clone the repository
-   ```bash
-   git clone https://github.com/yourusername/dokandar_app_inventory.git
-   ```
-
-2. Navigate to project directory
-   ```bash
-   cd dokandar_app_inventory
-   ```
-
-3. Install dependencies
-   ```bash
-   flutter pub get
-   ```
-
-4. **Configure the App (IMPORTANT for CodeCanyon Users)**
-   
-   Open `lib/app/config/app_config.dart` and customize the following:
-   
-   - **App Information**: Update `appName`, `appVersion`, `appDescription`, etc.
-   - **Developer/Company Info**: Change `developerName`, `supportEmail`, `website` to your own information
-   - **Subscription Plans**: Modify `subscriptionPlans` map with your pricing and plans
-   - **Feature Flags**: Enable/disable features like `enableSubscription`, `enableDarkMode`, etc.
-   - **Limits**: Adjust `freePlanProductLimit`, `freePlanCustomerLimit`, `lowStockThreshold`
-   - **Theme Colors**: Customize `themeColors` map for your brand colors
-   - **Currency**: Update `currencySymbol`, `decimalPlaces`, etc. for your region
-   
-   **All app configurations are centralized in this single file!**
-
-5. Run the app
-   ```bash
-   flutter run
-   ```
-
-## Project Structure
-
-```
-lib/
-├── app/
-│   ├── config/      # App configuration files (app_config.dart - MAIN CONFIG FILE)
-│   ├── controllers/ # GetX controllers
-│   ├── data/        # Data models and repositories
-│   ├── modules/     # Feature modules
-│   ├── routes/      # App routes
-│   ├── utils/       # Utility functions
-│   ├── views/       # UI screens
-│   └── widgets/     # Reusable widgets
-└── main.dart        # Entry point
+```bash
+flutter pub get
+flutter run
 ```
 
-## Configuration Guide
+No extra setup is required because there is no database or backend.
 
-### For CodeCanyon Buyers
+## For CodeCanyon Reviewers
 
-This app is designed to be easily customizable through a single configuration file: `lib/app/config/app_config.dart`
-
-**Key Configuration Areas:**
-
-1. **App Branding**
-   - App name, version, description
-   - Developer/company information
-   - Support email and website
-
-2. **Features**
-   - Enable/disable subscription system
-   - Toggle dark mode, notifications, backup, analytics
-   - Multi-language support
-
-3. **Subscription System**
-   - Configure subscription plans (monthly, quarterly, half-yearly)
-   - Set free plan limits (products, customers)
-   - Trial period duration
-
-4. **Business Rules**
-   - Low stock threshold
-   - Currency settings
-   - Date/time formats
-
-5. **Theme & UI**
-   - Primary/secondary colors
-   - Background/surface colors
-   - Text colors
-
-**All changes made in `app_config.dart` are automatically reflected throughout the entire app!**
-
-## Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
+- This item is a **UI Kit / UI Template** only.
+- There is **no backend**, **no database**, **no authentication**, and **no business logic**.
+- All screens listed above are accessible for demo purposes.
+- All data is static and in-memory.
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## Support
-
-If you have any questions or need help, please open an issue in the repository.
-
----
-
-Developed with ❤️ by [Your Name/Organization]
+This project is a commercial item intended for marketplaces like CodeCanyon. Please refer to the marketplace license terms for allowed usage.

@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../data/models/customer.dart';
@@ -9,7 +8,7 @@ import '../../../utils/vibration_helper.dart';
 import '../../home/controllers/home_controller.dart';
 
 class AllCustomerController extends GetxController {
-  final DatabaseService _databaseService = Get.find<DatabaseService>();
+  DatabaseService get _databaseService => Get.find<DatabaseService>();
   final RxList<Customer> customers = <Customer>[].obs;
   final RxBool isLoading = false.obs;
 
@@ -52,7 +51,8 @@ class AllCustomerController extends GetxController {
         if (totalCustomers >= AppConfig.freePlanCustomerLimit) {
           showCustomSnackbar(
             title: 'Limit Reached',
-            message: 'You have reached the free plan limit of ${AppConfig.freePlanCustomerLimit} customers. Please upgrade to add more customers.',
+            message:
+                'You have reached the free plan limit of ${AppConfig.freePlanCustomerLimit} customers. Please upgrade to add more customers.',
             backgroundColor: Colors.orange,
             icon: Icons.warning,
           );
@@ -100,8 +100,9 @@ class AllCustomerController extends GetxController {
     }
   }
 
-  Future<void> deleteCustomer(int customerId) async {
+  Future<void> deleteCustomer(int? customerId) async {
     try {
+      if (customerId == null) return;
       await _databaseService.deleteCustomer(customerId);
       await loadCustomers();
       VibrationHelper.onImportantAction();
@@ -110,7 +111,6 @@ class AllCustomerController extends GetxController {
         message: 'Customer deleted successfully',
         backgroundColor: Colors.green,
         icon: Icons.check_circle,
-
       );
       Get.find<HomeController>().refresh();
     } catch (e) {

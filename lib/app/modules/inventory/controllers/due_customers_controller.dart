@@ -5,7 +5,7 @@ import '../../../utils/vibration_helper.dart';
 import 'package:dokandar_app_inventory/l10n/app_localizations.dart';
 
 class DueCustomersController extends GetxController {
-  final DatabaseService _databaseService = Get.find<DatabaseService>();
+  DatabaseService get _databaseService => Get.find<DatabaseService>();
   final RxList<Customer> dueCustomers = <Customer>[].obs;
   final RxBool isLoading = false.obs;
 
@@ -19,7 +19,8 @@ class DueCustomersController extends GetxController {
     isLoading.value = true;
     try {
       final allCustomers = await _databaseService.getAllCustomers();
-      dueCustomers.value = allCustomers.where((customer) => customer.hasDue).toList();
+      dueCustomers.value =
+          allCustomers.where((customer) => customer.hasDue).toList();
     } catch (e) {
       final l10n = AppLocalizations.of(Get.context!)!;
       Get.snackbar(l10n.error, l10n.failedToLoadDueCustomers);
