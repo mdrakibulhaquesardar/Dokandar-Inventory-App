@@ -1,8 +1,7 @@
 import 'package:dokandar_app_inventory/app/data/models/category.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../../utils/safe_google_fonts.dart';
-import 'package:dokandar_app_inventory/l10n/app_localizations.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../../config/app_theme_config.dart';
 import '../../../widgets/Custom_AppBar.dart';
@@ -15,12 +14,11 @@ class AllCategoryView extends GetView<AllCategoryController> {
   Widget build(BuildContext context) {
     final themeConfig = Get.find<AppThemeConfig>();
     final isDarkMode = Get.isDarkMode;
-    final l10n = AppLocalizations.of(context)!;
     return Scaffold(
         appBar: customAppBar(
           themeConfig,
           isDarkMode,
-          l10n.yourCategories,
+          'আপনার ক্যাটাগরি',
           true,
           false,
         ),
@@ -65,7 +63,7 @@ class AllCategoryView extends GetView<AllCategoryController> {
           foregroundColor: themeConfig.getTextPrimaryColor(isDarkMode),
           onPressed: () => _showAddCategoryDialog(context),
           label: Text(
-            l10n.addCategory,
+            'ক্যাটাগরি যোগ করুন',
             style: TextStyle(
               color: themeConfig.getBackgroundColor(isDarkMode),
             ),
@@ -82,7 +80,6 @@ class AllCategoryView extends GetView<AllCategoryController> {
     final descriptionController = TextEditingController();
     final themeConfig = Get.find<AppThemeConfig>();
     final isDarkMode = Get.isDarkMode;
-    final l10n = AppLocalizations.of(context)!;
 
     Get.bottomSheet(
       Container(
@@ -106,14 +103,14 @@ class AllCategoryView extends GetView<AllCategoryController> {
                 decoration: BoxDecoration(
                   color: themeConfig
                       .getTextSecondaryColor(isDarkMode)
-                      .withValues(alpha: 0.1),
+                      .withOpacity(0.3),
                   borderRadius: BorderRadius.circular(2),
                 ),
               ),
             ),
             Text(
-              l10n.addCategory,
-              style: SafeGoogleFonts.poppins(
+              'ক্যাটাগরি যোগ করুন',
+              style: GoogleFonts.poppins(
                 fontSize: 20,
                 fontWeight: FontWeight.w600,
                 color: themeConfig.getTextPrimaryColor(isDarkMode),
@@ -123,7 +120,7 @@ class AllCategoryView extends GetView<AllCategoryController> {
             TextField(
               controller: nameController,
               decoration: InputDecoration(
-                labelText: l10n.categoryName,
+                labelText: 'ক্যাটাগরির নাম',
                 labelStyle: TextStyle(
                   color: themeConfig.getTextSecondaryColor(isDarkMode),
                 ),
@@ -140,7 +137,7 @@ class AllCategoryView extends GetView<AllCategoryController> {
                   borderSide: BorderSide(
                     color: themeConfig
                         .getPrimaryColor(isDarkMode)
-                        .withValues(alpha: 0.1),
+                        .withOpacity(0.5),
                   ),
                 ),
                 focusedBorder: OutlineInputBorder(
@@ -159,7 +156,7 @@ class AllCategoryView extends GetView<AllCategoryController> {
               controller: descriptionController,
               maxLines: 3,
               decoration: InputDecoration(
-                labelText: l10n.description,
+                labelText: 'বিবরণ',
                 labelStyle: TextStyle(
                   color: themeConfig.getTextSecondaryColor(isDarkMode),
                 ),
@@ -176,7 +173,7 @@ class AllCategoryView extends GetView<AllCategoryController> {
                   borderSide: BorderSide(
                     color: themeConfig
                         .getPrimaryColor(isDarkMode)
-                        .withValues(alpha: 0.1),
+                        .withOpacity(0.5),
                   ),
                 ),
                 focusedBorder: OutlineInputBorder(
@@ -197,7 +194,7 @@ class AllCategoryView extends GetView<AllCategoryController> {
                 TextButton(
                   onPressed: () => Get.back(),
                   child: Text(
-                    l10n.cancel,
+                    'বাতিল',
                     style: TextStyle(
                       color: themeConfig.getTextSecondaryColor(isDarkMode),
                     ),
@@ -223,7 +220,7 @@ class AllCategoryView extends GetView<AllCategoryController> {
                       borderRadius: BorderRadius.circular(8),
                     ),
                   ),
-                  child: Text(l10n.add),
+                  child: const Text('যোগ করুন'),
                 ),
               ],
             ),
@@ -242,7 +239,6 @@ class AllCategoryView extends GetView<AllCategoryController> {
         TextEditingController(text: category.description);
     final themeConfig = Get.find<AppThemeConfig>();
     final isDarkMode = Get.isDarkMode;
-    final l10n = AppLocalizations.of(context)!;
 
     Get.bottomSheet(
       Container(
@@ -266,14 +262,14 @@ class AllCategoryView extends GetView<AllCategoryController> {
                 decoration: BoxDecoration(
                   color: themeConfig
                       .getTextSecondaryColor(isDarkMode)
-                      .withValues(alpha: 0.1),
+                      .withOpacity(0.3),
                   borderRadius: BorderRadius.circular(2),
                 ),
               ),
             ),
             Text(
-              l10n.editCategory,
-              style: SafeGoogleFonts.poppins(
+              'ক্যাটাগরি সম্পাদনা করুন',
+              style: GoogleFonts.poppins(
                 fontSize: 20,
                 fontWeight: FontWeight.w600,
                 color: themeConfig.getTextPrimaryColor(isDarkMode),
@@ -283,7 +279,7 @@ class AllCategoryView extends GetView<AllCategoryController> {
             TextField(
               controller: nameController,
               decoration: InputDecoration(
-                labelText: l10n.categoryName,
+                labelText: 'ক্যাটাগরির নাম',
                 labelStyle: TextStyle(
                   color: themeConfig.getTextSecondaryColor(isDarkMode),
                 ),
@@ -300,7 +296,7 @@ class AllCategoryView extends GetView<AllCategoryController> {
                   borderSide: BorderSide(
                     color: themeConfig
                         .getPrimaryColor(isDarkMode)
-                        .withValues(alpha: 0.1),
+                        .withOpacity(0.5),
                   ),
                 ),
                 focusedBorder: OutlineInputBorder(
@@ -319,7 +315,7 @@ class AllCategoryView extends GetView<AllCategoryController> {
               controller: descriptionController,
               maxLines: 3,
               decoration: InputDecoration(
-                labelText: l10n.description,
+                labelText: 'বিবরণ',
                 labelStyle: TextStyle(
                   color: themeConfig.getTextSecondaryColor(isDarkMode),
                 ),
@@ -336,7 +332,7 @@ class AllCategoryView extends GetView<AllCategoryController> {
                   borderSide: BorderSide(
                     color: themeConfig
                         .getPrimaryColor(isDarkMode)
-                        .withValues(alpha: 0.1),
+                        .withOpacity(0.5),
                   ),
                 ),
                 focusedBorder: OutlineInputBorder(
@@ -357,7 +353,7 @@ class AllCategoryView extends GetView<AllCategoryController> {
                 TextButton(
                   onPressed: () => Get.back(),
                   child: Text(
-                    l10n.cancel,
+                    'বাতিল',
                     style: TextStyle(
                       color: themeConfig.getTextSecondaryColor(isDarkMode),
                     ),
@@ -380,7 +376,7 @@ class AllCategoryView extends GetView<AllCategoryController> {
                       borderRadius: BorderRadius.circular(8),
                     ),
                   ),
-                  child: Text(l10n.update),
+                  child: const Text('হালনাগাদ করুন'),
                 ),
               ],
             ),
@@ -393,5 +389,3 @@ class AllCategoryView extends GetView<AllCategoryController> {
     );
   }
 }
-
-

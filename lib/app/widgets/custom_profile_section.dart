@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../utils/safe_google_fonts.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../config/app_theme_config.dart';
 
 class CustomProfileSection extends StatelessWidget {
@@ -34,7 +34,7 @@ class CustomProfileSection extends StatelessWidget {
             children: [
               CircleAvatar(
                 radius: 40,
-                backgroundColor: themeConfig.getPrimaryColor(isDarkMode).withValues(alpha: 0.1),
+                backgroundColor: themeConfig.getPrimaryColor(isDarkMode).withOpacity(0.1),
                 child: CircleAvatar(
                   radius: 38,
                   backgroundImage: imageUrl != null
@@ -49,7 +49,7 @@ class CustomProfileSection extends StatelessWidget {
                   children: [
                     Text(
                       name,
-                      style: SafeGoogleFonts.poppins(
+                      style: GoogleFonts.poppins(
                         fontSize: 18,
                         fontWeight: FontWeight.w600,
                         color: themeConfig.getTextPrimaryColor(isDarkMode),
@@ -57,7 +57,7 @@ class CustomProfileSection extends StatelessWidget {
                     ),
                     Text(
                       email,
-                      style: SafeGoogleFonts.poppins(
+                      style: GoogleFonts.poppins(
                         fontSize: 14,
                         color: themeConfig.getTextSecondaryColor(isDarkMode),
                       ),
@@ -80,4 +80,3 @@ class CustomProfileSection extends StatelessWidget {
     );
   }
 }
-

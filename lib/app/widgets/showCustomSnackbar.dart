@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../config/app_config.dart';
-import '../utils/vibration_helper.dart';
 
 void showCustomSnackbar({
   required String title,
@@ -11,20 +9,6 @@ void showCustomSnackbar({
   IconData icon = Icons.check_circle,
   Duration duration = const Duration(seconds: 3),
 }) {
-  try {
-    final appConfig = Get.find<AppConfig>();
-    
-    // Check if notifications are enabled
-    if (!appConfig.notificationsEnabled.value) {
-      return; // Don't show snackbar if notifications are disabled
-    }
-
-    // Vibrate if enabled
-    VibrationHelper.onButtonTap();
-  } catch (e) {
-    // If AppConfig not available, show snackbar anyway
-  }
-
   Get.snackbar(
     title,
     message,

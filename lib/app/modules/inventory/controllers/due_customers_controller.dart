@@ -1,8 +1,6 @@
 import 'package:get/get.dart';
 import '../../../core/services/database_service.dart';
 import '../../../data/models/customer.dart';
-import '../../../utils/vibration_helper.dart';
-import 'package:dokandar_app_inventory/l10n/app_localizations.dart';
 
 class DueCustomersController extends GetxController {
   final DatabaseService _databaseService = Get.find<DatabaseService>();
@@ -21,8 +19,7 @@ class DueCustomersController extends GetxController {
       final allCustomers = await _databaseService.getAllCustomers();
       dueCustomers.value = allCustomers.where((customer) => customer.hasDue).toList();
     } catch (e) {
-      final l10n = AppLocalizations.of(Get.context!)!;
-      Get.snackbar(l10n.error, l10n.failedToLoadDueCustomers);
+      Get.snackbar('ত্রুটি', 'বাকিদার তালিকা লোড করতে ব্যর্থ হয়েছে');
     } finally {
       isLoading.value = false;
     }
@@ -39,19 +36,16 @@ class DueCustomersController extends GetxController {
       await _databaseService.saveCustomer(customer);
       await loadDueCustomers(); // Refresh the list
 
-      VibrationHelper.onSuccess();
       Get.back(result: true);
-      final l10n = AppLocalizations.of(Get.context!)!;
       Get.snackbar(
-        l10n.success,
-        l10n.paymentUpdated,
+        'সফল',
+        'পেমেন্ট আপডেট করা হয়েছে',
         snackPosition: SnackPosition.TOP,
       );
     } catch (e) {
-      final l10n = AppLocalizations.of(Get.context!)!;
       Get.snackbar(
-        l10n.error,
-        l10n.failedToUpdatePayment,
+        'ত্রুটি',
+        'পেমেন্ট আপডেট করতে ব্যর্থ হয়েছে',
         snackPosition: SnackPosition.TOP,
       );
     }

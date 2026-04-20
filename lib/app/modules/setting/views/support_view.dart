@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import '../../../utils/safe_google_fonts.dart';
-import 'package:dokandar_app_inventory/l10n/app_localizations.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../../config/app_theme_config.dart';
 import '../../../widgets/Custom_AppBar.dart';
@@ -14,10 +13,9 @@ class SupportView extends GetView {
   Widget build(BuildContext context) {
     final themeConfig = Get.find<AppThemeConfig>();
     final isDarkMode = Get.isDarkMode;
-    final l10n = AppLocalizations.of(context)!;
     return Scaffold(
       appBar: customAppBar(
-          themeConfig, isDarkMode, l10n.supportAndHelpTitle, true, false),
+          themeConfig, isDarkMode, 'সাপোর্ট এন্ড হেল্প', true, false),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
@@ -26,25 +24,28 @@ class SupportView extends GetView {
             children: [
               // App Usage Section
               _buildSection(
-                title: l10n.howToUseApp,
-                subtitle: l10n.someTipsToGetStarted,
+                title: 'অ্যাপটি কিভাবে ব্যবহার করবেন',
+                subtitle: 'শুরু করার জন্য কিছু টিপস',
                 icon: Icons.help_outline,
                 content: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     _buildInfoCard(
-                      title: l10n.gettingStarted,
-                      description: l10n.gettingStartedDescription,
+                      title: 'শুরু করার জন্য',
+                      description:
+                          'আমাদের ইনভেন্টরি ম্যানেজমেন্ট সিস্টেমের বেসিক শিখুন',
                       icon: Icons.play_circle_outline,
                     ),
                     _buildInfoCard(
-                      title: l10n.productManagement,
-                      description: l10n.productManagementDescription,
+                      title: 'পণ্য ব্যবস্থাপনা',
+                      description:
+                          'পণ্য যোগ করুন, সম্পাদনা করুন এবং ট্র্যাক করুন',
                       icon: Icons.inventory_2_outlined,
                     ),
                     _buildInfoCard(
-                      title: l10n.salesAndReports,
-                      description: l10n.salesAndReportsDescription,
+                      title: 'বিক্রয় ও রিপোর্ট',
+                      description:
+                          'বিক্রয় ট্র্যাক করুন এবং বিস্তারিত রিপোর্ট তৈরি করুন',
                       icon: Icons.analytics_outlined,
                     ),
                   ],
@@ -54,8 +55,8 @@ class SupportView extends GetView {
 
               // Modules Section
               _buildSection(
-                title: l10n.availableModules,
-                subtitle: l10n.availableModulesDescription,
+                title: 'উপলব্ধ মডিউলসমূহ',
+                subtitle: 'আপনার ব্যবসার জন্য উপযোগী',
                 icon: Icons.apps,
                 content: SizedBox(
                   height: 200,
@@ -63,23 +64,23 @@ class SupportView extends GetView {
                     scrollDirection: Axis.horizontal,
                     children: [
                       _buildModuleCard(
-                        title: l10n.inventoryManagement,
-                        description: l10n.inventoryManagementDescription,
+                        title: 'ইনভেন্টরি ম্যানেজমেন্ট',
+                        description: 'স্টক লেভেল ট্র্যাক এবং ম্যানেজ করুন',
                         icon: Icons.inventory,
                       ),
                       _buildModuleCard(
-                        title: l10n.salesTracking,
-                        description: l10n.salesTrackingDescription,
+                        title: 'বিক্রয় ট্র্যাকিং',
+                        description: 'বিক্রয় এবং আয় মনিটর করুন',
                         icon: Icons.shopping_cart,
                       ),
                       _buildModuleCard(
-                        title: l10n.customerManagement,
-                        description: l10n.customerManagementDescription,
+                        title: 'গ্রাহক ব্যবস্থাপনা',
+                        description: 'গ্রাহকের তথ্য এবং অর্ডার ম্যানেজ করুন',
                         icon: Icons.people_outline,
                       ),
                       _buildModuleCard(
-                        title: l10n.reportsAndAnalytics,
-                        description: l10n.reportsAndAnalyticsDescription,
+                        title: 'রিপোর্ট ও অ্যানালিটিক্স',
+                        description: 'বিস্তারিত ব্যবসায়িক ইনসাইট তৈরি করুন',
                         icon: Icons.bar_chart,
                       ),
                     ],
@@ -90,19 +91,19 @@ class SupportView extends GetView {
 
               // Video Tutorials Section
               _buildSection(
-                title: l10n.videoTutorials,
-                subtitle: l10n.videoTutorialsDescription,
+                title: 'ভিডিও টিউটোরিয়াল',
+                subtitle: 'শিখুন এবং দক্ষতা অর্জন করুন',
                 icon: Icons.video_library,
                 content: Column(
                   children: [
                     _buildVideoCard(
-                      title: l10n.gettingStartedGuide,
-                      description: l10n.learnBasicIn5Minutes,
+                      title: 'শুরু করার গাইড',
+                      description: '৫ মিনিটে বেসিক শিখুন',
                       thumbnail: 'assets/images/video_placeholder.png',
                     ),
                     _buildVideoCard(
-                      title: l10n.advancedFeatures,
-                      description: l10n.masterAdvancedFeatures,
+                      title: 'এডভান্সড ফিচার',
+                      description: 'এডভান্সড ফিচারগুলো আয়ত্ত করুন',
                       thumbnail: 'assets/images/video_placeholder.png',
                     ),
                   ],
@@ -131,7 +132,7 @@ class SupportView extends GetView {
               Container(
                 padding: const EdgeInsets.all(8),
                 decoration: BoxDecoration(
-                  color: Colors.blue.withValues(alpha: 0.1),
+                  color: Colors.blue.withOpacity(0.1),
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: Icon(icon, color: Colors.blue, size: 24),
@@ -142,7 +143,7 @@ class SupportView extends GetView {
                 children: [
                   Text(
                     title,
-                    style: SafeGoogleFonts.poppins(
+                    style: GoogleFonts.poppins(
                       fontSize: 18,
                       fontWeight: FontWeight.w600,
                     ),
@@ -152,7 +153,7 @@ class SupportView extends GetView {
                     maxLines: 2,
                     softWrap: true,
                     subtitle,
-                    style: SafeGoogleFonts.poppins(
+                    style: GoogleFonts.poppins(
                       fontSize: 14,
                       color: Colors.grey[600],
                     ),
@@ -185,21 +186,21 @@ class SupportView extends GetView {
         leading: Container(
           padding: const EdgeInsets.all(8),
           decoration: BoxDecoration(
-            color: Colors.blue.withValues(alpha: 0.1),
+            color: Colors.blue.withOpacity(0.1),
             borderRadius: BorderRadius.circular(8),
           ),
           child: Icon(icon, color: Colors.blue, size: 24),
         ),
         title: Text(
           title,
-          style: SafeGoogleFonts.poppins(
+          style: GoogleFonts.poppins(
             fontSize: 16,
             fontWeight: FontWeight.w500,
           ),
         ),
         subtitle: Text(
           description,
-          style: SafeGoogleFonts.poppins(
+          style: GoogleFonts.poppins(
             fontSize: 14,
             color: Colors.grey[600],
           ),
@@ -239,7 +240,7 @@ class SupportView extends GetView {
               Container(
                 padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
-                  color: Colors.blue.withValues(alpha: 0.1),
+                  color: Colors.blue.withOpacity(0.1),
                   borderRadius: BorderRadius.circular(12),
                 ),
                 child: Icon(icon, color: Colors.blue, size: 36),
@@ -247,7 +248,7 @@ class SupportView extends GetView {
               const SizedBox(height: 16),
               Text(
                 title,
-                style: SafeGoogleFonts.poppins(
+                style: GoogleFonts.poppins(
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
                 ),
@@ -256,7 +257,7 @@ class SupportView extends GetView {
               const SizedBox(height: 8),
               Text(
                 description,
-                style: SafeGoogleFonts.poppins(
+                style: GoogleFonts.poppins(
                   color: Colors.grey[600],
                   fontSize: 14,
                 ),
@@ -307,7 +308,7 @@ class SupportView extends GetView {
                     padding:
                         const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                     decoration: BoxDecoration(
-                      color: Colors.black.withValues(alpha: 0.1),
+                      color: Colors.black.withOpacity(0.6),
                       borderRadius: BorderRadius.circular(20),
                     ),
                     child: const Text(
@@ -329,7 +330,7 @@ class SupportView extends GetView {
               children: [
                 Text(
                   title,
-                  style: SafeGoogleFonts.poppins(
+                  style: GoogleFonts.poppins(
                     fontSize: 16,
                     fontWeight: FontWeight.w600,
                   ),
@@ -337,7 +338,7 @@ class SupportView extends GetView {
                 const SizedBox(height: 8),
                 Text(
                   description,
-                  style: SafeGoogleFonts.poppins(
+                  style: GoogleFonts.poppins(
                     color: Colors.grey[600],
                     fontSize: 14,
                   ),
@@ -350,5 +351,3 @@ class SupportView extends GetView {
     );
   }
 }
-
-

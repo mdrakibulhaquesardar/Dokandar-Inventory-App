@@ -1,24 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../../utils/safe_google_fonts.dart';
-import 'package:dokandar_app_inventory/l10n/app_localizations.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../../../config/app_theme_config.dart';
 import '../../../widgets/Custom_AppBar.dart';
-import '../controllers/feedback_controller.dart';
 
-class FeedbackView extends GetView<FeedbackController> {
+class FeedbackView extends GetView {
   const FeedbackView({super.key});
 
   @override
   Widget build(BuildContext context) {
     final themeConfig = Get.find<AppThemeConfig>();
     final isDarkMode = Get.isDarkMode;
-    final l10n = AppLocalizations.of(context)!;
     return Scaffold(
       appBar: customAppBar(
         themeConfig,
         isDarkMode,
-        l10n.feedback,
+        'ফিডব্যাক',
         true,
         false,
       ),
@@ -30,14 +27,14 @@ class FeedbackView extends GetView<FeedbackController> {
             children: [
               // Feedback Form Section
               _buildSection(
-                title: l10n.giveFeedback,
-                subtitle: l10n.feedbackDescription,
+                title: 'আপনার মতামত দিন',
+                subtitle: 'আমাদের উন্নতির জন্য আপনার মূল্যবান মতামত',
                 icon: Icons.feedback_outlined,
                 content: Column(
                   children: [
-                    _buildFeedbackForm(l10n),
+                    _buildFeedbackForm(),
                     const SizedBox(height: 24),
-                    _buildSubmitButton(l10n),
+                    _buildSubmitButton(),
                   ],
                 ),
               ),
@@ -45,8 +42,8 @@ class FeedbackView extends GetView<FeedbackController> {
 
               // Feedback Categories Section
               _buildSection(
-                title: l10n.feedbackCategories,
-                subtitle: l10n.feedbackCategoriesDescription,
+                title: 'ফিডব্যাক ক্যাটাগরি',
+                subtitle: 'আপনি কোন ধরনের ফিডব্যাক দিতে চান?',
                 icon: Icons.category_outlined,
                 content: SizedBox(
                   height: 140,
@@ -54,22 +51,19 @@ class FeedbackView extends GetView<FeedbackController> {
                     scrollDirection: Axis.horizontal,
                     children: [
                       _buildFeedbackCategory(
-                        title: l10n.bugReport,
-                        description: l10n.bugReportDescription,
+                        title: 'বাগ রিপোর্ট',
+                        description: 'অ্যাপে কোন সমস্যা খুঁজে পেয়েছেন?',
                         icon: Icons.bug_report_outlined,
-                        onTap: () => controller.setCategory('bug'),
                       ),
                       _buildFeedbackCategory(
-                        title: l10n.featureRequest,
-                        description: l10n.featureRequestDescription,
+                        title: 'ফিচার রিকোয়েস্ট',
+                        description: 'নতুন কোন ফিচার চান?',
                         icon: Icons.lightbulb_outline,
-                        onTap: () => controller.setCategory('feature'),
                       ),
                       _buildFeedbackCategory(
-                        title: l10n.generalFeedback,
-                        description: l10n.generalFeedbackDescription,
+                        title: 'সাধারণ ফিডব্যাক',
+                        description: 'আপনার অভিজ্ঞতা শেয়ার করুন',
                         icon: Icons.chat_bubble_outline,
-                        onTap: () => controller.setCategory('general'),
                       ),
                     ],
                   ),
@@ -79,33 +73,34 @@ class FeedbackView extends GetView<FeedbackController> {
 
               // Recent Feedback Section
               _buildSection(
-                title: l10n.recentFeedback,
-                subtitle: l10n.recentFeedbackDescription,
+                title: 'সাম্প্রতিক ফিডব্যাক',
+                subtitle: 'অন্যান্য ব্যবহারকারীদের মতামত',
                 icon: Icons.history,
                 content: Column(
                   children: [
                     _buildRecentFeedback(
-                      name: l10n.sampleUserName1,
-                      title: l10n.appIsGreat,
-                      description: l10n.appIsGreatDescription,
+                      name: 'রহিম আলী',
+                      title: 'অ্যাপটি খুব ভালো',
+                      description:
+                          'এই অ্যাপটি ব্যবহার করে আমার ব্যবসার অনেক উন্নতি হয়েছে',
                       rating: 5,
                     ),
                     _buildRecentFeedback(
-                      name: l10n.sampleUserName2,
-                      title: l10n.someIssues,
-                      description: l10n.someIssuesDescription,
+                      name: 'করিম আহমেদ',
+                      title: 'কিছু সমস্যা আছে',
+                      description: 'কখনও কখনও অ্যাপটি ধীর হয়ে যায়',
                       rating: 3,
                     ),
                     _buildRecentFeedback(
-                      name: l10n.sampleUserName3,
-                      title: l10n.veryHelpful,
-                      description: l10n.veryHelpfulDescription,
+                      name: 'ফাতেমা বেগম',
+                      title: 'অত্যন্ত সহায়ক',
+                      description: 'সাপোর্ট টিম খুব দ্রুত সাড়া দেয়',
                       rating: 5,
                     ),
                     _buildRecentFeedback(
-                      name: l10n.sampleUserName4,
-                      title: l10n.newFeaturesNeeded,
-                      description: l10n.needToAddNewFeatures,
+                      name: 'জাহিদ হাসান',
+                      title: 'নতুন ফিচার দরকার',
+                      description: 'অ্যাপে কিছু নতুন ফিচার যুক্ত করা দরকার',
                       rating: 4,
                     ),
                   ],
@@ -134,7 +129,7 @@ class FeedbackView extends GetView<FeedbackController> {
               Container(
                 padding: const EdgeInsets.all(8),
                 decoration: BoxDecoration(
-                  color: Colors.blue.withValues(alpha: 0.1),
+                  color: Colors.blue.withOpacity(0.1),
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: Icon(icon, color: Colors.blue, size: 24),
@@ -145,14 +140,14 @@ class FeedbackView extends GetView<FeedbackController> {
                 children: [
                   Text(
                     title,
-                    style: SafeGoogleFonts.poppins(
+                    style: GoogleFonts.poppins(
                       fontSize: 18,
                       fontWeight: FontWeight.w600,
                     ),
                   ),
                   Text(
                     subtitle,
-                    style: SafeGoogleFonts.poppins(
+                    style: GoogleFonts.poppins(
                       fontSize: 14,
                       color: Colors.grey[600],
                     ),
@@ -168,7 +163,7 @@ class FeedbackView extends GetView<FeedbackController> {
     );
   }
 
-  Widget _buildFeedbackForm(AppLocalizations l10n) {
+  Widget _buildFeedbackForm() {
     return Card(
       elevation: 0,
       shape: RoundedRectangleBorder(
@@ -180,18 +175,17 @@ class FeedbackView extends GetView<FeedbackController> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              l10n.writeYourFeedback,
-              style: SafeGoogleFonts.poppins(
+              'আপনার ফিডব্যাক লিখুন',
+              style: GoogleFonts.poppins(
                 fontSize: 16,
                 fontWeight: FontWeight.w500,
               ),
             ),
             const SizedBox(height: 16),
             TextField(
-              controller: controller.feedbackTextController,
               maxLines: 5,
               decoration: InputDecoration(
-                hintText: l10n.writeYourValuableFeedbackHint,
+                hintText: 'আপনার মূল্যবান মতামত লিখুন...',
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(8),
                   borderSide: BorderSide(color: Colors.grey.shade300),
@@ -210,33 +204,21 @@ class FeedbackView extends GetView<FeedbackController> {
             Row(
               children: [
                 Text(
-                  l10n.rating,
-                  style: SafeGoogleFonts.poppins(
+                  'রেটিং:',
+                  style: GoogleFonts.poppins(
                     fontSize: 14,
                     color: Colors.grey[600],
                   ),
                 ),
                 const SizedBox(width: 8),
-                Obx(() {
-                  return Row(
-                    children: List.generate(
-                      5,
-                      (index) => IconButton(
-                        padding: EdgeInsets.zero,
-                        constraints:
-                            const BoxConstraints(minWidth: 32, minHeight: 32),
-                        onPressed: () => controller.setRating(index + 1),
-                        icon: Icon(
-                          Icons.star,
-                          color: index < controller.rating.value
-                              ? Colors.amber
-                              : Colors.grey[300],
-                          size: 24,
-                        ),
-                      ),
-                    ),
-                  );
-                }),
+                ...List.generate(
+                  5,
+                  (index) => Icon(
+                    Icons.star,
+                    color: index < 4 ? Colors.amber : Colors.grey[300],
+                    size: 24,
+                  ),
+                ),
               ],
             ),
           ],
@@ -245,13 +227,11 @@ class FeedbackView extends GetView<FeedbackController> {
     );
   }
 
-  Widget _buildSubmitButton(AppLocalizations l10n) {
+  Widget _buildSubmitButton() {
     return SizedBox(
       width: double.infinity,
       child: ElevatedButton(
-        onPressed: () {
-          controller.submitFeedback();
-        },
+        onPressed: () {},
         style: ElevatedButton.styleFrom(
           backgroundColor: Colors.blue,
           padding: const EdgeInsets.symmetric(vertical: 16),
@@ -260,8 +240,8 @@ class FeedbackView extends GetView<FeedbackController> {
           ),
         ),
         child: Text(
-          l10n.submit,
-          style: SafeGoogleFonts.poppins(
+          'সাবমিট করুন',
+          style: GoogleFonts.poppins(
             fontSize: 16,
             fontWeight: FontWeight.w500,
             color: Colors.white,
@@ -275,7 +255,6 @@ class FeedbackView extends GetView<FeedbackController> {
     required String title,
     required String description,
     required IconData icon,
-    VoidCallback? onTap,
   }) {
     return Container(
       width: 140,
@@ -285,45 +264,42 @@ class FeedbackView extends GetView<FeedbackController> {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(12),
         ),
-        child: InkWell(
-          onTap: onTap,
-          child: Padding(
-            padding: const EdgeInsets.all(12),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  padding: const EdgeInsets.all(10),
-                  decoration: BoxDecoration(
-                    color: Colors.blue.withValues(alpha: 0.1),
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  child: Icon(icon, color: Colors.blue, size: 24),
+        child: Padding(
+          padding: const EdgeInsets.all(12),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                padding: const EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                  color: Colors.blue.withOpacity(0.1),
+                  borderRadius: BorderRadius.circular(8),
                 ),
-                const SizedBox(height: 8),
-                Text(
-                  title,
-                  style: SafeGoogleFonts.poppins(
-                    fontSize: 13,
-                    fontWeight: FontWeight.w600,
-                  ),
-                  textAlign: TextAlign.center,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
+                child: Icon(icon, color: Colors.blue, size: 24),
+              ),
+              const SizedBox(height: 8),
+              Text(
+                title,
+                style: GoogleFonts.poppins(
+                  fontSize: 13,
+                  fontWeight: FontWeight.w600,
                 ),
-                const SizedBox(height: 4),
-                Text(
-                  description,
-                  style: SafeGoogleFonts.poppins(
-                    fontSize: 11,
-                    color: Colors.grey[600],
-                  ),
-                  textAlign: TextAlign.center,
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
+                textAlign: TextAlign.center,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+              ),
+              const SizedBox(height: 4),
+              Text(
+                description,
+                style: GoogleFonts.poppins(
+                  fontSize: 11,
+                  color: Colors.grey[600],
                 ),
-              ],
-            ),
+                textAlign: TextAlign.center,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+              ),
+            ],
           ),
         ),
       ),
@@ -362,7 +338,7 @@ class FeedbackView extends GetView<FeedbackController> {
                     children: [
                       Text(
                         name,
-                        style: SafeGoogleFonts.poppins(
+                        style: GoogleFonts.poppins(
                           fontSize: 13,
                           fontWeight: FontWeight.w500,
                         ),
@@ -371,7 +347,7 @@ class FeedbackView extends GetView<FeedbackController> {
                       ),
                       Text(
                         title,
-                        style: SafeGoogleFonts.poppins(
+                        style: GoogleFonts.poppins(
                           fontSize: 14,
                           fontWeight: FontWeight.w600,
                         ),
@@ -396,7 +372,7 @@ class FeedbackView extends GetView<FeedbackController> {
             const SizedBox(height: 8),
             Text(
               description,
-              style: SafeGoogleFonts.poppins(
+              style: GoogleFonts.poppins(
                 fontSize: 13,
                 color: Colors.grey[600],
               ),
@@ -409,5 +385,3 @@ class FeedbackView extends GetView<FeedbackController> {
     );
   }
 }
-
-

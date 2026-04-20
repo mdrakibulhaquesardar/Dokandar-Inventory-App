@@ -1,10 +1,8 @@
 import 'package:dokandar_app_inventory/app/core/services/database_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../../utils/safe_google_fonts.dart';
-import 'package:dokandar_app_inventory/l10n/app_localizations.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../../../config/app_theme_config.dart';
-import '../../../config/app_config.dart';
 import '../../../widgets/Custom_AppBar.dart';
 import '../controllers/all_sales_controller.dart';
 
@@ -15,14 +13,13 @@ class AllSalesView extends GetView<AllSalesController> {
   Widget build(BuildContext context) {
     final themeConfig = Get.find<AppThemeConfig>();
     final isDarkMode = Get.isDarkMode;
-    final l10n = AppLocalizations.of(context)!;
 
     return Scaffold(
       backgroundColor: themeConfig.getBackgroundColor(isDarkMode),
       appBar: customAppBar(
         themeConfig,
         isDarkMode,
-        l10n.salesList,
+        'বিক্রয় তালিকা',
         true,
         false,
       ),
@@ -41,7 +38,7 @@ class AllSalesView extends GetView<AllSalesController> {
                 children: [
                   Obx(() {
                     return _buildStatCard(
-                      l10n.totalSales,
+                      'মোট বিক্রয়',
                       controller.totalSales.value.toString(),
                       Icons.shopping_cart,
                       themeConfig,
@@ -50,7 +47,7 @@ class AllSalesView extends GetView<AllSalesController> {
                   }),
                   Obx(() {
                     return _buildStatCard(
-                      l10n.totalTransactions,
+                      'মোট লেনদেন',
                       controller.totalTransactions.value.toString(),
                       Icons.receipt_long,
                       themeConfig,
@@ -59,7 +56,7 @@ class AllSalesView extends GetView<AllSalesController> {
                   }),
                   Obx(() {
                     return _buildStatCard(
-                      l10n.totalDue,
+                      'মোট বাকি',
                       controller.totalDue.value.toString(),
                       Icons.money_off,
                       themeConfig,
@@ -75,7 +72,7 @@ class AllSalesView extends GetView<AllSalesController> {
                 if (controller.sales.isEmpty) {
                   return Center(
                     child: Text(
-                      l10n.noSales,
+                      'কোন বিক্রয় নেই',
                       style: TextStyle(
                         color: themeConfig.getTextPrimaryColor(isDarkMode),
                         fontSize: 16,
@@ -105,14 +102,13 @@ class AllSalesView extends GetView<AllSalesController> {
 
   Widget _buildSaleCard(
       sale, AppThemeConfig themeConfig, bool isDarkMode, BuildContext context) {
-    final l10n = AppLocalizations.of(context)!;
     return Container(
       margin: const EdgeInsets.only(bottom: 8),
       decoration: BoxDecoration(
         color: themeConfig.getSurfaceColor(isDarkMode),
         borderRadius: BorderRadius.circular(12),
         border: Border.all(
-          color: themeConfig.getPrimaryColor(isDarkMode).withValues(alpha: 0.1),
+          color: themeConfig.getPrimaryColor(isDarkMode).withOpacity(0.1),
         ),
       ),
       child: ListTile(
@@ -123,7 +119,7 @@ class AllSalesView extends GetView<AllSalesController> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  '${l10n.invoice}: ${sale.invoiceNumber}',
+                  'Invoice: ${sale.invoiceNumber}',
                   style: TextStyle(
                     color: themeConfig.getTextPrimaryColor(isDarkMode),
                     fontWeight: FontWeight.bold,
@@ -134,7 +130,7 @@ class AllSalesView extends GetView<AllSalesController> {
                         .getCustomerNameById(sale.customerId),
                     builder: (context, snapshot) {
                       return Text(
-                        snapshot.data ?? l10n.unknown,
+                        snapshot.data ?? 'অজ্ঞাত',
                         style: TextStyle(
                           color: themeConfig.getTextSecondaryColor(isDarkMode),
                           fontSize: 12,
@@ -144,16 +140,13 @@ class AllSalesView extends GetView<AllSalesController> {
               ],
             ),
             const Spacer(),
-            Obx(() {
-              final appConfig = Get.find<AppConfig>();
-              return Text(
-                '${appConfig.getCurrencySymbol()}${sale.totalAmount}',
-                style: TextStyle(
-                  color: themeConfig.getPrimaryColor(isDarkMode),
-                  fontWeight: FontWeight.bold,
-                ),
-              );
-            }),
+            Text(
+              '${sale.totalAmount}৳',
+              style: TextStyle(
+                color: themeConfig.getPrimaryColor(isDarkMode),
+                fontWeight: FontWeight.bold,
+              ),
+            ),
           ],
         ),
         subtitle: Column(
@@ -168,34 +161,28 @@ class AllSalesView extends GetView<AllSalesController> {
                   color: themeConfig.getTextSecondaryColor(isDarkMode),
                 ),
                 const SizedBox(width: 4),
-                Obx(() {
-                  final appConfig = Get.find<AppConfig>();
-                  return Text(
-                    appConfig.getFormattedDate(sale.saleDate),
-                    style: TextStyle(
-                      color: themeConfig.getTextSecondaryColor(isDarkMode),
-                    ),
-                  );
-                }),
+                Text(
+                  sale.saleDate.toString().split(' ')[0],
+                  style: TextStyle(
+                    color: themeConfig.getTextSecondaryColor(isDarkMode),
+                  ),
+                ),
                 const Spacer(),
                 if (sale.dueAmount > 0)
                   Container(
                     padding:
                         const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
                     decoration: BoxDecoration(
-                      color: Colors.red.withValues(alpha: 0.1),
+                      color: Colors.red.withOpacity(0.1),
                       borderRadius: BorderRadius.circular(4),
                     ),
-                    child: Obx(() {
-                      final appConfig = Get.find<AppConfig>();
-                      return Text(
-                        '${l10n.dueAmount}: ${appConfig.getCurrencySymbol()}${sale.dueAmount}',
-                        style: const TextStyle(
-                          color: Colors.red,
-                          fontSize: 12,
-                        ),
-                      );
-                    }),
+                    child: Text(
+                      'বাকি: ${sale.dueAmount}৳',
+                      style: const TextStyle(
+                        color: Colors.red,
+                        fontSize: 12,
+                      ),
+                    ),
                   ),
               ],
             ),
@@ -207,7 +194,6 @@ class AllSalesView extends GetView<AllSalesController> {
 
   void _showSaleDetails(
       BuildContext context, sale, AppThemeConfig themeConfig, bool isDarkMode) {
-    final l10n = AppLocalizations.of(context)!;
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
@@ -223,8 +209,8 @@ class AllSalesView extends GetView<AllSalesController> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              l10n.saleDetails,
-              style: SafeGoogleFonts.poppins(
+              'বিক্রয় বিবরণ',
+              style: GoogleFonts.poppins(
                 fontSize: 20,
                 fontWeight: FontWeight.w600,
                 color: themeConfig.getTextPrimaryColor(isDarkMode),
@@ -233,21 +219,21 @@ class AllSalesView extends GetView<AllSalesController> {
             const SizedBox(height: 16),
             // Sale details
             _buildDetailRow(
-                '${l10n.invoiceNumber}:', sale.invoiceNumber, themeConfig, isDarkMode),
-            _buildDetailRow('${l10n.date}:', sale.saleDate.toString().split(' ')[0],
+                'ইনভয়েস নং:', sale.invoiceNumber, themeConfig, isDarkMode),
+            _buildDetailRow('তারিখ:', sale.saleDate.toString().split(' ')[0],
                 themeConfig, isDarkMode),
             _buildDetailRow(
-                '${l10n.totalPrice}:', '${sale.totalAmount}৳', themeConfig, isDarkMode),
+                'মোট মূল্য:', '${sale.totalAmount}৳', themeConfig, isDarkMode),
             _buildDetailRow(
-                '${l10n.discount}:', '${sale.discount}৳', themeConfig, isDarkMode),
+                'ডিসকাউন্ট:', '${sale.discount}৳', themeConfig, isDarkMode),
             _buildDetailRow(
-                '${l10n.paid}:', '${sale.paidAmount}৳', themeConfig, isDarkMode),
+                'প্রদত্ত:', '${sale.paidAmount}৳', themeConfig, isDarkMode),
             _buildDetailRow(
-                '${l10n.dueAmount}:', '${sale.dueAmount}৳', themeConfig, isDarkMode),
+                'বাকি:', '${sale.dueAmount}৳', themeConfig, isDarkMode),
 
             const SizedBox(height: 16),
             Text(
-              l10n.productList,
+              'পণ্য তালিকা',
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w600,
@@ -345,5 +331,3 @@ Widget _buildStatCard(String title, String value, IconData icon,
     ],
   );
 }
-
-

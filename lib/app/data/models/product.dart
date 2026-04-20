@@ -1,6 +1,7 @@
 import 'package:isar/isar.dart';
 import 'package:uuid/uuid.dart';
-import '../../config/app_config.dart';
+
+
 
 part 'product.g.dart';
 
@@ -56,8 +57,8 @@ class Product {
   // Calculate profit margin
   double get profitMargin => ((unitPrice - buyingPrice) / buyingPrice) * 100;
 
-  // Check if stock is low (uses threshold from AppConfig)
-  bool get isLowStock => stockQuantity < AppConfig.lowStockThreshold;
+  // Check if stock is low (less than 10 units)
+  bool get isLowStock => stockQuantity < 10;
 
   // Update stock quantity
   void updateStock(double quantity) {

@@ -25,11 +25,6 @@ class HomeController extends GetxController {
   // all products variable
   RxList<Product> allLowStokeProduct = <Product>[].obs;
 
-  final searchController = TextEditingController();
-  final searchFocusNode = FocusNode();
-  final RxString searchQuery = ''.obs;
-  final RxList<Product> searchResults = <Product>[].obs;
-  final RxString filterType = 'all'.obs;
 
 
 
@@ -108,32 +103,6 @@ class HomeController extends GetxController {
     totalRevenue.value = revenue;
   }
 
-  Future<void> searchProducts(String query) async {
-    searchQuery.value = query;
-    if (query.isEmpty) {
-      searchResults.clear();
-      return;
-    }
-    final results = await Get.find<DatabaseService>().searchProducts(query);
-    final filtered = _applyFilter(results);
-    searchResults.assignAll(filtered);
-  }
-
-  void setFilter(String type) {
-    filterType.value = type;
-    if (searchController.text.isNotEmpty) {
-      searchProducts(searchController.text);
-    }
-  }
-
-  List<Product> _applyFilter(List<Product> products) {
-    switch (filterType.value) {
-      case 'low_stock':
-        return products.where((p) => p.isLowStock).toList();
-      default:
-        return products;
-    }
-  }
 
 
 
@@ -183,14 +152,6 @@ class HomeController extends GetxController {
     getTotalRevenue();
 
   }
-  void unfocusSearch() {
-    searchFocusNode.unfocus();
-  }
 
-  @override
-  void onClose() {
-    searchController.dispose();
-    searchFocusNode.dispose();
-    super.onClose();
-  }
+
 }

@@ -1,8 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../../utils/safe_google_fonts.dart';
-import 'package:dokandar_app_inventory/l10n/app_localizations.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../../../config/app_theme_config.dart';
 import '../controllers/setup_controller.dart';
 
@@ -12,7 +11,6 @@ class SetupView extends GetView<SetupController> {
   Widget build(BuildContext context) {
     final themeConfig = Get.find<AppThemeConfig>();
     final isDarkMode = Get.isDarkMode;
-    final l10n = AppLocalizations.of(context)!;
 
     return Scaffold(
       backgroundColor: themeConfig.getSurfaceColor(isDarkMode),
@@ -30,8 +28,8 @@ class SetupView extends GetView<SetupController> {
           child: Row(
             children: [
               Text(
-                l10n.userSetup,
-                style: SafeGoogleFonts.poppins(
+                'ব্যবহারকারী সেটআপ',
+                style: GoogleFonts.poppins(
                   fontSize: 24,
                   fontWeight: FontWeight.w600,
                   color: themeConfig.getTextPrimaryColor(isDarkMode),
@@ -43,7 +41,7 @@ class SetupView extends GetView<SetupController> {
                     const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                 decoration: BoxDecoration(
                   color:
-                      themeConfig.getPrimaryColor(isDarkMode).withValues(alpha: 0.1),
+                      themeConfig.getPrimaryColor(isDarkMode).withOpacity(0.1),
                   borderRadius: BorderRadius.circular(20),
                 ),
                 child: Row(
@@ -55,8 +53,8 @@ class SetupView extends GetView<SetupController> {
                     ),
                     const SizedBox(width: 4),
                     Text(
-                      l10n.step1of2,
-                      style: SafeGoogleFonts.poppins(
+                      'ধাপ 1/2',
+                      style: GoogleFonts.poppins(
                         fontSize: 12,
                         color: themeConfig.getPrimaryColor(isDarkMode),
                       ),
@@ -84,7 +82,7 @@ class SetupView extends GetView<SetupController> {
                           radius: 60,
                           backgroundColor: themeConfig
                               .getPrimaryColor(isDarkMode)
-                              .withValues(alpha: 0.1),
+                              .withOpacity(0.1),
                           child: const CircleAvatar(
                             radius: 58,
                             backgroundImage:
@@ -111,17 +109,17 @@ class SetupView extends GetView<SetupController> {
                     ),
                     const SizedBox(height: 16),
                     Text(
-                      l10n.completeProfile,
-                      style: SafeGoogleFonts.poppins(
+                      'আপনার প্রোফাইল সম্পূর্ণ করুন',
+                      style: GoogleFonts.poppins(
                         fontSize: 20,
                         fontWeight: FontWeight.w600,
                         color: themeConfig.getTextPrimaryColor(isDarkMode),
                       ),
                     ),
                     Text(
-                      l10n.completeProfileDescription,
+                      'আপনার ব্যবসা পরিচালনার জন্য প্রয়োজনীয় তথ্য দিন',
                       textAlign: TextAlign.center,
-                      style: SafeGoogleFonts.poppins(
+                      style: GoogleFonts.poppins(
                         fontSize: 14,
                         color: themeConfig.getTextSecondaryColor(isDarkMode),
                       ),
@@ -131,16 +129,16 @@ class SetupView extends GetView<SetupController> {
                 ),
               ),
               Text(
-                l10n.userInfo,
-                style: SafeGoogleFonts.poppins(
+                'ব্যবহারকারীর তথ্য',
+                style: GoogleFonts.poppins(
                   fontSize: 18,
                   fontWeight: FontWeight.w600,
                   color: themeConfig.getTextPrimaryColor(isDarkMode),
                 ),
               ),
               Text(
-                l10n.userInfoDescription,
-                style: SafeGoogleFonts.poppins(
+                'আপনার প্রোফাইল সেটআপ করুন এবং ব্যবসার জন্য প্রয়োজনীয় তথ্য দিন',
+                style: GoogleFonts.poppins(
                   fontSize: 14,
                   color: themeConfig.getTextSecondaryColor(isDarkMode),
                 ),
@@ -160,10 +158,10 @@ class SetupView extends GetView<SetupController> {
                         controller: controller.nameController,
                         validator: (value) => controller.validateName(value!),
                         decoration: InputDecoration(
-                          labelText: l10n.name,
-                          labelStyle: SafeGoogleFonts.poppins(),
-                          hintText: l10n.fullName,
-                          hintStyle: SafeGoogleFonts.poppins(
+                          labelText: 'নাম',
+                          labelStyle: GoogleFonts.poppins(),
+                          hintText: 'আপনার পূর্ণ নাম লিখুন',
+                          hintStyle: GoogleFonts.poppins(
                             color:
                                 themeConfig.getTextSecondaryColor(isDarkMode),
                           ),
@@ -180,7 +178,7 @@ class SetupView extends GetView<SetupController> {
                             borderSide: BorderSide(
                               color: themeConfig
                                   .getTextSecondaryColor(isDarkMode)
-                                  .withValues(alpha: 0.1),
+                                  .withOpacity(0.3),
                             ),
                           ),
                           focusedBorder: OutlineInputBorder(
@@ -208,10 +206,10 @@ class SetupView extends GetView<SetupController> {
                         controller: controller.emailController,
                         validator: (value) => controller.validateEmail(value!),
                         decoration: InputDecoration(
-                          labelText: l10n.email,
-                          labelStyle: SafeGoogleFonts.poppins(),
-                          hintText: l10n.emailAddress,
-                          hintStyle: SafeGoogleFonts.poppins(
+                          labelText: 'ইমেইল',
+                          labelStyle: GoogleFonts.poppins(),
+                          hintText: 'আপনার ইমেইল ঠিকানা লিখুন',
+                          hintStyle: GoogleFonts.poppins(
                             color:
                                 themeConfig.getTextSecondaryColor(isDarkMode),
                           ),
@@ -228,7 +226,7 @@ class SetupView extends GetView<SetupController> {
                             borderSide: BorderSide(
                               color: themeConfig
                                   .getTextSecondaryColor(isDarkMode)
-                                  .withValues(alpha: 0.1),
+                                  .withOpacity(0.3),
                             ),
                           ),
                           focusedBorder: OutlineInputBorder(
@@ -256,10 +254,10 @@ class SetupView extends GetView<SetupController> {
                         controller: controller.phoneController,
                         validator: (value) => controller.validatePhone(value!),
                         decoration: InputDecoration(
-                          labelText: l10n.phoneNumber,
-                          labelStyle: SafeGoogleFonts.poppins(),
-                          hintText: l10n.mobileNumber,
-                          hintStyle: SafeGoogleFonts.poppins(
+                          labelText: 'মোবাইল নম্বর',
+                          labelStyle: GoogleFonts.poppins(),
+                          hintText: 'আপনার মোবাইল নম্বর লিখুন',
+                          hintStyle: GoogleFonts.poppins(
                             color:
                                 themeConfig.getTextSecondaryColor(isDarkMode),
                           ),
@@ -276,7 +274,7 @@ class SetupView extends GetView<SetupController> {
                             borderSide: BorderSide(
                               color: themeConfig
                                   .getTextSecondaryColor(isDarkMode)
-                                  .withValues(alpha: 0.1),
+                                  .withOpacity(0.3),
                             ),
                           ),
                           focusedBorder: OutlineInputBorder(
@@ -305,10 +303,10 @@ class SetupView extends GetView<SetupController> {
                         validator: (value) => controller.validateAddress(value!),
                         maxLines: 3,
                         decoration: InputDecoration(
-                          labelText: l10n.address,
-                          labelStyle: SafeGoogleFonts.poppins(),
-                          hintText: l10n.yourAddress,
-                          hintStyle: SafeGoogleFonts.poppins(
+                          labelText: 'ঠিকানা',
+                          labelStyle: GoogleFonts.poppins(),
+                          hintText: 'আপনার ঠিকানা লিখুন',
+                          hintStyle: GoogleFonts.poppins(
                             color:
                                 themeConfig.getTextSecondaryColor(isDarkMode),
                           ),
@@ -325,7 +323,7 @@ class SetupView extends GetView<SetupController> {
                             borderSide: BorderSide(
                               color: themeConfig
                                   .getTextSecondaryColor(isDarkMode)
-                                  .withValues(alpha: 0.1),
+                                  .withOpacity(0.3),
                             ),
                           ),
                           focusedBorder: OutlineInputBorder(
@@ -360,7 +358,7 @@ class SetupView extends GetView<SetupController> {
                     if (controller.userFormKey.currentState!.validate()) {
                        controller.onNextStep();
                     }
-                    debugPrint('Name: ${controller.nameController.text}');
+                    print('Name: ${controller.nameController.text}');
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: themeConfig.getPrimaryColor(isDarkMode),
@@ -373,8 +371,8 @@ class SetupView extends GetView<SetupController> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        l10n.nextStep,
-                        style: SafeGoogleFonts.poppins(
+                        'পরবর্তী ধাপে যান',
+                        style: GoogleFonts.poppins(
                           fontSize: 16,
                           fontWeight: FontWeight.w500,
                           color: Colors.white,
@@ -392,9 +390,9 @@ class SetupView extends GetView<SetupController> {
               const SizedBox(height: 16),
               Center(
                 child: Text(
-                  l10n.pinCodeSetup,
+                  'আপনি চাইলে পরবর্তী পিন কোডটি সেটআপ করতে পারে ',
                   textAlign: TextAlign.center,
-                  style: SafeGoogleFonts.poppins(
+                  style: GoogleFonts.poppins(
                     fontSize: 14,
                     color: themeConfig.getTextSecondaryColor(isDarkMode),
                   ),
@@ -408,5 +406,3 @@ class SetupView extends GetView<SetupController> {
     );
   }
 }
-
-

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:dokandar_app_inventory/l10n/app_localizations.dart';
 import '../../../config/app_theme_config.dart';
 import '../../../widgets/Custom_AppBar.dart';
 import '../controllers/due_customers_controller.dart';
@@ -12,14 +11,13 @@ class DueCustomersView extends GetView<DueCustomersController> {
   Widget build(BuildContext context) {
     final themeConfig = Get.find<AppThemeConfig>();
     final isDarkMode = Get.isDarkMode;
-    final l10n = AppLocalizations.of(context)!;
 
     return Scaffold(
       backgroundColor: themeConfig.getBackgroundColor(isDarkMode),
       appBar: customAppBar(
         themeConfig,
         isDarkMode,
-        l10n.dueCustomersList,
+        'বাকিদার তালিকা',
         true,
         false,
       ),
@@ -37,15 +35,15 @@ class DueCustomersView extends GetView<DueCustomersController> {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Obx(() => _buildStatCard(
-                        l10n.totalDueCustomers,
-                        '${controller.dueCustomers.length} ${l10n.people}',
+                        'মোট বাকিদার',
+                        '${controller.dueCustomers.length} জন',
                         Icons.people,
                         themeConfig,
                         isDarkMode,
                       )),
                   Obx(() => _buildStatCard(
-                        l10n.totalDue,
-                        '${controller.dueCustomers.fold(0.0, (sum, customer) => sum + customer.totalDue)}৳',
+                        'মোট বাকি',
+                        '${controller.dueCustomers.fold(0.0, (sum, customer) => sum + (customer.totalDue ?? 0))}৳',
                         Icons.account_balance_wallet,
                         themeConfig,
                         isDarkMode,
@@ -61,7 +59,7 @@ class DueCustomersView extends GetView<DueCustomersController> {
                     : controller.dueCustomers.isEmpty
                         ? Center(
                             child: Text(
-                              l10n.noDueCustomers,
+                              'কোন বাকিদার নেই',
                               style: TextStyle(
                                 color: themeConfig.getTextPrimaryColor(isDarkMode),
                                 fontSize: 16,
@@ -86,7 +84,7 @@ class DueCustomersView extends GetView<DueCustomersController> {
                             color: themeConfig.getSurfaceColor(isDarkMode),
                             borderRadius: BorderRadius.circular(12),
                             border: Border.all(
-                              color: themeConfig.getPrimaryColor(isDarkMode).withValues(alpha: 0.1),
+                              color: themeConfig.getPrimaryColor(isDarkMode).withOpacity(0.1),
                             ),
                           ),
                           child: ListTile(
@@ -107,7 +105,7 @@ class DueCustomersView extends GetView<DueCustomersController> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  '${l10n.phone}: ${customer.phone}',
+                                  'ফোন: ${customer.phone}',
                                   style: TextStyle(
                                     color: themeConfig.getTextSecondaryColor(isDarkMode),
                                   ),
@@ -144,7 +142,6 @@ class DueCustomersView extends GetView<DueCustomersController> {
     bool isDarkMode,
   ) {
     final TextEditingController amountController = TextEditingController();
-    final l10n = AppLocalizations.of(context)!;
 
     Get.bottomSheet(
       Container(
@@ -163,7 +160,7 @@ class DueCustomersView extends GetView<DueCustomersController> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  l10n.payDue,
+                  'বাকি পরিশোধ',
                   style: TextStyle(
                     color: themeConfig.getTextPrimaryColor(isDarkMode),
                     fontSize: 20,
@@ -186,14 +183,14 @@ class DueCustomersView extends GetView<DueCustomersController> {
                 color: themeConfig.getBackgroundColor(isDarkMode),
                 borderRadius: BorderRadius.circular(12),
                 border: Border.all(
-                  color: themeConfig.getPrimaryColor(isDarkMode).withValues(alpha: 0.1),
+                  color: themeConfig.getPrimaryColor(isDarkMode).withOpacity(0.1),
                 ),
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    '${l10n.customerName}: ${customer.name}',
+                    'গ্রাহক: ${customer.name}',
                     style: TextStyle(
                       color: themeConfig.getTextPrimaryColor(isDarkMode),
                       fontSize: 16,
@@ -201,7 +198,7 @@ class DueCustomersView extends GetView<DueCustomersController> {
                   ),
                   const SizedBox(height: 8),
                   Text(
-                    '${l10n.totalDue}: ${customer.totalDue}৳',
+                    'মোট বাকি: ${customer.totalDue}৳',
                     style: TextStyle(
                       color: themeConfig.getTextPrimaryColor(isDarkMode),
                       fontSize: 16,
@@ -216,7 +213,7 @@ class DueCustomersView extends GetView<DueCustomersController> {
               controller: amountController,
               keyboardType: TextInputType.number,
               decoration: InputDecoration(
-                hintText: l10n.enterAmount,
+                hintText: 'টাকার পরিমাণ লিখুন',
                 filled: true,
                 fillColor: themeConfig.getBackgroundColor(isDarkMode),
                 border: OutlineInputBorder(
@@ -241,7 +238,7 @@ class DueCustomersView extends GetView<DueCustomersController> {
                       ),
                     ),
                     child: Text(
-                      l10n.cancel,
+                      'বাতিল',
                       style: TextStyle(
                         color: themeConfig.getTextSecondaryColor(isDarkMode),
                         fontSize: 16,
@@ -263,9 +260,9 @@ class DueCustomersView extends GetView<DueCustomersController> {
                         borderRadius: BorderRadius.circular(12),
                       ),
                     ),
-                    child: Text(
-                      l10n.pay,
-                      style: const TextStyle(fontSize: 16),
+                    child: const Text(
+                      'পরিশোধ করুন',
+                      style: TextStyle(fontSize: 16),
                     ),
                   ),
                 ),
@@ -316,5 +313,3 @@ class DueCustomersView extends GetView<DueCustomersController> {
     );
   }
 }
-
-

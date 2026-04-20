@@ -1,3 +1,5 @@
+
+
 import 'package:get/get.dart';
 import 'package:isar/isar.dart';
 import 'package:path_provider/path_provider.dart';
@@ -9,24 +11,16 @@ import '../../data/models/sale.dart';
 import '../../data/models/stock_history.dart';
 import '../../data/models/user.dart';
 import '../../data/models/store.dart';
-import '../../data/models/supplier.dart';
-import '../../data/models/employee.dart';
-import '../../data/models/expense.dart';
 import '../repository/database_service_repository.dart';
-import '../../config/app_config.dart';
 import 'backup_service.dart';
-import 'database_seeder.dart';
 
 class DatabaseService extends GetxService implements DatabaseServiceRepository {
   late Isar isar;
   late BackupService backupService;
-  late DatabaseSeeder seeder;
 
   @override
   Future<DatabaseService> init() async {
     final dir = await getApplicationDocumentsDirectory();
-    // Database name is configured in AppConfig.databaseName
-    // Note: Isar uses the directory path, but the name is referenced for documentation
     isar = await Isar.open(
       [
         ProductSchema,
@@ -35,27 +29,13 @@ class DatabaseService extends GetxService implements DatabaseServiceRepository {
         StockHistorySchema,
         UserSchema,
         StoreSchema,
-        CategorySchema,
-        SupplierSchema,
-        EmployeeSchema,
-        ExpenseSchema,
+        CategorySchema
       ],
       directory: dir.path,
     );
 
     // Initialize backup service
     backupService = await BackupService().init(isar);
-
-    // Initialize database seeder
-    seeder = DatabaseSeeder(isar);
-
-    // Seed initial data (only if database is empty)
-    // To enable automatic seeding on app start, uncomment the line below:
-    //await seeder.seedData();
-    //
-    // Or manually seed data anytime using:
-    // Get.find<DatabaseService>().seedInitialData();
-
     return this;
   }
 
@@ -70,6 +50,7 @@ class DatabaseService extends GetxService implements DatabaseServiceRepository {
       await isar.clear();
     });
   }
+
 
   @override
   Future<bool> hasUser() async {
@@ -123,10 +104,7 @@ class DatabaseService extends GetxService implements DatabaseServiceRepository {
 
   @override
   Future<List<Product>> getLowStockProducts() async {
-    return await isar.products
-        .filter()
-        .stockQuantityLessThan(AppConfig.lowStockThreshold.toDouble())
-        .findAll();
+    return await isar.products.filter().stockQuantityLessThan(10).findAll();
   }
 
   @override
@@ -151,11 +129,6 @@ class DatabaseService extends GetxService implements DatabaseServiceRepository {
   @override
   Future<List<Customer>> getAllCustomers() async {
     return await isar.customers.where().findAll();
-  }
-
-  @override
-  Future<int> getTotalCustomers() async {
-    return await isar.customers.count();
   }
 
   @override
@@ -265,8 +238,7 @@ class DatabaseService extends GetxService implements DatabaseServiceRepository {
   }
 
   @override
-  Future<void> updateSalePayment(
-      int id, double paidAmount, double dueAmount) async {
+  Future<void> updateSalePayment(int id, double paidAmount, double dueAmount) async {
     await isar.writeTxn(() async {
       final sale = await isar.sales.get(id);
       if (sale != null) {
@@ -276,6 +248,7 @@ class DatabaseService extends GetxService implements DatabaseServiceRepository {
       }
     });
   }
+
 
   @override
   Future<void> updateStore(Store store) async {
@@ -288,9 +261,9 @@ class DatabaseService extends GetxService implements DatabaseServiceRepository {
   Future<List<Product>> searchProducts(String query) async {
     return await isar.products
         .filter()
-        .nameContains(query, caseSensitive: false)
+        .nameContains(query,caseSensitive: false)
         .or()
-        .skuContains(query, caseSensitive: false)
+        .skuContains(query,caseSensitive: false)
         .findAll();
   }
 
@@ -348,112 +321,5 @@ class DatabaseService extends GetxService implements DatabaseServiceRepository {
     await isar.writeTxn(() async {
       await isar.categorys.delete(id);
     });
-  }
-
-  // Supplier operations
-  @override
-  Future<List<Supplier>> getAllSuppliers() async {
-    return await isar.suppliers.where().findAll();
-  }
-
-  @override
-  Future<Supplier?> getSupplierById(int id) async {
-    return await isar.suppliers.get(id);
-  }
-
-  @override
-  Future<void> saveSupplier(Supplier supplier) async {
-    await isar.writeTxn(() async {
-      await isar.suppliers.put(supplier);
-    });
-  }
-
-  @override
-  Future<void> updateSupplier(Supplier supplier) async {
-    await isar.writeTxn(() async {
-      await isar.suppliers.put(supplier);
-    });
-  }
-
-  @override
-  Future<void> deleteSupplier(int id) async {
-    await isar.writeTxn(() async {
-      await isar.suppliers.delete(id);
-    });
-  }
-
-  // Employee operations
-  @override
-  Future<List<Employee>> getAllEmployees() async {
-    return await isar.employees.where().findAll();
-  }
-
-  @override
-  Future<Employee?> getEmployeeById(int id) async {
-    return await isar.employees.get(id);
-  }
-
-  @override
-  Future<void> saveEmployee(Employee employee) async {
-    await isar.writeTxn(() async {
-      await isar.employees.put(employee);
-    });
-  }
-
-  @override
-  Future<void> updateEmployee(Employee employee) async {
-    await isar.writeTxn(() async {
-      await isar.employees.put(employee);
-    });
-  }
-
-  @override
-  Future<void> deleteEmployee(int id) async {
-    await isar.writeTxn(() async {
-      await isar.employees.delete(id);
-    });
-  }
-
-  // Expense operations
-  @override
-  Future<List<Expense>> getAllExpenses() async {
-    return await isar.expenses.where().sortByDateDesc().findAll();
-  }
-
-  @override
-  Future<Expense?> getExpenseById(int id) async {
-    return await isar.expenses.get(id);
-  }
-
-  @override
-  Future<void> saveExpense(Expense expense) async {
-    await isar.writeTxn(() async {
-      await isar.expenses.put(expense);
-    });
-  }
-
-  @override
-  Future<void> updateExpense(Expense expense) async {
-    await isar.writeTxn(() async {
-      await isar.expenses.put(expense);
-    });
-  }
-
-  @override
-  Future<void> deleteExpense(int id) async {
-    await isar.writeTxn(() async {
-      await isar.expenses.delete(id);
-    });
-  }
-
-  /// Seed initial data into the database
-  /// This will only seed if the database is empty
-  Future<void> seedInitialData() async {
-    await seeder.seedData();
-  }
-
-  /// Clear all seeded data (for testing/resetting)
-  Future<void> clearSeededData() async {
-    await seeder.clearSeededData();
   }
 }

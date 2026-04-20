@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../../utils/safe_google_fonts.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../../config/app_theme_config.dart';
-import 'package:dokandar_app_inventory/l10n/app_localizations.dart';
 import '../controllers/data_management_controller.dart';
 
 class BackupDataView extends GetView<DataManagementController> {
@@ -12,7 +11,6 @@ class BackupDataView extends GetView<DataManagementController> {
   Widget build(BuildContext context) {
     final themeConfig = Get.find<AppThemeConfig>();
     final isDarkMode = Get.isDarkMode;
-    final l10n = AppLocalizations.of(context)!;
     return Scaffold(
       backgroundColor: themeConfig.getBackgroundColor(isDarkMode),
       appBar: PreferredSize(
@@ -38,7 +36,7 @@ class BackupDataView extends GetView<DataManagementController> {
                     BoxShadow(
                       color: themeConfig
                           .getPrimaryColor(isDarkMode)
-                          .withValues(alpha: 0.1),
+                          .withOpacity(0.3),
                       blurRadius: 8,
                       offset: const Offset(0, 4),
                     ),
@@ -52,8 +50,8 @@ class BackupDataView extends GetView<DataManagementController> {
               ),
               const SizedBox(width: 16),
               Text(
-                l10n.localBackup,
-                style: SafeGoogleFonts.poppins(
+                'স্থানীয় ব্যাকআপ',
+                style: GoogleFonts.poppins(
                   fontSize: 18,
                   fontWeight: FontWeight.w600,
                   color: themeConfig.getTextPrimaryColor(isDarkMode),
@@ -77,8 +75,8 @@ class BackupDataView extends GetView<DataManagementController> {
                       themeConfig,
                       isDarkMode,
                       Icons.backup,
-                      l10n.backupToLocalStorage,
-                      l10n.backupToLocalDescription,
+                      'স্থানীয় স্টোরেজে ব্যাকআপ',
+                      'আপনার ফোনের মেমরি বা ইউএসবি ফ্ল্যাশ ড্রাইভে ফাইল ব্যাকআপ করুন।',
                       Colors.blue,
                     ),
                   ),
@@ -89,8 +87,8 @@ class BackupDataView extends GetView<DataManagementController> {
                       themeConfig,
                       isDarkMode,
                       Icons.settings_backup_restore,
-                      l10n.restoreFromLocal,
-                      l10n.restoreFromLocalDescription,
+                      'স্থানীয় স্টোরেজ থেকে পুনরুদ্ধার',
+                      'মেমরি থেকে ব্যাকআপ ফাইল পুনরুদ্ধার করতে পারেন',
                       Colors.green,
                     ),
                   ),
@@ -116,9 +114,9 @@ class BackupDataView extends GetView<DataManagementController> {
                         const SizedBox(width: 8),
                         Text(
                           controller.lastBackupDate.value.isNotEmpty
-                              ? l10n.lastBackupDate(controller.lastBackupDate.value)
-                              : l10n.noBackup,
-                          style: SafeGoogleFonts.poppins(
+                              ? 'সর্বশেষ ব্যাকআপ ${controller.lastBackupDate.value}'
+                              : 'কোন ব্যাকআপ নেই',
+                          style: GoogleFonts.poppins(
                             fontSize: 18,
                             fontWeight: FontWeight.w600,
                             color:
@@ -130,21 +128,21 @@ class BackupDataView extends GetView<DataManagementController> {
                     const SizedBox(height: 16),
                     _buildInfoRow(
                       Icons.info_outline,
-                      l10n.backupPrevention,
+                      'ডেটা লস প্রতিরোধের জন্য আপনার পিসি বা ইউএসবি ফ্ল্যাশ ড্রাইভে ফাইল ব্যাকআপ করার পরামর্শ দেওয়া হয়।',
                       themeConfig,
                       isDarkMode,
                     ),
                     const SizedBox(height: 12),
                     _buildInfoRow(
                       Icons.storage,
-                      l10n.backupStorage,
+                      'আপনি যদি ফোনের মেমরিতে ফাইল ব্যাকআপ করেন, ব্যাকআপ ফাইলগুলি অভ্যন্তরীণ স্টোরেজ/ব্যাকআপে সংরক্ষিত হবে।',
                       themeConfig,
                       isDarkMode,
                     ),
                     const SizedBox(height: 12),
                     _buildInfoRow(
                       Icons.security,
-                      l10n.sharedDevice,
+                      'আপনি যদি একটি শেয়ার করা ডিভাইসে ডেটা পাঠান, ব্যাকআপ ফাইলগুলি এমন একটি ডিভাইসে সংরক্ষিত হবে যা এটি ডিক্রিপ্ট করতে পারে না।',
                       themeConfig,
                       isDarkMode,
                     ),
@@ -153,18 +151,38 @@ class BackupDataView extends GetView<DataManagementController> {
               )),
               const SizedBox(height: 24),
               Text(
-                l10n.createBackup,
-                style: SafeGoogleFonts.poppins(
+                'ব্যাকআপ তৈরি করুন',
+                style: GoogleFonts.poppins(
                   fontSize: 20,
                   fontWeight: FontWeight.w600,
                   color: themeConfig.getTextPrimaryColor(isDarkMode),
                 ),
               ),
-              Text(
-                l10n.backupInstructions(l10n.dokandarFolder),
-                style: SafeGoogleFonts.poppins(
-                  fontSize: 12,
-                  color: themeConfig.getTextSecondaryColor(isDarkMode),
+              RichText(
+                text: TextSpan(
+                  text: 'ব্যাকআপ তৈরি করতে, আপনার ফোনের মেমরিতে পর্যাপ্ত স্থান থাকতে হবে এবং ব্যাকআপ ফাইলগুলি আপনার ',
+                  style: GoogleFonts.poppins(
+                    fontSize: 12,
+                    color: themeConfig.getTextSecondaryColor(isDarkMode),
+                  ),
+                  children: [
+                    TextSpan(
+                      text: ' দোকানদার নাম ফোল্ডার',
+                      style: GoogleFonts.poppins(
+                        fontSize: 12,
+                        fontWeight: FontWeight.bold,
+                        color: themeConfig.getPrimaryColor(isDarkMode),
+                      ),
+                    ),
+                    TextSpan(
+                      text:
+                      ' ফোনের মেমরিতে এ সংরক্ষিত হবে।',
+                      style: GoogleFonts.poppins(
+                        fontSize: 12,
+                        color: themeConfig.getTextSecondaryColor(isDarkMode),
+                      ),
+                    ),
+                  ],
                 ),
               ),
               const SizedBox(height: 20),
@@ -176,7 +194,7 @@ class BackupDataView extends GetView<DataManagementController> {
                       value: controller.backupProgress.value,
                       backgroundColor: themeConfig
                           .getTextSecondaryColor(isDarkMode)
-                          .withValues(alpha: 0.1),
+                          .withOpacity(0.1),
                       valueColor: AlwaysStoppedAnimation<Color>(
                         themeConfig.getPrimaryColor(isDarkMode),
                       ),
@@ -185,12 +203,12 @@ class BackupDataView extends GetView<DataManagementController> {
                     const SizedBox(height: 8),
                     Text(
                       controller.backupStatus.value,
-                      style: SafeGoogleFonts.poppins(
+                      style: GoogleFonts.poppins(
                         fontSize: 14,
-                        color: controller.backupStatus.value.contains(l10n.success)
+                        color: controller.backupStatus.value.contains('সফল')
                             ? Colors.green
                             : controller.backupStatus.value
-                            .contains(l10n.error)
+                            .contains('ব্যর্থ')
                             ? Colors.red
                             : themeConfig
                             .getTextSecondaryColor(isDarkMode),
@@ -207,7 +225,7 @@ class BackupDataView extends GetView<DataManagementController> {
                   gradient: LinearGradient(
                     colors: [
                       themeConfig.getPrimaryColor(isDarkMode),
-                      themeConfig.getPrimaryColor(isDarkMode).withValues(alpha: 0.1),
+                      themeConfig.getPrimaryColor(isDarkMode).withOpacity(0.8),
                     ],
                     begin: Alignment.centerLeft,
                     end: Alignment.centerRight,
@@ -217,7 +235,7 @@ class BackupDataView extends GetView<DataManagementController> {
                     BoxShadow(
                       color: themeConfig
                           .getPrimaryColor(isDarkMode)
-                          .withValues(alpha: 0.1),
+                          .withOpacity(0.3),
                       blurRadius: 8,
                       offset: const Offset(0, 4),
                     ),
@@ -230,9 +248,9 @@ class BackupDataView extends GetView<DataManagementController> {
                   icon: const Icon(Icons.backup, color: Colors.white),
                   label: Text(
                     controller.isBackingUp.value
-                        ? l10n.backingUp
-                        : l10n.createNewBackup,
-                    style: SafeGoogleFonts.poppins(
+                        ? 'ব্যাকআপ করা হচ্ছে...'
+                        : 'নতুন ব্যাকআপ তৈরি করুন',
+                    style: GoogleFonts.poppins(
                       fontSize: 16,
                       fontWeight: FontWeight.w600,
                       color: Colors.white,
@@ -267,10 +285,10 @@ class BackupDataView extends GetView<DataManagementController> {
     return Container(
       height: 200,
       decoration: BoxDecoration(
-        color: color.withValues(alpha: 0.1),
+        color: color.withOpacity(0.1),
         borderRadius: BorderRadius.circular(10),
         border: Border.all(
-          color: color.withValues(alpha: 0.1),
+          color: color.withOpacity(0.2),
         ),
       ),
       child: Column(
@@ -283,7 +301,7 @@ class BackupDataView extends GetView<DataManagementController> {
               width: 50,
               height: 50,
               decoration: BoxDecoration(
-                color: color.withValues(alpha: 0.1),
+                color: color.withOpacity(0.2),
                 borderRadius: BorderRadius.circular(15),
               ),
               child: Icon(
@@ -297,7 +315,7 @@ class BackupDataView extends GetView<DataManagementController> {
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Text(
               title,
-              style: SafeGoogleFonts.poppins(
+              style: GoogleFonts.poppins(
                 fontSize: 18,
                 fontWeight: FontWeight.w600,
                 color: themeConfig.getTextPrimaryColor(isDarkMode),
@@ -309,7 +327,7 @@ class BackupDataView extends GetView<DataManagementController> {
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Text(
               description,
-              style: SafeGoogleFonts.poppins(
+              style: GoogleFonts.poppins(
                 fontSize: 14,
                 color: themeConfig.getTextSecondaryColor(isDarkMode),
               ),
@@ -338,7 +356,7 @@ class BackupDataView extends GetView<DataManagementController> {
         Expanded(
           child: Text(
             text,
-            style: SafeGoogleFonts.poppins(
+            style: GoogleFonts.poppins(
               fontSize: 14,
               color: themeConfig.getTextSecondaryColor(isDarkMode),
             ),
@@ -348,5 +366,3 @@ class BackupDataView extends GetView<DataManagementController> {
     );
   }
 }
-
-

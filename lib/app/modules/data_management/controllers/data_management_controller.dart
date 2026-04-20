@@ -1,9 +1,6 @@
 import 'package:dokandar_app_inventory/app/core/services/backup_service.dart';
 import 'package:dokandar_app_inventory/app/core/services/database_service.dart';
 import 'package:get/get.dart';
-import 'package:flutter/foundation.dart';
-import 'package:dokandar_app_inventory/l10n/app_localizations.dart';
-import '../../../utils/vibration_helper.dart';
 
 class DataManagementController extends GetxController {
   final DatabaseService databaseService = Get.find<DatabaseService>();
@@ -33,9 +30,8 @@ class DataManagementController extends GetxController {
       await _loadLastBackupDate();
       await backupService.requestStoragePermission();
     } catch (e) {
-      debugPrint('Error initializing services: $e');
-      final l10n = AppLocalizations.of(Get.context!)!;
-      backupStatus.value = l10n.serviceInitFailed(e.toString());
+      print('Error initializing services: $e');
+      backupStatus.value = 'সেবা শুরু করতে ব্যর্থ: $e';
     }
   }
 
@@ -49,7 +45,7 @@ class DataManagementController extends GetxController {
         lastBackupDate.value = '';
       }
     } catch (e) {
-      debugPrint('Error loading last backup date: $e');
+      print('Error loading last backup date: $e');
       lastBackupDate.value = '';
     }
   }
@@ -60,22 +56,19 @@ class DataManagementController extends GetxController {
     try {
       isBackingUp.value = true;
       backupProgress.value = 0.0;
-      final l10n = AppLocalizations.of(Get.context!)!;
-      backupStatus.value = l10n.backingUp;
+      backupStatus.value = 'ব্যাকআপ করা হচ্ছে...';
 
       // Start actual backup
       await backupService.exportIsarToFile();
 
       // Update progress
       backupProgress.value = 1.0;
-      backupStatus.value = l10n.backupSuccess;
-      VibrationHelper.onSuccess();
+      backupStatus.value = 'ব্যাকআপ সফল হয়েছে!';
 
       // Update last backup date
       await _loadLastBackupDate();
     } catch (e) {
-      final l10n = AppLocalizations.of(Get.context!)!;
-      backupStatus.value = l10n.backupFailed(e.toString());
+      backupStatus.value = 'ব্যাকআপ ব্যর্থ হয়েছে: $e';
     } finally {
       isBackingUp.value = false;
     }
@@ -87,8 +80,7 @@ class DataManagementController extends GetxController {
     try {
       isRestoring.value = true;
       restoreProgress.value = 0.0;
-      final l10n = AppLocalizations.of(Get.context!)!;
-      restoreStatus.value = l10n.restoring;
+      restoreStatus.value = 'পুনরুদ্ধার করা হচ্ছে...';
 
       await backupService.getLastBackupDate();
 
@@ -97,11 +89,9 @@ class DataManagementController extends GetxController {
 
       // Update progress
       restoreProgress.value = 1.0;
-      restoreStatus.value = l10n.restoreSuccess;
-      VibrationHelper.onSuccess();
+      restoreStatus.value = 'পুনরুদ্ধার সফল হয়েছে!';
     } catch (e) {
-      final l10n = AppLocalizations.of(Get.context!)!;
-      restoreStatus.value = l10n.restoreFailed(e.toString());
+      restoreStatus.value = 'পুনরুদ্ধার ব্যর্থ হয়েছে: $e';
     } finally {
       isRestoring.value = false;
     }

@@ -23,6 +23,7 @@ class StockHistory {
   }) : timestamp = DateTime.now();
 }
 
+@Enumerated(EnumType.ordinal)
 enum StockOperation {
   purchase,
   sale,

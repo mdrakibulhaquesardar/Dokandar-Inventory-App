@@ -2,8 +2,6 @@ import 'package:dokandar_app_inventory/app/data/models/store.dart';
 import 'package:dokandar_app_inventory/app/modules/sell/controllers/sell_controller.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
-import 'package:printing/printing.dart';
-import 'package:share_plus/share_plus.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
@@ -21,7 +19,7 @@ class InvoiceGeneratorController extends GetxController {
   Store? store;
   final RxBool isStoreInitialized = false.obs;
 
-  Future<void> generateInvoicePdf() async {
+  Future<void> generateInvoice() async {
     if (!isStoreInitialized.value) {
       Get.snackbar(
         'Error',
@@ -280,11 +278,7 @@ class InvoiceGeneratorController extends GetxController {
 
     // Convert PDF to bytes
     pdfBytes = await pdf.save();
-    update(); // Update UI
-  }
 
-  Future<void> generateInvoice() async {
-    await generateInvoicePdf();
     // Show modal bottom sheet with PDF preview
     showInvoiceBottomSheet();
   }
@@ -298,7 +292,7 @@ class InvoiceGeneratorController extends GetxController {
           borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
           boxShadow: [
             BoxShadow(
-              color: Colors.grey.withValues(alpha: 0.1),
+              color: Colors.grey.withOpacity(0.3),
               spreadRadius: 2,
               blurRadius: 10,
               offset: Offset(0, -2),
@@ -354,7 +348,7 @@ class InvoiceGeneratorController extends GetxController {
                 color: Colors.white,
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.grey.withValues(alpha: 0.1),
+                    color: Colors.grey.withOpacity(0.1),
                     spreadRadius: 1,
                     blurRadius: 5,
                     offset: Offset(0, -3),
@@ -366,8 +360,9 @@ class InvoiceGeneratorController extends GetxController {
                 children: [
                   Expanded(
                     child: ElevatedButton.icon(
-                      onPressed: () async {
-                        await _printInvoice();
+                      onPressed: () {
+                        Get.snackbar(
+                            'Print', 'Print functionality coming soon');
                       },
                       icon: Icon(Icons.print, color: Colors.white),
                       label:
@@ -384,8 +379,9 @@ class InvoiceGeneratorController extends GetxController {
                   SizedBox(width: 12),
                   Expanded(
                     child: ElevatedButton.icon(
-                      onPressed: () async {
-                        await _shareInvoice();
+                      onPressed: () {
+                        Get.snackbar(
+                            'Share', 'Share functionality coming soon');
                       },
                       icon: Icon(Icons.share, color: Colors.white),
                       label:
@@ -417,37 +413,6 @@ class InvoiceGeneratorController extends GetxController {
     isStoreInitialized.value = store != null;
   }
 
-  Future<void> _ensurePdfGenerated() async {
-    if (pdfBytes == null) {
-      await generateInvoicePdf();
-    }
-  }
-
-  Future<void> printInvoice() async {
-    await _ensurePdfGenerated();
-    if (pdfBytes == null) return;
-    await Printing.layoutPdf(onLayout: (_) async => pdfBytes!);
-  }
-
-  Future<void> shareInvoice() async {
-    await _ensurePdfGenerated();
-    if (pdfBytes == null) return;
-    final file = XFile.fromData(
-      pdfBytes!,
-      mimeType: 'application/pdf',
-      name: 'invoice.pdf',
-    );
-    await Share.shareXFiles([file], text: 'Invoice');
-  }
-
-  Future<void> _printInvoice() async {
-    await printInvoice();
-  }
-
-  Future<void> _shareInvoice() async {
-    await shareInvoice();
-  }
-
 
   @override
   void onClose() {
@@ -455,5 +420,3 @@ class InvoiceGeneratorController extends GetxController {
     super.onClose();
   }
 }
-
-

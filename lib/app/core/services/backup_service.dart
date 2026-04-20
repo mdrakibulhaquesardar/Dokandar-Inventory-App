@@ -69,7 +69,7 @@ class BackupService extends GetxService {
 
       return backupDir;
     } catch (e) {
-      debugPrint('Error creating backup directory: $e');
+      print('Error creating backup directory: $e');
       return null;
     }
   }
@@ -218,7 +218,7 @@ class BackupService extends GetxService {
           (a, b) => b.statSync().modified.compareTo(a.statSync().modified));
       return files.first.statSync().modified;
     } catch (e) {
-      debugPrint('Error getting last backup date: $e');
+      print('Error getting last backup date: $e');
       return null;
     }
   }
@@ -377,7 +377,7 @@ class BackupService extends GetxService {
         }
       });
     } catch (e) {
-      debugPrint('Error importing data: $e');
+      print('Error importing data: $e');
       rethrow;
     }
   }

@@ -2,9 +2,7 @@ import 'package:dokandar_app_inventory/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
-import 'package:dokandar_app_inventory/l10n/app_localizations.dart';
 import '../../../config/app_theme_config.dart';
-import '../../../config/app_config.dart';
 import '../../../widgets/Custom_AppBar.dart';
 import '../controllers/sell_controller.dart';
 
@@ -14,54 +12,62 @@ class SellView extends GetView<SellController> {
   Widget build(BuildContext context) {
     final themeConfig = Get.find<AppThemeConfig>();
     final isDarkMode = Get.isDarkMode;
-    final l10n = AppLocalizations.of(context)!;
 
     return Scaffold(
       backgroundColor: themeConfig.getBackgroundColor(isDarkMode),
       appBar: customAppBar(
         themeConfig,
         isDarkMode,
-        l10n.salesCounter,
+        'বিক্রয় কাউন্টার',
         false,
         true,
-        actions: [
-          IconButton(
-            icon: Icon(
-              Icons.inventory_2_outlined,
-              color: themeConfig.getTextPrimaryColor(isDarkMode),
-            ),
-            onPressed: () {
-              Get.toNamed(Routes.ALL_PRODUCTS);
-            },
-            tooltip: l10n.allProducts,
-          ),
-        ],
       ),
       body: Column(
         children: [
           // Search Bar
           Container(
-            margin: const EdgeInsets.all(12),
+            margin: const EdgeInsets.all(16),
             decoration: BoxDecoration(
               color: themeConfig.getSurfaceColor(isDarkMode),
-              borderRadius: BorderRadius.circular(8),
+              borderRadius: BorderRadius.circular(12),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.05),
+                  blurRadius: 10,
+                  offset: const Offset(0, 2),
+                ),
+              ],
             ),
             child: Column(
               children: [
-                TextField(
-                  onChanged: (value) => controller.searchProducts(value),
-                  decoration: InputDecoration(
-                    hintText: l10n.searchProducts,
-                    border: InputBorder.none,
-                    contentPadding:
-                        const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
-                    hintStyle: TextStyle(
-                      fontSize: 14,
-                      color: themeConfig
-                          .getTextPrimaryColor(isDarkMode)
-                          .withValues(alpha: 0.1),
+                Row(
+                  children: [
+                    Expanded(
+                      child: TextField(
+                        onChanged: (value) => controller.searchProducts(value),
+                        decoration: InputDecoration(
+                          hintText: 'পণ্য খুঁজুন...',
+                          border: InputBorder.none,
+                          contentPadding:
+                              const EdgeInsets.symmetric(horizontal: 16),
+                          hintStyle: TextStyle(
+                            color: themeConfig
+                                .getTextPrimaryColor(isDarkMode)
+                                .withOpacity(0.5),
+                          ),
+                        ),
+                      ),
                     ),
-                  ),
+                    IconButton(
+                      icon: Icon(
+                        Icons.qr_code_scanner,
+                        color: themeConfig.getPrimaryColor(isDarkMode),
+                      ),
+                      onPressed: () {
+                        // TODO: Implement barcode scanning
+                      },
+                    ),
+                  ],
                 ),
                 Obx(() => controller.searchResults.isNotEmpty &&
                         controller.isSearching.value
@@ -69,50 +75,35 @@ class SellView extends GetView<SellController> {
                         constraints: const BoxConstraints(maxHeight: 200),
                         decoration: BoxDecoration(
                           color: themeConfig.getSurfaceColor(isDarkMode),
-                          borderRadius: BorderRadius.circular(8),
+                          borderRadius: BorderRadius.circular(12),
                         ),
                         child: ListView.builder(
                           shrinkWrap: true,
-                          padding: const EdgeInsets.symmetric(vertical: 4),
+                          padding: const EdgeInsets.symmetric(vertical: 8),
                           itemCount: controller.searchResults.length,
                           itemBuilder: (context, index) {
                             final product = controller.searchResults[index];
-                            return Container(
-                              decoration: BoxDecoration(
-                                border: Border(
-                                  bottom: BorderSide(
-                                    color: themeConfig.getBorderColor(isDarkMode).withValues(alpha: 0.1),
-                                    width: 0.5,
-                                  ),
+                            return ListTile(
+                              contentPadding:
+                                  const EdgeInsets.symmetric(horizontal: 16),
+                              title: Text(
+                                product.name,
+                                style: TextStyle(
+                                  color: themeConfig
+                                      .getTextPrimaryColor(isDarkMode),
                                 ),
                               ),
-                              child: ListTile(
-                                contentPadding:
-                                    const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-                                title: Text(
-                                  product.name,
-                                  style: TextStyle(
-                                    fontSize: 14,
-                                    color: themeConfig
-                                        .getTextPrimaryColor(isDarkMode),
-                                  ),
+                              subtitle: Text(
+                                '৳ ${product.unitPrice}',
+                                style: TextStyle(
+                                  color:
+                                      themeConfig.getPrimaryColor(isDarkMode),
                                 ),
-                                subtitle: Obx(() {
-                                  final appConfig = Get.find<AppConfig>();
-                                  return Text(
-                                    '${appConfig.getCurrencySymbol()} ${product.unitPrice}',
-                                    style: TextStyle(
-                                      fontSize: 12,
-                                      color:
-                                          themeConfig.getPrimaryColor(isDarkMode),
-                                    ),
-                                  );
-                                }),
-                                onTap: () {
-                                  controller.addToCart(product);
-                                  controller.isSearching.value = false;
-                                },
                               ),
+                              onTap: () {
+                                controller.addToCart(product);
+                                controller.isSearching.value = false;
+                              },
                             );
                           },
                         ),
@@ -124,54 +115,53 @@ class SellView extends GetView<SellController> {
           // Product List
           Expanded(
             child: Obx(() => ListView.builder(
-                  padding: const EdgeInsets.all(12),
+                  padding: const EdgeInsets.all(16),
                   itemCount: controller.cartItems.length,
                   itemBuilder: (context, index) {
                     final product = controller.cartItems[index];
-                    return Container(
-                      margin: const EdgeInsets.only(bottom: 6),
-                      decoration: BoxDecoration(
-                        color: themeConfig.getSurfaceColor(isDarkMode),
-                        borderRadius: BorderRadius.circular(8),
+                    return Card(
+                      margin: const EdgeInsets.only(bottom: 8),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
                       ),
-                      child: ListTile(
-                        contentPadding: const EdgeInsets.symmetric(
-                            horizontal: 12, vertical: 8),
-                        leading: Container(
-                          width: 36,
-                          height: 36,
-                          decoration: BoxDecoration(
-                            color: themeConfig
-                                .getPrimaryColor(isDarkMode)
-                                .withValues(alpha: 0.1),
-                            borderRadius: BorderRadius.circular(8),
+                      color: themeConfig.getSurfaceColor(isDarkMode),
+                      elevation: 0,
+                      child: InkWell(
+                        child: ListTile(
+                          contentPadding: const EdgeInsets.symmetric(
+                              horizontal: 12, vertical: 4),
+                          leading: Container(
+                            width: 40,
+                            height: 40,
+                            decoration: BoxDecoration(
+                              color: themeConfig
+                                  .getPrimaryColor(isDarkMode)
+                                  .withOpacity(0.1),
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            child: Icon(
+                              Icons.inventory_2,
+                              size: 24,
+                              color: themeConfig.getPrimaryColor(isDarkMode),
+                            ),
                           ),
-                          child: Icon(
-                            Icons.inventory_2,
-                            size: 20,
-                            color: themeConfig.getPrimaryColor(isDarkMode),
+                          title: Text(
+                            product.productName,
+                            style: TextStyle(
+                              color:
+                                  themeConfig.getTextPrimaryColor(isDarkMode),
+                              fontWeight: FontWeight.w500,
+                              fontSize: 16,
+                            ),
                           ),
-                        ),
-                        title: Text(
-                          product.productName,
-                          style: TextStyle(
-                            color:
-                                themeConfig.getTextPrimaryColor(isDarkMode),
-                            fontWeight: FontWeight.w500,
-                            fontSize: 14,
-                          ),
-                        ),
-                        subtitle: Obx(() {
-                          final appConfig = Get.find<AppConfig>();
-                          return Text(
-                            '${appConfig.getCurrencySymbol()} ${product.unitPrice}',
+                          subtitle: Text(
+                            '৳ ${product.unitPrice}',
                             style: TextStyle(
                               color: themeConfig.getPrimaryColor(isDarkMode),
                               fontWeight: FontWeight.bold,
-                              fontSize: 16,
+                              fontSize: 18,
                             ),
-                          );
-                        }),
+                          ),
                           trailing: Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
@@ -179,7 +169,7 @@ class SellView extends GetView<SellController> {
                                 decoration: BoxDecoration(
                                   color: themeConfig
                                       .getPrimaryColor(isDarkMode)
-                                      .withValues(alpha: 0.1),
+                                      .withOpacity(0.1),
                                   borderRadius: BorderRadius.circular(8),
                                 ),
                                 child: Row(
@@ -190,7 +180,7 @@ class SellView extends GetView<SellController> {
                                         Icons.remove,
                                         color: themeConfig
                                             .getPrimaryColor(isDarkMode),
-                                        size: 18,
+                                        size: 20,
                                       ),
                                       onPressed: () =>
                                           controller.decreaseQuantity(index),
@@ -199,14 +189,14 @@ class SellView extends GetView<SellController> {
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.symmetric(
-                                          horizontal: 6),
+                                          horizontal: 8),
                                       child: Text(
                                         '${controller.getQuantity(index).toInt()}',
                                         style: TextStyle(
                                           color: themeConfig
                                               .getTextPrimaryColor(isDarkMode),
                                           fontWeight: FontWeight.bold,
-                                          fontSize: 14,
+                                          fontSize: 16,
                                         ),
                                       ),
                                     ),
@@ -215,7 +205,7 @@ class SellView extends GetView<SellController> {
                                         Icons.add,
                                         color: themeConfig
                                             .getPrimaryColor(isDarkMode),
-                                        size: 18,
+                                        size: 20,
                                       ),
                                       onPressed: () =>
                                           controller.increaseQuantity(index),
@@ -228,15 +218,23 @@ class SellView extends GetView<SellController> {
                             ],
                           ),
                         ),
+                      ),
                     );
                   },
                 )),
           ),
           // Cart Summary
           Container(
-            padding: const EdgeInsets.all(12),
+            padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
               color: themeConfig.getSurfaceColor(isDarkMode),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.1),
+                  blurRadius: 10,
+                  offset: const Offset(0, -2),
+                ),
+              ],
             ),
             child: Column(
               mainAxisSize: MainAxisSize.min,
@@ -245,26 +243,22 @@ class SellView extends GetView<SellController> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          '${l10n.totalProducts}: ${controller.cartItems.length}',
+                          'মোট পণ্য: ${controller.cartItems.length}',
                           style: TextStyle(
-                            fontSize: 14,
                             color: themeConfig.getTextPrimaryColor(isDarkMode),
                           ),
                         ),
-                        Obx(() {
-                          final appConfig = Get.find<AppConfig>();
-                          return Text(
-                            '${appConfig.getCurrencySymbol()} ${controller.total.value.toStringAsFixed(2)}',
-                            style: TextStyle(
-                              color: themeConfig.getPrimaryColor(isDarkMode),
-                              fontWeight: FontWeight.bold,
-                              fontSize: 18,
-                            ),
-                          );
-                        }),
+                        Text(
+                          '৳ ${controller.total.value.toStringAsFixed(2)}',
+                          style: TextStyle(
+                            color: themeConfig.getPrimaryColor(isDarkMode),
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20,
+                          ),
+                        ),
                       ],
                     )),
-                const SizedBox(height: 10),
+                const SizedBox(height: 12),
                 SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
@@ -273,28 +267,28 @@ class SellView extends GetView<SellController> {
                         Get.toNamed(Routes.CHECKOUT);
                       } else {
                         Fluttertoast.showToast(
-                          msg: l10n.noProductsAdded,
+                          msg: 'কোন পণ্য যোগ করা হয়নি',
                           toastLength: Toast.LENGTH_SHORT,
                           gravity: ToastGravity.BOTTOM,
                           backgroundColor: themeConfig.getErrorColor(isDarkMode),
                           textColor: Colors.white,
-                          fontSize: 14.0,
+                          fontSize: 16.0,
                         );
                       }
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: themeConfig.getPrimaryColor(isDarkMode),
-                      padding: const EdgeInsets.symmetric(vertical: 10),
+                      padding: const EdgeInsets.symmetric(vertical: 12),
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8),
+                        borderRadius: BorderRadius.circular(12),
                       ),
                     ),
-                    child: Text(
-                      l10n.completeSale,
-                      style: const TextStyle(
+                    child: const Text(
+                      'বিক্রয় সম্পন্ন করুন',
+                      style: TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
-                        fontSize: 14,
+                        fontSize: 16,
                       ),
                     ),
                   ),
@@ -307,5 +301,3 @@ class SellView extends GetView<SellController> {
     );
   }
 }
-
-
