@@ -75,13 +75,7 @@ class AppThemeConfig extends GetxService {
         foregroundColor: Colors.white,
         elevation: 0,
       ),
-      cardTheme: CardTheme(
-        color: surfaceColor,
-        elevation: 2,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(8),
-        ),
-      ),
+     
       textTheme: TextTheme(
         bodyLarge: TextStyle(color: textPrimaryColor),
         bodyMedium: TextStyle(color: textSecondaryColor),
@@ -118,13 +112,7 @@ class AppThemeConfig extends GetxService {
         foregroundColor: Colors.white,
         elevation: 0,
       ),
-      cardTheme: CardTheme(
-        color: darkSurfaceColor,
-        elevation: 2,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(8),
-        ),
-      ),
+      
       textTheme: TextTheme(
         bodyLarge: TextStyle(color: darkTextPrimaryColor),
         bodyMedium: TextStyle(color: darkTextSecondaryColor),

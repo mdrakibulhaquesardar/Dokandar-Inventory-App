@@ -47,7 +47,7 @@ dependencies:
   fluttertoast: ^8.2.12
   permission_handler: ^12.0.0+1
   pdf: ^3.11.3
-  syncfusion_flutter_pdfviewer: ^26.2.11
+  syncfusion_flutter_pdfviewer: ^33.1.49
 
 
 dev_dependencies:
