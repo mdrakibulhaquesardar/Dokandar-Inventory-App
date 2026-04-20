@@ -1,0 +1,24 @@
+# Flutter Localization Configuration
+# This file configures the localization system for the app
+# 
+# After running 'flutter pub get', localization files will be generated automatically
+# Generated files will be available at: .dart_tool/flutter_gen/gen_l10n/
+
+# ARB files directory
+arb-dir: lib/l10n
+
+# Template ARB file (usually the default language)
+template-arb-file: app_en.arb
+
+# Output file name for generated localization class
+output-localization-file: app_localizations.dart
+
+# Supported locales
+# Bengali (bn) and English (en)
+supported-locales:
+  - bn
+  - en
+
+# Default locale
+default-locale: bn
+

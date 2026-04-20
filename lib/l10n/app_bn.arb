@@ -1,0 +1,665 @@
+{
+  "@@locale": "bn",
+  "appName": "দোকানদার",
+  "@appName": {
+    "description": "Application name"
+  },
+  "appDescription": "ইনভেন্টরি ম্যানেজমেন্ট সিস্টেম",
+  "@appDescription": {
+    "description": "Application description"
+  },
+  "settings": "সেটিংস",
+  "@settings": {
+    "description": "Settings screen title"
+  },
+  "aboutApp": "অ্যাপ সম্পর্কে",
+  "@aboutApp": {
+    "description": "About app screen title"
+  },
+  "subscription": "সাবস্ক্রিপশন",
+  "@subscription": {
+    "description": "Subscription screen title"
+  },
+  "products": "পণ্য",
+  "@products": {
+    "description": "Products label"
+  },
+  "customers": "গ্রাহক",
+  "@customers": {
+    "description": "Customers label"
+  },
+  "sales": "বিক্রয়",
+  "@sales": {
+    "description": "Sales label"
+  },
+  "inventory": "ইনভেন্টরি",
+  "@inventory": {
+    "description": "Inventory label"
+  },
+  "addProduct": "পণ্য যোগ করুন",
+  "@addProduct": {
+    "description": "Add product button text"
+  },
+  "addCustomer": "গ্রাহক যোগ করুন",
+  "@addCustomer": {
+    "description": "Add customer button text"
+  },
+  "save": "সংরক্ষণ",
+  "@save": {
+    "description": "Save button text"
+  },
+  "cancel": "বাতিল",
+  "@cancel": {
+    "description": "Cancel button text"
+  },
+  "delete": "মুছুন",
+  "@delete": {
+    "description": "Delete button text"
+  },
+  "edit": "সম্পাদনা",
+  "@edit": {
+    "description": "Edit button text"
+  },
+  "search": "খুঁজুন",
+  "@search": {
+    "description": "Search placeholder"
+  },
+  "name": "নাম",
+  "@name": {
+    "description": "Name field label"
+  },
+  "price": "মূল্য",
+  "@price": {
+    "description": "Price field label"
+  },
+  "quantity": "পরিমাণ",
+  "@quantity": {
+    "description": "Quantity field label"
+  },
+  "phone": "ফোন",
+  "@phone": {
+    "description": "Phone field label"
+  },
+  "email": "ইমেইল",
+  "@email": {
+    "description": "Email field label"
+  },
+  "address": "ঠিকানা",
+  "@address": {
+    "description": "Address field label"
+  },
+  "total": "মোট",
+  "@total": {
+    "description": "Total label"
+  },
+  "subtotal": "উপমোট",
+  "@subtotal": {
+    "description": "Subtotal label"
+  },
+  "discount": "ছাড়",
+  "@discount": {
+    "description": "Discount label"
+  },
+  "dueAmount": "বাকি পরিমাণ",
+  "@dueAmount": {
+    "description": "Due amount label"
+  },
+  "paidAmount": "পরিশোধিত পরিমাণ",
+  "@paidAmount": {
+    "description": "Paid amount label"
+  },
+  "lowStock": "স্টক কম",
+  "@lowStock": {
+    "description": "Low stock warning"
+  },
+  "outOfStock": "স্টক নেই",
+  "@outOfStock": {
+    "description": "Out of stock warning"
+  },
+  "success": "সফল",
+  "@success": {
+    "description": "Success message"
+  },
+  "error": "ত্রুটি",
+  "@error": {
+    "description": "Error message"
+  },
+  "loading": "লোড হচ্ছে...",
+  "@loading": {
+    "description": "Loading message"
+  },
+  "noData": "কোন তথ্য নেই",
+  "@noData": {
+    "description": "No data message"
+  },
+  "developerInfo": "ডেভেলপার তথ্য",
+  "@developerInfo": {
+    "description": "Developer information section title"
+  },
+  "appInfo": "অ্যাপ তথ্য",
+  "@appInfo": {
+    "description": "App information section title"
+  },
+  "currentVersionAndDescription": "বর্তমান সংস্করণ এবং বিবরণ",
+  "developer": "Developer",
+  "changelog": "পরিবর্তনসমূহ",
+  "@changelog": {
+    "description": "Changelog section title"
+  },
+  "version": "সংস্করণ",
+  "@version": {
+    "description": "Version label"
+  },
+  "lastUpdate": "আপডেট তারিখ",
+  "@lastUpdate": {
+    "description": "Last update label"
+  },
+  "appSize": "অ্যাপ সাইজ",
+  "@appSize": {
+    "description": "App size label"
+  },
+  "freePlan": "ফ্রি প্ল্যান",
+  "@freePlan": {
+    "description": "Free plan label"
+  },
+  "currentPlan": "বর্তমান প্ল্যান",
+  "@currentPlan": {
+    "description": "Current plan label"
+  },
+  "upgrade": "আপগ্রেড",
+  "@upgrade": {
+    "description": "Upgrade button text"
+  },
+  "buyNow": "এখনি কিনুন",
+  "@buyNow": {
+    "description": "Buy now button text"
+  },
+  "trialPeriod": "ট্রায়াল পিরিয়ড",
+  "@trialPeriod": {
+    "description": "Trial period label"
+  },
+  "days": "{count} দিন",
+  "@days": {
+    "description": "Days count",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "productsLimit": "আপনি {count}টি পর্যন্ত পণ্য যোগ করতে পারবেন",
+  "@productsLimit": {
+    "description": "Products limit message",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "customersLimit": "আপনি {count}টি পর্যন্ত গ্রাহক যোগ করতে পারবেন",
+  "@customersLimit": {
+    "description": "Customers limit message",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "limitReached": "সীমা পৌঁছেছে",
+  "@limitReached": {
+    "description": "Limit reached message"
+  },
+  "pleaseUpgrade": "আরও যোগ করতে দয়া করে আপগ্রেড করুন",
+  "@pleaseUpgrade": {
+    "description": "Please upgrade message"
+  },
+  "home": "হোম",
+  "summaryInfo": "সারাংশিক তথ্য",
+  "summaryInfoDescription": "সারাংশিক তথ্য সম্পর্কিত বিবরণ শো করুন সম্পর্কিত বিবরণ শো করুন",
+  "totalProducts": "মোট পণ্য",
+  "totalSales": "মোট বিক্রয়",
+  "categories": "ক্যাটাগরি",
+  "customers": "গ্রাহক",
+  "todaysOrders": "আজকের অর্ডার",
+  "totalProfit": "মোট লাভ",
+  "recentSales": "সাম্প্রতিক বিক্রয়",
+  "recentSalesDescription": "সাম্প্রতিক বিক্রয় তালিকা শো করুন সম্প্রতিক বিক্রয় তালিকা শো করুন",
+  "stockAlert": "স্টক আলার্ম",
+  "stockAlertDescription": "স্টক শেষ হতে ৩ দিন আগে কয়েকটি পণ্যের স্টক শেষ হচ্ছে",
+  "noRecentSales": "কোনো সাম্প্রতিক বিক্রয় নেই",
+  "addToStock": "স্টকে যোগ করুন",
+  "searchProducts": "পণ্য অনুসন্ধান করুন",
+  "inventory": "ইনভেন্টরি",
+  "totalPrice": "মোট মূল্য",
+  "quickAccess": "দ্রুত অ্যাক্সেস",
+  "quickAccessDescription": "আপনার ইনভেন্টরির জন্য দ্রুত অ্যাক্সেস পেতে নিচের অপশনগুলো ব্যবহার করুন।",
+  "allProducts": "সকল পণ্য",
+  "salesHistory": "বিক্রয় ইতিহাস",
+  "allCustomers": "সকল কাস্টমার",
+  "allSuppliers": "সকল সাপ্লায়ার",
+  "storeExpenses": "দোকান খরচ",
+  "allEmployees": "সকল কর্মচারী",
+  "otherFunctions": "অন্যান্য ফাংশন",
+  "otherFunctionsDescription": "আপনার ইনভেন্টরির জন্য অন্যান্য ফাংশনগুলো ব্যবহার করুন।",
+  "duePayment": "বাকি প্রতিশোধ",
+  "productCategories": "পণ্যের ক্যাটাগরি",
+  "transactionHistory": "ট্রানজেকশন ইতিহাস",
+  "supplierManagement": "সাপ্লায়ার ম্যানেজমেন্ট",
+  "stockAlert": "স্টক অ্যালার্ট",
+  "generateReport": "রিপোর্ট জেনারেট",
+  "viewDetails": "বিস্তারিত দেখুন",
+  "newLabel": "নতুন",
+  "sellCounter": "বিক্রয় কাউন্টার",
+  "searchProduct": "পণ্য খুঁজুন...",
+  "totalProductsCount": "মোট পণ্য: {count}",
+  "@totalProductsCount": {
+    "description": "Total products count",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "completeSale": "বিক্রয় সম্পন্ন করুন",
+  "noProductsAdded": "কোন পণ্য যোগ করা হয়নি",
+  "salesCounter": "বিক্রয় কাউন্টার",
+  "yourProducts": "আপনার পণ্যসমূহ",
+  "stockOut": "স্টক আউট",
+  "recentProducts": "সাম্রতিক পণ্যসমূহ",
+  "editProduct": "পণ্য সম্পাদনা করুন",
+  "productName": "পণ্যের নাম",
+  "stockQuantity": "স্টক পরিমাণ",
+  "sellingPrice": "বিক্রয় মূল্য",
+  "buyingPrice": "ক্রয় মূল্য",
+  "profit": "মুনাফা",
+  "unitProfit": "একক মুনাফা",
+  "totalProfit": "মোট মুনাফা",
+  "totalPrice": "মোট মূল্য",
+  "createdAt": "তৈরি হয়েছে",
+  "deleteProduct": "পণ্য মুছে ফেলুন",
+  "confirmDeleteProduct": "আপনি কি নিশ্চিত যে আপনি এই পণ্যটি মুছে ফেলতে চান?",
+  "no": "না",
+  "yesDelete": "হ্যাঁ, মুছে ফেলুন",
+  "delete": "ডিলিট করুন",
+  "save": "সংরক্ষণ করুন",
+  "addNewProduct": "নতুন পণ্য যোগ করুন",
+  "category": "ক্যাটাগরি",
+  "customerList": "গ্রাহক তালিকা",
+  "totalCustomers": "মোট গ্রাহক",
+  "newCustomers": "নতুন গ্রাহক",
+  "totalDue": "মোট বাকি টাকা",
+  "addCustomer": "গ্রাহক যোগ করুন",
+  "customerName": "গ্রাহকের নাম",
+  "customerPhone": "গ্রাহকের ফোন",
+  "customerAddress": "গ্রাহকের ঠিকানা",
+  "totalPurchases": "মোট ক্রয়",
+  "dueAmount": "বাকি পরিমাণ",
+  "due": "বাকি",
+  "customer": "গ্রাহক",
+  "salesList": "বিক্রয় তালিকা",
+  "totalTransactions": "মোট লেনদেন",
+  "noSales": "কোন বিক্রয় নেই",
+  "invoiceNumber": "ইনভয়েস নং",
+  "date": "তারিখ",
+  "paid": "প্রদত্ত",
+  "saleDetails": "বিক্রয় বিবরণ",
+  "productList": "পণ্য তালিকা",
+  "selectLanguage": "ভাষা নির্বাচন করুন",
+  "dueCustomersList": "বাকিদার তালিকা",
+  "totalDueCustomers": "মোট বাকিদার",
+  "noDueCustomers": "কোন বাকিদার নেই",
+  "people": "জন",
+  "payDue": "বাকি পরিশোধ",
+  "enterAmount": "টাকার পরিমাণ লিখুন",
+  "pay": "পরিশোধ করুন",
+  "yourCategories": "আপনার ক্যাটাগরি",
+  "addCategory": "ক্যাটাগরি যোগ করুন",
+  "categoryName": "ক্যাটাগরির নাম",
+  "description": "বিবরণ",
+  "editCategory": "ক্যাটাগরি সম্পাদনা করুন",
+  "update": "হালনাগাদ করুন",
+  "userSetup": "ব্যবহারকারী সেটআপ",
+  "step1of2": "ধাপ 1/2",
+  "step2of2": "ধাপ 2/2",
+  "step3of3": "ধাপ ৩/৩",
+  "completeYourProfile": "আপনার প্রোফাইল সম্পূর্ণ করুন",
+  "provideRequiredInfo": "আপনার ব্যবসা পরিচালনার জন্য প্রয়োজনীয় তথ্য দিন",
+  "userInformation": "ব্যবহারকারীর তথ্য",
+  "setupProfileAndProvideInfo": "আপনার প্রোফাইল সেটআপ করুন এবং ব্যবসার জন্য প্রয়োজনীয় তথ্য দিন",
+  "enterYourFullName": "আপনার পূর্ণ নাম লিখুন",
+  "enterYourEmail": "আপনার ইমেইল ঠিকানা লিখুন",
+  "enterYourPhoneNumber": "আপনার মোবাইল নম্বর লিখুন",
+  "enterYourAddress": "আপনার ঠিকানা লিখুন",
+  "goToNextStep": "পরবর্তী ধাপে যান",
+  "step": "ধাপ",
+  "completeProfile": "আপনার প্রোফাইল সম্পূর্ণ করুন",
+  "completeProfileDescription": "আপনার ব্যবসা পরিচালনার জন্য প্রয়োজনীয় তথ্য দিন",
+  "userInfo": "ব্যবহারকারীর তথ্য",
+  "userInfoDescription": "আপনার প্রোফাইল সেটআপ করুন এবং ব্যবসার জন্য প্রয়োজনীয় তথ্য দিন",
+  "fullName": "আপনার পূর্ণ নাম লিখুন",
+  "emailAddress": "আপনার ইমেইল ঠিকানা লিখুন",
+  "mobileNumber": "আপনার মোবাইল নম্বর লিখুন",
+  "yourAddress": "আপনার ঠিকানা লিখুন",
+  "nextStep": "পরবর্তী ধাপে যান",
+  "pinCodeSetup": "আপনি চাইলে পরবর্তী পিন কোডটি সেটআপ করতে পারে",
+  "storeSetup": "দোকান সেটআপ",
+  "addStoreLogo": "দোকানের লোগো যোগ করুন",
+  "storeInfo": "দোকানের তথ্য",
+  "storeInfoDescription": "আপনার দোকানের তথ্য দিন",
+  "storeName": "দোকানের নাম",
+  "storeNameRequired": "দোকানের নাম দিন",
+  "addressRequired": "ঠিকানা দিন",
+  "phoneNumber": "ফোন নম্বর",
+  "phoneNumberRequired": "ফোন নম্বর দিন",
+  "emailRequired": "ইমেইল দিন",
+  "validEmailRequired": "সঠিক ইমেইল দিন",
+  "businessType": "ব্যবসার ধরন",
+  "businessTypeRequired": "ব্যবসার ধরন দিন",
+  "retailer": "খুচরা বিক্রেতা",
+  "wholesaler": "পাইকারি বিক্রেতা",
+  "restaurant": "রেস্তোরাঁ",
+  "pharmacy": "ফার্মেসি",
+  "fashionStore": "ফ্যাশন স্টোর",
+  "electronics": "ইলেকট্রনিক্স",
+  "other": "অন্যান্য",
+  "storeInfoNote": "আপনার দোকানের তথ্য সঠিকভাবে দিন। এই তথ্য আপনার ব্যবসার জন্য গুরুত্বপূর্ণ।",
+  "previous": "পূর্ববর্তী",
+  "next": "পরবর্তী",
+  "improveStoreManagement": "আপনার দোকান ব্যবস্থাপনার উন্নতি করুন",
+  "startWithPowerfulTool": "আমাদের শক্তিশালী দোকান ব্যবস্থাপনা টুল দিয়ে আপনার দোকান পরিচালনা শুরু করুন।",
+  "trackAllActivities": "আপনার দোকানের সকল কার্যক্রম ট্র্যাক করুন",
+  "trackActivitiesDescription": "একটি সুবিধাজনক স্থানে ইনভেন্টরি, বিক্রয় এবং লেনদেন পরিচালনা করুন।",
+  "smartBusinessInsights": "স্মার্ট ব্যবসায়িক অন্তর্দৃষ্টি",
+  "smartInsightsDescription": "সঠিক সিদ্ধান্ত নেওয়ার জন্য বিস্তারিত রিপোর্ট এবং বিশ্লেষণ পান।",
+  "secureAndPrivate": "নিরাপদ এবং গোপনীয়",
+  "secureDescription": "আপনার দোকানের তথ্য সুরক্ষিত এবং শুধুমাত্র আপনার জন্য অ্যাক্সেসযোগ্য।",
+  "startManagingStore": "আপনার দোকান পরিচালনা শুরু করুন",
+  "startWithTool": "আমাদের শক্তিশালী দোকান ব্যবস্থাপনা টুল দিয়ে শুরু করুন",
+  "start": "শুরু করুন",
+  "settings": "সেটিংস",
+  "customizeAppSettings": "আপনার অ্যাপ সেটিংস কাস্টমাইজ করুন",
+  "appSettings": "অ্যাপ সেটিংস",
+  "appTheme": "অ্যাপ থিম",
+  "language": "ভাষা",
+  "dataManagement": "ডাটা ম্যানেজমেন্ট",
+  "dataBackup": "ডাটা ব্যাকআপ",
+  "dataRestore": "ডাটা রিস্টোর",
+  "storeSetup": "দোকান সেটআপ",
+  "storeSettings": "দোকান সেটিংস",
+  "dokandarSubscription": "দোকানদার সাবস্ক্রিপশন",
+  "supportAndHelp": "সাপোর্ট এবং সহায়তা",
+  "supportCenter": "সাপোর্ট সেন্টার",
+  "feedback": "ফিডব্যাক",
+  "aboutApp": "অ্যাপ সম্পর্কে",
+  "store": "স্টোর",
+  "joinDate": "যোগদান",
+  "mobile": "মোবাইল",
+  "noMobileNumber": "মোবাইল নাম্বার নেই",
+  "dataNotFound": "তথ্য খুজে পাওয়া যায়নি",
+  "dateNotFound": "তারিখ খুজে পাওয়া যায়নি",
+  "defaultName": "রাকিব",
+  "joined": "যোগদান",
+  "premiumSubscription": "প্রিমিয়াম সাবস্ক্রিপশন নিন!",
+  "premiumSubtitle": "আপনার প্রয়োজন অনুযায়ী সাবস্ক্রিপশন প্যাকেজ বেছে নিয়ে বড় সুবিধা পান",
+  "currentPlan": "বর্তমান প্ল্যান",
+  "freePlanFeatures": "ফ্রি প্ল্যানের সুবিধাসমূহ",
+  "subscriptionPackages": "সাবস্ক্রিপশন প্যাকেজসমূহ",
+  "basicReports": "বেসিক রিপোর্ট দেখতে পারবেন",
+  "productsUpTo": "টি পর্যন্ত পণ্য যোগ করতে পারবেন",
+  "customersUpTo": "টি পর্যন্ত গ্রাহক যোগ করতে পারবেন",
+  "trialPeriodDays": "দিনের ট্রায়াল পিরিয়ড",
+  "subscriptionAdditionalInfo": "আপনার সাবস্ক্রিপশন প্যাকেজ বেছে নিয়ে আরও সুবিধা নিন। আমাদের প্রিমিয়াম প্ল্যানের মাধ্যমে আপনি আরও বেশি সুবিধা পাবেন।",
+  "subscriptionExpiryNote": "আপনার বর্তমান অফার শেষ হলে {startDate} থেকে নিয়মিত প্লাস রেট প্রযোজ্য হবে।",
+  "@subscriptionExpiryNote": {
+    "placeholders": {
+      "startDate": {
+        "type": "String"
+      }
+    }
+  },
+  "free": "ফ্রি",
+  "completeOrder": "অর্ডার চূড়ান্ত করুন",
+  "orderSummary": "অর্ডার সারাংশ",
+  "newOrder": "নতুন অর্ডার",
+  "customerInfo": "গ্রাহক তথ্য",
+  "optional": "অবশ্যই নয়",
+  "unknown": "অজ্ঞাতপরিচয়",
+  "discountAmount": "ডিসকাউন্ক (৳)",
+  "dueAmountField": "বাকি টাকা (৳)",
+  "orderNote": "অর্ডার নোট (যদি থাকে)",
+  "invoice": "ইনভয়েস",
+  "generating": "তৈরি হছে...",
+  "confirmOrder": "অর্ডার নিশ্চিত করুন",
+  "localBackup": "স্থানীয় ব্যাকআপ",
+  "backupToLocalStorage": "স্থানীয় স্টোরেজে ব্যাকআপ",
+  "backupToLocalDescription": "আপনার ফোনের মেমরি বা ইউএসবি ফ্ল্যাশ ড্রাইভে ফাইল ব্যাকআপ করুন।",
+  "restoreFromLocal": "স্থানীয় স্টোরেজ থেকে পুনরুদ্ধার",
+  "restoreFromLocalDescription": "মেমরি থেকে ব্যাকআপ ফাইল পুনরুদ্ধার করতে পারেন",
+  "lastBackup": "সর্বশেষ ব্যাকআপ",
+  "noBackup": "কোন ব্যাকআপ নেই",
+  "backupPrevention": "ডেটা লস প্রতিরোধের জন্য আপনার পিসি বা ইউএসবি ফ্ল্যাশ ড্রাইভে ফাইল ব্যাকআপ করার পরামর্শ দেওয়া হয়।",
+  "backupStorage": "আপনি যদি ফোনের মেমরিতে ফাইল ব্যাকআপ করেন, ব্যাকআপ ফাইলগুলি অভ্যন্তরীণ স্টোরেজ/ব্যাকআপে সংরক্ষিত হবে।",
+  "sharedDevice": "আপনি যদি একটি শেয়ার করা ডিভাইসে ডেটা পাঠান, ব্যাকআপ ফাইলগুলি এমন একটি ডিভাইসে সংরক্ষিত হবে যা এটি ডিক্রিপ্ট করতে পারে না।",
+  "createBackup": "ব্যাকআপ তৈরি করুন",
+  "backupInstructions": "ব্যাকআপ তৈরি করতে, আপনার ফোনের মেমরিতে পর্যাপ্ত স্থান থাকতে হবে এবং ব্যাকআপ ফাইলগুলি আপনার",
+  "dokandarFolder": "দোকানদার নাম ফোল্ডার",
+  "backupStorageLocation": "ফোনের মেমরিতে এ সংরক্ষিত হবে।",
+  "backingUp": "ব্যাকআপ করা হচ্ছে...",
+  "createNewBackup": "নতুন ব্যাকআপ তৈরি করুন",
+  "selectBackupFile": "ব্যাকআপ ফাইল নির্বাচন করুন",
+  "selectBackupDescription": "আপনার ফোনের মেমরি থেকে ব্যাকআপ ফাইল নির্বাচন করুন।",
+  "restoreData": "ডেটা পুনরুদ্ধার করুন",
+  "restoreDataDescription": "নির্বাচিত ব্যাকআপ ফাইল থেকে ডেটা পুনরুদ্ধার করুন",
+  "importantInfo": "গুরুত্বপূর্ণ তথ্য",
+  "backupBeforeRestore": "পুনরুদ্ধার করার আগে, আপনার বর্তমান ডেটা ব্যাকআপ করার পরামর্শ দেওয়া হয়।",
+  "restoreWarning": "পুনরুদ্ধার করার সময়, বর্তমান ডেটা মুছে যাবে এবং ব্যাকআপ ফাইলের ডেটা দিয়ে প্রতিস্থাপিত হবে।",
+  "validBackupOnly": "শুধুমাত্র বৈধ ব্যাকআপ ফাইল থেকে ডেটা পুনরুদ্ধার করা যাবে।",
+  "restoring": "পুনরুদ্ধার করা হচ্ছে...",
+  "restoreDataButton": "ডেটা পুনরুদ্ধার করুন",
+  "appInfo": "অ্যাপ তথ্য",
+  "currentVersion": "বর্তমান সংস্করণ",
+  "updateDate": "আপডেট তারিখ",
+  "appSize": "অ্যাপ সাইজ",
+  "changelog": "পরিবর্তনসমূহ",
+  "changelogDescription": "সর্বশেষ আপডেটে কি কি পরিবর্তন হয়েছে",
+  "developerInfo": "ডেভেলপার তথ্য",
+  "developerInfoDescription": "অ্যাপটি কে তৈরি করেছেন",
+  "legalInfo": "আইনি তথ্য",
+  "legalInfoDescription": "গোপনীয়তা নীতি এবং শর্তাবলী",
+  "privacyPolicy": "গোপনীয়তা নীতি",
+  "termsAndConditions": "শর্তাবলী",
+  "supportAndHelpTitle": "সাপোর্ট এন্ড হেল্প",
+  "howToUseApp": "অ্যাপটি কিভাবে ব্যবহার করবেন",
+  "gettingStarted": "শুরু করার জন্য",
+  "gettingStartedDescription": "আমাদের ইনভেন্টরি ম্যানেজমেন্ট সিস্টেমের বেসিক শিখুন",
+  "productManagement": "পণ্য ব্যবস্থাপনা",
+  "productManagementDescription": "পণ্য যোগ করুন, সম্পাদনা করুন এবং ট্র্যাক করুন",
+  "salesAndReports": "বিক্রয় ও রিপোর্ট",
+  "salesAndReportsDescription": "বিক্রয় ট্র্যাক করুন এবং বিস্তারিত রিপোর্ট তৈরি করুন",
+  "availableModules": "উপলব্ধ মডিউলসমূহ",
+  "availableModulesDescription": "আপনার ব্যবসার জন্য উপযোগী",
+  "inventoryManagement": "ইনভেন্টরি ম্যানেজমেন্ট",
+  "inventoryManagementDescription": "স্টক লেভেল ট্র্যাক এবং ম্যানেজ করুন",
+  "salesTracking": "বিক্রয় ট্র্যাকিং",
+  "salesTrackingDescription": "বিক্রয় এবং আয় মনিটর করুন",
+  "customerManagement": "গ্রাহক ব্যবস্থাপনা",
+  "customerManagementDescription": "গ্রাহকের তথ্য এবং অর্ডার ম্যানেজ করুন",
+  "reportsAndAnalytics": "রিপোর্ট ও অ্যানালিটিক্স",
+  "reportsAndAnalyticsDescription": "বিস্তারিত ব্যবসায়িক ইনসাইট তৈরি করুন",
+  "videoTutorials": "ভিডিও টিউটোরিয়াল",
+  "videoTutorialsDescription": "শিখুন এবং দক্ষতা অর্জন করুন",
+  "gettingStartedGuide": "শুরু করার গাইড",
+  "someTipsToGetStarted": "শুরু করার জন্য কিছু টিপস",
+  "learnBasicIn5Minutes": "৫ মিনিটে বেসিক শিখুন",
+  "advancedFeatures": "এডভান্সড ফিচার",
+  "masterAdvancedFeatures": "এডভান্সড ফিচারগুলো আয়ত্ত করুন",
+  "giveFeedback": "আপনার মতামত দিন",
+  "feedbackDescription": "আমাদের উন্নতির জন্য আপনার মূল্যবান মতামত",
+  "feedbackCategories": "ফিডব্যাক ক্যাটাগরি",
+  "feedbackCategoriesDescription": "আপনি কোন ধরনের ফিডব্যাক দিতে চান?",
+  "bugReport": "বাগ রিপোর্ট",
+  "bugReportDescription": "অ্যাপে কোন সমস্যা খুঁজে পেয়েছেন?",
+  "featureRequest": "ফিচার রিকোয়েস্ট",
+  "featureRequestDescription": "নতুন কোন ফিচার চান?",
+  "generalFeedback": "সাধারণ ফিডব্যাক",
+  "generalFeedbackDescription": "আপনার অভিজ্ঞতা শেয়ার করুন",
+  "recentFeedback": "সাম্প্রতিক ফিডব্যাক",
+  "recentFeedbackDescription": "অন্যান্য ব্যবহারকারীদের মতামত",
+  "appIsGreat": "অ্যাপটি খুব ভালো",
+  "appIsGreatDescription": "এই অ্যাপটি ব্যবহার করে আমার ব্যবসার অনেক উন্নতি হয়েছে",
+  "someIssues": "কিছু সমস্যা আছে",
+  "someIssuesDescription": "কখনও কখনও অ্যাপটি ধীর হয়ে যায়",
+  "veryHelpful": "অত্যন্ত সহায়ক",
+  "veryHelpfulDescription": "সাপোর্ট টিম খুব দ্রুত সাড়া দেয়",
+  "giveFeedback": "আপনার মতামত দিন",
+  "writeYourFeedback": "আপনার ফিডব্যাক লিখুন",
+  "writeYourValuableFeedbackHint": "আপনার মূল্যবান মতামত লিখুন...",
+  "rating": "রেটিং:",
+  "submit": "সাবমিট করুন",
+  "sampleUserName1": "রহিম আলী",
+  "sampleUserName2": "করিম আহমেদ",
+  "sampleUserName3": "ফাতেমা বেগম",
+  "sampleUserName4": "জাহিদ হাসান",
+  "newFeaturesNeeded": "নতুন ফিচার দরকার",
+  "needToAddNewFeatures": "অ্যাপে কিছু নতুন ফিচার যুক্ত করা দরকার",
+  "totalPurchases": "মোট ক্রয়",
+  "customerHasDue": "গ্রাহক বাকি আছে",
+  "customerNoDue": "গ্রাহক বাকি নেই",
+  "lastPurchase": "সর্বশেষ ক্রয়",
+  "deleteCustomer": "গ্রাহক মুছে ফেলুন",
+  "confirmDeleteCustomer": "আপনি কি নিশ্চিত যে আপনি এই গ্রাহককে মুছে ফেলতে চান?",
+  "nameRequired": "নাম অবশ্যই পূরণ করতে হবে",
+  "phoneRequired": "ফোন নম্বর অবশ্যই পূরণ করতে হবে",
+  "add": "যোগ করুন",
+  "stockInPieces": "স্টকে {quantity} পিস",
+  "@stockInPieces": {
+    "description": "Stock quantity in pieces",
+    "placeholders": {
+      "quantity": {
+        "type": "String"
+      }
+    }
+  },
+  "stock": "স্টক",
+  "pieces": "পিস",
+  "serviceInitFailed": "সেবা শুরু করতে ব্যর্থ: {error}",
+  "@serviceInitFailed": {
+    "description": "Service initialization failed",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "backingUp": "ব্যাকআপ করা হচ্ছে...",
+  "backupSuccess": "ব্যাকআপ সফল হয়েছে!",
+  "backupFailed": "ব্যাকআপ ব্যর্থ হয়েছে: {error}",
+  "@backupFailed": {
+    "description": "Backup failed",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "restoring": "পুনরুদ্ধার করা হচ্ছে...",
+  "restoreSuccess": "পুনরুদ্ধার সফল হয়েছে!",
+  "restoreFailed": "পুনরুদ্ধার ব্যর্থ হয়েছে: {error}",
+  "@restoreFailed": {
+    "description": "Restore failed",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "failedToLoadDueCustomers": "বাকিদার তালিকা লোড করতে ব্যর্থ হয়েছে",
+  "paymentUpdated": "পেমেন্ট আপডেট করা হয়েছে",
+  "failedToUpdatePayment": "পেমেন্ট আপডেট করতে ব্যর্থ হয়েছে",
+  "lastBackupDate": "সর্বশেষ ব্যাকআপ {date}",
+  "@lastBackupDate": {
+    "description": "Last backup date",
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "backupInstructions": "ব্যাকআপ তৈরি করতে, আপনার ফোনের মেমরিতে পর্যাপ্ত স্থান থাকতে হবে এবং ব্যাকআপ ফাইলগুলি আপনার {folderName} ফোনের মেমরিতে এ সংরক্ষিত হবে।",
+  "@backupInstructions": {
+    "description": "Backup instructions",
+    "placeholders": {
+      "folderName": {
+        "type": "String"
+      }
+    }
+  },
+  "dokandarFolder": "দোকানদার নাম ফোল্ডার",
+  "notifications": "নোটিফিকেশন",
+  "enableNotifications": "নোটিফিকেশন সক্রিয় করুন",
+  "autoBackup": "স্বয়ংক্রিয় ব্যাকআপ",
+  "enableAutoBackup": "স্বয়ংক্রিয় ব্যাকআপ সক্রিয় করুন",
+  "soundSettings": "সাউন্ড সেটিংস",
+  "enableSound": "সাউন্ড সক্রিয় করুন",
+  "vibration": "ভাইব্রেশন",
+  "enableVibration": "ভাইব্রেশন সক্রিয় করুন",
+  "fontSize": "ফন্ট সাইজ",
+  "selectFontSize": "ফন্ট সাইজ নির্বাচন করুন",
+  "currency": "মুদ্রা",
+  "selectCurrency": "মুদ্রা নির্বাচন করুন",
+  "dateFormat": "তারিখ ফরম্যাট",
+  "selectDateFormat": "তারিখ ফরম্যাট নির্বাচন করুন",
+  "timeFormat": "সময় ফরম্যাট",
+  "selectTimeFormat": "সময় ফরম্যাট নির্বাচন করুন",
+  "pageSize": "পেজ সাইজ",
+  "selectPageSize": "পেজ সাইজ নির্বাচন করুন",
+  "cacheDuration": "ক্যাশে সময়কাল",
+  "selectCacheDuration": "ক্যাশে সময়কাল নির্বাচন করুন",
+  "clearCache": "ক্যাশে পরিষ্কার করুন",
+  "clearCacheDescription": "সমস্ত ক্যাশে করা ডেটা পরিষ্কার করুন",
+  "cacheCleared": "ক্যাশে সফলভাবে পরিষ্কার করা হয়েছে",
+  "resetSettings": "সেটিংস রিসেট করুন",
+  "resetSettingsDescription": "সমস্ত সেটিংস ডিফল্টে ফিরিয়ে দিন",
+  "resetSettingsConfirm": "আপনি কি নিশ্চিত যে আপনি সমস্ত সেটিংস ডিফল্টে ফিরিয়ে দিতে চান?",
+  "settingsReset": "সেটিংস সফলভাবে রিসেট করা হয়েছে",
+  "small": "ছোট",
+  "medium": "মাঝারি",
+  "large": "বড়",
+  "extraLarge": "অতিরিক্ত বড়",
+  "minutes": "মিনিট",
+  "hours": "ঘন্টা",
+  "itemsPerPage": "প্রতি পেজে আইটেম",
+  "appLockTitle": "অ্যাপ লক",
+  "appLockSubtitle": "পিন লক সেট করুন",
+  "enterPinToContinue": "চালিয়ে যেতে আপনার পিন দিন",
+  "invalidPinMessage": "ভুল পিন, আবার চেষ্টা করুন",
+  "appLockEnabled": "অ্যাপ লক চালু আছে",
+  "appLockDisabled": "অ্যাপকে পিন দিয়ে সুরক্ষিত করুন",
+  "setPin": "পিন সেট করুন",
+  "changePin": "পিন পরিবর্তন করুন",
+  "currentPin": "বর্তমান পিন",
+  "newPin": "নতুন পিন",
+  "confirmPin": "পিন নিশ্চিত করুন",
+  "saving": "সংরক্ষণ হচ্ছে...",
+  "enableAppLockButton": "অ্যাপ লক চালু করুন",
+  "updatePinButton": "পিন আপডেট করুন",
+  "disableAppLockButton": "অ্যাপ লক বন্ধ করুন",
+  "genericError": "কিছু ভুল হয়েছে",
+  "pinEnabledSuccess": "পিন সফলভাবে চালু হয়েছে",
+  "pinUpdatedSuccess": "পিন সফলভাবে আপডেট হয়েছে",
+  "pinDisabledSuccess": "পিন লক বন্ধ করা হয়েছে",
+  "oldPinIncorrect": "বর্তমান পিন সঠিক নয়",
+  "pinLengthError": "পিন {min} থেকে {max} সংখ্যার হতে হবে",
+  "@pinLengthError": {
+    "placeholders": {
+      "min": {
+        "type": "int"
+      },
+      "max": {
+        "type": "int"
+      }
+    }
+  },
+  "pinMismatch": "পিন এবং কনফার্মেশন মেলে না"
+}
+

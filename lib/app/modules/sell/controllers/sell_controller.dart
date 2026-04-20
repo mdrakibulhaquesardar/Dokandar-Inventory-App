@@ -6,6 +6,7 @@ import '../../../data/models/customer.dart';
 import '../../../data/models/product.dart';
 import '../../../data/models/sale.dart';
 import '../../../core/services/database_service.dart';
+import '../../../utils/vibration_helper.dart';
 
 class SellController extends GetxController {
   final DatabaseService _databaseService = Get.find<DatabaseService>();
@@ -38,7 +39,31 @@ class SellController extends GetxController {
     }
   }
 
-  void addToCart(Product product) {
+  void addToCart(Product product) async {
+    // Get latest stock from database
+    final currentProduct = await _databaseService.getProductById(product.id);
+    if (currentProduct == null) {
+      Get.snackbar(
+        'Error',
+        'Product not found',
+        backgroundColor: Colors.red,
+        colorText: Colors.white,
+      );
+      return;
+    }
+
+    // Check if product has stock
+    if (currentProduct.stockQuantity <= 0) {
+      Get.snackbar(
+        'Stock Unavailable',
+        '${product.name} is out of stock',
+        backgroundColor: Colors.red,
+        colorText: Colors.white,
+        snackPosition: SnackPosition.BOTTOM,
+      );
+      return;
+    }
+
     final existingItem = cartItems.firstWhere(
       (item) => item.productId == product.id,
       orElse: () => SaleItem.create(
@@ -52,6 +77,7 @@ class SellController extends GetxController {
     if (!cartItems.contains(existingItem)) {
       existingItem.totalPrice = existingItem.quantity * existingItem.unitPrice;
       cartItems.add(existingItem);
+      VibrationHelper.onButtonTap();
     } else {
       increaseQuantity(cartItems.indexOf(existingItem));
     }
@@ -61,8 +87,33 @@ class SellController extends GetxController {
     cartItems.removeAt(index);
   }
 
-  void increaseQuantity(int index) {
+  void increaseQuantity(int index) async {
     final item = cartItems[index];
+    
+    // Get current product stock from database
+    final product = await _databaseService.getProductById(item.productId);
+    if (product == null) {
+      Get.snackbar(
+        'Error',
+        'Product not found',
+        backgroundColor: Colors.red,
+        colorText: Colors.white,
+      );
+      return;
+    }
+
+    // Check if increasing quantity would exceed stock
+    if (item.quantity >= product.stockQuantity) {
+      Get.snackbar(
+        'Stock Limit',
+        'Only ${product.stockQuantity.toInt()} ${item.productName} available in stock',
+        backgroundColor: Colors.orange,
+        colorText: Colors.white,
+        snackPosition: SnackPosition.BOTTOM,
+      );
+      return;
+    }
+
     item.quantity++;
     item.totalPrice = item.quantity * item.unitPrice;
     cartItems[index] = item;
@@ -81,6 +132,22 @@ class SellController extends GetxController {
 
   double getQuantity(int index) {
     return cartItems[index].quantity;
+  }
+
+  Future<double?> getAvailableStock(int productId) async {
+    try {
+      final product = await _databaseService.getProductById(productId);
+      return product?.stockQuantity;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  Future<bool> canIncreaseQuantity(int index) async {
+    final item = cartItems[index];
+    final product = await _databaseService.getProductById(item.productId);
+    if (product == null) return false;
+    return item.quantity < product.stockQuantity;
   }
 
   final RxDouble discount = 0.0.obs;
@@ -150,6 +217,32 @@ class SellController extends GetxController {
       return;
     }
 
+    // Validate stock availability before processing
+    for (var item in cartItems) {
+      final product = await _databaseService.getProductById(item.productId);
+      if (product == null) {
+        Get.snackbar(
+          'Error',
+          'Product ${item.productName} not found',
+          backgroundColor: Colors.red,
+          colorText: Colors.white,
+        );
+        return;
+      }
+
+      if (item.quantity > product.stockQuantity) {
+        Get.snackbar(
+          'Stock Insufficient',
+          'Only ${product.stockQuantity.toInt()} ${item.productName} available. You are trying to sell ${item.quantity.toInt()}',
+          backgroundColor: Colors.red,
+          colorText: Colors.white,
+          snackPosition: SnackPosition.BOTTOM,
+          duration: const Duration(seconds: 3),
+        );
+        return;
+      }
+    }
+
     final sale = Sale(
       customerId: int.tryParse(selectedCustomerId.value) ?? 0,
       items: cartItems.toList(growable: false),
@@ -189,6 +282,7 @@ class SellController extends GetxController {
 
 
       clearCart();
+      VibrationHelper.onSuccess();
       Get.back();
       Get.find<HomeController>().refresh();
       // show toast message

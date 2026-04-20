@@ -1,6 +1,7 @@
 import 'package:dokandar_app_inventory/app/data/models/category.dart';
 import 'package:dokandar_app_inventory/app/core/services/database_service.dart';
 import 'package:get/get.dart';
+import 'package:flutter/foundation.dart' hide Category;
 
 import '../../home/controllers/home_controller.dart';
 
@@ -23,7 +24,7 @@ class AllCategoryController extends GetxController {
       categories.assignAll(loadedCategories);
     } catch (e) {
       // Handle error
-      print('Error loading categories: $e');
+      debugPrint('Error loading categories: $e');
     }
   }
 
@@ -34,7 +35,7 @@ class AllCategoryController extends GetxController {
       Get.find<HomeController>().refresh();
     } catch (e) {
       // Handle error
-      print('Error adding category: $e');
+      debugPrint('Error adding category: $e');
     }
   }
 
@@ -47,18 +48,18 @@ class AllCategoryController extends GetxController {
       }
     } catch (e) {
       // Handle error
-      print('Error updating category: $e');
+      debugPrint('Error updating category: $e');
     }
   }
 
   void deleteCategory(int id) async {
     try {
       await _databaseService.deleteCategory(id);
-      categories.removeWhere((category) => category.id == id);
+      categories.removeWhere((cat) => cat.id == id);
       Get.find<HomeController>().refresh();
     } catch (e) {
       // Handle error
-      print('Error deleting category: $e');
+      debugPrint('Error deleting category: $e');
     }
   }
 

@@ -1,9 +1,9 @@
 import 'package:dokandar_app_inventory/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
+import '../../../utils/safe_google_fonts.dart';
+import 'package:dokandar_app_inventory/l10n/app_localizations.dart';
 import '../../../config/app_theme_config.dart';
-import '../../../data/models/store.dart';
 import '../controllers/setup_controller.dart';
 
 class StoreSetupView extends GetView<SetupController> {
@@ -13,6 +13,7 @@ class StoreSetupView extends GetView<SetupController> {
   Widget build(BuildContext context) {
     final themeConfig = Get.find<AppThemeConfig>();
     final isDarkMode = Get.isDarkMode;
+    final l10n = AppLocalizations.of(context)!;
 
     return Scaffold(
         backgroundColor: themeConfig.getSurfaceColor(isDarkMode),
@@ -30,8 +31,8 @@ class StoreSetupView extends GetView<SetupController> {
             child: Row(
               children: [
                 Text(
-                  'দোকান সেটআপ',
-                  style: GoogleFonts.poppins(
+                  l10n.storeSetup,
+                  style: SafeGoogleFonts.poppins(
                     fontSize: 24,
                     fontWeight: FontWeight.w600,
                     color: themeConfig.getTextPrimaryColor(isDarkMode),
@@ -44,7 +45,7 @@ class StoreSetupView extends GetView<SetupController> {
                   decoration: BoxDecoration(
                     color: themeConfig
                         .getPrimaryColor(isDarkMode)
-                        .withOpacity(0.1),
+                        .withValues(alpha: 0.1),
                     borderRadius: BorderRadius.circular(20),
                   ),
                   child: Row(
@@ -56,8 +57,8 @@ class StoreSetupView extends GetView<SetupController> {
                       ),
                       const SizedBox(width: 4),
                       Text(
-                        'ধাপ 2/2',
-                        style: GoogleFonts.poppins(
+                        l10n.step2of2,
+                        style: SafeGoogleFonts.poppins(
                           fontSize: 12,
                           color: themeConfig.getPrimaryColor(isDarkMode),
                         ),
@@ -85,7 +86,7 @@ class StoreSetupView extends GetView<SetupController> {
                             radius: 60,
                             backgroundColor: themeConfig
                                 .getPrimaryColor(isDarkMode)
-                                .withOpacity(0.1),
+                                .withValues(alpha: 0.1),
                             child: Icon(
                               Icons.store_outlined,
                               size: 60,
@@ -112,8 +113,8 @@ class StoreSetupView extends GetView<SetupController> {
                       ),
                       const SizedBox(height: 8),
                       Text(
-                        'দোকানের লোগো যোগ করুন',
-                        style: GoogleFonts.poppins(
+                        l10n.addStoreLogo,
+                        style: SafeGoogleFonts.poppins(
                           fontSize: 14,
                           color: themeConfig.getTextSecondaryColor(isDarkMode),
                         ),
@@ -123,16 +124,16 @@ class StoreSetupView extends GetView<SetupController> {
                 ),
                 const SizedBox(height: 24),
                 Text(
-                  'দোকানের তথ্য',
-                  style: GoogleFonts.poppins(
+                  l10n.storeInfo,
+                  style: SafeGoogleFonts.poppins(
                     fontSize: 18,
                     fontWeight: FontWeight.w600,
                     color: themeConfig.getTextPrimaryColor(isDarkMode),
                   ),
                 ),
                 Text(
-                  'আপনার দোকানের তথ্য দিন',
-                  style: GoogleFonts.poppins(
+                  l10n.storeInfoDescription,
+                  style: SafeGoogleFonts.poppins(
                     fontSize: 14,
                     color: themeConfig.getTextSecondaryColor(isDarkMode),
                   ),
@@ -141,14 +142,14 @@ class StoreSetupView extends GetView<SetupController> {
                 TextFormField(
                   controller: controller.storeNameController,
                   decoration: InputDecoration(
-                    labelText: 'দোকানের নাম',
+                    labelText: l10n.storeName,
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
                     ),
                   ),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return 'দোকানের নাম দিন';
+                      return l10n.storeNameRequired;
                     }
                     return null;
                   },
@@ -157,14 +158,14 @@ class StoreSetupView extends GetView<SetupController> {
                 TextFormField(
                   controller: controller.storeAddressController,
                   decoration: InputDecoration(
-                    labelText: 'ঠিকানা',
+                    labelText: l10n.address,
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
                     ),
                   ),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return 'ঠিকানা দিন';
+                      return l10n.addressRequired;
                     }
                     return null;
                   },
@@ -173,14 +174,14 @@ class StoreSetupView extends GetView<SetupController> {
                 TextFormField(
                   controller: controller.storePhoneController,
                   decoration: InputDecoration(
-                    labelText: 'ফোন নম্বর',
+                    labelText: l10n.phoneNumber,
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
                     ),
                   ),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return 'ফোন নম্বর দিন';
+                      return l10n.phoneRequired;
                     }
                     return null;
                   },
@@ -189,41 +190,41 @@ class StoreSetupView extends GetView<SetupController> {
                 TextFormField(
                   controller: controller.storeEmailController,
                   decoration: InputDecoration(
-                    labelText: 'ইমেইল',
+                    labelText: l10n.email,
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
                     ),
                   ),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return 'ইমেইল দিন';
+                      return l10n.emailRequired;
                     }
                     if (!GetUtils.isEmail(value)) {
-                      return 'সঠিক ইমেইল দিন';
+                      return l10n.validEmailRequired;
                     }
                     return null;
                   },
                 ),
                 const SizedBox(height: 16),
                 DropdownButtonFormField<String>(
-                  value: controller.businessTypeController.text.isEmpty
+                  initialValue: controller.businessTypeController.text.isEmpty
                       ? null
                       : controller.businessTypeController.text,
                   decoration: InputDecoration(
-                    labelText: 'ব্যবসার ধরন',
+                    labelText: l10n.businessType,
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
                     ),
                   ),
-                  items: [
-                    'খুচরা বিক্রেতা',
-                    'পাইকারি বিক্রেতা',
-                    'রেস্তোরাঁ',
-                    'ফার্মেসি',
-                    'ফ্যাশন স্টোর',
-                    'ইলেকট্রনিক্স',
-                    'অন্যান্য',
-                  ].map((String value) {
+                  items: <String>[
+                    l10n.retailer,
+                    l10n.wholesaler,
+                    l10n.restaurant,
+                    l10n.pharmacy,
+                    l10n.fashionStore,
+                    l10n.electronics,
+                    l10n.other,
+                  ].map<DropdownMenuItem<String>>((String value) {
                     return DropdownMenuItem<String>(
                       value: value,
                       child: Text(value),
@@ -236,7 +237,7 @@ class StoreSetupView extends GetView<SetupController> {
                   },
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return 'ব্যবসার ধরন দিন';
+                      return l10n.businessTypeRequired;
                     }
                     return null;
                   },
@@ -247,7 +248,7 @@ class StoreSetupView extends GetView<SetupController> {
                   decoration: BoxDecoration(
                     color: themeConfig
                         .getPrimaryColor(isDarkMode)
-                        .withOpacity(0.1),
+                        .withValues(alpha: 0.1),
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: Row(
@@ -260,8 +261,8 @@ class StoreSetupView extends GetView<SetupController> {
                       const SizedBox(width: 8),
                       Expanded(
                         child: Text(
-                          'আপনার দোকানের তথ্য সঠিকভাবে দিন। এই তথ্য আপনার ব্যবসার জন্য গুরুত্বপূর্ণ।',
-                          style: GoogleFonts.poppins(
+                          l10n.storeInfoNote,
+                          style: SafeGoogleFonts.poppins(
                             fontSize: 12,
                             color:
                                 themeConfig.getTextSecondaryColor(isDarkMode),
@@ -283,15 +284,15 @@ class StoreSetupView extends GetView<SetupController> {
                         style: TextButton.styleFrom(
                           backgroundColor: themeConfig
                               .getPrimaryColor(isDarkMode)
-                              .withOpacity(0.1),
+                              .withValues(alpha: 0.1),
                           padding: const EdgeInsets.symmetric(vertical: 16),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(12),
                           ),
                         ),
                         child: Text(
-                          'পূর্ববর্তী',
-                          style: GoogleFonts.poppins(
+                          l10n.previous,
+                          style: SafeGoogleFonts.poppins(
                             fontSize: 16,
                             fontWeight: FontWeight.w600,
                             color: themeConfig.getPrimaryColor(isDarkMode),
@@ -306,15 +307,8 @@ class StoreSetupView extends GetView<SetupController> {
                         onPressed: () {
                           if (controller.storeFormKey.currentState!
                               .validate()) {
-                            final store = Store(
-                              name: controller.storeNameController.text,
-                              address: controller.storeAddressController.text,
-                              phone: controller.storePhoneController.text,
-                              email: controller.storeEmailController.text,
-                              businessType:
-                                  controller.businessTypeController.text,
-                            );
                             // TODO: Save store data and navigate to next screen
+                            // Store will be saved in SetupController.saveSetupData()
                             Get.toNamed(Routes.CONFROM_SETUP);
                           }
                         },
@@ -327,8 +321,8 @@ class StoreSetupView extends GetView<SetupController> {
                           ),
                         ),
                         child: Text(
-                          'পরবর্তী',
-                          style: GoogleFonts.poppins(
+                          l10n.next,
+                          style: SafeGoogleFonts.poppins(
                             fontSize: 16,
                             fontWeight: FontWeight.w600,
                             color: Colors.white,
@@ -344,3 +338,5 @@ class StoreSetupView extends GetView<SetupController> {
         ));
   }
 }
+
+

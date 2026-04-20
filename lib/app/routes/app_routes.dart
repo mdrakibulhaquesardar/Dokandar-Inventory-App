@@ -23,6 +23,20 @@ abstract class Routes {
   static const ALL_SALES = _Paths.ALL_SALES;
   static const PAY_DUE = _Paths.PAY_DUE;
   static const SUBSCRIPTION = _Paths.SUBSCRIPTION;
+  static const ALL_SUPPLIERS = _Paths.ALL_SUPPLIERS;
+  static const ALL_EMPLOYEES = _Paths.ALL_EMPLOYEES;
+  static const STORE_EXPENSES = _Paths.STORE_EXPENSES;
+  static const TRANSACTION_HISTORY = _Paths.TRANSACTION_HISTORY;
+  static const STOCK_ALERT = _Paths.STOCK_ALERT;
+  static const GENERATE_REPORT = _Paths.GENERATE_REPORT;
+  static const STORE_SETTINGS = _Paths.STORE_SETTINGS;
+  static const EDIT_PROFILE = _Paths.EDIT_PROFILE;
+  static const PRIVACY_POLICY = _Paths.PRIVACY_POLICY;
+  static const TERMS = _Paths.TERMS;
+  static const SEARCH = _Paths.SEARCH;
+  static const INVOICE_PREVIEW = _Paths.INVOICE_PREVIEW;
+  static const APP_LOCK = _Paths.APP_LOCK;
+  static const MANAGE_PIN = _Paths.MANAGE_PIN;
 
 }
 
@@ -48,4 +62,18 @@ abstract class _Paths {
   static const ALL_SALES = '/all-sales';
   static const PAY_DUE= '/pay-due';
   static const SUBSCRIPTION = '/subscription';
+  static const ALL_SUPPLIERS = '/all-suppliers';
+  static const ALL_EMPLOYEES = '/all-employees';
+  static const STORE_EXPENSES = '/store-expenses';
+  static const TRANSACTION_HISTORY = '/transaction-history';
+  static const STOCK_ALERT = '/stock-alert';
+  static const GENERATE_REPORT = '/generate-report';
+  static const STORE_SETTINGS = '/store-settings';
+  static const EDIT_PROFILE = '/edit-profile';
+  static const PRIVACY_POLICY = '/privacy-policy';
+  static const TERMS = '/terms';
+  static const SEARCH = '/search';
+  static const INVOICE_PREVIEW = '/invoice-preview';
+  static const APP_LOCK = '/app-lock';
+  static const MANAGE_PIN = '/manage-pin';
 }

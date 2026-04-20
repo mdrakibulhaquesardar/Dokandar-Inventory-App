@@ -2,7 +2,8 @@
 import 'package:dokandar_app_inventory/app/utils/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
+import '../../../utils/safe_google_fonts.dart';
+import 'package:dokandar_app_inventory/l10n/app_localizations.dart';
 import '../../../config/app_theme_config.dart';
 import '../../../data/models/customer.dart';
 import '../../../widgets/Custom_AppBar.dart';
@@ -15,13 +16,14 @@ class AllCustomerView extends GetView<AllCustomerController> {
   Widget build(BuildContext context) {
     final themeConfig = Get.find<AppThemeConfig>();
     final isDarkMode = Get.isDarkMode;
+    final l10n = AppLocalizations.of(context)!;
 
     return Scaffold(
       backgroundColor: themeConfig.getBackgroundColor(isDarkMode),
       appBar:customAppBar(
         themeConfig,
         isDarkMode,
-        'গ্রাহক তালিকা',
+        l10n.customerList,
         true,
         false,
       ),
@@ -40,17 +42,18 @@ class AllCustomerView extends GetView<AllCustomerController> {
                 children: [
                   Obx(() {
                     return _buildStatCard(
-                      'মোট গ্রাহক',
+                      l10n.totalCustomers,
                       controller.customers.length.translateNumberToBengali()
                           .toString(),
                       Icons.people,
                       themeConfig,
                       isDarkMode,
+                      context,
                     );
                   }),
                   Obx(() {
                     return _buildStatCard(
-                      'নতুন গ্রাহক',
+                      l10n.newCustomers,
                       controller.customers
                           .where((customer) => customer.totalPurchases == 0)
                           .length
@@ -59,11 +62,12 @@ class AllCustomerView extends GetView<AllCustomerController> {
                       Icons.person_add,
                       themeConfig,
                       isDarkMode,
+                      context,
                     );
                   }),
                   Obx(() {
                     return _buildStatCard(
-                      'মোট বাকি টাকা',
+                      l10n.totalDue,
                       controller.customers
                           .where((customer) => customer.hasDue)
                           .fold(0.0, (sum, customer) => sum + customer.totalDue)
@@ -71,6 +75,7 @@ class AllCustomerView extends GetView<AllCustomerController> {
                       Icons.money_off,
                       themeConfig,
                       isDarkMode,
+                      context,
                     );
                   }),
                 ],
@@ -117,6 +122,7 @@ class AllCustomerView extends GetView<AllCustomerController> {
       AppThemeConfig themeConfig,
       bool isDarkMode,
       BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return InkWell(
       onTap: () =>
           _showCustomerDetails(
@@ -127,7 +133,7 @@ class AllCustomerView extends GetView<AllCustomerController> {
           color: themeConfig.getSurfaceColor(isDarkMode),
           borderRadius: BorderRadius.circular(12),
           border: Border.all(
-            color: themeConfig.getPrimaryColor(isDarkMode).withOpacity(0.1),
+            color: themeConfig.getPrimaryColor(isDarkMode).withValues(alpha: 0.1),
             width: 1,
           ),
         ),
@@ -138,7 +144,7 @@ class AllCustomerView extends GetView<AllCustomerController> {
               CircleAvatar(
                 radius: 20,
                 backgroundColor:
-                themeConfig.getPrimaryColor(isDarkMode).withOpacity(0.1),
+                themeConfig.getPrimaryColor(isDarkMode).withValues(alpha: 0.1),
                 child: Text(
                   customerName[0].toUpperCase(),
                   style: TextStyle(
@@ -190,11 +196,11 @@ class AllCustomerView extends GetView<AllCustomerController> {
                           decoration: BoxDecoration(
                             color: themeConfig
                                 .getPrimaryColor(isDarkMode)
-                                .withOpacity(0.1),
+                                .withValues(alpha: 0.1),
                             borderRadius: BorderRadius.circular(6),
                           ),
                           child: Text(
-                            'মোট ক্রয়: $totalPurchase৳',
+                            '${l10n.totalPurchases}: $totalPurchase৳',
                             style: TextStyle(
                               fontSize: 12,
                               color: themeConfig.getPrimaryColor(isDarkMode),
@@ -208,11 +214,11 @@ class AllCustomerView extends GetView<AllCustomerController> {
                           padding: const EdgeInsets.symmetric(
                               horizontal: 8, vertical: 4),
                           decoration: BoxDecoration(
-                            color: Colors.red.withOpacity(0.1),
+                            color: Colors.red.withValues(alpha: 0.1),
                             borderRadius: BorderRadius.circular(6),
                           ),
                           child: Text(
-                            'বাকি: $totalDue৳',
+                            '${l10n.dueAmount}: $totalDue৳',
                             style: TextStyle(
                               fontSize: 12,
                               color: Colors.red,
@@ -234,11 +240,11 @@ class AllCustomerView extends GetView<AllCustomerController> {
                   decoration: BoxDecoration(
                     color: themeConfig
                         .getPrimaryColor(isDarkMode)
-                        .withOpacity(0.5),
+                        .withValues(alpha: 0.1),
                     borderRadius: BorderRadius.circular(6),
                   ),
                   child: Text(
-                    'নতুন গ্রাহক',
+                    l10n.newCustomers,
                     style: TextStyle(
                       fontSize: 12,
                       color: themeConfig.getTextPrimaryColor(isDarkMode),
@@ -255,6 +261,7 @@ class AllCustomerView extends GetView<AllCustomerController> {
 
   void _showCustomerDetails(BuildContext context, Customer customer,
       AppThemeConfig themeConfig, bool isDarkMode) {
+    final l10n = AppLocalizations.of(context)!;
     final nameController = TextEditingController(text: customer.name);
     final phoneController = TextEditingController(text: customer.phone);
     final addressController =
@@ -286,59 +293,67 @@ class AllCustomerView extends GetView<AllCustomerController> {
               children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      'গ্রাহকের তথ্য',
-                      style: GoogleFonts.poppins(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w600,
-                        color: themeConfig.getTextPrimaryColor(isDarkMode),
+                    Flexible(
+                      child: Text(
+                        l10n.customerInfo,
+                        style: SafeGoogleFonts.poppins(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w600,
+                          color: themeConfig.getTextPrimaryColor(isDarkMode),
+                        ),
                       ),
                     ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        Row(
-                          children: [
-                            Text(
-                              'মোট ক্রয়: ${customer.totalPurchases.toStringAsFixed(
-                                  2)}৳',
-                              style: GoogleFonts.poppins(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w500,
-                                color: themeConfig.getPrimaryColor(isDarkMode),
+                    Flexible(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Wrap(
+                            alignment: WrapAlignment.end,
+                            children: [
+                              Text(
+                                '${l10n.totalPurchases}: ${customer.totalPurchases.toStringAsFixed(
+                                    2)}৳',
+                                style: SafeGoogleFonts.poppins(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w500,
+                                  color: themeConfig.getPrimaryColor(isDarkMode),
+                                ),
                               ),
-                            ),
-                            Text(
-                              '  |  বাকি: ${customer.totalDue.toStringAsFixed(2)}৳',
-                              style: GoogleFonts.poppins(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w500,
-                                color: themeConfig.getPrimaryColor(isDarkMode),
+                              Text(
+                                '  |  ${l10n.dueAmount}: ${customer.totalDue.toStringAsFixed(2)}৳',
+                                style: SafeGoogleFonts.poppins(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w500,
+                                  color: themeConfig.getPrimaryColor(isDarkMode),
+                                ),
                               ),
+                            ],
+                          ),
+                          Text(
+                            customer.hasDue ? l10n.customerHasDue : l10n.customerNoDue,
+                            style: SafeGoogleFonts.poppins(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w500,
+                              color: customer.hasDue
+                                  ? Colors.red
+                                  : themeConfig.getTextPrimaryColor(isDarkMode),
                             ),
-                          ],
-                        ),
-                        Text(
-                          customer.hasDue ? 'গ্রাহক বাকি আছে' : 'গ্রাহক বাকি নেই',
-                          style: GoogleFonts.poppins(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w500,
-                            color: customer.hasDue
-                                ? Colors.red
-                                : themeConfig.getTextPrimaryColor(isDarkMode),
                           ),
-                        ),
-                        //last purchase date
-                        Text(
-                          'সর্বশেষ ক্রয়: ${customer.updatedAt != null ? customer.updatedAt!.toLocal().toString().split(' ')[0] : 'N/A'}',
-                          style: GoogleFonts.poppins(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w500,
-                            color: themeConfig.getTextSecondaryColor(isDarkMode),
+                          //last purchase date
+                          Text(
+                            '${l10n.lastPurchase}: ${customer.updatedAt != null ? customer.updatedAt!.toLocal().toString().split(' ')[0] : 'N/A'}',
+                            style: SafeGoogleFonts.poppins(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w500,
+                              color: themeConfig.getTextSecondaryColor(isDarkMode),
+                            ),
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 1,
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ],
                 ),
@@ -346,7 +361,7 @@ class AllCustomerView extends GetView<AllCustomerController> {
                 TextFormField(
                   controller: nameController,
                   decoration: InputDecoration(
-                    labelText: 'নাম',
+                    labelText: l10n.name,
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
                     ),
@@ -356,7 +371,7 @@ class AllCustomerView extends GetView<AllCustomerController> {
                 TextFormField(
                   controller: phoneController,
                   decoration: InputDecoration(
-                    labelText: 'ফোন নম্বর',
+                    labelText: l10n.phoneNumber,
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
                     ),
@@ -366,7 +381,7 @@ class AllCustomerView extends GetView<AllCustomerController> {
                 TextFormField(
                   controller: addressController,
                   decoration: InputDecoration(
-                    labelText: 'ঠিকানা',
+                    labelText: l10n.address,
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
                     ),
@@ -396,7 +411,7 @@ class AllCustomerView extends GetView<AllCustomerController> {
                           Navigator.pop(context);
                         },
                         child: Text(
-                          'সংরক্ষণ করুন',
+                          l10n.save,
                           style: TextStyle(
                             color: themeConfig.getTextPrimaryColor(isDarkMode),
                           ),
@@ -414,13 +429,12 @@ class AllCustomerView extends GetView<AllCustomerController> {
                         context: context,
                         builder: (context) =>
                             AlertDialog(
-                              title: const Text('গ্রাহক মুছে ফেলুন'),
-                              content: const Text(
-                                  'আপনি কি নিশ্চিত যে আপনি এই গ্রাহককে মুছে ফেলতে চান?'),
+                              title: Text(l10n.deleteCustomer),
+                              content: Text(l10n.confirmDeleteCustomer),
                               actions: [
                                 TextButton(
                                   onPressed: () => Navigator.pop(context),
-                                  child: const Text('বাতিল'),
+                                  child: Text(l10n.cancel),
                                 ),
                                 TextButton(
                                   onPressed: () {
@@ -429,18 +443,18 @@ class AllCustomerView extends GetView<AllCustomerController> {
                                     Navigator.pop(
                                         context); // Close bottom sheet
                                   },
-                                  child: const Text(
-                                    'মুছে ফেলুন',
-                                    style: TextStyle(color: Colors.red),
+                                  child: Text(
+                                    l10n.delete,
+                                    style: const TextStyle(color: Colors.red),
                                   ),
                                 ),
                               ],
                             ),
                       );
                     },
-                    child: const Text(
-                      'গ্রাহক মুছে ফেলুন',
-                      style: TextStyle(color: Colors.red),
+                    child: Text(
+                      l10n.deleteCustomer,
+                      style: const TextStyle(color: Colors.red),
                     ),
                   ),
                 ),
@@ -453,6 +467,7 @@ class AllCustomerView extends GetView<AllCustomerController> {
 
   void _showAddCustomerForm(BuildContext context, AppThemeConfig themeConfig,
       bool isDarkMode) {
+    final l10n = AppLocalizations.of(context)!;
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
@@ -480,8 +495,8 @@ class AllCustomerView extends GetView<AllCustomerController> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'নতুন গ্রাহক যোগ করুন',
-                    style: GoogleFonts.poppins(
+                    l10n.addCustomer,
+                    style: SafeGoogleFonts.poppins(
                       fontSize: 20,
                       fontWeight: FontWeight.w600,
                       color: themeConfig.getTextPrimaryColor(isDarkMode),
@@ -492,12 +507,12 @@ class AllCustomerView extends GetView<AllCustomerController> {
                     controller: controller.nameController,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return 'নাম অবশ্যই পূরণ করতে হবে';
+                        return l10n.nameRequired;
                       }
                       return null;
                     },
                     decoration: InputDecoration(
-                      labelText: 'নাম',
+                      labelText: l10n.name,
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12),
                       ),
@@ -508,12 +523,12 @@ class AllCustomerView extends GetView<AllCustomerController> {
                     controller: controller.phoneController,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return 'ফোন নম্বর অবশ্যই পূরণ করতে হবে';
+                        return l10n.phoneRequired;
                       }
                       return null;
                     },
                     decoration: InputDecoration(
-                      labelText: 'ফোন নম্বর',
+                      labelText: l10n.phoneNumber,
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12),
                       ),
@@ -523,7 +538,7 @@ class AllCustomerView extends GetView<AllCustomerController> {
                   TextFormField(
                     controller: controller.addressController,
                     decoration: InputDecoration(
-                      labelText: 'ঠিকানা',
+                      labelText: l10n.address,
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12),
                       ),
@@ -555,7 +570,7 @@ class AllCustomerView extends GetView<AllCustomerController> {
                             }
                           },
                           child: Text(
-                            'যোগ করুন',
+                            l10n.add,
                             style: TextStyle(
                               color: themeConfig.getTextPrimaryColor(
                                   isDarkMode),
@@ -575,7 +590,7 @@ class AllCustomerView extends GetView<AllCustomerController> {
 }
 
 Widget _buildStatCard(String title, String value, IconData icon,
-    AppThemeConfig themeConfig, bool isDarkMode) {
+    AppThemeConfig themeConfig, bool isDarkMode, BuildContext context) {
   return Column(
     children: [
       Icon(
@@ -602,3 +617,5 @@ Widget _buildStatCard(String title, String value, IconData icon,
     ],
   );
 }
+
+

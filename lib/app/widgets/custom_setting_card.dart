@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
+import '../utils/safe_google_fonts.dart';
 import '../config/app_theme_config.dart';
 
 class CustomSettingCard extends StatelessWidget {
@@ -31,12 +31,12 @@ class CustomSettingCard extends StatelessWidget {
         onTap: onTap,
         contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         leading: CircleAvatar(
-          backgroundColor: color.withOpacity(0.1),
+          backgroundColor: color.withValues(alpha: 0.1),
           child: Icon(icon, color: color),
         ),
         title: Text(
           title,
-          style: GoogleFonts.poppins(
+          style: SafeGoogleFonts.poppins(
             fontWeight: FontWeight.w500,
             color: themeConfig.getTextPrimaryColor(isDarkMode),
           ),
@@ -50,3 +50,4 @@ class CustomSettingCard extends StatelessWidget {
     );
   }
 }
+

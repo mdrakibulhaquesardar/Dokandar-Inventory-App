@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
+import '../../../utils/safe_google_fonts.dart';
+import 'package:dokandar_app_inventory/l10n/app_localizations.dart';
 import '../../../config/app_config.dart';
 import '../../../config/app_theme_config.dart';
 import '../../../widgets/Custom_AppBar.dart';
+import '../../../routes/app_pages.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class AboutAppView extends GetView {
   const AboutAppView({super.key});
@@ -12,11 +15,12 @@ class AboutAppView extends GetView {
   Widget build(BuildContext context) {
     final themeConfig = Get.find<AppThemeConfig>();
     final isDarkMode = Get.isDarkMode;
+    final l10n = AppLocalizations.of(context)!;
     return Scaffold(
       appBar: customAppBar(
         themeConfig,
         isDarkMode,
-        'অ্যাপ সম্পর্কে',
+        l10n.aboutApp,
         true,
         false,
       ),
@@ -37,12 +41,12 @@ class AboutAppView extends GetView {
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         border: Border.all(
-                          color: Colors.blue.withOpacity(0.2),
+                          color: Colors.blue.withValues(alpha: 0.1),
                           width: 2,
                         ),
                         boxShadow: [
                           BoxShadow(
-                            color: Colors.blue.withOpacity(0.1),
+                            color: Colors.blue.withValues(alpha: 0.1),
                             blurRadius: 10,
                             spreadRadius: 2,
                           ),
@@ -50,14 +54,14 @@ class AboutAppView extends GetView {
                       ),
                       child: CircleAvatar(
                         radius: 40,
-                        backgroundColor: Colors.blue.withOpacity(0.1),
+                        backgroundColor: Colors.blue.withValues(alpha: 0.1),
                         backgroundImage: const AssetImage('assets/icon.png'),
                       ),
                     ),
                     const SizedBox(height: 16),
                     Text(
                       Get.find <AppConfig>().appCurrentName,
-                      style: GoogleFonts.poppins(
+                      style: SafeGoogleFonts.poppins(
                         fontSize: 24,
                         fontWeight: FontWeight.w600,
                         color: Colors.blue,
@@ -66,7 +70,7 @@ class AboutAppView extends GetView {
                     const SizedBox(height: 4),
                     Text(
                       Get.find<AppConfig>().appCurrentDescription,
-                      style: GoogleFonts.poppins(
+                      style: SafeGoogleFonts.poppins(
                         fontSize: 14,
                         color: Colors.grey[600],
                       ),
@@ -77,23 +81,23 @@ class AboutAppView extends GetView {
               const SizedBox(height: 16),
               // App Info Section
               _buildSection(
-                title: 'অ্যাপ তথ্য',
-                subtitle: 'বর্তমান সংস্করণ এবং বিবরণ',
+                title: l10n.appInfo,
+                subtitle: l10n.currentVersionAndDescription,
                 icon: Icons.info_outline,
                 content: Column(
                   children: [
                     _buildAppInfoCard(
-                      title: 'বর্তমান সংস্করণ',
+                      title: l10n.currentVersion,
                       value: Get.find<AppConfig>().appCurrentVersion,
                       icon: Icons.phone_android,
                     ),
                     _buildAppInfoCard(
-                      title: 'আপডেট তারিখ',
+                      title: l10n.updateDate,
                       value: Get.find<AppConfig>().appLastUpdate,
                       icon: Icons.calendar_today,
                     ),
                     _buildAppInfoCard(
-                      title: 'অ্যাপ সাইজ',
+                      title: l10n.appSize,
                       value: Get.find<AppConfig>().appCurrentSize,
                       icon: Icons.storage,
                     ),
@@ -104,8 +108,8 @@ class AboutAppView extends GetView {
 
               // Changelog Section
               _buildSection(
-                title: 'পরিবর্তনসমূহ',
-                subtitle: 'সর্বশেষ আপডেটে কি কি পরিবর্তন হয়েছে',
+                title: l10n.changelog,
+                subtitle: l10n.changelogDescription,
                 icon: Icons.history,
                 content: Column(
                   children: [
@@ -113,6 +117,7 @@ class AboutAppView extends GetView {
                       version: Get.find<AppConfig>().appCurrentVersion,
                       date: Get.find<AppConfig>().appLastUpdate,
                       changes: Get.find<AppConfig>().appChangeLog,
+                      l10n: l10n,
                     ),
                   ],
                 ),
@@ -120,17 +125,18 @@ class AboutAppView extends GetView {
               const SizedBox(height: 24),
 
               // Developer Info Section
+              if (!AppConfig.enablePersonalUse)
               _buildSection(
-                title: 'ডেভেলপার তথ্য',
-                subtitle: 'অ্যাপটি কে তৈরি করেছেন',
+                title: l10n.developerInfo,
+                subtitle: l10n.developerInfoDescription,
                 icon: Icons.code,
                 content: Column(
                   children: [
                     _buildDeveloperCard(
-                      name: 'রাকিবুল হক সরদার',
-                      role: 'Associate Software Engineer at NexCode Studio',
-                      email: 'rakibullhaques@gmail.com',
-                      website: 'www.linkedin.com/in/rakibullhaque',
+                      name: Get.find<AppConfig>().appDeveloperName,
+                      role: l10n.developer,
+                      email: Get.find<AppConfig>().appSupportEmail,
+                      website: Get.find<AppConfig>().appWebsite,
                     ),
                   ],
                 ),
@@ -139,18 +145,22 @@ class AboutAppView extends GetView {
 
               // Legal Section
               _buildSection(
-                title: 'আইনি তথ্য',
-                subtitle: 'গোপনীয়তা নীতি এবং শর্তাবলী',
+                title: l10n.legalInfo,
+                subtitle: l10n.legalInfoDescription,
                 icon: Icons.gavel,
                 content: Column(
                   children: [
                     _buildLegalItem(
-                      title: 'গোপনীয়তা নীতি',
-                      onTap: () {},
+                      title: l10n.privacyPolicy,
+                      onTap: () {
+                        Get.toNamed(Routes.PRIVACY_POLICY);
+                      },
                     ),
                     _buildLegalItem(
-                      title: 'ব্যবহারের শর্তাবলী',
-                      onTap: () {},
+                      title: l10n.termsAndConditions,
+                      onTap: () {
+                        Get.toNamed(Routes.TERMS);
+                      },
                     ),
                   ],
                 ),
@@ -178,7 +188,7 @@ class AboutAppView extends GetView {
               Container(
                 padding: const EdgeInsets.all(8),
                 decoration: BoxDecoration(
-                  color: Colors.blue.withOpacity(0.1),
+                  color: Colors.blue.withValues(alpha: 0.1),
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: Icon(icon, color: Colors.blue, size: 24),
@@ -189,14 +199,14 @@ class AboutAppView extends GetView {
                 children: [
                   Text(
                     title,
-                    style: GoogleFonts.poppins(
+                    style: SafeGoogleFonts.poppins(
                       fontSize: 18,
                       fontWeight: FontWeight.w600,
                     ),
                   ),
                   Text(
                     subtitle,
-                    style: GoogleFonts.poppins(
+                    style: SafeGoogleFonts.poppins(
                       fontSize: 14,
                       color: Colors.grey[600],
                     ),
@@ -228,21 +238,21 @@ class AboutAppView extends GetView {
         leading: Container(
           padding: const EdgeInsets.all(8),
           decoration: BoxDecoration(
-            color: Colors.blue.withOpacity(0.1),
+            color: Colors.blue.withValues(alpha: 0.1),
             borderRadius: BorderRadius.circular(8),
           ),
           child: Icon(icon, color: Colors.blue, size: 24),
         ),
         title: Text(
           title,
-          style: GoogleFonts.poppins(
+          style: SafeGoogleFonts.poppins(
             fontSize: 14,
             fontWeight: FontWeight.w500,
           ),
         ),
         trailing: Text(
           value,
-          style: GoogleFonts.poppins(
+          style: SafeGoogleFonts.poppins(
             fontSize: 14,
             color: Colors.grey[600],
           ),
@@ -255,6 +265,7 @@ class AboutAppView extends GetView {
     required String version,
     required String date,
     required List<String> changes,
+    required AppLocalizations l10n,
   }) {
     return Card(
       elevation: 0,
@@ -270,15 +281,15 @@ class AboutAppView extends GetView {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  'সংস্করণ $version',
-                  style: GoogleFonts.poppins(
+                  '${l10n.version} $version',
+                  style: SafeGoogleFonts.poppins(
                     fontSize: 16,
                     fontWeight: FontWeight.w600,
                   ),
                 ),
                 Text(
                   date,
-                  style: GoogleFonts.poppins(
+                  style: SafeGoogleFonts.poppins(
                     fontSize: 14,
                     color: Colors.grey[600],
                   ),
@@ -300,7 +311,7 @@ class AboutAppView extends GetView {
                       Expanded(
                         child: Text(
                           change,
-                          style: GoogleFonts.poppins(
+                          style: SafeGoogleFonts.poppins(
                             fontSize: 14,
                             color: Colors.grey[800],
                           ),
@@ -333,7 +344,7 @@ class AboutAppView extends GetView {
           children: [
             Text(
               name,
-              style: GoogleFonts.poppins(
+              style: SafeGoogleFonts.poppins(
                 fontSize: 16,
                 fontWeight: FontWeight.w600,
               ),
@@ -341,7 +352,7 @@ class AboutAppView extends GetView {
             const SizedBox(height: 4),
             Text(
               role,
-              style: GoogleFonts.poppins(
+              style: SafeGoogleFonts.poppins(
                 fontSize: 14,
                 color: Colors.grey[600],
               ),
@@ -350,10 +361,12 @@ class AboutAppView extends GetView {
             _buildContactItem(
               icon: Icons.email,
               text: email,
+              onTap: () => _launchUrl(Uri.parse('mailto:$email')),
             ),
             _buildContactItem(
               icon: Icons.language,
               text: website,
+              onTap: () => _launchUrl(Uri.parse(website)),
             ),
           ],
         ),
@@ -364,25 +377,29 @@ class AboutAppView extends GetView {
   Widget _buildContactItem({
     required IconData icon,
     required String text,
+    VoidCallback? onTap,
   }) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 8),
-      child: Row(
-        children: [
-          Icon(
-            icon,
-            size: 20,
-            color: Colors.grey[600],
-          ),
-          const SizedBox(width: 8),
-          Text(
-            text,
-            style: GoogleFonts.poppins(
-              fontSize: 14,
+      child: InkWell(
+        onTap: onTap,
+        child: Row(
+          children: [
+            Icon(
+              icon,
+              size: 20,
               color: Colors.grey[600],
             ),
-          ),
-        ],
+            const SizedBox(width: 8),
+            Text(
+              text,
+              style: SafeGoogleFonts.poppins(
+                fontSize: 14,
+                color: Colors.grey[600],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -400,7 +417,7 @@ class AboutAppView extends GetView {
         contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         title: Text(
           title,
-          style: GoogleFonts.poppins(
+          style: SafeGoogleFonts.poppins(
             fontSize: 14,
             fontWeight: FontWeight.w500,
           ),
@@ -414,4 +431,13 @@ class AboutAppView extends GetView {
       ),
     );
   }
+
+  Future<void> _launchUrl(Uri uri) async {
+    if (!await launchUrl(uri)) {
+      Get.snackbar('Error', 'Could not open link',
+          snackPosition: SnackPosition.BOTTOM);
+    }
+  }
 }
+
+

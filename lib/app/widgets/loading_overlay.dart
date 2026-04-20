@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
+import '../utils/safe_google_fonts.dart';
 
 import '../config/app_theme_config.dart';
 
@@ -14,8 +14,8 @@ class LoadingOverlay {
     if (!isOpen) {
       isOpen = true;
       Get.dialog(
-        WillPopScope(
-          onWillPop: () async => false,
+        PopScope(
+          canPop: false,
           child: Center(
             child: Container(
               padding: const EdgeInsets.all(16),
@@ -27,7 +27,7 @@ class LoadingOverlay {
                   BoxShadow(
                     color: themeConfig
                         .getTextPrimaryColor(Get.isDarkMode)
-                        .withOpacity(0.1),
+                        .withValues(alpha: 0.1),
                     blurRadius: 16,
                     offset: const Offset(0, 8),
                   ),
@@ -41,7 +41,7 @@ class LoadingOverlay {
                     const SizedBox(height: 16),
                     Text(
                       message,
-                      style: GoogleFonts.poppins(
+                      style: SafeGoogleFonts.poppins(
                         fontSize: 16,
                         color: themeConfig.getTextPrimaryColor(Get.isDarkMode),
                       ),
@@ -55,7 +55,7 @@ class LoadingOverlay {
         ),
         barrierDismissible: false,
         barrierColor:
-            themeConfig.getTextPrimaryColor(Get.isDarkMode).withOpacity(0.5),
+            themeConfig.getTextPrimaryColor(Get.isDarkMode).withValues(alpha: 0.1),
         useSafeArea: true,
       );
     }
@@ -68,3 +68,5 @@ class LoadingOverlay {
     }
   }
 }
+
+

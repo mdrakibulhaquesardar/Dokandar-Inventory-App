@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
+import '../../../utils/safe_google_fonts.dart';
 
 import '../../../config/app_theme_config.dart';
+import 'package:dokandar_app_inventory/l10n/app_localizations.dart';
 import '../controllers/data_management_controller.dart';
 
 class RestoreDataView extends GetView<DataManagementController> {
@@ -12,14 +13,15 @@ class RestoreDataView extends GetView<DataManagementController> {
   Widget build(BuildContext context) {
     final themeConfig = Get.find<AppThemeConfig>();
     final isDarkMode = Get.isDarkMode;
+    final l10n = AppLocalizations.of(context)!;
     return Scaffold(
       backgroundColor: themeConfig.getBackgroundColor(isDarkMode),
       appBar: AppBar(
         elevation: 0,
         backgroundColor: themeConfig.getSurfaceColor(isDarkMode),
         title: Text(
-          'স্থানীয় স্টোরেজ থেকে পুনরুদ্ধার',
-          style: GoogleFonts.poppins(
+          l10n.restoreFromLocal,
+          style: SafeGoogleFonts.poppins(
             fontSize: 20,
             fontWeight: FontWeight.w600,
             color: themeConfig.getTextPrimaryColor(isDarkMode),
@@ -40,13 +42,13 @@ class RestoreDataView extends GetView<DataManagementController> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              _buildHeaderSection(themeConfig, isDarkMode),
+              _buildHeaderSection(themeConfig, isDarkMode, l10n),
               const SizedBox(height: 24),
-              _buildActionCards(themeConfig, isDarkMode),
+              _buildActionCards(themeConfig, isDarkMode, l10n),
               const SizedBox(height: 24),
-              _buildInfoSection(themeConfig, isDarkMode),
+              _buildInfoSection(themeConfig, isDarkMode, l10n),
               const SizedBox(height: 24),
-              _buildRestoreButton(themeConfig, isDarkMode),
+              _buildRestoreButton(themeConfig, isDarkMode, l10n),
             ],
           ),
         ),
@@ -54,7 +56,8 @@ class RestoreDataView extends GetView<DataManagementController> {
     );
   }
 
-  Widget _buildHeaderSection(AppThemeConfig themeConfig, bool isDarkMode) {
+  Widget _buildHeaderSection(
+      AppThemeConfig themeConfig, bool isDarkMode, AppLocalizations l10n) {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
@@ -70,7 +73,7 @@ class RestoreDataView extends GetView<DataManagementController> {
                 padding: const EdgeInsets.all(8),
                 decoration: BoxDecoration(
                   color:
-                      themeConfig.getPrimaryColor(isDarkMode).withOpacity(0.1),
+                      themeConfig.getPrimaryColor(isDarkMode).withValues(alpha: 0.1),
                   borderRadius: BorderRadius.circular(12),
                 ),
                 child: Icon(
@@ -82,9 +85,9 @@ class RestoreDataView extends GetView<DataManagementController> {
               const SizedBox(width: 12),
               Obx(() => Text(
                     controller.lastBackupDate.value.isNotEmpty
-                        ? 'সর্বশেষ ব্যাকআপ ${controller.lastBackupDate.value}'
-                        : 'কোন ব্যাকআপ নেই',
-                    style: GoogleFonts.poppins(
+                        ? l10n.lastBackupDate(controller.lastBackupDate.value)
+                        : l10n.noBackup,
+                    style: SafeGoogleFonts.poppins(
                       fontSize: 16,
                       fontWeight: FontWeight.w500,
                       color: themeConfig.getTextPrimaryColor(isDarkMode),
@@ -97,7 +100,8 @@ class RestoreDataView extends GetView<DataManagementController> {
     );
   }
 
-  Widget _buildActionCards(AppThemeConfig themeConfig, bool isDarkMode) {
+  Widget _buildActionCards(
+      AppThemeConfig themeConfig, bool isDarkMode, AppLocalizations l10n) {
     return Row(
       children: [
         Expanded(
@@ -105,8 +109,8 @@ class RestoreDataView extends GetView<DataManagementController> {
             themeConfig,
             isDarkMode,
             Icons.folder_open,
-            'ব্যাকআপ ফাইল নির্বাচন করুন',
-            'আপনার ফোনের মেমরি থেকে ব্যাকআপ ফাইল নির্বাচন করুন।',
+            l10n.selectBackupFile,
+            l10n.selectBackupDescription,
             Colors.blue,
           ),
         ),
@@ -116,8 +120,8 @@ class RestoreDataView extends GetView<DataManagementController> {
             themeConfig,
             isDarkMode,
             Icons.restore,
-            'ডেটা পুনরুদ্ধার করুন',
-            'নির্বাচিত ব্যাকআপ ফাইল থেকে ডেটা পুনরুদ্ধার করুন',
+            l10n.restoreData,
+            l10n.restoreDataDescription,
             Colors.green,
           ),
         ),
@@ -145,7 +149,7 @@ class RestoreDataView extends GetView<DataManagementController> {
           Container(
             padding: const EdgeInsets.all(12),
             decoration: BoxDecoration(
-              color: color.withOpacity(0.1),
+              color: color.withValues(alpha: 0.1),
               borderRadius: BorderRadius.circular(12),
             ),
             child: Icon(
@@ -158,7 +162,7 @@ class RestoreDataView extends GetView<DataManagementController> {
           Text(
             title,
             textAlign: TextAlign.center,
-            style: GoogleFonts.poppins(
+            style: SafeGoogleFonts.poppins(
               fontSize: 16,
               fontWeight: FontWeight.w600,
               color: themeConfig.getTextPrimaryColor(isDarkMode),
@@ -168,7 +172,7 @@ class RestoreDataView extends GetView<DataManagementController> {
           Text(
             description,
             textAlign: TextAlign.center,
-            style: GoogleFonts.poppins(
+            style: SafeGoogleFonts.poppins(
               fontSize: 12,
               color: themeConfig.getTextSecondaryColor(isDarkMode),
             ),
@@ -178,7 +182,8 @@ class RestoreDataView extends GetView<DataManagementController> {
     );
   }
 
-  Widget _buildInfoSection(AppThemeConfig themeConfig, bool isDarkMode) {
+  Widget _buildInfoSection(
+      AppThemeConfig themeConfig, bool isDarkMode, AppLocalizations l10n) {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
@@ -189,8 +194,8 @@ class RestoreDataView extends GetView<DataManagementController> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'গুরুত্বপূর্ণ তথ্য',
-            style: GoogleFonts.poppins(
+            l10n.importantInfo,
+            style: SafeGoogleFonts.poppins(
               fontSize: 18,
               fontWeight: FontWeight.w600,
               color: themeConfig.getTextPrimaryColor(isDarkMode),
@@ -199,21 +204,21 @@ class RestoreDataView extends GetView<DataManagementController> {
           const SizedBox(height: 16),
           _buildInfoItem(
             Icons.warning_amber_rounded,
-            'পুনরুদ্ধার করার আগে, আপনার বর্তমান ডেটা ব্যাকআপ করার পরামর্শ দেওয়া হয়।',
+            l10n.backupBeforeRestore,
             themeConfig,
             isDarkMode,
           ),
           const SizedBox(height: 12),
           _buildInfoItem(
             Icons.storage,
-            'পুনরুদ্ধার করার সময়, বর্তমান ডেটা মুছে যাবে এবং ব্যাকআপ ফাইলের ডেটা দিয়ে প্রতিস্থাপিত হবে।',
+            l10n.restoreWarning,
             themeConfig,
             isDarkMode,
           ),
           const SizedBox(height: 12),
           _buildInfoItem(
             Icons.security,
-            'শুধুমাত্র বৈধ ব্যাকআপ ফাইল থেকে ডেটা পুনরুদ্ধার করা যাবে।',
+            l10n.validBackupOnly,
             themeConfig,
             isDarkMode,
           ),
@@ -240,7 +245,7 @@ class RestoreDataView extends GetView<DataManagementController> {
         Expanded(
           child: Text(
             text,
-            style: GoogleFonts.poppins(
+            style: SafeGoogleFonts.poppins(
               fontSize: 14,
               color: themeConfig.getTextSecondaryColor(isDarkMode),
             ),
@@ -250,7 +255,8 @@ class RestoreDataView extends GetView<DataManagementController> {
     );
   }
 
-  Widget _buildRestoreButton(AppThemeConfig themeConfig, bool isDarkMode) {
+  Widget _buildRestoreButton(
+      AppThemeConfig themeConfig, bool isDarkMode, AppLocalizations l10n) {
     return Obx(() => Column(
           children: [
             if (controller.isRestoring.value)
@@ -260,7 +266,7 @@ class RestoreDataView extends GetView<DataManagementController> {
                     value: controller.restoreProgress.value,
                     backgroundColor: themeConfig
                         .getTextSecondaryColor(isDarkMode)
-                        .withOpacity(0.1),
+                        .withValues(alpha: 0.1),
                     valueColor: AlwaysStoppedAnimation<Color>(
                       themeConfig.getPrimaryColor(isDarkMode),
                     ),
@@ -273,11 +279,11 @@ class RestoreDataView extends GetView<DataManagementController> {
                 padding: const EdgeInsets.only(bottom: 16),
                 child: Text(
                   controller.restoreStatus.value,
-                  style: GoogleFonts.poppins(
+                  style: SafeGoogleFonts.poppins(
                     fontSize: 14,
-                    color: controller.restoreStatus.value.contains('সফল')
+                    color: controller.restoreStatus.value.contains(l10n.success)
                         ? Colors.green
-                        : controller.restoreStatus.value.contains('ব্যর্থ')
+                        : controller.restoreStatus.value.contains(l10n.error)
                             ? Colors.red
                             : themeConfig.getTextSecondaryColor(isDarkMode),
                   ),
@@ -307,9 +313,9 @@ class RestoreDataView extends GetView<DataManagementController> {
                     const SizedBox(width: 8),
                     Text(
                       controller.isRestoring.value
-                          ? 'পুনরুদ্ধার করা হচ্ছে...'
-                          : 'ডেটা পুনরুদ্ধার করুন',
-                      style: GoogleFonts.poppins(
+                          ? l10n.restoring
+                          : l10n.restoreDataButton,
+                      style: SafeGoogleFonts.poppins(
                         fontSize: 16,
                         fontWeight: FontWeight.w600,
                         color: Colors.white,
@@ -323,3 +329,5 @@ class RestoreDataView extends GetView<DataManagementController> {
         ));
   }
 }
+
+

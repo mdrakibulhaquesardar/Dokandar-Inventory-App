@@ -1,4 +1,6 @@
+import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import '../config/app_config.dart';
 
 class DateTimeUtils {
 
@@ -98,5 +100,38 @@ class DateTimeUtils {
   // Get formatted datetime (e.g., "2024-01-15 14:30")
   static String getFormattedDateTime(DateTime dateTime) {
     return DateFormat('yyyy-MM-dd HH:mm').format(dateTime);
+  }
+
+  // Get formatted date using user's preferred format from AppConfig
+  static String getFormattedDateWithUserFormat(DateTime dateTime) {
+    try {
+      final appConfig = Get.find<AppConfig>();
+      return appConfig.getFormattedDate(dateTime);
+    } catch (e) {
+      // Fallback if AppConfig not available
+      return DateFormat('dd/MM/yyyy').format(dateTime);
+    }
+  }
+
+  // Get formatted time using user's preferred format from AppConfig
+  static String getFormattedTimeWithUserFormat(DateTime dateTime) {
+    try {
+      final appConfig = Get.find<AppConfig>();
+      return appConfig.getFormattedTime(dateTime);
+    } catch (e) {
+      // Fallback if AppConfig not available
+      return DateFormat('HH:mm').format(dateTime);
+    }
+  }
+
+  // Get formatted datetime using user's preferred formats from AppConfig
+  static String getFormattedDateTimeWithUserFormat(DateTime dateTime) {
+    try {
+      final appConfig = Get.find<AppConfig>();
+      return '${appConfig.getFormattedDate(dateTime)} ${appConfig.getFormattedTime(dateTime)}';
+    } catch (e) {
+      // Fallback if AppConfig not available
+      return DateFormat('yyyy-MM-dd HH:mm').format(dateTime);
+    }
   }
 }

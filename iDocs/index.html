@@ -1,0 +1,2197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, shrink-to-fit=no">
+<link href="assets/images/icon_bg_removed.png" rel="icon" />
+  <title>Dokandar Inventory | Documentation</title>
+  <meta name="description" content="Dokandar Inventory Flutter app documentation for CodeCanyon buyers">
+  <meta name="author" content="Dokandar Team">
+<link rel="stylesheet" type="text/css" href="assets/vendor/bootstrap/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="assets/vendor/font-awesome/css/all.min.css" />
+<link rel="stylesheet" type="text/css" href="assets/vendor/magnific-popup/magnific-popup.min.css" />
+<link rel="stylesheet" type="text/css" href="assets/vendor/highlight.js/styles/github.css" />
+<link rel="stylesheet" type="text/css" href="assets/css/stylesheet.css" />
+</head>
+
+<body data-spy="scroll" data-target=".idocs-navigation" data-offset="125">
+<div class="preloader">
+    <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+  </div>
+
+<div id="main-wrapper"> 
+  <header id="header" class="sticky-top"> 
+    <nav class="primary-menu navbar navbar-expand-lg navbar-dropdown-dark">
+      <div class="container-fluid">
+		<button id="sidebarCollapse" class="navbar-toggler d-block d-md-none" type="button"><span></span><span class="w-75"></span><span class="w-50"></span></button>
+          <a class="logo ml-md-3" href="#overview" title="Dokandar Inventory" style="text-decoration: none; color: inherit;">
+            <span style="font-size: 24px; font-weight: bold; color: #000;">Dokandar</span>
+          </a>
+          <span class="text-2 ml-2">v1.0.0</span>
+		<button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#header-nav"><span></span><span></span><span></span></button>
+		<div id="header-nav" class="collapse navbar-collapse justify-content-end">
+          <ul class="navbar-nav">
+              <li class="nav-item"><a class="nav-link" href="#support">Support</a></li>
+              <li class="nav-item"><a class="nav-link" href="#changelog">Changelog</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+  
+  <div id="content" role="main">
+	<div class="idocs-navigation bg-light">
+          <ul class="nav flex-column">
+          <li class="nav-item"><a class="nav-link active" href="#overview">Overview</a></li>
+          <li class="nav-item"><a class="nav-link" href="#requirements">Requirements</a></li>
+          <li class="nav-item"><a class="nav-link" href="#flutter-install">Flutter SDK Installation</a>
+            <ul class="nav flex-column">
+              <li class="nav-item"><a class="nav-link" href="#flutter-windows">Windows</a></li>
+              <li class="nav-item"><a class="nav-link" href="#flutter-mac">macOS</a></li>
+              <li class="nav-item"><a class="nav-link" href="#flutter-linux">Linux</a></li>
+            </ul>
+          </li>
+          <li class="nav-item"><a class="nav-link" href="#ide-setup">IDE Setup</a>
+            <ul class="nav flex-column">
+              <li class="nav-item"><a class="nav-link" href="#android-studio">Android Studio</a></li>
+              <li class="nav-item"><a class="nav-link" href="#vscode">VS Code</a></li>
+            </ul>
+          </li>
+          <li class="nav-item"><a class="nav-link" href="#android-setup">Android SDK Setup</a></li>
+          <li class="nav-item"><a class="nav-link" href="#device-setup">Device/Emulator Setup</a></li>
+          <li class="nav-item"><a class="nav-link" href="#project-setup">Project Setup</a></li>
+          <li class="nav-item"><a class="nav-link" href="#first-run">First Run</a></li>
+          <li class="nav-item"><a class="nav-link" href="#structure">Project Structure</a></li>
+          <li class="nav-item"><a class="nav-link" href="#architecture">App Architecture</a></li>
+          <li class="nav-item"><a class="nav-link" href="#database">Database (Isar)</a></li>
+          <li class="nav-item"><a class="nav-link" href="#configuration">Configuration</a></li>
+          <li class="nav-item"><a class="nav-link" href="#theme">Theme System</a></li>
+          <li class="nav-item"><a class="nav-link" href="#localization">Localization</a></li>
+          <li class="nav-item"><a class="nav-link" href="#routing">Routes & Navigation</a></li>
+          <li class="nav-item"><a class="nav-link" href="#modules">Feature Modules</a></li>
+          <li class="nav-item"><a class="nav-link" href="#customization">Customization Guide</a></li>
+          <li class="nav-item"><a class="nav-link" href="#app-id">Change App ID & Name</a></li>
+          <li class="nav-item"><a class="nav-link" href="#icons">Change App Icons</a></li>
+          <li class="nav-item"><a class="nav-link" href="#splash">Splash Screen</a></li>
+          <li class="nav-item"><a class="nav-link" href="#signing">App Signing</a></li>
+          <li class="nav-item"><a class="nav-link" href="#build">Build & Publish</a></li>
+          <li class="nav-item"><a class="nav-link" href="#play-store">Play Store Setup</a></li>
+          <li class="nav-item"><a class="nav-link" href="#backup">Backup & Restore</a></li>
+          <li class="nav-item"><a class="nav-link" href="#dependencies">Dependencies</a></li>
+          <li class="nav-item"><a class="nav-link" href="#testing">Testing</a></li>
+          <li class="nav-item"><a class="nav-link" href="#performance">Performance Tips</a></li>
+          <li class="nav-item"><a class="nav-link" href="#faq">FAQ</a></li>
+          <li class="nav-item"><a class="nav-link" href="#troubleshoot">Troubleshooting</a></li>
+          <li class="nav-item"><a class="nav-link" href="#changelog">Changelog</a></li>
+          <li class="nav-item"><a class="nav-link" href="#support">Support</a></li>
+      </ul>
+    </div>
+    
+    <div class="idocs-content">
+      <div class="container"> 
+          <section id="overview">
+            <h1>Dokandar Inventory - Complete Documentation</h1>
+            <p class="lead">Comprehensive guide from Flutter setup to Play Store deployment. This inventory management app tracks products, sales, customers, and provides backup/restore features.</p>
+		<div class="row">
+			<div class="col-sm-6 col-lg-4">
+				<ul class="list-unstyled">
+                  <li><strong>Version:</strong> 1.0.0</li>
+                  <li><strong>Framework:</strong> Flutter 3.5.4+ / Dart 3.5.4+</li>
+                  <li><strong>State Management:</strong> GetX 4.7.2</li>
+				</ul>
+			</div>
+			<div class="col-sm-6 col-lg-4">
+				<ul class="list-unstyled">
+                  <li><strong>Languages:</strong> English &amp; Bengali</li>
+                  <li><strong>Database:</strong> Isar 3.1.0 (local NoSQL)</li>
+                  <li><strong>Min Android:</strong> API 21 (Android 5.0)</li>
+				</ul>
+			</div>
+		</div>
+            <p class="alert alert-success"><strong>Quick Path:</strong> Already have Flutter? Jump to <a href="#project-setup">Project Setup</a>. Complete beginner? Start with <a href="#flutter-install">Flutter Installation</a>.</p>
+            <h4>Key Features</h4>
+            <ul>
+              <li><strong>Inventory Management:</strong> Product management with categories, stock tracking, low stock alerts</li>
+              <li><strong>Sales Counter:</strong> Real-time sales with cart management, stock validation, invoice generation</li>
+              <li><strong>Invoice System:</strong> PDF invoice generation with full-screen preview, print &amp; share functionality</li>
+              <li><strong>Customer Management:</strong> Customer database with due payment tracking</li>
+              <li><strong>Supplier Management:</strong> Complete supplier database with purchase tracking</li>
+              <li><strong>Employee Management:</strong> Employee records with salary tracking</li>
+              <li><strong>Expense Tracking:</strong> Store expenses with categories and date filtering</li>
+              <li><strong>Transaction History:</strong> Combined view of all sales and expenses</li>
+              <li><strong>Reports:</strong> Sales reports (daily/weekly/monthly/custom)</li>
+              <li><strong>Stock Alerts:</strong> Automatic low stock notifications</li>
+              <li><strong>Store Configuration:</strong> Store setup with business information</li>
+              <li><strong>Backup &amp; Restore:</strong> Local database backup/restore (JSON format)</li>
+              <li><strong>Multi-language:</strong> Bengali &amp; English support</li>
+              <li><strong>Themes:</strong> Light, Dark &amp; System theme with dynamic switching</li>
+              <li><strong>Stock Validation:</strong> Prevents selling more than available stock</li>
+            </ul>
+        </section>
+        
+		<hr class="divider">
+		
+          <section id="requirements">
+            <h2>System Requirements</h2>
+            <h4>Operating System</h4>
+            <ul>
+              <li><strong>Windows:</strong> Windows 10 or later (64-bit), x86-64 based</li>
+              <li><strong>macOS:</strong> macOS 10.15 (Catalina) or later</li>
+              <li><strong>Linux:</strong> Ubuntu 18.04 or later (64-bit)</li>
+            </ul>
+            <h4>Software Requirements</h4>
+            <ul>
+              <li>Flutter SDK 3.5.4 or higher</li>
+              <li>Dart SDK 3.x (comes with Flutter)</li>
+              <li>Android Studio 2022.3 or VS Code 1.80+</li>
+              <li>JDK 17 (OpenJDK or Oracle JDK)</li>
+              <li>Android SDK (API 21 to 35)</li>
+              <li>Git for version control</li>
+            </ul>
+            <h4>Hardware Requirements</h4>
+            <ul>
+              <li>Disk space: 5 GB minimum (10 GB recommended for Android SDK)</li>
+              <li>RAM: 8 GB minimum (16 GB recommended)</li>
+              <li>Processor: Intel i3 / AMD Ryzen 3 or better</li>
+            </ul>
+            <h4>For Publishing</h4>
+            <ul>
+              <li>Google Play Console account ($25 one-time fee)</li>
+              <li>Valid payment method for registration</li>
+              <li>Privacy policy URL (required for Play Store)</li>
+            </ul>
+        </section>
+        
+		<hr class="divider">
+		
+          <section id="flutter-install">
+            <h2>Flutter SDK Installation</h2>
+            <p>Follow the instructions for your operating system below.</p>
+            
+            <h3 id="flutter-windows">Windows Installation</h3>
+            <ol>
+              <li><strong>Download Flutter:</strong> Visit <a href="https://docs.flutter.dev/get-started/install/windows" target="_blank">flutter.dev</a> and download the Flutter SDK ZIP file (latest stable channel).</li>
+              <li><strong>Extract:</strong> Extract the ZIP to <code>C:\src\flutter</code> (avoid spaces or special characters in path).</li>
+              <li><strong>Add to PATH:</strong>
+                <ul>
+                  <li>Open <strong>Control Panel → System → Advanced system settings → Environment Variables</strong></li>
+                  <li>Under <strong>User variables</strong>, find <code>Path</code>, click <strong>Edit</strong></li>
+                  <li>Click <strong>New</strong> and add: <code>C:\src\flutter\bin</code></li>
+                  <li>Click <strong>OK</strong> to save</li>
+                </ul>
+              </li>
+              <li><strong>Verify:</strong> Open a new Command Prompt and run:
+<pre><code class="bash">flutter --version
+flutter doctor
+</code></pre>
+              </li>
+              <li><strong>Install Git:</strong> Download from <a href="https://git-scm.com/download/win" target="_blank">git-scm.com</a> and install with default settings.</li>
+            </ol>
+            
+            <h3 id="flutter-mac">macOS Installation</h3>
+            <ol>
+              <li><strong>Download Flutter:</strong> Get the ZIP from <a href="https://docs.flutter.dev/get-started/install/macos" target="_blank">flutter.dev</a>.</li>
+              <li><strong>Extract:</strong> Unzip to your home directory:
+<pre><code class="bash">cd ~
+unzip ~/Downloads/flutter_macos_*.zip
+</code></pre>
+              </li>
+              <li><strong>Add to PATH:</strong> Open terminal and run:
+<pre><code class="bash">export PATH="$PATH:$HOME/flutter/bin"
+# Make it permanent (for zsh shell):
+echo 'export PATH="$PATH:$HOME/flutter/bin"' >> ~/.zshrc
+source ~/.zshrc
+</code></pre>
+              </li>
+              <li><strong>Verify:</strong>
+<pre><code class="bash">flutter --version
+flutter doctor
+</code></pre>
+              </li>
+              <li><strong>Install Xcode Command Line Tools:</strong>
+<pre><code class="bash">xcode-select --install
+</code></pre>
+              </li>
+            </ol>
+            
+            <h3 id="flutter-linux">Linux Installation</h3>
+            <ol>
+              <li><strong>Download Flutter:</strong> Get from <a href="https://docs.flutter.dev/get-started/install/linux" target="_blank">flutter.dev</a>.</li>
+              <li><strong>Extract:</strong>
+<pre><code class="bash">cd ~
+tar xf ~/Downloads/flutter_linux_*.tar.xz
+</code></pre>
+              </li>
+              <li><strong>Add to PATH:</strong>
+<pre><code class="bash">export PATH="$PATH:$HOME/flutter/bin"
+# Add permanently to ~/.bashrc:
+echo 'export PATH="$PATH:$HOME/flutter/bin"' >> ~/.bashrc
+source ~/.bashrc
+</code></pre>
+              </li>
+              <li><strong>Install dependencies:</strong>
+<pre><code class="bash">sudo apt-get update
+sudo apt-get install -y curl git unzip xz-utils zip libglu1-mesa
+</code></pre>
+              </li>
+              <li><strong>Verify:</strong>
+<pre><code class="bash">flutter --version
+flutter doctor
+</code></pre>
+              </li>
+            </ol>
+            
+            <p class="alert alert-warning"><strong>Note:</strong> <code>flutter doctor</code> will show what's missing. Don't worry if Android toolchain shows errors—we'll fix those in the next sections.</p>
+        </section>
+        
+		<hr class="divider">
+		
+          <section id="ide-setup">
+            <h2>IDE Setup</h2>
+            <p>Choose either Android Studio or VS Code (or use both).</p>
+            
+            <h3 id="android-studio">Android Studio Setup</h3>
+            <ol>
+              <li><strong>Download:</strong> Get from <a href="https://developer.android.com/studio" target="_blank">developer.android.com</a> and install.</li>
+              <li><strong>Install Flutter plugin:</strong>
+                <ul>
+                  <li>Open Android Studio → <strong>Settings/Preferences</strong></li>
+                  <li>Go to <strong>Plugins</strong></li>
+                  <li>Search for <strong>Flutter</strong> and click <strong>Install</strong></li>
+                  <li>It will also install the <strong>Dart</strong> plugin</li>
+                  <li>Restart Android Studio</li>
+                </ul>
+              </li>
+              <li><strong>Configure Flutter SDK path:</strong>
+                <ul>
+                  <li>Go to <strong>Settings → Languages & Frameworks → Flutter</strong></li>
+                  <li>Set Flutter SDK path: <code>C:\src\flutter</code> (Windows) or <code>~/flutter</code> (Mac/Linux)</li>
+                </ul>
+              </li>
+            </ol>
+            
+            <h3 id="vscode">VS Code Setup</h3>
+            <ol>
+              <li><strong>Download:</strong> Get from <a href="https://code.visualstudio.com/" target="_blank">code.visualstudio.com</a> and install.</li>
+              <li><strong>Install extensions:</strong>
+                <ul>
+                  <li>Open VS Code</li>
+                  <li>Press <code>Ctrl+Shift+X</code> (or <code>Cmd+Shift+X</code> on Mac)</li>
+                  <li>Search and install:
+                    <ul>
+                      <li><strong>Flutter</strong> (by Dart Code)</li>
+                      <li><strong>Dart</strong> (automatically installed with Flutter)</li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><strong>Verify:</strong> Press <code>Ctrl+Shift+P</code> and type <code>Flutter: Run Flutter Doctor</code></li>
+            </ol>
+        </section>
+        
+		<hr class="divider">
+		
+          <section id="android-setup">
+            <h2>Android SDK Setup</h2>
+            <ol>
+              <li><strong>Install JDK 17:</strong>
+                <ul>
+                  <li><strong>Windows/Mac/Linux:</strong> Download from <a href="https://www.oracle.com/java/technologies/downloads/#java17" target="_blank">Oracle</a> or use OpenJDK</li>
+                  <li>After installation, verify:
+<pre><code class="bash">java -version
+# Should show version 17.x.x
+</code></pre>
+                  </li>
+                </ul>
+              </li>
+              <li><strong>Set JAVA_HOME:</strong>
+                <ul>
+                  <li><strong>Windows:</strong> Add environment variable <code>JAVA_HOME</code> = <code>C:\Program Files\Java\jdk-17</code></li>
+                  <li><strong>Mac/Linux:</strong> Add to <code>~/.bashrc</code> or <code>~/.zshrc</code>:
+<pre><code class="bash">export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-17.jdk/Contents/Home
+</code></pre>
+                  </li>
+                </ul>
+              </li>
+              <li><strong>Android SDK via Android Studio:</strong>
+                <ul>
+                  <li>Open Android Studio → <strong>More Actions → SDK Manager</strong></li>
+                  <li>In <strong>SDK Platforms</strong> tab, check:
+                    <ul>
+                      <li>Android 14.0 (API 34)</li>
+                      <li>Android 13.0 (API 33)</li>
+                      <li>Android 12.0 (API 31)</li>
+                    </ul>
+                  </li>
+                  <li>In <strong>SDK Tools</strong> tab, check:
+                    <ul>
+                      <li>Android SDK Build-Tools</li>
+                      <li>Android SDK Command-line Tools</li>
+                      <li>Android SDK Platform-Tools</li>
+                      <li>Android Emulator</li>
+                      <li>Intel x86 Emulator Accelerator (HAXM) <em>(Windows/Mac only)</em></li>
+                    </ul>
+                  </li>
+                  <li>Click <strong>Apply</strong> to download and install</li>
+                </ul>
+              </li>
+              <li><strong>Accept Android licenses:</strong>
+<pre><code class="bash">flutter doctor --android-licenses
+# Type 'y' to accept all
+</code></pre>
+              </li>
+              <li><strong>Verify setup:</strong>
+<pre><code class="bash">flutter doctor -v
+# Should show ✓ for Android toolchain
+</code></pre>
+              </li>
+            </ol>
+        </section>
+        
+		<hr class="divider">
+		
+          <section id="device-setup">
+            <h2>Device/Emulator Setup</h2>
+            
+            <h4>Option 1: Use Android Emulator</h4>
+            <ol>
+              <li>Open Android Studio → <strong>More Actions → Virtual Device Manager</strong></li>
+              <li>Click <strong>Create Device</strong></li>
+              <li>Choose <strong>Pixel 5</strong> (or any modern device)</li>
+              <li>Select system image: <strong>API 33 (Android 13)</strong> with Google APIs</li>
+              <li>Name it and click <strong>Finish</strong></li>
+              <li>Click the <strong>Play</strong> button to start the emulator</li>
+              <li>Verify Flutter sees it:
+<pre><code class="bash">flutter devices
+# Should show: emulator-5554 (mobile) • Android 13 • android-x86
+</code></pre>
+              </li>
+            </ol>
+            
+            <h4>Option 2: Use Physical Device</h4>
+            <ol>
+              <li><strong>Enable Developer Options on your Android phone:</strong>
+                <ul>
+                  <li>Go to <strong>Settings → About phone</strong></li>
+                  <li>Tap <strong>Build number</strong> 7 times until you see "You are now a developer!"</li>
+                </ul>
+              </li>
+              <li><strong>Enable USB Debugging:</strong>
+                <ul>
+                  <li>Go to <strong>Settings → Developer options</strong></li>
+                  <li>Enable <strong>USB debugging</strong></li>
+                </ul>
+              </li>
+              <li><strong>Connect via USB:</strong>
+                <ul>
+                  <li>Plug your phone into your computer</li>
+                  <li>Accept the "Allow USB debugging" prompt on your phone</li>
+                  <li>Verify connection:
+<pre><code class="bash">adb devices
+# Should show: 1234567890ABCDEF    device
+flutter devices
+</code></pre>
+                  </li>
+                </ul>
+              </li>
+            </ol>
+        </section>
+        
+		<hr class="divider">
+		
+          <section id="project-setup">
+            <h2>Project Setup</h2>
+            <ol>
+              <li><strong>Extract the CodeCanyon package:</strong> Unzip the downloaded file.</li>
+              <li><strong>Open in IDE:</strong>
+                <ul>
+                  <li><strong>Android Studio:</strong> File → Open → Select the project folder</li>
+                  <li><strong>VS Code:</strong> File → Open Folder → Select the project folder</li>
+                </ul>
+              </li>
+              <li><strong>Install dependencies:</strong> Open terminal in project root and run:
+<pre><code class="bash">flutter pub get
+</code></pre>
+                <p>This downloads all required packages listed in <code>pubspec.yaml</code>.</p>
+              </li>
+              <li><strong>Check environment:</strong>
+<pre><code class="bash">flutter doctor
+</code></pre>
+                <p>Make sure all checkmarks are green, especially Android toolchain.</p>
+              </li>
+              <li><strong>Generate Isar code:</strong> (if needed for database models)
+<pre><code class="bash">flutter pub run build_runner build --delete-conflicting-outputs
+</code></pre>
+                <p class="text-muted">This generates <code>.g.dart</code> files for Isar database models.</p>
+              </li>
+            </ol>
+        </section>
+        
+		<hr class="divider">
+		
+          <section id="first-run">
+            <h2>First Run</h2>
+            <ol>
+              <li><strong>Start a device/emulator</strong> (see previous section)</li>
+              <li><strong>Run the app:</strong>
+<pre><code class="bash">flutter run
+</code></pre>
+                <p>Or press <strong>F5</strong> in VS Code / click <strong>Run</strong> button in Android Studio</p>
+              </li>
+              <li><strong>Wait for build:</strong> First build takes 2-5 minutes. You'll see:
+<pre><code class="bash">Launching lib/main.dart on Pixel 5 API 33 in debug mode...
+Running Gradle task 'assembleDebug'...
+✓ Built build/app/outputs/flutter-apk/app-debug.apk.
+Installing build/app/outputs/flutter-apk/app-debug.apk...
+</code></pre>
+              </li>
+              <li><strong>App opens:</strong> You'll see the <strong>Setup</strong> screen (first-time user flow)</li>
+              <li><strong>Complete setup:</strong>
+                <ul>
+                  <li>Enter store name, address, phone, email</li>
+                  <li>Click <strong>Next</strong> to create store</li>
+                  <li>Enter your name and click <strong>Confirm</strong></li>
+                </ul>
+              </li>
+              <li><strong>You're in!</strong> The home dashboard appears.</li>
+            </ol>
+            
+            <h4>Hot Reload (during development)</h4>
+            <ul>
+              <li>Make code changes in your editor</li>
+              <li>Press <strong>r</strong> in terminal (or <strong>Ctrl+S</strong> in VS Code with auto-reload)</li>
+              <li>Changes appear instantly without full rebuild</li>
+              <li>Press <strong>R</strong> for hot restart (resets app state)</li>
+            </ul>
+        </section>
+        
+		<hr class="divider">
+		        
+          <section id="structure">
+            <h2>Project Structure (detailed)</h2>
+<pre><code class="plaintext">dokandar_app_inventory/
+├── android/                      # Android-specific files
+│   ├── app/
+│   │   ├── build.gradle         # App-level Gradle config (set app ID, versions)
+│   │   └── src/main/
+│   │       ├── AndroidManifest.xml  # Permissions, app metadata
+│   │       └── res/             # Android resources (icons, colors)
+│   └── build.gradle             # Project-level Gradle
+├── assets/                      # App assets
+│   └── images/                  # Image files (logos, icons, placeholders)
+│       ├── logo_only.png
+│       ├── icon_bg_removed.png
+│       └── profile.jpg
+├── lib/                         # Main Dart code
+│   ├── main.dart               # App entry point
+│   ├── l10n/                   # Localization files (ARB format)
+│   └── app/
+│       ├── config/             # Configuration files
+│       │   ├── app_config.dart          # Main config (EDIT THIS!)
+│       │   ├── app_theme_config.dart    # Theme definitions
+│       │   └── translations/            # Translation keys
+│       ├── controllers/                 # Global controllers
+│       │   └── persistent_navigation_controller.dart
+│       ├── core/               # Core services & repositories
+│       │   ├── services/
+│       │   │   ├── database_service.dart      # Isar DB wrapper
+│       │   │   ├── backup_service.dart        # Export/import JSON
+│       │   │   └── localization_service.dart  # Language switching
+│       │   └── repository/
+│       │       └── database_service_repository.dart
+│       ├── data/               # Data models
+│       │   └── models/
+│       │       ├── category.dart      # Category model + Isar schema
+│       │       ├── category.g.dart    # Generated code
+│       │       ├── customer.dart
+│       │       ├── customer.g.dart
+│       │       ├── product.dart
+│       │       ├── product.g.dart
+│       │       ├── sale.dart
+│       │       ├── sale.g.dart
+│       │       ├── stock_history.dart
+│       │       ├── stock_history.g.dart
+│       │       ├── store.dart
+│       │       ├── store.g.dart
+│       │       ├── user.dart
+│       │       └── user.g.dart
+│       ├── modules/            # Feature modules (MVC pattern)
+│       │   ├── home/
+│       │   │   ├── bindings/   # Dependency injection
+│       │   │   ├── controllers/  # Business logic
+│       │   │   └── views/      # UI screens
+│       │   ├── inventory/
+│       │   │   ├── bindings/
+│       │   │   ├── controllers/
+│       │   │   └── views/
+│       │   ├── sell/
+│       │   │   ├── bindings/
+│       │   │   ├── controllers/
+│       │   │   └── views/
+│       │   ├── setting/
+│       │   │   ├── bindings/
+│       │   │   ├── controllers/
+│       │   │   └── views/
+│       │   ├── setup/
+│       │   │   ├── bindings/
+│       │   │   ├── controllers/
+│       │   │   └── views/
+│       │   └── data_management/
+│       │       ├── bindings/
+│       │       ├── controllers/
+│       │       └── views/
+│       ├── routes/             # App routing
+│       │   ├── app_pages.dart  # Route definitions
+│       │   └── app_routes.dart # Route constants
+│       ├── utils/              # Utility functions
+│       │   ├── DateTimeUtils.dart
+│       │   └── extensions.dart
+│       ├── views/              # Global views
+│       │   └── main_view.dart  # Bottom nav container
+│       └── widgets/            # Reusable widgets
+│           ├── Custom_AppBar.dart
+│           ├── custom_profile_section.dart
+│           ├── custom_setting_card.dart
+│           ├── custom_text_form_field.dart
+│           ├── loading_overlay.dart
+│           └── showCustomSnackbar.dart
+├── iDocs/                      # This documentation
+├── pubspec.yaml                # Dependencies & assets
+└── README.md                   # Project readme
+</code></pre>
+        </section>
+        
+		<hr class="divider">
+		
+          <section id="architecture">
+            <h2>App Architecture</h2>
+            <p>This app follows <strong>MVC (Model-View-Controller)</strong> pattern with GetX framework.</p>
+            
+            <h4>Architecture Flow</h4>
+            <ol>
+              <li><strong>Entry Point (<code>main.dart</code>):</strong>
+                <ul>
+                  <li>Initializes Flutter bindings</li>
+                  <li>Starts DatabaseService (Isar)</li>
+                  <li>Loads AppConfig &amp; AppThemeConfig</li>
+                  <li>Starts LocalizationService (if multi-language enabled)</li>
+                  <li>Initializes global controllers (Navigation, Settings, Home, Sell, Inventory)</li>
+                  <li>Checks if user exists → routes to MAIN or SETUP</li>
+                </ul>
+              </li>
+              <li><strong>Routing (<code>app_pages.dart</code>):</strong> GetX page routes with bindings</li>
+              <li><strong>State Management:</strong> GetX reactive programming (Obx, Rx variables)</li>
+              <li><strong>Database:</strong> Isar (NoSQL, local-first, embedded)</li>
+              <li><strong>UI Flow:</strong> Setup → Main (with bottom nav) → Home/Inventory/Sell/Settings</li>
+            </ol>
+            
+            <h4>Key Patterns Used</h4>
+            <ul>
+              <li><strong>Dependency Injection:</strong> GetX Bindings inject controllers into views</li>
+              <li><strong>Reactive State:</strong> <code>.obs</code> variables with <code>Obx()</code> widgets</li>
+              <li><strong>Repository Pattern:</strong> DatabaseService abstracts Isar operations</li>
+              <li><strong>Service Locator:</strong> <code>Get.find&lt;Service&gt;()</code> retrieves singletons</li>
+            </ul>
+<pre><code class="dart">// Example: How a view talks to database
+// 1) Controller fetches data
+class HomeController extends GetxController {
+  final dbService = Get.find&lt;DatabaseService&gt;();
+  final products = &lt;Product&gt;[].obs;  // Reactive list
+  
+  @override
+  void onInit() {
+    super.onInit();
+    loadProducts();
+  }
+  
+  Future&lt;void&gt; loadProducts() async {
+    products.value = await dbService.getAllProducts();
+  }
+}
+
+// 2) View observes controller
+class HomeView extends GetView&lt;HomeController&gt; {
+  @override
+  Widget build(BuildContext context) {
+    return Obx(() =&gt; ListView.builder(
+      itemCount: controller.products.length,
+      itemBuilder: (context, index) =&gt; ProductTile(controller.products[index]),
+    ));
+  }
+}
+</code></pre>
+        </section>
+        
+		<hr class="divider">
+		
+          <section id="database">
+            <h2>Database (Isar)</h2>
+            <p>The app uses <strong>Isar</strong>, a high-performance NoSQL database embedded in the app (no server needed).</p>
+            
+            <h4>Database File Location</h4>
+            <ul>
+              <li><strong>Android:</strong> <code>/data/data/com.nexcode.studio.dokandar_app_inventory/files/default.isar</code></li>
+              <li>Inaccessible to users unless rooted, ensuring data security</li>
+            </ul>
+            
+            <h4>Schema (Collections/Tables)</h4>
+            <table class="table table-bordered">
+              <thead>
+                <tr><th>Collection</th><th>File</th><th>Fields</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>User</td>
+                  <td><code>lib/app/data/models/user.dart</code></td>
+                  <td>id, name, email, phone, password, role, isActive, isPremium, createdAt, updatedAt</td>
+                </tr>
+                <tr>
+                  <td>Store</td>
+                  <td><code>lib/app/data/models/store.dart</code></td>
+                  <td>id, name, address, phone, email, website, logo, createdAt, updatedAt</td>
+                </tr>
+                <tr>
+                  <td>Product</td>
+                  <td><code>lib/app/data/models/product.dart</code></td>
+                  <td>id, sku, name, category, stockQuantity, unitPrice, buyingPrice, createdAt, updatedAt, isActive</td>
+                </tr>
+                <tr>
+                  <td>Category</td>
+                  <td><code>lib/app/data/models/category.dart</code></td>
+                  <td>id, name, description, createdAt, updatedAt</td>
+                </tr>
+                <tr>
+                  <td>Customer</td>
+                  <td><code>lib/app/data/models/customer.dart</code></td>
+                  <td>id, name, phone, address, createdAt, updatedAt</td>
+                </tr>
+                <tr>
+                  <td>Sale</td>
+                  <td><code>lib/app/data/models/sale.dart</code></td>
+                  <td>id, invoiceNumber, customerId, items (embedded), totalAmount, discount, paidAmount, dueAmount, saleDate, notes, isCompleted, createdAt, updatedAt</td>
+                </tr>
+                <tr>
+                  <td>StockHistory</td>
+                  <td><code>lib/app/data/models/stock_history.dart</code></td>
+                  <td>id, productId, quantity, operation (add/remove), timestamp, notes, unitPrice</td>
+                </tr>
+              </tbody>
+            </table>
+            
+            <h4>Database Service</h4>
+            <p>Located at <code>lib/app/core/services/database_service.dart</code>. Provides methods like:</p>
+<pre><code class="dart">// Examples of available methods:
+await dbService.saveProduct(product);
+await dbService.getAllProducts();
+await dbService.getProductById(id);
+await dbService.deleteProduct(id);
+
+await dbService.saveCustomer(customer);
+await dbService.getAllCustomers();
+
+await dbService.saveSale(sale);
+await dbService.getAllSales();
+await dbService.getTotalSales();
+await dbService.getTotalSalesToday();
+
+// Check if user exists (for routing)
+bool hasUser = await dbService.hasUser();
+</code></pre>
+            
+            <h4>Regenerate Schema (if you modify models)</h4>
+<pre><code class="bash">flutter pub run build_runner build --delete-conflicting-outputs
+</code></pre>
+        </section>
+        
+		<hr class="divider">
+		
+          <section id="configuration">
+            <h2>Configuration (app_config.dart)</h2>
+            <p class="alert alert-warning"><strong>IMPORTANT:</strong> <code>lib/app/config/app_config.dart</code> is THE file to customize. All settings are centralized here.</p>
+            
+            <h4>File Location</h4>
+            <p><code>lib/app/config/app_config.dart</code> (405 lines)</p>
+            
+            <h4>1. App Information</h4>
+<pre><code class="dart">static const String appVersion = '১.০.১';
+static const String appName = 'দোকানদার (Dokandar)';  // CHANGE THIS
+static const String lastUpdate = 'এপ্রিল ২০, ২০২৫';
+static const String appSize = '৩০ MB';
+static const String appDescription = 'ইনভেন্টরি ম্যানেজমেন্ট সিস্টেম';
+
+// Developer info - CHANGE THESE
+static const String developerName = 'Your Company Name';
+static const String supportEmail = 'support@example.com';
+static const String website = 'https://example.com';
+</code></pre>
+            
+            <h4>2. Feature Flags (enable/disable features)</h4>
+<pre><code class="dart">static const bool enableSubscription = true;          // Show subscription features
+static const bool enableDarkMode = true;              // Dark theme support
+static const bool enableNotifications = true;         // Push notifications
+static const bool enableBackup = true;                // Backup/restore
+static const bool enableAnalytics = true;             // Analytics tracking
+static const bool enableMultiLanguage = true;         // Multi-language
+static const bool enableMultiLanguageSupport = true;  // Show language selector
+static const bool enablePersonalUse = true;           // Hide support/feedback if true
+</code></pre>
+            
+            <h4>3. Subscription Plans</h4>
+<pre><code class="dart">static const int freePlanProductLimit = 10;     // Max products in free plan
+static const int freePlanCustomerLimit = 5;     // Max customers in free plan
+static const int trialPeriodDays = 7;           // Trial duration
+static const int lowStockThreshold = 10;        // Low stock warning level
+
+static const Map&lt;String, Map&lt;String, dynamic&gt;&gt; subscriptionPlans = {
+  'monthly': {
+    'name': '১ মাস',
+    'price': '৳৯৯',
+    'perMonth': '৳৯৯/মাস',
+    'savePercentage': null,
+    'expiryDate': 'এপ্রিল ২০২৫',
+    'features': ['Access to basic features and support.'],
+  },
+  // Add more plans...
+};
+</code></pre>
+            
+            <h4>4. Currency &amp; Formats</h4>
+<pre><code class="dart">static const String currencySymbol = '৳';          // Change to $, €, ₹, etc.
+static const int decimalPlaces = 2;                 // Price decimal places
+static const String thousandSeparator = ',';
+static const String decimalSeparator = '.';
+
+static const String defaultLanguage = 'bn';         // 'bn' or 'en'
+static const Map&lt;String, String&gt; availableLanguages = {
+  'bn': 'বাংলা',
+  'en': 'English',
+};
+</code></pre>
+            
+            <h4>5. Database &amp; API</h4>
+<pre><code class="dart">static const String databaseName = 'dokandar_db';
+static const int databaseVersion = 1;
+static const bool enableDatabaseEncryption = true;
+
+static const String baseUrl = 'https://api.example.com';  // Backend URL
+static const int apiTimeout = 30000;                      // 30 seconds
+</code></pre>
+            
+            <h4>6. Theme Colors (used by app_theme_config.dart)</h4>
+<pre><code class="dart">static const Map&lt;String, dynamic&gt; themeColors = {
+  'primary': 0xFF2196F3,      // Blue
+  'secondary': 0xFF03DAC6,    // Teal
+  'background': 0xFFFFFFFF,   // White
+  'surface': 0xFFFFFFFF,
+  'error': 0xFFB00020,
+  'onPrimary': 0xFFFFFFFF,
+  'onSecondary': 0xFF000000,
+  'onBackground': 0xFF000000,
+  'onSurface': 0xFF000000,
+  'onError': 0xFFFFFFFF,
+};
+</code></pre>
+            <p class="text-muted">Use color codes like <code>0xFFRRGGBB</code> where FF is alpha (opacity), RR=red, GG=green, BB=blue.</p>
+            
+            <h4>7. Changelog (update with each release)</h4>
+<pre><code class="dart">static const List&lt;String&gt; changeLog = [
+  'প্রথম সংস্করণ প্রকাশ',
+  'বেসিক ফিচার যোগ করা হয়েছে',
+  'ইনভেন্টরি ম্যানেজমেন্ট সিস্টেম',
+  'বিক্রয় ট্র্যাকিং সিস্টেম',
+];
+</code></pre>
+            
+            <h4>Helper Methods Available</h4>
+<pre><code class="dart">// In your code, use these getters:
+Get.find&lt;AppConfig&gt;().appCurrentName;
+Get.find&lt;AppConfig&gt;().formatCurrency(125.50);  // Returns: ৳125.50
+Get.find&lt;AppConfig&gt;().isSubscriptionEnabled;
+Get.find&lt;AppConfig&gt;().freeProductLimit;
+</code></pre>
+        </section>
+        
+		<hr class="divider">
+		
+          <section id="theme">
+            <h2>Theme System (Light/Dark)</h2>
+            <p>File: <code>lib/app/config/app_theme_config.dart</code> (155 lines)</p>
+            
+            <h4>How It Works</h4>
+            <ol>
+              <li>Theme colors are defined in <code>AppConfig.themeColors</code></li>
+              <li><code>AppThemeConfig</code> reads those colors and builds <code>ThemeData</code> objects</li>
+              <li>App automatically switches theme based on system settings (ThemeMode.system)</li>
+            </ol>
+            
+            <h4>Light Theme Colors</h4>
+<pre><code class="dart">// Defined in AppConfig.themeColors:
+'primary': 0xFF2196F3,      // Main blue color
+'secondary': 0xFF03DAC6,    // Accent teal
+'background': 0xFFFFFFFF,   // White
+'surface': 0xFFFFFFFF,      // Card backgrounds
+'error': 0xFFB00020,        // Error red
+
+// Additional (in AppThemeConfig):
+Color get successColor => const Color(0xFF4CAF50);  // Green
+Color get warningColor => const Color(0xFFFFC107);  // Yellow/Orange
+Color get infoColor => Color(AppConfig.themeColors['primary'] as int);
+</code></pre>
+            
+            <h4>Dark Theme Colors (predefined)</h4>
+<pre><code class="dart">static const Color darkPrimaryColor = Color(0xFF1565C0);      // Darker blue
+static const Color darkSecondaryColor = Color(0xFF0288D1);
+static const Color darkBackgroundColor = Color(0xFF121212);    // Near black
+static const Color darkSurfaceColor = Color(0xFF1E1E1E);       // Dark gray
+static const Color darkErrorColor = Color(0xFFCF6679);
+static const Color darkSuccessColor = Color(0xFF81C784);
+</code></pre>
+            
+            <h4>Change Colors</h4>
+            <p>Edit <code>lib/app/config/app_config.dart</code> → find <code>themeColors</code> map:</p>
+<pre><code class="dart">// Example: Change to purple theme
+static const Map&lt;String, dynamic&gt; themeColors = {
+  'primary': 0xFF9C27B0,      // Purple
+  'secondary': 0xFFE91E63,    // Pink
+  'background': 0xFFFFFFFF,
+  'surface': 0xFFFFFFFF,
+  'error': 0xFFB00020,
+  // ... rest stays same
+};
+</code></pre>
+            <p>Save file → hot restart app (press <strong>R</strong> in terminal)</p>
+            
+            <h4>Get Theme Colors in Code</h4>
+<pre><code class="dart">// In any widget:
+final themeConfig = Get.find&lt;AppThemeConfig&gt;();
+Color primary = themeConfig.primaryColor;
+Color success = themeConfig.successColor;
+
+// Or use Theme.of(context):
+Color primary = Theme.of(context).primaryColor;
+</code></pre>
+        </section>
+		
+		<hr class="divider">
+		
+          <section id="localization">
+            <h2>Localization (Multi-Language)</h2>
+            <p>App supports Bengali (বাংলা) and English. Users can switch in Settings.</p>
+            
+            <h4>Files Involved</h4>
+            <ul>
+              <li><code>lib/app/core/services/localization_service.dart</code> – Language switching logic</li>
+              <li><code>lib/l10n/app_localizations.dart</code> – Generated localization delegate</li>
+              <li><code>lib/l10n/app_en.arb</code> – English strings</li>
+              <li><code>lib/l10n/app_bn.arb</code> – Bengali strings</li>
+            </ul>
+            
+            <h4>How It Works</h4>
+<pre><code class="dart">// 1) LocalizationService stores selected language in SharedPreferences
+class LocalizationService extends GetxService {
+  final Rx&lt;Locale&gt; currentLocale = const Locale('bn', '').obs;
+  
+  Future&lt;bool&gt; changeLanguage(String languageCode) async {
+    await _prefs.setString('app_language', languageCode);
+    final newLocale = Locale(languageCode, '');
+    currentLocale.value = newLocale;
+    Get.updateLocale(newLocale);  // Updates entire app
+    return true;
+  }
+}
+
+// 2) In main.dart, set supported locales:
+supportedLocales: const [
+  Locale('bn', ''),  // Bengali
+  Locale('en', ''),  // English
+],
+</code></pre>
+            
+            <h4>Change Default Language</h4>
+            <p>Edit <code>lib/app/config/app_config.dart</code>:</p>
+<pre><code class="dart">static const String defaultLanguage = 'en';  // Change 'bn' to 'en'
+</code></pre>
+            
+            <h4>Add More Languages</h4>
+            <ol>
+              <li>Update <code>AppConfig.availableLanguages</code>:
+<pre><code class="dart">static const Map&lt;String, String&gt; availableLanguages = {
+  'bn': 'বাংলা',
+  'en': 'English',
+  'hi': 'हिन्दी',  // Add Hindi
+};
+</code></pre>
+              </li>
+              <li>Create <code>lib/l10n/app_hi.arb</code> with translated strings</li>
+              <li>Add <code>Locale('hi', '')</code> to <code>supportedLocales</code> in main.dart</li>
+              <li>Run <code>flutter pub get</code> to regenerate</li>
+            </ol>
+            
+            <h4>User Changes Language</h4>
+            <p>Settings → Language → Select from list → App rebuilds with new strings</p>
+        </section>
+		
+		<hr class="divider">
+		
+          <section id="routing">
+            <h2>Routes &amp; Navigation (GetX)</h2>
+            <p>Files: <code>lib/app/routes/app_routes.dart</code> &amp; <code>lib/app/routes/app_pages.dart</code></p>
+            
+            <h4>All Routes</h4>
+<pre><code class="dart">// lib/app/routes/app_routes.dart
+abstract class Routes {
+  static const HOME = '/home';
+  static const INVENTORY = '/inventory';
+  static const SELL = '/sell';
+  static const SETTING = '/setting';
+  static const MAIN = '/main';
+  static const SETUP = '/setup';
+  static const STORE_SETUP = '/store-setup';
+  static const CONFROM_SETUP = '/confrom-setup';
+  static const CATEGORY = '/category';
+  static const ALL_PRODUCTS = '/all-products';
+  static const ALL_CUSTOMER = '/all-customer';
+  static const ALL_SALES = '/all-sales';
+  static const PAY_DUE = '/pay-due';
+  static const CHECKOUT = '/checkout';
+  static const BACKUP_DATA = '/backup-data';
+  static const RESTORE_DATA = '/restore-data';
+  static const SUPPORT = '/support';
+  static const FEEDBACK = '/feedback';
+  static const ABOUT_APP = '/about-app';
+  static const SUBSCRIPTION = '/subscription';
+}
+</code></pre>
+            
+            <h4>Route Definitions with Bindings</h4>
+<pre><code class="dart">// lib/app/routes/app_pages.dart (excerpt)
+static final routes = [
+  GetPage(
+    name: _Paths.MAIN,
+    page: () => const MainView(),  // Bottom nav container
+  ),
+  GetPage(
+    name: _Paths.HOME,
+    page: () => const HomeView(),
+    binding: HomeBinding(),  // Injects HomeController
+  ),
+  GetPage(
+    name: _Paths.INVENTORY,
+    page: () => const InventoryView(),
+    binding: InventoryBinding(),
+  ),
+  GetPage(
+    name: _Paths.SELL,
+    page: () => const SellView(),
+    binding: SellBinding(),
+  ),
+  // ... more routes
+];
+</code></pre>
+            
+            <h4>Navigation Examples</h4>
+<pre><code class="dart">// Navigate to another screen
+Get.toNamed(Routes.ALL_PRODUCTS);
+
+// Navigate and replace current screen
+Get.offNamed(Routes.MAIN);
+
+// Navigate and clear all previous routes
+Get.offAllNamed(Routes.SETUP);
+
+// Navigate with arguments
+Get.toNamed(Routes.CHECKOUT, arguments: {'total': 500.0});
+
+// Go back
+Get.back();
+
+// Access arguments in destination
+final args = Get.arguments;  // returns {'total': 500.0}
+</code></pre>
+            
+            <h4>Initial Route Logic</h4>
+<pre><code class="dart">// In main.dart:
+final hasUser = await dbService.hasUser();
+final initialRoute = hasUser ? Routes.MAIN : Routes.SETUP;
+
+runApp(MyApp(initialRoute: initialRoute));
+</code></pre>
+            <p>If no user exists (first launch) → Setup flow. Otherwise → Main (with bottom nav).</p>
+        </section>
+		
+		<hr class="divider">
+		
+          <section id="modules">
+            <h2>Feature Modules</h2>
+            <p>Each module follows MVC pattern: Bindings + Controllers + Views</p>
+            
+            <table class="table table-bordered">
+              <thead>
+                <tr><th>Module</th><th>Location</th><th>Purpose</th><th>Key Files</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Setup</strong></td>
+                  <td><code>lib/app/modules/setup/</code></td>
+                  <td>First-time user onboarding</td>
+                  <td>
+                    - setup_view.dart (user form)<br>
+                    - store_setup_view.dart (store info)<br>
+                    - confrom_view.dart (confirmation)<br>
+                    - setup_controller.dart
+                  </td>
+                </tr>
+                <tr>
+                  <td><strong>Home</strong></td>
+                  <td><code>lib/app/modules/home/</code></td>
+                  <td>Dashboard with stats</td>
+                  <td>
+                    - home_view.dart (dashboard)<br>
+                    - home_controller.dart (stats logic)
+                  </td>
+                </tr>
+                <tr>
+                  <td><strong>Inventory</strong></td>
+                  <td><code>lib/app/modules/inventory/</code></td>
+                  <td>Manage products, categories, customers</td>
+                  <td>
+                    - inventory_view.dart<br>
+                    - all_products_view.dart<br>
+                    - all_category_view.dart<br>
+                    - all_customer_view.dart<br>
+                    - all_sales_view.dart<br>
+                    - due_customers_view.dart<br>
+                    - AllProductController.dart<br>
+                    - AllCategoryController.dart<br>
+                    - AllCustomerController.dart
+                  </td>
+                </tr>
+                <tr>
+                  <td><strong>Sell</strong></td>
+                  <td><code>lib/app/modules/sell/</code></td>
+                  <td>Create sales & invoices</td>
+                  <td>
+                    - sell_view.dart (add items)<br>
+                    - checkout_view.dart (payment)<br>
+                    - sell_controller.dart<br>
+                    - invoice_generator_controller.dart (PDF)
+                  </td>
+                </tr>
+                <tr>
+                  <td><strong>Setting</strong></td>
+                  <td><code>lib/app/modules/setting/</code></td>
+                  <td>App settings, about, support</td>
+                  <td>
+                    - setting_view.dart<br>
+                    - about_app_view.dart<br>
+                    - support_view.dart<br>
+                    - feedback_view.dart<br>
+                    - subscription_view.dart<br>
+                    - setting_controller.dart
+                  </td>
+                </tr>
+                <tr>
+                  <td><strong>Data Management</strong></td>
+                  <td><code>lib/app/modules/data_management/</code></td>
+                  <td>Backup & restore data</td>
+                  <td>
+                    - backup_data_view.dart<br>
+                    - restore_data_view.dart<br>
+                    - data_management_controller.dart
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            
+            <h4>Module Structure Example (Home)</h4>
+<pre><code class="plaintext">lib/app/modules/home/
+├── bindings/
+│   └── home_binding.dart       # Dependency injection
+├── controllers/
+│   └── home_controller.dart    # Business logic
+└── views/
+    └── home_view.dart          # UI
+</code></pre>
+            
+<pre><code class="dart">// bindings/home_binding.dart
+class HomeBinding extends Bindings {
+  @override
+  void dependencies() {
+    Get.lazyPut&lt;HomeController&gt;(() => HomeController());
+  }
+}
+
+// controllers/home_controller.dart
+class HomeController extends GetxController {
+  final dbService = Get.find&lt;DatabaseService&gt;();
+  final totalSales = 0.0.obs;
+  final totalProducts = 0.obs;
+  
+  @override
+  void onInit() {
+    super.onInit();
+    loadStats();
+  }
+  
+  Future&lt;void&gt; loadStats() async {
+    totalSales.value = await dbService.getTotalSales();
+    totalProducts.value = await dbService.getTotalProducts();
+  }
+}
+
+// views/home_view.dart
+class HomeView extends GetView&lt;HomeController&gt; {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: CustomAppBar(title: 'Dashboard'),
+      body: Obx(() => Column(
+        children: [
+          StatCard(label: 'Total Sales', value: controller.totalSales.value),
+          StatCard(label: 'Products', value: controller.totalProducts.value),
+        ],
+      )),
+    );
+  }
+}
+</code></pre>
+        </section>
+        
+		<hr class="divider">
+		
+          <section id="customization">
+            <h2>Customization Guide</h2>
+            
+            <h4>Step 1: Brand Name &amp; Info</h4>
+            <p>Edit <code>lib/app/config/app_config.dart</code>:</p>
+<pre><code class="dart">static const String appName = 'My Inventory App';      // Change this
+static const String developerName = 'Your Company';
+static const String supportEmail = 'you@example.com';
+static const String website = 'https://yoursite.com';
+</code></pre>
+            
+            <h4>Step 2: Colors</h4>
+            <p>Same file, find <code>themeColors</code>:</p>
+<pre><code class="dart">static const Map&lt;String, dynamic&gt; themeColors = {
+  'primary': 0xFF2196F3,      // Change these hex codes
+  'secondary': 0xFF03DAC6,
+  // ...
+};
+</code></pre>
+            <p><strong>Color Picker:</strong> Use <a href="https://htmlcolorcodes.com/" target="_blank">htmlcolorcodes.com</a> to get hex codes, then prefix with <code>0xFF</code></p>
+            
+            <h4>Step 3: Currency</h4>
+<pre><code class="dart">static const String currencySymbol = '$';  // Change from ৳ to $, €, etc.
+static const int decimalPlaces = 2;        // Price precision
+</code></pre>
+            
+            <h4>Step 4: Language</h4>
+<pre><code class="dart">static const String defaultLanguage = 'en';  // 'en' for English, 'bn' for Bengali
+</code></pre>
+            
+            <h4>Step 5: Features On/Off</h4>
+<pre><code class="dart">static const bool enableSubscription = false;  // Hide subscription UI
+static const bool enableBackup = true;
+static const bool enableNotifications = false;
+</code></pre>
+            
+            <h4>Step 6: Subscription Plans</h4>
+            <p>Update prices, limits, trial days in same file.</p>
+            
+            <h4>Step 7: Logos &amp; Images</h4>
+            <p>Replace files in <code>assets/images/</code>:</p>
+            <ul>
+              <li><code>logo_only.png</code> – Logo without text</li>
+              <li><code>icon_bg_removed.png</code> – App icon (transparent)</li>
+              <li><code>icon_bg_remove_with_name.png</code> – Icon with name</li>
+              <li><code>profile.jpg</code> / <code>blank-profile-picture.png</code> – Default avatars</li>
+            </ul>
+            <p>Keep same filenames or update paths in <code>pubspec.yaml</code> under <code>assets:</code></p>
+            
+            <h4>Step 8: Text/Labels in UI</h4>
+            <p>Edit view files directly:</p>
+            <ul>
+              <li>Example: <code>lib/app/modules/home/views/home_view.dart</code></li>
+              <li>Find strings like <code>'Dashboard'</code> and change</li>
+              <li>For Bengali text, use Unicode directly in Dart strings</li>
+            </ul>
+        </section>
+        
+		<hr class="divider">
+		
+          <section id="app-id">
+            <h2>Change App ID &amp; Name</h2>
+            
+            <h4>1. Change Package/Application ID</h4>
+            <p>File: <code>android/app/build.gradle</code></p>
+<pre><code class="gradle">defaultConfig {
+    applicationId = "com.yourcompany.yourapp"  // Line 24: CHANGE THIS
+    minSdkVersion = flutter.minSdkVersion
+    targetSdk = flutter.targetSdkVersion
+    versionCode = flutter.versionCode
+    versionName = flutter.versionName
+}
+</code></pre>
+            <p class="alert alert-warning"><strong>IMPORTANT:</strong> Also update <code>namespace</code> on line 9 to match applicationId</p>
+<pre><code class="gradle">android {
+    namespace = "com.yourcompany.yourapp"  // Line 9: MUST MATCH applicationId
+    compileSdk = 35
+    // ...
+}
+</code></pre>
+            
+            <h4>2. Update AndroidManifest.xml</h4>
+            <p>File: <code>android/app/src/main/AndroidManifest.xml</code></p>
+<pre><code class="xml">&lt;manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.yourcompany.yourapp"&gt;  &lt;!-- CHANGE THIS --&gt;
+    &lt;application
+        android:label="Your App Name"  &lt;!-- Launcher name --&gt;
+        android:name="${applicationName}"
+        android:icon="@mipmap/ic_launcher"&gt;
+        &lt;!-- ... --&gt;
+    &lt;/application&gt;
+&lt;/manifest&gt;
+</code></pre>
+            
+            <h4>3. Rename Package Folders (optional but recommended)</h4>
+            <p>Path: <code>android/app/src/main/kotlin/com/nexcode/studio/dokandar_app_inventory/</code></p>
+            <ol>
+              <li>Rename folder structure to match your new package ID</li>
+              <li>Example: <code>com/yourcompany/yourapp/</code></li>
+              <li>Update package declaration in <code>MainActivity.kt</code>:
+<pre><code class="kotlin">package com.yourcompany.yourapp  // Top line
+
+import io.flutter.embedding.android.FlutterActivity
+
+class MainActivity: FlutterActivity() {
+}
+</code></pre>
+              </li>
+            </ol>
+            
+            <h4>4. Update pubspec.yaml (optional)</h4>
+<pre><code class="yaml">name: your_app_name  # Line 1: must be lowercase with underscores
+description: "Your app description"
+</code></pre>
+            
+            <h4>5. Clean &amp; Rebuild</h4>
+<pre><code class="bash">flutter clean
+flutter pub get
+flutter run
+</code></pre>
+        </section>
+		
+		<hr class="divider">
+		
+          <section id="icons">
+            <h2>Change App Icons</h2>
+            <p>Use <code>flutter_launcher_icons</code> package (already in <code>pubspec.yaml</code>)</p>
+            
+            <h4>Step 1: Prepare Icon Image</h4>
+            <ul>
+              <li>Create a <strong>1024x1024 PNG</strong> (transparent background recommended)</li>
+              <li>Save as <code>assets/icon.png</code> (or another path)</li>
+            </ul>
+            
+            <h4>Step 2: Configure pubspec.yaml</h4>
+            <p>Add/edit at the bottom of <code>pubspec.yaml</code>:</p>
+<pre><code class="yaml">flutter_launcher_icons:
+  android: true
+  ios: false  # Set true if you add iOS support later
+  image_path: "assets/icon.png"
+  adaptive_icon_background: "#ffffff"  # Background color for adaptive icons
+  adaptive_icon_foreground: "assets/icon.png"
+</code></pre>
+            
+            <h4>Step 3: Generate Icons</h4>
+<pre><code class="bash">flutter pub get
+flutter pub run flutter_launcher_icons
+</code></pre>
+            <p>This creates icons in <code>android/app/src/main/res/mipmap-*</code> folders</p>
+            
+            <h4>Step 4: Test</h4>
+<pre><code class="bash">flutter clean
+flutter run
+</code></pre>
+            <p>Your new icon appears on device home screen!</p>
+        </section>
+        
+		<hr class="divider">
+		
+          <section id="splash">
+            <h2>Splash Screen</h2>
+            <p>Use <code>flutter_native_splash</code> package (already in <code>pubspec.yaml</code>)</p>
+            
+            <h4>Configure pubspec.yaml</h4>
+<pre><code class="yaml">flutter_native_splash:
+  color: "#2196F3"  # Background color
+  image: assets/logo_only.png  # Centered image
+  android: true
+  ios: false
+  
+  # Optional: dark mode splash
+  color_dark: "#121212"
+  image_dark: assets/logo_only.png
+</code></pre>
+            
+            <h4>Generate Splash</h4>
+<pre><code class="bash">flutter pub run flutter_native_splash:create
+</code></pre>
+            <p>This generates native splash screens for Android.</p>
+            
+            <h4>Remove Splash (if needed)</h4>
+<pre><code class="bash">flutter pub run flutter_native_splash:remove
+</code></pre>
+        </section>
+        
+		<hr class="divider">
+		
+          <section id="signing">
+            <h2>App Signing (for Release)</h2>
+            <p class="alert alert-danger"><strong>Critical:</strong> You MUST sign your app before uploading to Play Store. Never share your keystore file!</p>
+            
+            <h4>Step 1: Create Keystore</h4>
+            <p>Open terminal in project root:</p>
+<pre><code class="bash"># Windows:
+keytool -genkey -v -keystore C:\Users\YourName\upload-keystore.jks -storetype JKS -keyalg RSA -keysize 2048 -validity 10000 -alias upload
+
+# Mac/Linux:
+keytool -genkey -v -keystore ~/upload-keystore.jks -storetype JKS -keyalg RSA -keysize 2048 -validity 10000 -alias upload
+</code></pre>
+            <p>You'll be asked:</p>
+            <ul>
+              <li>Keystore password (choose strong, save it!)</li>
+              <li>Your name, organization, city, state, country</li>
+              <li>Key password (can be same as keystore password)</li>
+            </ul>
+            <p class="alert alert-warning">⚠️ <strong>Backup your keystore &amp; passwords!</strong> If lost, you can NEVER update your app on Play Store.</p>
+            
+            <h4>Step 2: Create key.properties</h4>
+            <p>Create file <code>android/key.properties</code> (this file is in .gitignore, won't be committed)</p>
+<pre><code class="properties">storePassword=your_keystore_password
+keyPassword=your_key_password
+keyAlias=upload
+storeFile=C:/Users/YourName/upload-keystore.jks
+# For Mac/Linux: storeFile=/Users/yourname/upload-keystore.jks
+</code></pre>
+            
+            <h4>Step 3: Configure build.gradle</h4>
+            <p>Edit <code>android/app/build.gradle</code>, add BEFORE <code>android {</code> block:</p>
+<pre><code class="gradle">// Add this near top, after plugins:
+def keystoreProperties = new Properties()
+def keystorePropertiesFile = rootProject.file('key.properties')
+if (keystorePropertiesFile.exists()) {
+    keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+}
+
+android {
+    // ... existing config ...
+    
+    // Add this INSIDE android block, BEFORE buildTypes:
+    signingConfigs {
+        release {
+            keyAlias keystoreProperties['keyAlias']
+            keyPassword keystoreProperties['keyPassword']
+            storeFile keystoreProperties['storeFile'] ? file(keystoreProperties['storeFile']) : null
+            storePassword keystoreProperties['storePassword']
+        }
+    }
+    
+    buildTypes {
+        release {
+            signingConfig signingConfigs.release  // Add this line
+        }
+    }
+}
+</code></pre>
+            
+            <h4>Step 4: Verify</h4>
+<pre><code class="bash">flutter build apk --release
+# Should succeed without keystore errors
+</code></pre>
+        </section>
+        
+		<hr class="divider">
+		
+          <section id="build">
+            <h2>Build & Publish</h2>
+            
+            <h4>Set Version Number</h4>
+            <p>Edit <code>pubspec.yaml</code>:</p>
+<pre><code class="yaml">version: 1.0.0+1  # 1.0.0 = versionName, +1 = versionCode
+</code></pre>
+            <p>Increment versionCode (+2, +3...) for every upload to Play Store</p>
+            
+            <h4>Build Release APK (for testing)</h4>
+<pre><code class="bash">flutter build apk --release
+</code></pre>
+            <p>Output: <code>build/app/outputs/flutter-apk/app-release.apk</code></p>
+            <p>Install on device: <code>adb install build/app/outputs/flutter-apk/app-release.apk</code></p>
+            
+            <h4>Build App Bundle (for Play Store)</h4>
+<pre><code class="bash">flutter build appbundle --release
+</code></pre>
+            <p>Output: <code>build/app/outputs/bundle/release/app-release.aab</code></p>
+            <p class="alert alert-success">✓ This AAB file is what you upload to Google Play Console</p>
+            
+            <h4>Optimize Build Size</h4>
+<pre><code class="bash"># Split APKs by ABI (reduces size):
+flutter build apk --release --split-per-abi
+
+# Obfuscate code (harder to reverse-engineer):
+flutter build appbundle --release --obfuscate --split-debug-info=build/app/outputs/symbols
+</code></pre>
+        </section>
+        
+		<hr class="divider">
+		
+          <section id="play-store">
+            <h2>Google Play Store Setup</h2>
+            
+            <h4>Prerequisites</h4>
+            <ul>
+              <li>Google Play Console account ($25 one-time)</li>
+              <li>Signed AAB file (from previous step)</li>
+              <li>Privacy policy URL (required by Google)</li>
+              <li>App icon 512x512 PNG</li>
+              <li>Feature graphic 1024x500 PNG</li>
+              <li>Screenshots (phone + tablet): 2-8 images</li>
+            </ul>
+            
+            <h4>Step-by-Step</h4>
+            <ol>
+              <li><strong>Create App:</strong>
+                <ul>
+                  <li>Go to <a href="https://play.google.com/console" target="_blank">play.google.com/console</a></li>
+                  <li>Click <strong>Create app</strong></li>
+                  <li>Enter app name, default language, app/game type</li>
+                  <li>Declare: free/paid, target audience</li>
+                </ul>
+              </li>
+              <li><strong>Dashboard Tasks:</strong> Complete all required items:
+                <ul>
+                  <li><strong>App access:</strong> Is your app restricted or open to all users?</li>
+                  <li><strong>Ads:</strong> Does your app contain ads?</li>
+                  <li><strong>Content rating:</strong> Fill questionnaire → get rating (Everyone, Teen, etc.)</li>
+                  <li><strong>Target audience:</strong> Age groups</li>
+                  <li><strong>Store presence:</strong> Privacy policy URL, app category</li>
+                  <li><strong>Data safety:</strong> What data you collect</li>
+                </ul>
+              </li>
+              <li><strong>Create Production Release:</strong>
+                <ul>
+                  <li>Go to <strong>Production → Create new release</strong></li>
+                  <li>Upload <code>app-release.aab</code></li>
+                  <li>Add release notes (what's new)</li>
+                </ul>
+              </li>
+              <li><strong>Store Listing:</strong>
+                <ul>
+                  <li>Upload app icon, feature graphic</li>
+                  <li>Add screenshots (min 2 phone screenshots)</li>
+                  <li>Write short &amp; full description</li>
+                  <li>Add contact email</li>
+                </ul>
+              </li>
+              <li><strong>Review:</strong> Click <strong>Send for review</strong></li>
+              <li><strong>Wait:</strong> Google reviews in 1-7 days. You'll get email when approved.</li>
+            </ol>
+            
+            <h4>Update Existing App</h4>
+            <ol>
+              <li>Increment version in <code>pubspec.yaml</code> (e.g., 1.0.1+2 → 1.0.2+3)</li>
+              <li>Build new AAB: <code>flutter build appbundle --release</code></li>
+              <li>Play Console → Production → Create new release</li>
+              <li>Upload AAB, add release notes</li>
+              <li>Send for review</li>
+            </ol>
+        </section>
+		
+		<hr class="divider">
+		
+          <section id="backup">
+            <h2>Backup &amp; Restore</h2>
+            <p>File: <code>lib/app/core/services/backup_service.dart</code> (385 lines)</p>
+            
+            <h4>How It Works</h4>
+            <ol>
+              <li>Export: All Isar collections → JSON file</li>
+              <li>Saved to: <code>/storage/emulated/0/Dokandar/Backup/</code></li>
+              <li>Filename: <code>backup_DD-MM-YYYY_HH-MM-SS.json</code></li>
+              <li>Import: JSON → Clear DB → Insert all records</li>
+            </ol>
+            
+            <h4>Export Code</h4>
+<pre><code class="dart">// lib/app/core/services/backup_service.dart (excerpt)
+Future&lt;String&gt; exportIsarToFile() async {
+  // 1) Fetch all data
+  final sales = await isar.sales.where().findAll();
+  final products = await isar.products.where().findAll();
+  final customers = await isar.customers.where().findAll();
+  // ... more collections
+  
+  // 2) Convert to JSON
+  final backupData = {
+    'sales': sales.map((s) => {...}).toList(),
+    'products': products.map((p) => {...}).toList(),
+    // ...
+  };
+  
+  // 3) Write to file
+  final timestamp = DateFormat('dd-MM-yyyy_hh-mm-ss a').format(DateTime.now());
+  final backupFile = File(path.join(_backupDir.path, 'backup_$timestamp.json'));
+  await backupFile.writeAsString(jsonEncode(backupData));
+  
+  return backupFile.path;
+}
+</code></pre>
+            
+            <h4>Permissions Required</h4>
+            <p>File: <code>android/app/src/main/AndroidManifest.xml</code></p>
+<pre><code class="xml">&lt;uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/&gt;
+&lt;uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/&gt;
+&lt;uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE"/&gt;
+</code></pre>
+            <p>The app requests these at runtime via <code>permission_handler</code> package.</p>
+            
+            <h4>User Flow</h4>
+            <ol>
+              <li>Open app → Settings → Backup Data</li>
+              <li>Tap <strong>Export Data</strong></li>
+              <li>Backup file is saved automatically (no permissions needed)</li>
+              <li>Success message shows file path</li>
+              <li>Copy file to cloud storage for safety</li>
+            </ol>
+            
+            <h4>Restore Flow</h4>
+            <ol>
+              <li>Settings → Restore Data</li>
+              <li>Tap <strong>Import Data</strong></li>
+              <li>App finds latest backup file automatically</li>
+              <li>Confirm: "This will clear all current data"</li>
+              <li>Data restored → app reloads</li>
+            </ol>
+            
+            <h4>Change Backup Path</h4>
+            <p>Edit <code>lib/app/core/services/backup_service.dart</code>:</p>
+<pre><code class="dart">Future&lt;Directory?&gt; getExportDirectory() async {
+  final backupDir = Directory('/storage/emulated/0/YourApp/Backup');  // Change path
+  if (!await backupDir.exists()) {
+    await backupDir.create(recursive: true);
+  }
+  return backupDir;
+}
+</code></pre>
+        </section>
+        
+		<hr class="divider">
+		
+          <section id="dependencies">
+            <h2>Dependencies (pubspec.yaml)</h2>
+            <p>Key packages used in this app:</p>
+            
+            <table class="table table-bordered">
+              <thead>
+                <tr><th>Package</th><th>Version</th><th>Purpose</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>get</td><td>^4.7.2</td><td>State management, routing, dependency injection</td></tr>
+                <tr><td>isar</td><td>^3.1.0+1</td><td>Local NoSQL database</td></tr>
+                <tr><td>isar_flutter_libs</td><td>git</td><td>Isar native libraries</td></tr>
+                <tr><td>path_provider</td><td>^2.1.2</td><td>Get app directories (for Isar DB)</td></tr>
+                <tr><td>shared_preferences</td><td>^2.2.2</td><td>Store simple key-value data (settings)</td></tr>
+                <tr><td>intl</td><td>^0.20.2</td><td>Date/time formatting, localization</td></tr>
+                <tr><td>uuid</td><td>^4.3.3</td><td>Generate unique IDs</td></tr>
+                <tr><td>flutter_slidable</td><td>^3.0.1</td><td>Swipe actions on list items</td></tr>
+                <tr><td>google_fonts</td><td>^6.1.0</td><td>Use Google Fonts</td></tr>
+                <tr><td>percent_indicator</td><td>^4.2.5</td><td>Progress bars/circles</td></tr>
+                <tr><td>persistent_bottom_nav_bar</td><td>^6.2.1</td><td>Bottom navigation with persistent state</td></tr>
+                <tr><td>fluttertoast</td><td>^8.2.12</td><td>Show toast messages</td></tr>
+                <tr><td>permission_handler</td><td>^12.0.0+1</td><td>Request runtime permissions</td></tr>
+                <tr><td>pdf</td><td>^3.11.3</td><td>Generate PDF invoices</td></tr>
+                <tr><td>syncfusion_flutter_pdfviewer</td><td>^31.1.21</td><td>View PDFs in-app</td></tr>
+                <tr><td>printing</td><td>^5.12.0</td><td>Print PDF invoices</td></tr>
+                <tr><td>share_plus</td><td>^7.2.2</td><td>Share invoices via system share dialog</td></tr>
+                <tr><td>url_launcher</td><td>^6.3.1</td><td>Open URLs (support links, etc.)</td></tr>
+                <tr><td>crypto</td><td>^3.0.5</td><td>Encryption for backup files</td></tr>
+              </tbody>
+            </table>
+            
+            <h4>Dev Dependencies</h4>
+            <table class="table table-bordered">
+              <thead>
+                <tr><th>Package</th><th>Purpose</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>isar_generator</td><td>Generate Isar schema code (.g.dart files)</td></tr>
+                <tr><td>build_runner</td><td>Run code generators</td></tr>
+                <tr><td>flutter_launcher_icons</td><td>Generate app icons</td></tr>
+                <tr><td>flutter_native_splash</td><td>Generate splash screens</td></tr>
+                <tr><td>rename</td><td>Rename app package</td></tr>
+                <tr><td>flutter_lints</td><td>Code quality lints</td></tr>
+              </tbody>
+            </table>
+            
+            <h4>Update Dependencies</h4>
+<pre><code class="bash"># Check for updates:
+flutter pub outdated
+
+# Update all to latest compatible:
+flutter pub upgrade
+
+# Update to latest (may break):
+flutter pub upgrade --major-versions
+</code></pre>
+        </section>
+        
+		<hr class="divider">
+		
+          <section id="testing">
+            <h2>Testing</h2>
+            
+            <h4>Manual Testing Checklist</h4>
+            <ol>
+              <li><strong>First Launch:</strong>
+                <ul>
+                  <li>Setup flow: enter store info, create user</li>
+                  <li>App opens to home dashboard</li>
+                </ul>
+              </li>
+              <li><strong>Add Data:</strong>
+                <ul>
+                  <li>Add 3 categories</li>
+                  <li>Add 10 products with different prices</li>
+                  <li>Add 5 customers</li>
+                </ul>
+              </li>
+              <li><strong>Create Sale:</strong>
+                <ul>
+                  <li>Go to Sell tab</li>
+                  <li>Add products to cart</li>
+                  <li>Checkout with payment</li>
+                  <li>Check invoice generated</li>
+                </ul>
+              </li>
+              <li><strong>Verify Data:</strong>
+                <ul>
+                  <li>Home shows updated stats</li>
+                  <li>Inventory shows low stock warnings</li>
+                  <li>Customer due amounts correct</li>
+                </ul>
+              </li>
+              <li><strong>Backup/Restore:</strong>
+                <ul>
+                  <li>Export backup → check file exists</li>
+                  <li>Clear app data</li>
+                  <li>Restore → all data returns</li>
+                </ul>
+              </li>
+              <li><strong>Settings:</strong>
+                <ul>
+                  <li>Change language → UI updates</li>
+                  <li>Check about page shows correct info</li>
+                </ul>
+              </li>
+            </ol>
+            
+            <h4>Test on Multiple Devices</h4>
+            <ul>
+              <li>Android 8.0, 10, 12, 13 (different APIs)</li>
+              <li>Small screen (5") and large (6.5"+)</li>
+              <li>Portrait &amp; landscape orientations</li>
+            </ul>
+            
+            <h4>Performance Testing</h4>
+<pre><code class="bash"># Profile mode (measures performance):
+flutter run --profile
+
+# Check app size:
+flutter build apk --release --analyze-size
+</code></pre>
+        </section>
+        
+		<hr class="divider">
+		
+          <section id="performance">
+            <h2>Performance Tips</h2>
+            
+            <h4>1. Optimize Images</h4>
+            <ul>
+              <li>Use PNG/WebP, compress before adding</li>
+              <li>Avoid huge images in assets</li>
+              <li>Use <code>Image.asset</code> with <code>cacheWidth</code>/<code>cacheHeight</code></li>
+            </ul>
+            
+            <h4>2. Lazy Load Data</h4>
+<pre><code class="dart">// Don't load all at once:
+final allProducts = await isar.products.where().findAll();  // BAD if 10,000+ items
+
+// Use pagination:
+final products = await isar.products.where().limit(50).findAll();  // GOOD
+</code></pre>
+            
+            <h4>3. Use const Widgets</h4>
+<pre><code class="dart">// const prevents rebuilds:
+const Text('Hello');
+const Icon(Icons.home);
+</code></pre>
+            
+            <h4>4. Obx Only What Changes</h4>
+<pre><code class="dart">// BAD: Wraps entire screen
+Obx(() => Scaffold(body: ...));
+
+// GOOD: Only wrap reactive parts
+Scaffold(body: Column(children: [
+  const Text('Static'),
+  Obx(() => Text('Count: ${controller.count}')),  // Only this rebuilds
+]));
+</code></pre>
+            
+            <h4>5. Profile Before Optimizing</h4>
+<pre><code class="bash">flutter run --profile
+# Then use DevTools to find bottlenecks
+flutter pub global activate devtools
+flutter pub global run devtools
+</code></pre>
+        </section>
+        
+		<hr class="divider">
+		
+          <section id="faq">
+          <h2>Frequently Asked Questions</h2>
+            <div class="accordion accordion-alterate arrow-right" id="faqList">
+              
+              <div class="card">
+                <div class="card-header" id="q1"><h5 class="mb-0"><a href="#" class="collapsed" data-toggle="collapse" data-target="#a1">Do I need to know Flutter/Dart to customize this app?</a></h5></div>
+                <div id="a1" class="collapse" aria-labelledby="q1" data-parent="#faqList">
+                  <div class="card-body">For basic customization (app name, colors, currency, features on/off), just edit <code>app_config.dart</code>—no coding needed. For deeper changes (UI layout, new features), Flutter knowledge helps but the code is well-organized and commented.</div>
+                </div>
+              </div>
+              
+              <div class="card">
+                <div class="card-header" id="q2"><h5 class="mb-0"><a href="#" class="collapsed" data-toggle="collapse" data-target="#a2">Can I use this app offline?</a></h5></div>
+                <div id="a2" class="collapse" aria-labelledby="q2" data-parent="#faqList">
+                  <div class="card-body">Yes! The app uses local Isar database—no internet required. All data is stored on the device. (If you want cloud sync, you'd need to integrate a backend, which isn't included.)</div>
+                </div>
+              </div>
+              
+              <div class="card">
+                <div class="card-header" id="q3"><h5 class="mb-0"><a href="#" class="collapsed" data-toggle="collapse" data-target="#a3">How do I change the app name and icon?</a></h5></div>
+                <div id="a3" class="collapse" aria-labelledby="q3" data-parent="#faqList">
+                  <div class="card-body">
+                    <strong>Name:</strong> Edit <code>appName</code> in <code>lib/app/config/app_config.dart</code> and <code>android:label</code> in <code>AndroidManifest.xml</code>.<br>
+                    <strong>Icon:</strong> Add your 1024x1024 PNG to <code>assets/icon.png</code>, configure <code>flutter_launcher_icons</code> in <code>pubspec.yaml</code>, run <code>flutter pub run flutter_launcher_icons</code>. See <a href="#icons">Icons section</a>.
+                  </div>
+                </div>
+              </div>
+              
+              <div class="card">
+                <div class="card-header" id="q4"><h5 class="mb-0"><a href="#" class="collapsed" data-toggle="collapse" data-target="#a4">How to change the package ID (com.example.app)?</a></h5></div>
+                <div id="a4" class="collapse" aria-labelledby="q4" data-parent="#faqList">
+                  <div class="card-body">Edit <code>applicationId</code> and <code>namespace</code> in <code>android/app/build.gradle</code>, update <code>package</code> in <code>AndroidManifest.xml</code>, and optionally rename folder structure + <code>MainActivity.kt</code> package. See <a href="#app-id">Change App ID</a> section.</div>
+                </div>
+              </div>
+              
+              <div class="card">
+                <div class="card-header" id="q5"><h5 class="mb-0"><a href="#" class="collapsed" data-toggle="collapse" data-target="#a5">Can I disable subscription features?</a></h5></div>
+                <div id="a5" class="collapse" aria-labelledby="q5" data-parent="#faqList">
+                  <div class="card-body">Yes. Set <code>enableSubscription = false;</code> in <code>app_config.dart</code>, then rebuild. The subscription UI will be hidden.</div>
+                </div>
+              </div>
+              
+              <div class="card">
+                <div class="card-header" id="q6"><h5 class="mb-0"><a href="#" class="collapsed" data-toggle="collapse" data-target="#a6">How do I reset all data?</a></h5></div>
+                <div id="a6" class="collapse" aria-labelledby="q6" data-parent="#faqList">
+                  <div class="card-body">Create a backup first (Settings → Backup Data). Then clear app data from device Settings → Apps → Dokandar → Storage → Clear data. Reopen the app and restore backup if needed.</div>
+                </div>
+              </div>
+              
+              <div class="card">
+                <div class="card-header" id="q7"><h5 class="mb-0"><a href="#" class="collapsed" data-toggle="collapse" data-target="#a7">Where is the database file stored?</a></h5></div>
+                <div id="a7" class="collapse" aria-labelledby="q7" data-parent="#faqList">
+                  <div class="card-body"><code>/data/data/com.nexcode.studio.dokandar_app_inventory/files/default.isar</code> (inaccessible without root). Users can't access it directly—use the in-app Backup feature to export data.</div>
+                </div>
+              </div>
+              
+              <div class="card">
+                <div class="card-header" id="q8"><h5 class="mb-0"><a href="#" class="collapsed" data-toggle="collapse" data-target="#a8">Can I add more languages?</a></h5></div>
+                <div id="a8" class="collapse" aria-labelledby="q8" data-parent="#faqList">
+                  <div class="card-body">Yes. Add language to <code>AppConfig.availableLanguages</code>, create <code>lib/l10n/app_XX.arb</code> with translations, add <code>Locale('XX', '')</code> to <code>main.dart</code> supported locales, run <code>flutter pub get</code>. See <a href="#localization">Localization section</a>.</div>
+                </div>
+              </div>
+              
+              <div class="card">
+                <div class="card-header" id="q9"><h5 class="mb-0"><a href="#" class="collapsed" data-toggle="collapse" data-target="#a9">App crashes on launch?</a></h5></div>
+                <div id="a9" class="collapse" aria-labelledby="q9" data-parent="#faqList">
+                  <div class="card-body">Run <code>flutter clean</code>, <code>flutter pub get</code>, rebuild. Check terminal for error logs. Common causes: missing dependencies, corrupted build cache, incompatible Flutter version. See <a href="#troubleshoot">Troubleshooting</a>.</div>
+                </div>
+              </div>
+              
+              <div class="card">
+                <div class="card-header" id="q10"><h5 class="mb-0"><a href="#" class="collapsed" data-toggle="collapse" data-target="#a10">Can I sell this app to my clients?</a></h5></div>
+                <div id="a10" class="collapse" aria-labelledby="q10" data-parent="#faqList">
+                  <div class="card-body">Check your CodeCanyon license. Regular License = one end product for one client. Extended License = multiple end products or SaaS. You cannot resell the source code as-is on CodeCanyon or other marketplaces.</div>
+                </div>
+              </div>
+              
+            </div>
+        </section>
+        
+		<hr class="divider">
+        
+          <section id="troubleshoot">
+            <h2>Troubleshooting</h2>
+            
+            <h4>Flutter SDK Issues</h4>
+            <table class="table table-bordered">
+              <thead><tr><th>Problem</th><th>Solution</th></tr></thead>
+              <tbody>
+                <tr>
+                  <td><code>flutter: command not found</code></td>
+                  <td>Flutter not in PATH. Re-add Flutter bin folder to PATH environment variable, restart terminal.</td>
+                </tr>
+                <tr>
+                  <td><code>Waiting for another flutter command to release startup lock...</code></td>
+                  <td>Delete <code>flutter/bin/cache/lockfile</code>, or run <code>taskkill /F /IM dart.exe</code> (Windows) / <code>killall dart</code> (Mac/Linux)</td>
+                </tr>
+                <tr>
+                  <td><code>Flutter SDK version mismatch</code></td>
+                  <td>Run <code>flutter upgrade</code> to get latest. Or downgrade: <code>flutter downgrade</code></td>
+                </tr>
+              </tbody>
+            </table>
+            
+            <h4>Android/Gradle Issues</h4>
+            <table class="table table-bordered">
+              <thead><tr><th>Problem</th><th>Solution</th></tr></thead>
+              <tbody>
+                <tr>
+                  <td><code>Android license status unknown</code></td>
+                  <td>Run <code>flutter doctor --android-licenses</code>, type 'y' to accept all</td>
+                </tr>
+                <tr>
+                  <td><code>JAVA_HOME not set</code></td>
+                  <td>Install JDK 17, set JAVA_HOME environment variable to JDK path</td>
+                </tr>
+                <tr>
+                  <td><code>Android SDK not found</code></td>
+                  <td>Open Android Studio → SDK Manager → install Android SDK. Or set ANDROID_HOME env variable.</td>
+                </tr>
+                <tr>
+                  <td><code>Gradle build failed</code></td>
+                  <td>1) <code>cd android && ./gradlew clean</code><br>2) <code>cd .. && flutter clean</code><br>3) <code>flutter pub get</code><br>4) <code>flutter run</code></td>
+                </tr>
+                <tr>
+                  <td><code>Execution failed for task ':app:processDebugResources'</code></td>
+                  <td>Duplicate resources or AndroidManifest conflicts. Check for duplicate entries in AndroidManifest.xml</td>
+                </tr>
+              </tbody>
+            </table>
+            
+            <h4>Build/Run Issues</h4>
+            <table class="table table-bordered">
+              <thead><tr><th>Problem</th><th>Solution</th></tr></thead>
+              <tbody>
+                <tr>
+                  <td><code>Could not resolve all files for configuration</code></td>
+                  <td>Internet issue or dependency not found. Check pubspec.yaml versions, run <code>flutter pub get</code> again.</td>
+                </tr>
+                <tr>
+                  <td><code>Error: Cannot run with sound null safety...</code></td>
+                  <td>Some package isn't null-safe. Run with <code>flutter run --no-sound-null-safety</code> (temporary fix) or update packages.</td>
+                </tr>
+                <tr>
+                  <td>App builds but shows blank white screen</td>
+                  <td>1) Check terminal for errors<br>2) <code>flutter clean && flutter pub get</code><br>3) Enable USB debugging on device<br>4) Check app permissions in device settings</td>
+                </tr>
+                <tr>
+                  <td><code>Isar: Failed to open database</code></td>
+                  <td>Storage permission denied or path inaccessible. Grant storage permission, or clear app data and restart.</td>
+                </tr>
+                <tr>
+                  <td><code>Hot reload/restart not working</code></td>
+                  <td>Full restart: press <strong>R</strong> in terminal, or stop and <code>flutter run</code> again.</td>
+                </tr>
+              </tbody>
+            </table>
+            
+            <h4>Device/Emulator Issues</h4>
+            <table class="table table-bordered">
+              <thead><tr><th>Problem</th><th>Solution</th></tr></thead>
+              <tbody>
+                <tr>
+                  <td><code>No devices found</code></td>
+                  <td>1) Start emulator from Android Studio AVD Manager<br>2) Or connect physical device via USB with debugging enabled<br>3) Run <code>flutter devices</code> to verify</td>
+                </tr>
+                <tr>
+                  <td><code>adb: device unauthorized</code></td>
+                  <td>Check phone screen for "Allow USB debugging" prompt. If not shown: revoke USB debugging authorizations in Developer Options, reconnect.</td>
+                </tr>
+                <tr>
+                  <td>Emulator is very slow</td>
+                  <td>1) Use ARM64 system image with HAXM/KVM<br>2) Allocate more RAM to emulator (4GB+)<br>3) Enable hardware acceleration in BIOS/UEFI</td>
+                </tr>
+              </tbody>
+            </table>
+            
+            <h4>App-Specific Issues</h4>
+            <table class="table table-bordered">
+              <thead><tr><th>Problem</th><th>Solution</th></tr></thead>
+              <tbody>
+                <tr>
+                  <td>Backup fails: "Permission denied"</td>
+                  <td>Go to device Settings → Apps → Dokandar → Permissions → Allow Storage/Files. On Android 13+, grant "Photos and media" permission.</td>
+                </tr>
+                <tr>
+                  <td>Backup file not found</td>
+                  <td>Check path: <code>/storage/emulated/0/Dokandar/Backup/</code>. Create backup from app first. Use file manager to verify.</td>
+                </tr>
+                <tr>
+                  <td>Invoice PDF not generating</td>
+                  <td>Check terminal for errors. Ensure <code>pdf</code> and <code>syncfusion_flutter_pdfviewer</code> packages are installed.</td>
+                </tr>
+                <tr>
+                  <td>Language not switching</td>
+                  <td>Ensure <code>enableMultiLanguageSupport = true</code> in app_config.dart. Hot restart after changing language.</td>
+                </tr>
+              </tbody>
+            </table>
+            
+            <h4>Still Stuck?</h4>
+            <ol>
+              <li>Check terminal output for specific error messages</li>
+              <li>Google the error message (often has solutions on Stack Overflow)</li>
+              <li>Run <code>flutter doctor -v</code> and share output when asking for help</li>
+              <li>Contact support with: error logs, Flutter version, device/OS version, steps to reproduce</li>
+            </ol>
+        </section>
+        
+		<hr class="divider">
+		
+          <section id="changelog">
+          <h2>Changelog</h2>
+            <p>Track all version updates here. Update this section when you release new versions.</p>
+            
+            <h5 id="v100" class="mb-3 mt-4">Version 1.0.0 <span class="badge badge-success ml-2">Current</span></h5>
+            <p class="text-muted">Released: December 2024</p>
+            <ul>
+              <li><strong>[NEW]</strong> Initial public release for CodeCanyon</li>
+              <li><strong>[FEATURE]</strong> Complete inventory management with products, categories, stock tracking</li>
+              <li><strong>[FEATURE]</strong> Sales counter with real-time cart management and stock validation</li>
+              <li><strong>[FEATURE]</strong> PDF invoice generation with full-screen preview, print &amp; share</li>
+              <li><strong>[FEATURE]</strong> Customer management with due payment tracking</li>
+              <li><strong>[FEATURE]</strong> Supplier management with purchase tracking</li>
+              <li><strong>[FEATURE]</strong> Employee management with salary tracking</li>
+              <li><strong>[FEATURE]</strong> Expense tracking with categories and date filtering</li>
+              <li><strong>[FEATURE]</strong> Transaction history (combined sales &amp; expenses)</li>
+              <li><strong>[FEATURE]</strong> Sales reports (daily/weekly/monthly/custom date range)</li>
+              <li><strong>[FEATURE]</strong> Stock alerts for low inventory products</li>
+              <li><strong>[FEATURE]</strong> Store setup and configuration</li>
+              <li><strong>[FEATURE]</strong> Local backup/restore (JSON export/import)</li>
+              <li><strong>[FEATURE]</strong> Multi-language support (Bengali &amp; English)</li>
+              <li><strong>[FEATURE]</strong> Light, Dark &amp; System theme with dynamic switching</li>
+              <li><strong>[FEATURE]</strong> Stock validation prevents selling more than available</li>
+              <li><strong>[FEATURE]</strong> Compact &amp; flat modern UI design</li>
+              <li><strong>[FEATURE]</strong> Responsive design for all screen sizes</li>
+              <li><strong>[TECH]</strong> Built with Flutter 3.5.4+, GetX 4.7.2, Isar 3.1.0</li>
+              <li><strong>[TECH]</strong> Supports Android 5.0+ (API 21), targetSdk 34</li>
+              <li><strong>[SECURITY]</strong> Minimal permissions (only VIBRATE for haptic feedback)</li>
+            </ul>
+            
+            <h5 class="mb-3 mt-4">Upcoming Features (Roadmap)</h5>
+            <ul>
+              <li>Cloud sync with Firebase/Supabase</li>
+              <li>Barcode/QR scanner for products</li>
+              <li>Email invoice to customers</li>
+              <li>Export reports (Excel/CSV)</li>
+              <li>Multi-store management</li>
+              <li>Advanced employee roles &amp; permissions</li>
+              <li>Purchase order management</li>
+              <li>Advanced analytics &amp; charts</li>
+            </ul>
+            <p class="alert alert-info"><strong>Note:</strong> Roadmap items are planned but not guaranteed. Priority is given to buyer feature requests.</p>
+          </section>
+		  
+		  <hr class="divider">
+		  
+          <section id="support">
+            <h2>Support</h2>
+            <p class="lead">We're here to help! Get assistance via email or CodeCanyon support.</p>
+            
+            <h4>Before Contacting Support</h4>
+            <ol>
+              <li>Check this documentation (use Ctrl+F to search)</li>
+              <li>Review the <a href="#faq">FAQ</a> and <a href="#troubleshoot">Troubleshooting</a> sections</li>
+              <li>Try <code>flutter clean && flutter pub get</code></li>
+              <li>Make sure you're using Flutter 3.5.4 or higher</li>
+            </ol>
+            
+            <h4>How to Get Help</h4>
+            <p><strong>Email Support:</strong> <a href="mailto:support@example.com">support@example.com</a></p>
+            <p><strong>Response Time:</strong> 1-2 business days (Monday-Friday, GMT+6)</p>
+            
+            <h4>Include in Your Support Request</h4>
+            <ul>
+              <li><strong>Purchase Code:</strong> Your CodeCanyon purchase code</li>
+              <li><strong>App Version:</strong> Check in app's About page or <code>pubspec.yaml</code></li>
+              <li><strong>Flutter Version:</strong> Run <code>flutter --version</code></li>
+              <li><strong>Device/OS:</strong> Phone model & Android version</li>
+              <li><strong>Problem Description:</strong> What you're trying to do, what happens, what you expected</li>
+              <li><strong>Error Logs:</strong> Copy terminal output or screenshot</li>
+              <li><strong>Steps to Reproduce:</strong> 1) Do X, 2) Click Y, 3) See error Z</li>
+              <li><strong>Screenshots/Video:</strong> If UI issue, attach screenshot or screen recording</li>
+            </ul>
+            
+            <h4>What's Included in Support</h4>
+            <ul class="text-success">
+              <li>✓ Bug fixes & error resolution</li>
+              <li>✓ Installation &amp; setup help</li>
+              <li>✓ Configuration guidance</li>
+              <li>✓ Questions about how features work</li>
+              <li>✓ Best practices advice</li>
+            </ul>
+            
+            <h4>What's NOT Included</h4>
+            <ul class="text-danger">
+              <li>✗ Custom feature development</li>
+              <li>✗ Integration with third-party services</li>
+              <li>✗ Server setup/hosting</li>
+              <li>✗ General Flutter/Dart tutorials</li>
+              <li>✗ Play Store submission (we can guide, but can't submit for you)</li>
+            </ul>
+            
+            <h4>Feature Requests</h4>
+            <p>Have an idea? Email us! Highly-requested features are added in future updates. Small improvements are often included for free.</p>
+            
+            <h4>Leave a Review</h4>
+            <p>If you're happy with the app, please leave a 5-star review on CodeCanyon. It helps us a lot! If something isn't working, contact us first—we'll fix it before you leave a review. 😊</p>
+            
+            <p class="mt-4"><strong>Thank you for choosing Dokandar Inventory!</strong></p>
+        </section>        
+      </div>
+    </div>
+  </div>
+    </div>
+
+<script src="assets/vendor/jquery/jquery.min.js"></script> 
+<script src="assets/vendor/jquery.easing/jquery.easing.min.js"></script> 
+<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script> 
+<script src="assets/vendor/highlight.js/highlight.min.js"></script> 
+<script src="assets/vendor/magnific-popup/jquery.magnific-popup.min.js"></script> 
+<script src="assets/js/theme.js"></script>
+
+<script>
+// Fixed navigation for sidebar links
+$(document).ready(function() {
+  console.log('iDocs navigation initialized');
+  
+  // Smooth scroll for sidebar navigation links
+  $(document).on('click', '.idocs-navigation .nav-link', function(e) {
+    var href = $(this).attr('href');
+    console.log('Clicked link:', href);
+    
+    // Only handle anchor links
+    if(href && href.startsWith('#')) {
+      e.preventDefault();
+      e.stopPropagation();
+      
+      var targetId = href.substring(1);
+      var target = $('#' + targetId);
+      
+      console.log('Target element:', targetId, 'Found:', target.length);
+      
+      if(target.length) {
+        // Smooth scroll to target
+        $('html, body').animate({
+          scrollTop: target.offset().top - 100
+        }, 600, function() {
+          // Update URL without triggering scroll
+          if(history.pushState) {
+            history.pushState(null, null, href);
+          } else {
+            window.location.hash = href;
+          }
+        });
+        
+        // Update active class
+        $('.idocs-navigation .nav-link').removeClass('active');
+        $(this).addClass('active');
+        
+        // Close mobile sidebar
+        if($(window).width() < 992) {
+          $('.idocs-navigation').removeClass('show');
+        }
+      }
+    }
+  });
+  
+  // Header navigation links
+  $(document).on('click', '.navbar-nav .nav-link[href^="#"]', function(e) {
+    var href = $(this).attr('href');
+    if(href && href.startsWith('#')) {
+      e.preventDefault();
+      var target = $(href);
+      if(target.length) {
+        $('html, body').animate({
+          scrollTop: target.offset().top - 100
+        }, 600);
+      }
+    }
+  });
+  
+  // Initialize code highlighting (compatible with highlight.js v10)
+  if(typeof hljs !== 'undefined') {
+    // Try different methods for different versions
+    if (typeof hljs.initHighlighting === 'function') {
+      hljs.initHighlighting();
+    } else if (typeof hljs.highlightAll === 'function') {
+      hljs.highlightAll();
+    } else {
+      // Manual fallback
+      $('pre code').each(function(i, block) {
+        if (typeof hljs.highlightBlock === 'function') {
+          hljs.highlightBlock(block);
+        }
+      });
+    }
+  }
+  
+  // Update active state on scroll
+  var scrollTimer;
+  $(window).on('scroll', function() {
+    clearTimeout(scrollTimer);
+    scrollTimer = setTimeout(function() {
+      var scrollPos = $(window).scrollTop() + 150;
+      
+      // Find current section
+      var current = '';
+      $('section[id]').each(function() {
+        var top = $(this).offset().top - 150;
+        var bottom = top + $(this).outerHeight();
+        
+        if(scrollPos >= top && scrollPos <= bottom) {
+          current = $(this).attr('id');
+        }
+      });
+      
+      // Update active link
+      if(current) {
+        $('.idocs-navigation .nav-link').removeClass('active');
+        $('.idocs-navigation .nav-link[href="#' + current + '"]').addClass('active');
+      }
+    }, 100);
+  });
+  
+  // Set initial active link based on URL hash
+  var hash = window.location.hash;
+  if(hash) {
+    $('.idocs-navigation .nav-link[href="' + hash + '"]').addClass('active');
+  }
+});
+</script>
+
+</body>
+</html>
+
+

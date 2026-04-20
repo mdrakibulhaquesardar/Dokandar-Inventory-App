@@ -14,20 +14,20 @@ class SettingController extends GetxController {
   void getUserInfo() async {
     user = await Get.find<DatabaseService>().getUser();
     if (user != null) {
-      print("User found: ${user!.name}");
+      debugPrint("User found: ${user!.name}");
     } else {
-      print("No user found");
+      debugPrint("No user found");
     }
   }
   void getStoreInfo() async {
     store = await Get.find<DatabaseService>().getStore();
     if (store != null) {
       if (kDebugMode) {
-        print("Store found: ${store!.name}");
+        debugPrint("Store found: ${store!.name}");
       }
     } else {
       if (kDebugMode) {
-        print("No store found");
+        debugPrint("No store found");
       }
     }
   }
@@ -42,6 +42,15 @@ class SettingController extends GetxController {
     getStoreInfo();
   }
 
+  Future<void> updateStore(Store updated) async {
+    await Get.find<DatabaseService>().updateStore(updated);
+    store = updated;
+    update();
+  }
 
-
+  Future<void> updateUser(User updated) async {
+    await Get.find<DatabaseService>().saveUser(updated);
+    user = updated;
+    update();
+  }
 }

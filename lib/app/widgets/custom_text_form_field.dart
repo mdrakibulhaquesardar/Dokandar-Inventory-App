@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
+import '../utils/safe_google_fonts.dart';
 import '../config/app_theme_config.dart';
 
 class CustomTextFormField extends StatelessWidget {
@@ -32,9 +32,9 @@ class CustomTextFormField extends StatelessWidget {
       maxLines: maxLines,
       decoration: InputDecoration(
         labelText: labelText,
-        labelStyle: GoogleFonts.poppins(),
+        labelStyle: SafeGoogleFonts.poppins(),
         hintText: hintText,
-        hintStyle: GoogleFonts.poppins(
+        hintStyle: SafeGoogleFonts.poppins(
           color: themeConfig.getTextSecondaryColor(isDarkMode),
         ),
         prefixIcon: Icon(
@@ -47,7 +47,7 @@ class CustomTextFormField extends StatelessWidget {
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(8),
           borderSide: BorderSide(
-            color: themeConfig.getTextSecondaryColor(isDarkMode).withOpacity(0.3),
+            color: themeConfig.getTextSecondaryColor(isDarkMode).withValues(alpha: 0.1),
           ),
         ),
         focusedBorder: OutlineInputBorder(
@@ -72,3 +72,4 @@ class CustomTextFormField extends StatelessWidget {
     );
   }
 }
+

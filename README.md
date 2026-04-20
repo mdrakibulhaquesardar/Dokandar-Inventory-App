@@ -71,7 +71,21 @@ Dokandar App Inventory is a modern Flutter-based inventory management system des
    flutter pub get
    ```
 
-4. Run the app
+4. **Configure the App (IMPORTANT for CodeCanyon Users)**
+   
+   Open `lib/app/config/app_config.dart` and customize the following:
+   
+   - **App Information**: Update `appName`, `appVersion`, `appDescription`, etc.
+   - **Developer/Company Info**: Change `developerName`, `supportEmail`, `website` to your own information
+   - **Subscription Plans**: Modify `subscriptionPlans` map with your pricing and plans
+   - **Feature Flags**: Enable/disable features like `enableSubscription`, `enableDarkMode`, etc.
+   - **Limits**: Adjust `freePlanProductLimit`, `freePlanCustomerLimit`, `lowStockThreshold`
+   - **Theme Colors**: Customize `themeColors` map for your brand colors
+   - **Currency**: Update `currencySymbol`, `decimalPlaces`, etc. for your region
+   
+   **All app configurations are centralized in this single file!**
+
+5. Run the app
    ```bash
    flutter run
    ```
@@ -81,7 +95,7 @@ Dokandar App Inventory is a modern Flutter-based inventory management system des
 ```
 lib/
 ├── app/
-│   ├── config/      # App configuration files
+│   ├── config/      # App configuration files (app_config.dart - MAIN CONFIG FILE)
 │   ├── controllers/ # GetX controllers
 │   ├── data/        # Data models and repositories
 │   ├── modules/     # Feature modules
@@ -91,6 +105,41 @@ lib/
 │   └── widgets/     # Reusable widgets
 └── main.dart        # Entry point
 ```
+
+## Configuration Guide
+
+### For CodeCanyon Buyers
+
+This app is designed to be easily customizable through a single configuration file: `lib/app/config/app_config.dart`
+
+**Key Configuration Areas:**
+
+1. **App Branding**
+   - App name, version, description
+   - Developer/company information
+   - Support email and website
+
+2. **Features**
+   - Enable/disable subscription system
+   - Toggle dark mode, notifications, backup, analytics
+   - Multi-language support
+
+3. **Subscription System**
+   - Configure subscription plans (monthly, quarterly, half-yearly)
+   - Set free plan limits (products, customers)
+   - Trial period duration
+
+4. **Business Rules**
+   - Low stock threshold
+   - Currency settings
+   - Date/time formats
+
+5. **Theme & UI**
+   - Primary/secondary colors
+   - Background/surface colors
+   - Text colors
+
+**All changes made in `app_config.dart` are automatically reflected throughout the entire app!**
 
 ## Contributing
 
