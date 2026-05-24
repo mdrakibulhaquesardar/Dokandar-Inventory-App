@@ -660,6 +660,27 @@
       }
     }
   },
-  "pinMismatch": "পিন এবং কনফার্মেশন মেলে না"
+  "pinMismatch": "পিন এবং কনফার্মেশন মেলে না",
+  "addSupplier": "সাপ্লায়ার যোগ করুন",
+  "editSupplier": "সাপ্লায়ার সম্পাদনা করুন",
+  "deleteSupplier": "সাপ্লায়ার মুছে ফেলুন",
+  "confirmDeleteSupplier": "আপনি কি নিশ্চিত যে আপনি এই সাপ্লায়ারটি মুছে ফেলতে চান?",
+  "supplierInfo": "সাপ্লায়ার তথ্য",
+  "supplierAdded": "সাপ্লায়ার সফলভাবে যোগ করা হয়েছে",
+  "supplierUpdated": "সাপ্লায়ার সফলভাবে আপডেট করা হয়েছে",
+  "supplierDeleted": "সাপ্লায়ার সফলভাবে মুছে ফেলা হয়েছে",
+  "noSuppliers": "কোন সাপ্লায়ার পাওয়া যায়নি",
+  "company": "কোম্পানি",
+  "totalPurchase": "মোট ক্রয়",
+  "totalPaid": "মোট পরিশোধিত",
+  "totalDue": "মোট বাকি",
+  "recordPayment": "পেমেন্ট রেকর্ড করুন",
+  "paymentAmount": "পেমেন্টের পরিমাণ",
+  "paymentRecorded": "পেমেন্ট সফলভাবে রেকর্ড করা হয়েছে",
+  "supplierHasDue": "বাকি আছে",
+  "supplierNoDue": "বাকি নেই",
+  "searchSuppliers": "সাপ্লায়ার খুঁজুন...",
+  "totalSuppliers": "মোট সাপ্লায়ার",
+  "supplierNameRequired": "সাপ্লায়ারের নাম আবশ্যক"
 }
 

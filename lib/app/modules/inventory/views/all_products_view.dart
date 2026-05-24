@@ -350,7 +350,7 @@ class AllProductsView extends GetView<AllProductController> {
                                       onPressed: () {
                                         showDialog(
                                           context: context,
-                                          builder: (context) => AlertDialog(
+                                          builder: (dialogContext) => AlertDialog(
                                             title: Text(
                                               l10n.deleteProduct,
                                               style: SafeGoogleFonts.poppins(
@@ -363,7 +363,7 @@ class AllProductsView extends GetView<AllProductController> {
                                             ),
                                             actions: [
                                               TextButton(
-                                                onPressed: () => Get.back(),
+                                                onPressed: () => Navigator.pop(dialogContext),
                                                 child: Text(
                                                   l10n.no,
                                                   style: TextStyle(
@@ -377,8 +377,8 @@ class AllProductsView extends GetView<AllProductController> {
                                                 onPressed: () {
                                                   controller.deleteProduct(
                                                       product.id);
-                                                  Get.back();
-                                                  Get.back();
+                                                  Navigator.pop(dialogContext);
+                                                  Navigator.pop(context);
                                                 },
                                                 style: ElevatedButton.styleFrom(
                                                   backgroundColor: Colors.red,
@@ -404,7 +404,7 @@ class AllProductsView extends GetView<AllProductController> {
                                       ),
                                     ),
                                     TextButton(
-                                      onPressed: () => Get.back(),
+                                      onPressed: () => Navigator.pop(context),
                                       child: Text(
                                         l10n.cancel,
                                         style: TextStyle(
@@ -418,7 +418,7 @@ class AllProductsView extends GetView<AllProductController> {
                                     ElevatedButton(
                                       onPressed: () {
                                         controller.updateProduct(product);
-                                        Get.back();
+                                        Navigator.pop(context);
                                       },
                                       style: ElevatedButton.styleFrom(
                                         backgroundColor: themeConfig
@@ -642,7 +642,7 @@ class AllProductsView extends GetView<AllProductController> {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       TextButton(
-                        onPressed: () => Get.back(),
+                        onPressed: () => Navigator.pop(context),
                         child: Text(
                           l10n.cancel,
                           style: TextStyle(
@@ -655,7 +655,7 @@ class AllProductsView extends GetView<AllProductController> {
                       ElevatedButton(
                         onPressed: () {
                           controller.saveNewProduct();
-                          Get.back();
+                          Navigator.pop(context);
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor:

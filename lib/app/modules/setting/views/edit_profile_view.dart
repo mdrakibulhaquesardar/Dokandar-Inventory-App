@@ -59,7 +59,7 @@ class EditProfileView extends GetView<SettingController> {
                   await controller.updateUser(user);
                   Get.snackbar(l10n.success, 'Profile saved',
                       snackPosition: SnackPosition.BOTTOM);
-                  Get.back();
+                  Navigator.pop(context);
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: themeConfig.getPrimaryColor(isDarkMode),

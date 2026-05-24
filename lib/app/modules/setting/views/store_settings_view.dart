@@ -62,7 +62,7 @@ class StoreSettingsView extends GetView<SettingController> {
                     await controller.updateStore(updated);
                     Get.snackbar(l10n.success, 'Settings saved',
                         snackPosition: SnackPosition.BOTTOM);
-                    Get.back();
+                    Navigator.pop(context);
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: themeConfig.getPrimaryColor(isDarkMode),

@@ -178,15 +178,18 @@ class AllEmployeesView extends GetView<EmployeeController> {
                   width: double.infinity,
                   child: ElevatedButton(
                     onPressed: () async {
+                      bool success = false;
                       if (isEditing && employeeToEdit != null) {
                         final updated = controller.buildEmployeeFromForm(
                             existingCode: employeeToEdit.employeeCode ?? '');
-                        await controller.updateEmployee(
+                        success = await controller.updateEmployee(
                             employeeToEdit, updated);
                       } else {
-                        await controller.addEmployee();
+                        success = await controller.addEmployee();
                       }
-                      if (bottomSheetContext.mounted) Get.back();
+                      if (success && bottomSheetContext.mounted) {
+                        Navigator.pop(bottomSheetContext);
+                      }
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: themeConfig.getPrimaryColor(isDarkMode),

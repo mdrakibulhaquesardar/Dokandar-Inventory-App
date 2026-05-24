@@ -353,7 +353,7 @@ class AppLocalizationsBn extends AppLocalizations {
   String get newCustomers => 'নতুন গ্রাহক';
 
   @override
-  String get totalDue => 'মোট বাকি টাকা';
+  String get totalDue => 'মোট বাকি';
 
   @override
   String get customerName => 'গ্রাহকের নাম';
@@ -1279,4 +1279,65 @@ class AppLocalizationsBn extends AppLocalizations {
 
   @override
   String get pinMismatch => 'পিন এবং কনফার্মেশন মেলে না';
+
+  @override
+  String get addSupplier => 'সাপ্লায়ার যোগ করুন';
+
+  @override
+  String get editSupplier => 'সাপ্লায়ার সম্পাদনা করুন';
+
+  @override
+  String get deleteSupplier => 'সাপ্লায়ার মুছে ফেলুন';
+
+  @override
+  String get confirmDeleteSupplier =>
+      'আপনি কি নিশ্চিত যে আপনি এই সাপ্লায়ারটি মুছে ফেলতে চান?';
+
+  @override
+  String get supplierInfo => 'সাপ্লায়ার তথ্য';
+
+  @override
+  String get supplierAdded => 'সাপ্লায়ার সফলভাবে যোগ করা হয়েছে';
+
+  @override
+  String get supplierUpdated => 'সাপ্লায়ার সফলভাবে আপডেট করা হয়েছে';
+
+  @override
+  String get supplierDeleted => 'সাপ্লায়ার সফলভাবে মুছে ফেলা হয়েছে';
+
+  @override
+  String get noSuppliers => 'কোন সাপ্লায়ার পাওয়া যায়নি';
+
+  @override
+  String get company => 'কোম্পানি';
+
+  @override
+  String get totalPurchase => 'মোট ক্রয়';
+
+  @override
+  String get totalPaid => 'মোট পরিশোধিত';
+
+  @override
+  String get recordPayment => 'পেমেন্ট রেকর্ড করুন';
+
+  @override
+  String get paymentAmount => 'পেমেন্টের পরিমাণ';
+
+  @override
+  String get paymentRecorded => 'পেমেন্ট সফলভাবে রেকর্ড করা হয়েছে';
+
+  @override
+  String get supplierHasDue => 'বাকি আছে';
+
+  @override
+  String get supplierNoDue => 'বাকি নেই';
+
+  @override
+  String get searchSuppliers => 'সাপ্লায়ার খুঁজুন...';
+
+  @override
+  String get totalSuppliers => 'মোট সাপ্লায়ার';
+
+  @override
+  String get supplierNameRequired => 'সাপ্লায়ারের নাম আবশ্যক';
 }

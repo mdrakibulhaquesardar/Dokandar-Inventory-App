@@ -1276,4 +1276,65 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get pinMismatch => 'PIN and confirmation do not match';
+
+  @override
+  String get addSupplier => 'Add Supplier';
+
+  @override
+  String get editSupplier => 'Edit Supplier';
+
+  @override
+  String get deleteSupplier => 'Delete Supplier';
+
+  @override
+  String get confirmDeleteSupplier =>
+      'Are you sure you want to delete this supplier?';
+
+  @override
+  String get supplierInfo => 'Supplier Information';
+
+  @override
+  String get supplierAdded => 'Supplier added successfully';
+
+  @override
+  String get supplierUpdated => 'Supplier updated successfully';
+
+  @override
+  String get supplierDeleted => 'Supplier deleted successfully';
+
+  @override
+  String get noSuppliers => 'No suppliers found';
+
+  @override
+  String get company => 'Company';
+
+  @override
+  String get totalPurchase => 'Total Purchase';
+
+  @override
+  String get totalPaid => 'Total Paid';
+
+  @override
+  String get recordPayment => 'Record Payment';
+
+  @override
+  String get paymentAmount => 'Payment Amount';
+
+  @override
+  String get paymentRecorded => 'Payment recorded successfully';
+
+  @override
+  String get supplierHasDue => 'Has due amount';
+
+  @override
+  String get supplierNoDue => 'No due';
+
+  @override
+  String get searchSuppliers => 'Search suppliers...';
+
+  @override
+  String get totalSuppliers => 'Total Suppliers';
+
+  @override
+  String get supplierNameRequired => 'Supplier name is required';
 }

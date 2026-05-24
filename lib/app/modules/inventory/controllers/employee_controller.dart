@@ -28,11 +28,11 @@ class EmployeeController extends GetxController {
     employees.assignAll(data);
   }
 
-  Future<void> addEmployee() async {
+  Future<bool> addEmployee() async {
     if (nameController.text.trim().isEmpty) {
       Get.snackbar('Error', 'Name is required',
           snackPosition: SnackPosition.BOTTOM);
-      return;
+      return false;
     }
     final salary = double.tryParse(salaryController.text.trim()) ?? 0;
     final employee = Employee(
@@ -55,13 +55,20 @@ class EmployeeController extends GetxController {
     await fetchEmployees();
     VibrationHelper.onSuccess();
     clearForm();
+    return true;
   }
 
-  Future<void> updateEmployee(Employee employee, Employee updated) async {
+  Future<bool> updateEmployee(Employee employee, Employee updated) async {
+    if (updated.name.trim().isEmpty) {
+      Get.snackbar('Error', 'Name is required',
+          snackPosition: SnackPosition.BOTTOM);
+      return false;
+    }
     updated.id = employee.id;
     await _db.updateEmployee(updated);
     await fetchEmployees();
     VibrationHelper.onSuccess();
+    return true;
   }
 
   Future<void> deleteEmployee(int id) async {

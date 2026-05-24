@@ -27,12 +27,12 @@ class ExpenseController extends GetxController {
     expenses.assignAll(data);
   }
 
-  Future<void> addExpense() async {
+  Future<bool> addExpense() async {
     if (titleController.text.trim().isEmpty ||
         amountController.text.trim().isEmpty) {
       Get.snackbar('Error', 'Title and amount are required',
           snackPosition: SnackPosition.BOTTOM);
-      return;
+      return false;
     }
     final amount = double.tryParse(amountController.text.trim()) ?? 0;
     final expense = Expense(
@@ -49,13 +49,20 @@ class ExpenseController extends GetxController {
     await fetchExpenses();
     VibrationHelper.onSuccess();
     clearForm();
+    return true;
   }
 
-  Future<void> updateExpense(Expense original, Expense updated) async {
+  Future<bool> updateExpense(Expense original, Expense updated) async {
+    if (updated.title.trim().isEmpty || updated.amount <= 0) {
+      Get.snackbar('Error', 'Title and valid amount are required',
+          snackPosition: SnackPosition.BOTTOM);
+      return false;
+    }
     updated.id = original.id;
     await _db.updateExpense(updated);
     await fetchExpenses();
     VibrationHelper.onSuccess();
+    return true;
   }
 
   Future<void> deleteExpense(int id) async {

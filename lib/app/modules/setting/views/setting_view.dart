@@ -537,7 +537,7 @@ class SettingView extends GetView<SettingController> {
                   ),
                 ),
                 IconButton(
-                  onPressed: () => Get.back(),
+                  onPressed: () => Navigator.pop(context),
                   icon: Icon(
                     Icons.close,
                     color: themeConfig.getTextSecondaryColor(isDarkMode),
@@ -569,7 +569,7 @@ class SettingView extends GetView<SettingController> {
                   ),
                   onTap: () async {
                     // Close bottom sheet first to avoid context issues
-                    Get.back();
+                    Navigator.pop(context);
                     // Small delay to ensure bottom sheet is closed
                     await Future.delayed(const Duration(milliseconds: 100));
                     // Then change language
@@ -832,7 +832,7 @@ class SettingView extends GetView<SettingController> {
                     ),
                     onTap: () async {
                       await appConfig.saveTheme(value);
-                      Get.back();
+                      Navigator.pop(context);
                     },
                   );
                 }).toList(),
@@ -950,7 +950,7 @@ class SettingView extends GetView<SettingController> {
                   ),
                   onTap: () async {
                     await appConfig.saveFontSize(entry.key);
-                    Get.back();
+                    Navigator.pop(context);
                   },
                 );
               });
@@ -1008,7 +1008,7 @@ class SettingView extends GetView<SettingController> {
                   ),
                   onTap: () async {
                     await appConfig.saveCurrency(entry.key);
-                    Get.back();
+                    Navigator.pop(context);
                   },
                 );
               });
@@ -1067,7 +1067,7 @@ class SettingView extends GetView<SettingController> {
                   ),
                   onTap: () async {
                     await appConfig.saveDateFormat(entry.key);
-                    Get.back();
+                    Navigator.pop(context);
                   },
                 );
               });
@@ -1126,7 +1126,7 @@ class SettingView extends GetView<SettingController> {
                   ),
                   onTap: () async {
                     await appConfig.saveTimeFormat(entry.key);
-                    Get.back();
+                    Navigator.pop(context);
                   },
                 );
               });
@@ -1184,7 +1184,7 @@ class SettingView extends GetView<SettingController> {
                   ),
                   onTap: () async {
                     await appConfig.savePageSize(size);
-                    Get.back();
+                    Navigator.pop(context);
                   },
                 );
               });
@@ -1219,7 +1219,7 @@ class SettingView extends GetView<SettingController> {
         ),
         actions: [
           TextButton(
-            onPressed: () => Get.back(),
+            onPressed: () => Navigator.pop(context),
             child: Text(
               l10n.cancel,
               style: SafeGoogleFonts.poppins(
@@ -1230,7 +1230,7 @@ class SettingView extends GetView<SettingController> {
           TextButton(
             onPressed: () async {
               await appConfig.clearCache();
-              Get.back();
+              Navigator.pop(context);
               Get.snackbar(
                 l10n.clearCache,
                 l10n.cacheCleared,

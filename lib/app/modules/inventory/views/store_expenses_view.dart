@@ -224,13 +224,16 @@ class StoreExpensesView extends GetView<ExpenseController> {
                   width: double.infinity,
                   child: ElevatedButton(
                     onPressed: () async {
+                      bool success = false;
                       if (isEditing && expenseToEdit != null) {
                         final updated = controller.buildExpenseFromForm();
-                        await controller.updateExpense(expenseToEdit, updated);
+                        success = await controller.updateExpense(expenseToEdit, updated);
                       } else {
-                        await controller.addExpense();
+                        success = await controller.addExpense();
                       }
-                      if (bottomSheetContext.mounted) Get.back();
+                      if (success && bottomSheetContext.mounted) {
+                        Navigator.pop(bottomSheetContext);
+                      }
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: themeConfig.getPrimaryColor(isDarkMode),

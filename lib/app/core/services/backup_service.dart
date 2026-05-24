@@ -8,6 +8,7 @@ import 'package:isar/isar.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:flutter/foundation.dart' hide Category;
 import 'package:path/path.dart' as path;
+import 'package:path_provider/path_provider.dart';
 
 import '../../data/models/category.dart';
 import '../../data/models/product.dart';
@@ -23,9 +24,9 @@ class BackupService extends GetxService {
 
   Future<BackupService> init(Isar isarInstance) async {
     isar = isarInstance;
-    _backupDir = await getExportDirectory() ?? Directory('/storage/emulated/0/Dokandar/Backup');
+    final dir = await getExportDirectory();
+    _backupDir = dir ?? Directory('/storage/emulated/0/Dokandar/Backup');
     return this;
-
   }
 
   //Request Storage Permission
@@ -58,19 +59,51 @@ class BackupService extends GetxService {
     return true;
   }
 
-  // Get or Create Custom Directory
+  // Get or Create Custom Directory with fallbacks for Android 10+ Scoped Storage
   Future<Directory?> getExportDirectory() async {
     try {
+      // 1. Try public shared storage (Android 9 and below, or if MANAGE_EXTERNAL_STORAGE is granted)
       final backupDir = Directory('/storage/emulated/0/Dokandar/Backup');
 
       if (!await backupDir.exists()) {
         await backupDir.create(recursive: true);
       }
 
+      // Test writing a temporary file to verify actual write permissions
+      final testFile = File(path.join(backupDir.path, '.write_test'));
+      await testFile.writeAsString('test');
+      await testFile.delete();
+
       return backupDir;
     } catch (e) {
-      debugPrint('Error creating backup directory: $e');
-      return null;
+      debugPrint('Error writing to public backup directory (trying app-specific external storage): $e');
+      
+      try {
+        // 2. Try app-specific external directory (No permissions required, accessible via USB/File Manager under Android/data/)
+        final extDir = await getExternalStorageDirectory();
+        if (extDir != null) {
+          final backupDir = Directory(path.join(extDir.path, 'Backup'));
+          if (!await backupDir.exists()) {
+            await backupDir.create(recursive: true);
+          }
+          return backupDir;
+        }
+      } catch (ex) {
+        debugPrint('Error writing to app-specific external storage (trying internal documents): $ex');
+      }
+
+      try {
+        // 3. Fallback to internal app documents directory (Always works, secure, no permissions required)
+        final appDir = await getApplicationDocumentsDirectory();
+        final backupDir = Directory(path.join(appDir.path, 'Backup'));
+        if (!await backupDir.exists()) {
+          await backupDir.create(recursive: true);
+        }
+        return backupDir;
+      } catch (err) {
+        debugPrint('Fallback to internal documents directory failed: $err');
+        return null;
+      }
     }
   }
 

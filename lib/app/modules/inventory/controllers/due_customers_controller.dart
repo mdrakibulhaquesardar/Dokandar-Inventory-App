@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../core/services/database_service.dart';
 import '../../../data/models/customer.dart';
@@ -40,7 +41,7 @@ class DueCustomersController extends GetxController {
       await loadDueCustomers(); // Refresh the list
 
       VibrationHelper.onSuccess();
-      Get.back(result: true);
+      Navigator.of(Get.context!).pop(true);
       final l10n = AppLocalizations.of(Get.context!)!;
       Get.snackbar(
         l10n.success,

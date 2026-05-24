@@ -171,7 +171,7 @@ class DueCustomersView extends GetView<DueCustomersController> {
                   ),
                 ),
                 IconButton(
-                  onPressed: () => Get.back(),
+                  onPressed: () => Navigator.pop(context),
                   icon: Icon(
                     Icons.close,
                     color: themeConfig.getTextSecondaryColor(isDarkMode),
@@ -233,7 +233,7 @@ class DueCustomersView extends GetView<DueCustomersController> {
               children: [
                 Expanded(
                   child: TextButton(
-                    onPressed: () => Get.back(),
+                    onPressed: () => Navigator.pop(context),
                     style: TextButton.styleFrom(
                       padding: const EdgeInsets.symmetric(vertical: 12),
                       shape: RoundedRectangleBorder(

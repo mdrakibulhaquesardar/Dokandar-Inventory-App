@@ -195,7 +195,7 @@ class AllCategoryView extends GetView<AllCategoryController> {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 TextButton(
-                  onPressed: () => Get.back(),
+                  onPressed: () => Navigator.pop(context),
                   child: Text(
                     l10n.cancel,
                     style: TextStyle(
@@ -212,7 +212,7 @@ class AllCategoryView extends GetView<AllCategoryController> {
                         description: descriptionController.text,
                       ),
                     );
-                    Get.back();
+                    Navigator.pop(context);
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: themeConfig.getPrimaryColor(isDarkMode),
@@ -355,7 +355,7 @@ class AllCategoryView extends GetView<AllCategoryController> {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 TextButton(
-                  onPressed: () => Get.back(),
+                  onPressed: () => Navigator.pop(context),
                   child: Text(
                     l10n.cancel,
                     style: TextStyle(
@@ -369,7 +369,7 @@ class AllCategoryView extends GetView<AllCategoryController> {
                     category.name = nameController.text;
                     category.description = descriptionController.text;
                     controller.updateCategory(category);
-                    Get.back();
+                    Navigator.pop(context);
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: themeConfig.getPrimaryColor(isDarkMode),

@@ -2515,6 +2515,126 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'PIN and confirmation do not match'**
   String get pinMismatch;
+
+  /// No description provided for @addSupplier.
+  ///
+  /// In en, this message translates to:
+  /// **'Add Supplier'**
+  String get addSupplier;
+
+  /// No description provided for @editSupplier.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Supplier'**
+  String get editSupplier;
+
+  /// No description provided for @deleteSupplier.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete Supplier'**
+  String get deleteSupplier;
+
+  /// No description provided for @confirmDeleteSupplier.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to delete this supplier?'**
+  String get confirmDeleteSupplier;
+
+  /// No description provided for @supplierInfo.
+  ///
+  /// In en, this message translates to:
+  /// **'Supplier Information'**
+  String get supplierInfo;
+
+  /// No description provided for @supplierAdded.
+  ///
+  /// In en, this message translates to:
+  /// **'Supplier added successfully'**
+  String get supplierAdded;
+
+  /// No description provided for @supplierUpdated.
+  ///
+  /// In en, this message translates to:
+  /// **'Supplier updated successfully'**
+  String get supplierUpdated;
+
+  /// No description provided for @supplierDeleted.
+  ///
+  /// In en, this message translates to:
+  /// **'Supplier deleted successfully'**
+  String get supplierDeleted;
+
+  /// No description provided for @noSuppliers.
+  ///
+  /// In en, this message translates to:
+  /// **'No suppliers found'**
+  String get noSuppliers;
+
+  /// No description provided for @company.
+  ///
+  /// In en, this message translates to:
+  /// **'Company'**
+  String get company;
+
+  /// No description provided for @totalPurchase.
+  ///
+  /// In en, this message translates to:
+  /// **'Total Purchase'**
+  String get totalPurchase;
+
+  /// No description provided for @totalPaid.
+  ///
+  /// In en, this message translates to:
+  /// **'Total Paid'**
+  String get totalPaid;
+
+  /// No description provided for @recordPayment.
+  ///
+  /// In en, this message translates to:
+  /// **'Record Payment'**
+  String get recordPayment;
+
+  /// No description provided for @paymentAmount.
+  ///
+  /// In en, this message translates to:
+  /// **'Payment Amount'**
+  String get paymentAmount;
+
+  /// No description provided for @paymentRecorded.
+  ///
+  /// In en, this message translates to:
+  /// **'Payment recorded successfully'**
+  String get paymentRecorded;
+
+  /// No description provided for @supplierHasDue.
+  ///
+  /// In en, this message translates to:
+  /// **'Has due amount'**
+  String get supplierHasDue;
+
+  /// No description provided for @supplierNoDue.
+  ///
+  /// In en, this message translates to:
+  /// **'No due'**
+  String get supplierNoDue;
+
+  /// No description provided for @searchSuppliers.
+  ///
+  /// In en, this message translates to:
+  /// **'Search suppliers...'**
+  String get searchSuppliers;
+
+  /// No description provided for @totalSuppliers.
+  ///
+  /// In en, this message translates to:
+  /// **'Total Suppliers'**
+  String get totalSuppliers;
+
+  /// No description provided for @supplierNameRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Supplier name is required'**
+  String get supplierNameRequired;
 }
 
 class _AppLocalizationsDelegate
