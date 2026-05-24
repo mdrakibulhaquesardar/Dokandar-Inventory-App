@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../widgets/loading_overlay.dart';
+import '../../home/controllers/home_controller.dart';
+import '../../setting/controllers/setting_controller.dart';
 
 class SetupController extends GetxController {
   final currentStep = 0.obs;
@@ -65,6 +67,20 @@ class SetupController extends GetxController {
         businessType: businessTypeController.text,
       );
       await _databaseService.saveStore(store);
+
+      // Refresh HomeController and SettingController so the new store and user info
+      // are loaded and visible immediately on the first-time entry.
+      if (Get.isRegistered<HomeController>()) {
+        final homeController = Get.find<HomeController>();
+        homeController.getStoreInfo();
+        homeController.getAllStatistics();
+      }
+      if (Get.isRegistered<SettingController>()) {
+        final settingController = Get.find<SettingController>();
+        settingController.getUserInfo();
+        settingController.getStoreInfo();
+      }
+
       LoadingOverlay.hide();
       Get.offAllNamed(Routes.MAIN);
     }
