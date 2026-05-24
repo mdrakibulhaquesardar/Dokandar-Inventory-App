@@ -160,6 +160,76 @@ class HomeView extends GetView<HomeController> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              // Quick Access Section
+              Text(
+                l10n.quickAccess,
+                style: SafeGoogleFonts.notoSansBengali(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w600,
+                  color: themeConfig.getTextPrimaryColor(isDarkMode),
+                ),
+              ),
+              const SizedBox(height: 2),
+              Text(
+                l10n.quickAccessDescription,
+                style: SafeGoogleFonts.notoSansBengali(
+                  fontSize: 12,
+                  fontWeight: FontWeight.w400,
+                  color: themeConfig.getTextSecondaryColor(isDarkMode),
+                ),
+              ),
+              const SizedBox(height: 12),
+              Container(
+                width: double.infinity,
+                padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 8),
+                decoration: BoxDecoration(
+                  color: themeConfig.getSurfaceColor(isDarkMode),
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    _buildQuickActionItem(
+                      context,
+                      icon: Icons.point_of_sale_outlined,
+                      label: l10n.sellCounter,
+                      color: Colors.green,
+                      route: Routes.SELL,
+                      themeConfig: themeConfig,
+                      isDarkMode: isDarkMode,
+                    ),
+                    _buildQuickActionItem(
+                      context,
+                      icon: Icons.inventory_2_outlined,
+                      label: l10n.addProduct,
+                      color: Colors.blue,
+                      route: Routes.ALL_PRODUCTS,
+                      themeConfig: themeConfig,
+                      isDarkMode: isDarkMode,
+                    ),
+                    _buildQuickActionItem(
+                      context,
+                      icon: Icons.receipt_long_outlined,
+                      label: l10n.storeExpenses,
+                      color: Colors.redAccent,
+                      route: Routes.STORE_EXPENSES,
+                      themeConfig: themeConfig,
+                      isDarkMode: isDarkMode,
+                    ),
+                    _buildQuickActionItem(
+                      context,
+                      icon: Icons.account_balance_wallet_outlined,
+                      label: l10n.payDue,
+                      color: Colors.amber[700]!,
+                      route: Routes.PAY_DUE,
+                      themeConfig: themeConfig,
+                      isDarkMode: isDarkMode,
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 20),
+
               // Summary Cards Grid
               Text(
                 l10n.summaryInfo,
@@ -301,6 +371,56 @@ class HomeView extends GetView<HomeController> {
                   : _LowStockProductsList(),
             ],
           ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildQuickActionItem(
+    BuildContext context, {
+    required IconData icon,
+    required String label,
+    required Color color,
+    required String route,
+    required AppThemeConfig themeConfig,
+    required bool isDarkMode,
+  }) {
+    return InkWell(
+      onTap: () {
+        Get.toNamed(route);
+      },
+      borderRadius: BorderRadius.circular(12),
+      child: Container(
+        width: 75,
+        padding: const EdgeInsets.symmetric(vertical: 4),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Container(
+              padding: const EdgeInsets.all(12),
+              decoration: BoxDecoration(
+                color: color.withValues(alpha: 0.12),
+                borderRadius: BorderRadius.circular(14),
+              ),
+              child: Icon(
+                icon,
+                color: color,
+                size: 24,
+              ),
+            ),
+            const SizedBox(height: 6),
+            Text(
+              label,
+              style: SafeGoogleFonts.notoSansBengali(
+                fontSize: 11,
+                fontWeight: FontWeight.w500,
+                color: themeConfig.getTextPrimaryColor(isDarkMode),
+              ),
+              textAlign: TextAlign.center,
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+            ),
+          ],
         ),
       ),
     );
