@@ -97,19 +97,17 @@ class MyApp extends StatelessWidget {
     final savedTheme = appConfig.currentTheme.value;
     Get.changeThemeMode(_getThemeMode(savedTheme));
 
-    // Build widget that reacts to both locale and theme changes
+    // Build widget that reacts to locale and theme changes
     Widget buildApp(Locale currentLocale) {
       return Obx(() {
-        // Listen to theme changes - this will rebuild the entire app
         final currentTheme = appConfig.currentTheme.value;
         final themeMode = _getThemeMode(currentTheme);
 
-        // Update GetX theme mode immediately (synchronous)
+        // Update GetX theme mode synchronously
         Get.changeThemeMode(themeMode);
 
-        // Use a key that changes with theme to force complete rebuild
         return GetMaterialApp(
-          key: ValueKey('app_$currentTheme'),
+          key: const ValueKey('dokandar_app_root'),
           debugShowCheckedModeBanner: false,
           title: appConfig.appCurrentName,
           theme: Get.find<AppThemeConfig>().getLightTheme(),
@@ -140,7 +138,7 @@ class MyApp extends StatelessWidget {
             }
           }),
           builder: (context, child) {
-            // Set status bar style based on current theme
+            // Set status bar style reactively based on current theme
             final brightness = MediaQuery.of(context).platformBrightness;
             final isDark = themeMode == ThemeMode.dark ||
                 (themeMode == ThemeMode.system &&

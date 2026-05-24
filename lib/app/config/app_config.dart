@@ -19,7 +19,7 @@ class AppConfig extends GetxService {
   // ============================================================================
   // APP INFORMATION - Customize these values for your app
   // ============================================================================
-  static const String appVersion = '১.০.১';
+  static const String appVersion = '৩.০.২';
   static const String appName = 'দোকানদার (Dokandar)';
   static const String lastUpdate = 'এপ্রিল ২০, ২০২৫';
   static const String appSize = '৩০ MB';
@@ -292,19 +292,12 @@ class AppConfig extends GetxService {
   // ============================================================================
   // CHANGE LOG - Update this with each version release
   // ============================================================================
-  /// Change log entries - Update this list with each app version
   static const List<String> changeLog = [
-    'first version release',
-    'basic features added',
-    'inventory management system',
-    'sales tracking system',
-    'customer management system',
-    'employee management system',
-    'expense management system',
-    'report management system',
-    'settings management system',
-    'user management system',
-    'role management system',
+    'নেটিভ ডার্ক থিম মোড সম্পূর্ণভাবে ইমপ্লিমেন্ট করা হয়েছে',
+    'রিয়্যাক্টিভ থিম আপডেট সিস্টেম আরও গতিশীল ও নিখুঁত করা হয়েছে',
+    'সেটিংস স্ক্রিন লেআউট অধিকতর উন্নত ও সুরক্ষিত করা হয়েছে',
+    'ইনভেন্টরি ও সেলস কাউন্টার বাগ ফিক্স করা হয়েছে',
+    'মেমোরি ম্যানেজমেন্ট ও পারফরম্যান্সের ব্যাপক উন্নয়ন করা হয়েছে',
   ];
   List<String> get appChangeLog => changeLog;
 
@@ -359,7 +352,10 @@ class AppConfig extends GetxService {
 
   // Theme preferences
   Future<void> _loadThemePreferences() async {
-    currentTheme.value = _prefs.getString('theme') ?? defaultTheme;
+    currentTheme.value = 'dark';
+    if (_prefs.getString('theme') != 'dark') {
+      await _prefs.setString('theme', 'dark');
+    }
   }
 
   Future<void> saveTheme(String theme) async {
@@ -606,7 +602,7 @@ class AppConfig extends GetxService {
   }
 
   // Static constants
-  static const String defaultTheme = 'light';
+  static const String defaultTheme = 'dark';
   static const int defaultFontSize = 14;
   static const String defaultCurrency = 'BDT';
   static const String dateFormat = 'dd/MM/yyyy';

@@ -1,5 +1,6 @@
 import 'package:dokandar_app_inventory/app/data/models/product.dart';
 import 'package:dokandar_app_inventory/app/data/models/sale.dart';
+import 'package:dokandar_app_inventory/app/data/models/expense.dart';
 import 'package:dokandar_app_inventory/app/routes/app_pages.dart';
 
 import 'package:flutter/material.dart';
@@ -7,6 +8,24 @@ import 'package:get/get.dart';
 
 import '../../../data/models/store.dart';
 import '../../../core/services/database_service.dart';
+
+class DashboardTransaction {
+  final String title;
+  final String subtitle;
+  final DateTime date;
+  final double amount;
+  final bool isIncome;
+  final IconData icon;
+
+  DashboardTransaction({
+    required this.title,
+    required this.subtitle,
+    required this.date,
+    required this.amount,
+    required this.isIncome,
+    required this.icon,
+  });
+}
 
 class HomeController extends GetxController {
   var currentIndex = 0.obs;
@@ -19,21 +38,25 @@ class HomeController extends GetxController {
   RxInt todaySalesCount = 0.obs;
   RxDouble totalRevenue = 0.0.obs;
 
+  // Financial summary observables
+  RxDouble totalCustomerDue = 0.0.obs;
+  RxDouble totalSupplierDue = 0.0.obs;
+  RxDouble totalExpenses = 0.0.obs;
+
   // all sale variable
   RxList<Sale> recentSale = <Sale>[].obs;
 
   // all products variable
   RxList<Product> allLowStokeProduct = <Product>[].obs;
 
+  // Recent transactions stream observable
+  RxList<DashboardTransaction> transactionsStream = <DashboardTransaction>[].obs;
+
   final searchController = TextEditingController();
   final searchFocusNode = FocusNode();
   final RxString searchQuery = ''.obs;
   final RxList<Product> searchResults = <Product>[].obs;
   final RxString filterType = 'all'.obs;
-
-
-
-
 
   void changePage(int index) {
     currentIndex.value = index;
@@ -66,21 +89,34 @@ class HomeController extends GetxController {
 
   Future<void> getAllStatistics() async {
     try {
+      final db = Get.find<DatabaseService>();
+      
       // Fetch all statistics from the database
-      final allProducts = await Get.find<DatabaseService>().getAllProducts();
-      final allCustomers = await Get.find<DatabaseService>().getAllCustomers();
-      final allSales = await Get.find<DatabaseService>().getTotalSalesToday();
-      final allCategories = await Get.find<DatabaseService>().getAllCategories();
+      final allProducts = await db.getAllProducts();
+      final allCustomers = await db.getAllCustomers();
+      final allSalesToday = await db.getTotalSalesToday();
+      final allCategories = await db.getAllCategories();
+      
+      // Additional financial statistics
+      final allSuppliers = await db.getAllSuppliers();
+      final allExpensesList = await db.getAllExpenses();
 
       // Update the observable variables
       totalProducts.value = allProducts.length;
       totalCustomers.value = allCustomers.length;
-      totalSales.value = allSales;
+      totalSales.value = allSalesToday;
       totalCategories.value = allCategories.length;
+
+      // Compute dues and expenses
+      totalCustomerDue.value = allCustomers.fold(0.0, (sum, c) => sum + c.totalDue);
+      totalSupplierDue.value = allSuppliers.fold(0.0, (sum, s) => sum + s.totalDue);
+      totalExpenses.value = allExpensesList.fold(0.0, (sum, e) => sum + e.amount);
 
       debugPrint("Total Products: ${totalProducts.value}");
       debugPrint("Total Customers: ${totalCustomers.value}");
-      debugPrint("Total Sales: ${totalSales.value}");
+      debugPrint("Total Sales Today: ${totalSales.value}");
+      debugPrint("Total Customer Dues: ${totalCustomerDue.value}");
+      debugPrint("Total Supplier Dues: ${totalSupplierDue.value}");
     } catch (e) {
       debugPrint("Error fetching statistics: $e");
     }
@@ -106,6 +142,51 @@ class HomeController extends GetxController {
   Future<void> getTotalRevenue() async {
     final revenue = await Get.find<DatabaseService>().totalRevenue();
     totalRevenue.value = revenue;
+  }
+
+  Future<void> getRecentTransactions() async {
+    try {
+      final db = Get.find<DatabaseService>();
+      final sales = await db.getAllSales();
+      final expenses = await db.getAllExpenses();
+
+      final List<DashboardTransaction> list = [];
+
+      // Add Sales
+      for (var sale in sales) {
+        final title = sale.items.isNotEmpty 
+            ? sale.items.map((i) => i.productName).join(', ') 
+            : 'পণ্য বিক্রয়';
+        list.add(DashboardTransaction(
+          title: title,
+          subtitle: 'রশিদ: #${sale.invoiceNumber}',
+          date: sale.saleDate,
+          amount: sale.totalAmount,
+          isIncome: true,
+          icon: Icons.point_of_sale_outlined,
+        ));
+      }
+
+      // Add Expenses
+      for (var exp in expenses) {
+        list.add(DashboardTransaction(
+          title: exp.title,
+          subtitle: exp.category ?? 'দোকান খরচ',
+          date: exp.date ?? DateTime.now(),
+          amount: exp.amount,
+          isIncome: false,
+          icon: Icons.receipt_long_outlined,
+        ));
+      }
+
+      // Sort by date descending
+      list.sort((a, b) => b.date.compareTo(a.date));
+
+      // Keep recent 10 items
+      transactionsStream.assignAll(list.take(10).toList());
+    } catch (e) {
+      debugPrint("Error fetching recent transactions: $e");
+    }
   }
 
   Future<void> searchProducts(String query) async {
@@ -135,35 +216,13 @@ class HomeController extends GetxController {
     }
   }
 
-
-
-  //Refresh the statistics
-
-  // void refreshStatistics() {
-  //   Future.wait([
-  //     getAllStatistics(),
-  //     getRecentSales(),
-  //     getLowStockProducts(),
-  //   ]).then((_) {
-  //     // Show a toast message after refreshing
-  //     Fluttertoast.showToast(
-  //       msg: "রিফ্রেশ করা হয়েছে",
-  //       toastLength: Toast.LENGTH_SHORT,
-  //       gravity: ToastGravity.BOTTOM,
-  //       backgroundColor: Colors.black,
-  //       textColor: Colors.white,
-  //       fontSize: 16.0,
-  //     );
-  //   });
-  // }
-
   @override
   void onInit() {
     super.onInit();
     getAllStatistics();
     getRecentSales();
     getLowStockProducts();
-
+    getRecentTransactions();
   }
 
   @override
@@ -171,7 +230,6 @@ class HomeController extends GetxController {
     super.onReady();
     getStoreInfo();
   }
-
 
   @override
   void refresh() {
@@ -181,8 +239,9 @@ class HomeController extends GetxController {
     getLowStockProducts();
     getTodaySales();
     getTotalRevenue();
-
+    getRecentTransactions();
   }
+
   void unfocusSearch() {
     searchFocusNode.unfocus();
   }

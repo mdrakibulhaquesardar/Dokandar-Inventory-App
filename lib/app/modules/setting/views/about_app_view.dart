@@ -285,13 +285,14 @@ class AboutAppView extends GetView {
                   style: SafeGoogleFonts.poppins(
                     fontSize: 16,
                     fontWeight: FontWeight.w600,
+                    color: Colors.white,
                   ),
                 ),
                 Text(
                   date,
                   style: SafeGoogleFonts.poppins(
                     fontSize: 14,
-                    color: Colors.grey[600],
+                    color: Colors.white70,
                   ),
                 ),
               ],
@@ -305,7 +306,7 @@ class AboutAppView extends GetView {
                       const Icon(
                         Icons.circle,
                         size: 8,
-                        color: Colors.grey,
+                        color: Colors.white70,
                       ),
                       const SizedBox(width: 8),
                       Expanded(
@@ -313,7 +314,7 @@ class AboutAppView extends GetView {
                           change,
                           style: SafeGoogleFonts.poppins(
                             fontSize: 14,
-                            color: Colors.grey[800],
+                            color: Colors.white,
                           ),
                         ),
                       ),

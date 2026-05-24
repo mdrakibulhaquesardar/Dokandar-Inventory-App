@@ -4,6 +4,7 @@ import 'package:dokandar_app_inventory/app/utils/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:dokandar_app_inventory/l10n/app_localizations.dart';
+import 'package:intl/intl.dart';
 import '../../../utils/safe_google_fonts.dart';
 import '../controllers/home_controller.dart';
 
@@ -181,10 +182,10 @@ class HomeView extends GetView<HomeController> {
               const SizedBox(height: 12),
               Container(
                 width: double.infinity,
-                padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 8),
+                padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 6),
                 decoration: BoxDecoration(
                   color: themeConfig.getSurfaceColor(isDarkMode),
-                  borderRadius: BorderRadius.circular(12),
+                  borderRadius: BorderRadius.circular(8),
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -228,6 +229,32 @@ class HomeView extends GetView<HomeController> {
                   ],
                 ),
               ),
+              const SizedBox(height: 20),
+
+              // Financial Summary Section Header
+              Text(
+                l10n.localeName == 'bn' ? 'আর্থিক বিবরণী' : 'Financial Summary',
+                style: SafeGoogleFonts.notoSansBengali(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w600,
+                  color: themeConfig.getTextPrimaryColor(isDarkMode),
+                ),
+              ),
+              const SizedBox(height: 2),
+              Text(
+                l10n.localeName == 'bn' 
+                    ? 'দোকানের মোট পাওনা, দেনা ও খরচের হিসাব' 
+                    : 'Overview of receivables, payables & expenses',
+                style: SafeGoogleFonts.notoSansBengali(
+                  fontSize: 12,
+                  fontWeight: FontWeight.w400,
+                  color: themeConfig.getTextSecondaryColor(isDarkMode),
+                ),
+              ),
+              const SizedBox(height: 12),
+
+              // Financial Summary Card
+              _buildFinancialSummaryCard(context, themeConfig, isDarkMode, l10n),
               const SizedBox(height: 20),
 
               // Summary Cards Grid
@@ -322,7 +349,7 @@ class HomeView extends GetView<HomeController> {
 
               const SizedBox(height: 20),
               Text(
-                l10n.recentSales,
+                l10n.localeName == 'bn' ? 'সাম্প্রতিক লেনদেন' : 'Recent Transactions',
                 style: SafeGoogleFonts.notoSansBengali(
                   fontSize: 18,
                   fontWeight: FontWeight.w600,
@@ -331,7 +358,9 @@ class HomeView extends GetView<HomeController> {
               ),
               const SizedBox(height: 2),
               Text(
-                l10n.recentSalesDescription,
+                l10n.localeName == 'bn'
+                    ? 'বিক্রয় এবং ব্যয়ের একীভূত সাম্প্রতিক বিবরণী'
+                    : 'Unified recent stream of sales and expenses',
                 style: SafeGoogleFonts.notoSansBengali(
                   fontSize: 12,
                   fontWeight: FontWeight.w400,
@@ -339,7 +368,7 @@ class HomeView extends GetView<HomeController> {
                 ),
               ),
               const SizedBox(height: 10),
-              _RecentSalesList(),
+              const _RecentTransactionsList(),
 
               const SizedBox(height: 20),
 
@@ -389,36 +418,170 @@ class HomeView extends GetView<HomeController> {
       onTap: () {
         Get.toNamed(route);
       },
-      borderRadius: BorderRadius.circular(12),
+      borderRadius: BorderRadius.circular(8),
       child: Container(
-        width: 75,
-        padding: const EdgeInsets.symmetric(vertical: 4),
+        width: 70,
+        padding: const EdgeInsets.symmetric(vertical: 2),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             Container(
-              padding: const EdgeInsets.all(12),
+              padding: const EdgeInsets.all(8),
               decoration: BoxDecoration(
-                color: color.withValues(alpha: 0.12),
-                borderRadius: BorderRadius.circular(14),
+                color: color.withValues(alpha: 0.1),
+                borderRadius: BorderRadius.circular(8),
               ),
               child: Icon(
                 icon,
                 color: color,
-                size: 24,
+                size: 18,
               ),
             ),
-            const SizedBox(height: 6),
+            const SizedBox(height: 4),
             Text(
               label,
               style: SafeGoogleFonts.notoSansBengali(
-                fontSize: 11,
+                fontSize: 10,
                 fontWeight: FontWeight.w500,
                 color: themeConfig.getTextPrimaryColor(isDarkMode),
               ),
               textAlign: TextAlign.center,
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildFinancialSummaryCard(
+    BuildContext context,
+    AppThemeConfig themeConfig,
+    bool isDarkMode,
+    AppLocalizations l10n,
+  ) {
+    return Row(
+      children: [
+        // Customer Due (Receivable)
+        Expanded(
+          child: Obx(() {
+            final amount = controller.totalCustomerDue.value;
+            final formattedAmount = l10n.localeName == 'bn'
+                ? amount.toInt().translateNumberToBengali()
+                : amount.toStringAsFixed(0);
+            return _buildFinancialItem(
+              context,
+              title: l10n.localeName == 'bn' ? 'পাওনা (গ্রাহক)' : 'Receivables',
+              amount: '৳$formattedAmount',
+              icon: Icons.arrow_downward_rounded,
+              color: themeConfig.getSuccessColor(isDarkMode),
+              themeConfig: themeConfig,
+              isDarkMode: isDarkMode,
+              onTap: () => Get.toNamed(Routes.PAY_DUE),
+            );
+          }),
+        ),
+        const SizedBox(width: 6),
+        // Supplier Due (Payable)
+        Expanded(
+          child: Obx(() {
+            final amount = controller.totalSupplierDue.value;
+            final formattedAmount = l10n.localeName == 'bn'
+                ? amount.toInt().translateNumberToBengali()
+                : amount.toStringAsFixed(0);
+            return _buildFinancialItem(
+              context,
+              title: l10n.localeName == 'bn' ? 'দেনা (সাপ্লায়ার)' : 'Payables',
+              amount: '৳$formattedAmount',
+              icon: Icons.arrow_upward_rounded,
+              color: themeConfig.getWarningColor(isDarkMode),
+              themeConfig: themeConfig,
+              isDarkMode: isDarkMode,
+              onTap: () => Get.toNamed(Routes.ALL_SUPPLIERS),
+            );
+          }),
+        ),
+        const SizedBox(width: 6),
+        // Total Expenses
+        Expanded(
+          child: Obx(() {
+            final amount = controller.totalExpenses.value;
+            final formattedAmount = l10n.localeName == 'bn'
+                ? amount.toInt().translateNumberToBengali()
+                : amount.toStringAsFixed(0);
+            return _buildFinancialItem(
+              context,
+              title: l10n.localeName == 'bn' ? 'মোট খরচ' : 'Expenses',
+              amount: '৳$formattedAmount',
+              icon: Icons.money_off_rounded,
+              color: themeConfig.getErrorColor(isDarkMode),
+              themeConfig: themeConfig,
+              isDarkMode: isDarkMode,
+              onTap: () => Get.toNamed(Routes.STORE_EXPENSES),
+            );
+          }),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildFinancialItem(
+    BuildContext context, {
+    required String title,
+    required String amount,
+    required IconData icon,
+    required Color color,
+    required AppThemeConfig themeConfig,
+    required bool isDarkMode,
+    required VoidCallback onTap,
+  }) {
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(8),
+      child: Container(
+        padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 4),
+        decoration: BoxDecoration(
+          color: color.withValues(alpha: 0.1),
+          borderRadius: BorderRadius.circular(8),
+        ),
+        child: Column(
+          children: [
+            Container(
+              padding: const EdgeInsets.all(4),
+              decoration: BoxDecoration(
+                color: color.withValues(alpha: 0.15),
+                shape: BoxShape.circle,
+              ),
+              child: Icon(
+                icon,
+                color: color,
+                size: 14,
+              ),
+            ),
+            const SizedBox(height: 4),
+            Text(
+              title,
+              style: SafeGoogleFonts.notoSansBengali(
+                fontSize: 10,
+                fontWeight: FontWeight.w500,
+                color: themeConfig.getTextSecondaryColor(isDarkMode),
+              ),
+              textAlign: TextAlign.center,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+            ),
+            const SizedBox(height: 2),
+            FittedBox(
+              fit: BoxFit.scaleDown,
+              child: Text(
+                amount,
+                style: SafeGoogleFonts.notoSansBengali(
+                  fontSize: 13,
+                  fontWeight: FontWeight.bold,
+                  color: color,
+                ),
+              ),
             ),
           ],
         ),
@@ -511,12 +674,15 @@ class _SummaryCard extends StatelessWidget {
   }
 }
 
-class _RecentSalesList extends GetView<HomeController> {
+class _RecentTransactionsList extends GetView<HomeController> {
+  const _RecentTransactionsList();
+
   @override
   Widget build(BuildContext context) {
     final themeConfig = Get.find<AppThemeConfig>();
     final isDarkMode = Get.isDarkMode;
     final l10n = AppLocalizations.of(context)!;
+    final localeCode = l10n.localeName;
 
     return Container(
       decoration: BoxDecoration(
@@ -524,89 +690,196 @@ class _RecentSalesList extends GetView<HomeController> {
         borderRadius: BorderRadius.circular(8),
       ),
       child: Obx(() {
-        return controller.recentSale.isEmpty
-            ? Container(
-                padding: const EdgeInsets.all(12),
-                decoration: BoxDecoration(
-                  color: themeConfig.getSurfaceColor(isDarkMode),
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                child: Center(
-                  child: Text(
-                    l10n.noRecentSales,
-                    style: SafeGoogleFonts.poppins(
+        if (controller.transactionsStream.isEmpty) {
+          return Container(
+            padding: const EdgeInsets.all(24),
+            child: Center(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Icon(
+                    Icons.history_toggle_off_outlined,
+                    size: 40,
+                    color: themeConfig.getTextSecondaryColor(isDarkMode).withValues(alpha: 0.6),
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    localeCode == 'bn' ? 'কোনো সাম্প্রতিক লেনদেন নেই' : 'No recent transactions',
+                    style: SafeGoogleFonts.notoSansBengali(
                       fontSize: 14,
                       color: themeConfig.getTextSecondaryColor(isDarkMode),
                     ),
                   ),
-                ),
-              )
-            : ListView.builder(
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                itemCount: controller.recentSale.length,
-                itemBuilder: (context, index) {
-                  return Container(
-                    decoration: BoxDecoration(
-                      border: Border(
-                        bottom: BorderSide(
-                          color: themeConfig
-                              .getBorderColor(isDarkMode)
-                              .withValues(alpha: 0.1),
+                ],
+              ),
+            ),
+          );
+        }
+
+        return ListView.builder(
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          itemCount: controller.transactionsStream.length,
+          itemBuilder: (context, index) {
+            final tx = controller.transactionsStream[index];
+            final txColor = tx.isIncome 
+                ? themeConfig.getSuccessColor(isDarkMode) 
+                : themeConfig.getErrorColor(isDarkMode);
+            
+            final formattedAmount = localeCode == 'bn'
+                ? tx.amount.toInt().translateNumberToBengali()
+                : tx.amount.toStringAsFixed(0);
+
+            return Container(
+              decoration: BoxDecoration(
+                border: Border(
+                  bottom: index == controller.transactionsStream.length - 1
+                      ? BorderSide.none
+                      : BorderSide(
+                          color: themeConfig.getBorderColor(isDarkMode).withValues(alpha: 0.1),
                           width: 0.5,
                         ),
-                      ),
-                    ),
-                    child: ListTile(
-                      dense: true,
-                      visualDensity:
-                          const VisualDensity(horizontal: 0, vertical: -3),
-                      contentPadding: const EdgeInsets.symmetric(
-                          horizontal: 12, vertical: 4),
-                      leading: Container(
-                        width: 32,
-                        height: 32,
+                ),
+              ),
+              child: ListTile(
+                dense: true,
+                visualDensity: const VisualDensity(horizontal: 0, vertical: -3),
+                contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+                leading: Container(
+                  width: 32,
+                  height: 32,
+                  decoration: BoxDecoration(
+                    color: txColor.withValues(alpha: 0.1),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: Icon(
+                    tx.icon,
+                    size: 16,
+                    color: txColor,
+                  ),
+                ),
+                title: Text(
+                  tx.title,
+                  style: SafeGoogleFonts.notoSansBengali(
+                    fontSize: 13,
+                    fontWeight: FontWeight.w600,
+                    color: themeConfig.getTextPrimaryColor(isDarkMode),
+                  ),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                subtitle: Padding(
+                  padding: const EdgeInsets.only(top: 4.0),
+                  child: Row(
+                    children: [
+                      Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 1),
                         decoration: BoxDecoration(
-                          color: themeConfig
-                              .getPrimaryColor(isDarkMode)
-                              .withValues(alpha: 0.1),
-                          borderRadius: BorderRadius.circular(8),
+                          color: txColor.withValues(alpha: 0.1),
+                          borderRadius: BorderRadius.circular(4),
                         ),
-                        child: Icon(
-                          Icons.shopping_bag_outlined,
-                          size: 16,
-                          color: themeConfig.getPrimaryColor(isDarkMode),
-                        ),
-                      ),
-                      title: Text(
-                        controller.recentSale[index].items[0].productName,
-                        style: SafeGoogleFonts.poppins(
-                          fontSize: 13,
-                          fontWeight: FontWeight.w600,
-                          color: themeConfig.getTextPrimaryColor(isDarkMode),
+                        child: Text(
+                          tx.isIncome 
+                              ? (localeCode == 'bn' ? 'বিক্রয়' : 'Sale')
+                              : (localeCode == 'bn' ? 'খরচ' : 'Expense'),
+                          style: SafeGoogleFonts.notoSansBengali(
+                            fontSize: 9,
+                            fontWeight: FontWeight.w600,
+                            color: txColor,
+                          ),
                         ),
                       ),
-                      subtitle: Text(
-                        '৳${controller.recentSale[index].totalAmount.translateNumberToBengali()}',
-                        style: SafeGoogleFonts.poppins(
+                      const SizedBox(width: 6),
+                      Text(
+                        '•',
+                        style: TextStyle(
                           fontSize: 11,
                           color: themeConfig.getTextSecondaryColor(isDarkMode),
                         ),
                       ),
-                      trailing: Text(
-                        "${controller.recentSale[index].items[0].quantity.toInt().translateNumberToBengali()} পিস",
-                        style: SafeGoogleFonts.poppins(
+                      const SizedBox(width: 6),
+                      Expanded(
+                        child: Text(
+                          tx.subtitle,
+                          style: SafeGoogleFonts.notoSansBengali(
+                            fontSize: 11,
+                            color: themeConfig.getTextSecondaryColor(isDarkMode),
+                          ),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                      const SizedBox(width: 6),
+                      Text(
+                        '•',
+                        style: TextStyle(
                           fontSize: 11,
-                          fontWeight: FontWeight.w600,
                           color: themeConfig.getTextSecondaryColor(isDarkMode),
                         ),
                       ),
-                    ),
-                  );
-                },
-              );
+                      const SizedBox(width: 6),
+                      Text(
+                        _formatTxDate(tx.date, localeCode),
+                        style: SafeGoogleFonts.notoSansBengali(
+                          fontSize: 11,
+                          color: themeConfig.getTextSecondaryColor(isDarkMode),
+                        ),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ],
+                  ),
+                ),
+                trailing: Text(
+                  '${tx.isIncome ? '+' : '-'} ৳$formattedAmount',
+                  style: SafeGoogleFonts.notoSansBengali(
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
+                    color: txColor,
+                  ),
+                ),
+              ),
+            );
+          },
+        );
       }),
     );
+  }
+
+  String _translateStringToBengaliDigits(String input) {
+    const Map<String, String> numberMap = {
+      '0': '০',
+      '1': '১',
+      '2': '২',
+      '3': '৩',
+      '4': '৪',
+      '5': '৫',
+      '6': '৬',
+      '7': '৭',
+      '8': '৮',
+      '9': '৯',
+    };
+    return input.split('').map((char) => numberMap[char] ?? char).join();
+  }
+
+  String _formatTxDate(DateTime date, String localeCode) {
+    final now = DateTime.now();
+    final today = DateTime(now.year, now.month, now.day);
+    final yesterday = today.subtract(const Duration(days: 1));
+    final txDate = DateTime(date.year, date.month, date.day);
+
+    final timeStr = DateFormat('hh:mm a').format(date);
+    final formattedTime = localeCode == 'bn' ? _translateStringToBengaliDigits(timeStr) : timeStr;
+
+    if (txDate == today) {
+      return localeCode == 'bn' ? 'আজ, $formattedTime' : 'Today, $formattedTime';
+    } else if (txDate == yesterday) {
+      return localeCode == 'bn' ? 'গতকাল, $formattedTime' : 'Yesterday, $formattedTime';
+    } else {
+      final dateStr = DateFormat('dd MMM yyyy').format(date);
+      final formattedDate = localeCode == 'bn' ? _translateStringToBengaliDigits(dateStr) : dateStr;
+      return '$formattedDate, $formattedTime';
+    }
   }
 }
 

@@ -1,4 +1,5 @@
 import 'dart:typed_data';
+import 'package:flutter/services.dart' show rootBundle;
 
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
@@ -69,10 +70,19 @@ class ReportController extends GetxController {
   Future<Uint8List> generatePdf() async {
     final sales = await _db.getAllSales();
     final filtered = _filterSales(sales);
+    
+    // Load local font for Unicode (Bengali) support
+    final fontData = await rootBundle.load('assets/fonts/NotoSansBengali-Regular.ttf');
+    final banglaFont = pw.Font.ttf(fontData);
+
     final doc = pw.Document();
 
     doc.addPage(
       pw.Page(
+        theme: pw.ThemeData.withFont(
+          base: banglaFont,
+          bold: banglaFont,
+        ),
         pageFormat: PdfPageFormat.a4,
         build: (context) {
           return pw.Column(

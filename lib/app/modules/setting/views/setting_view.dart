@@ -79,10 +79,10 @@ class SettingView extends GetView<SettingController> {
               title: l10n.appTheme,
               icon: Icons.color_lens_outlined,
               color: themeConfig.getPrimaryColor(isDarkMode),
-              onTap: () => _showThemeSelector(context, themeConfig, isDarkMode),
+              onTap: () {}, // Locked - do nothing
               themeConfig: themeConfig,
               isDarkMode: isDarkMode,
-              isLocked: false,
+              isLocked: true,
               context: context,
             ),
             if (AppConfig.enableMultiLanguageSupport)
@@ -831,8 +831,8 @@ class SettingView extends GetView<SettingController> {
                       ),
                     ),
                     onTap: () async {
-                      await appConfig.saveTheme(value);
                       Navigator.pop(context);
+                      await appConfig.saveTheme(value);
                     },
                   );
                 }).toList(),
@@ -949,8 +949,8 @@ class SettingView extends GetView<SettingController> {
                     ),
                   ),
                   onTap: () async {
-                    await appConfig.saveFontSize(entry.key);
                     Navigator.pop(context);
+                    await appConfig.saveFontSize(entry.key);
                   },
                 );
               });
@@ -1007,8 +1007,8 @@ class SettingView extends GetView<SettingController> {
                     ),
                   ),
                   onTap: () async {
-                    await appConfig.saveCurrency(entry.key);
                     Navigator.pop(context);
+                    await appConfig.saveCurrency(entry.key);
                   },
                 );
               });
@@ -1066,8 +1066,8 @@ class SettingView extends GetView<SettingController> {
                     ),
                   ),
                   onTap: () async {
-                    await appConfig.saveDateFormat(entry.key);
                     Navigator.pop(context);
+                    await appConfig.saveDateFormat(entry.key);
                   },
                 );
               });
@@ -1125,8 +1125,8 @@ class SettingView extends GetView<SettingController> {
                     ),
                   ),
                   onTap: () async {
-                    await appConfig.saveTimeFormat(entry.key);
                     Navigator.pop(context);
+                    await appConfig.saveTimeFormat(entry.key);
                   },
                 );
               });
@@ -1183,8 +1183,8 @@ class SettingView extends GetView<SettingController> {
                     ),
                   ),
                   onTap: () async {
-                    await appConfig.savePageSize(size);
                     Navigator.pop(context);
+                    await appConfig.savePageSize(size);
                   },
                 );
               });
@@ -1229,8 +1229,8 @@ class SettingView extends GetView<SettingController> {
           ),
           TextButton(
             onPressed: () async {
-              await appConfig.clearCache();
               Navigator.pop(context);
+              await appConfig.clearCache();
               Get.snackbar(
                 l10n.clearCache,
                 l10n.cacheCleared,

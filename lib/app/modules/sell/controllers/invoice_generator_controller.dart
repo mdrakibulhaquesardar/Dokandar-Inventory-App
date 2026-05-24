@@ -2,6 +2,7 @@ import 'package:dokandar_app_inventory/app/data/models/store.dart';
 import 'package:dokandar_app_inventory/app/modules/sell/controllers/sell_controller.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart' show rootBundle;
 import 'package:printing/printing.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:pdf/pdf.dart';
@@ -35,10 +36,18 @@ class InvoiceGeneratorController extends GetxController {
     late pw.Document pdf = pw.Document();
     pdfBytes = null;
 
+    // Load local font for Unicode (Bengali) support
+    final fontData = await rootBundle.load('assets/fonts/NotoSansBengali-Regular.ttf');
+    final banglaFont = pw.Font.ttf(fontData);
+
     // Generate PDF content
     pdf.addPage(
       pw.Page(
         pageTheme: pw.PageTheme(
+          theme: pw.ThemeData.withFont(
+            base: banglaFont,
+            bold: banglaFont,
+          ),
           margin: const pw.EdgeInsets.all(32),
           buildBackground: (context) => pw.FullPage(
             ignoreMargins: true,
