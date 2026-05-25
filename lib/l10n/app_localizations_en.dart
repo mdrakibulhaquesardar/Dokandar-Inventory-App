@@ -1052,7 +1052,7 @@ class AppLocalizationsEn extends AppLocalizations {
       'Are you sure you want to delete this customer?';
 
   @override
-  String get nameRequired => 'Name is required';
+  String get nameRequired => 'Full name is required';
 
   @override
   String get phoneRequired => 'Phone number is required';
@@ -1276,4 +1276,71 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get pinMismatch => 'PIN and confirmation do not match';
+
+  @override
+  String get addNewEmployee => 'Add New Employee';
+
+  @override
+  String get editEmployee => 'Edit Employee Information';
+
+  @override
+  String get employeeDetails => 'Employee Details';
+
+  @override
+  String get employeeId => 'Employee ID';
+
+  @override
+  String get rolePosition => 'Role / Position';
+
+  @override
+  String get salary => 'Salary';
+
+  @override
+  String get status => 'Status';
+
+  @override
+  String get notes => 'Notes';
+
+  @override
+  String get active => 'Active';
+
+  @override
+  String get inactive => 'Inactive';
+
+  @override
+  String get joiningDate => 'Joining Date';
+
+  @override
+  String get profileImage => 'Profile Image';
+
+  @override
+  String get deleteEmployee => 'Delete Employee';
+
+  @override
+  String get confirmDeleteEmployee =>
+      'Are you sure you want to delete this employee? This action cannot be undone.';
+
+  @override
+  String get totalEmployees => 'Total Employees';
+
+  @override
+  String get activeEmployees => 'Active';
+
+  @override
+  String get inactiveEmployees => 'Inactive';
+
+  @override
+  String get monthlyPayroll => 'Monthly Payroll';
+
+  @override
+  String get roleRequired => 'Role is required';
+
+  @override
+  String get salaryRequired => 'Salary is required';
+
+  @override
+  String get invalidEmail => 'Please enter a valid email address';
+
+  @override
+  String get invalidPhone => 'Please enter a valid phone number';
 }

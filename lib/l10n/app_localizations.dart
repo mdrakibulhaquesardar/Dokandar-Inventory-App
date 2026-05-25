@@ -2093,7 +2093,7 @@ abstract class AppLocalizations {
   /// No description provided for @nameRequired.
   ///
   /// In en, this message translates to:
-  /// **'Name is required'**
+  /// **'Full name is required'**
   String get nameRequired;
 
   /// No description provided for @phoneRequired.
@@ -2515,6 +2515,138 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'PIN and confirmation do not match'**
   String get pinMismatch;
+
+  /// No description provided for @addNewEmployee.
+  ///
+  /// In en, this message translates to:
+  /// **'Add New Employee'**
+  String get addNewEmployee;
+
+  /// No description provided for @editEmployee.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Employee Information'**
+  String get editEmployee;
+
+  /// No description provided for @employeeDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'Employee Details'**
+  String get employeeDetails;
+
+  /// No description provided for @employeeId.
+  ///
+  /// In en, this message translates to:
+  /// **'Employee ID'**
+  String get employeeId;
+
+  /// No description provided for @rolePosition.
+  ///
+  /// In en, this message translates to:
+  /// **'Role / Position'**
+  String get rolePosition;
+
+  /// No description provided for @salary.
+  ///
+  /// In en, this message translates to:
+  /// **'Salary'**
+  String get salary;
+
+  /// No description provided for @status.
+  ///
+  /// In en, this message translates to:
+  /// **'Status'**
+  String get status;
+
+  /// No description provided for @notes.
+  ///
+  /// In en, this message translates to:
+  /// **'Notes'**
+  String get notes;
+
+  /// No description provided for @active.
+  ///
+  /// In en, this message translates to:
+  /// **'Active'**
+  String get active;
+
+  /// No description provided for @inactive.
+  ///
+  /// In en, this message translates to:
+  /// **'Inactive'**
+  String get inactive;
+
+  /// No description provided for @joiningDate.
+  ///
+  /// In en, this message translates to:
+  /// **'Joining Date'**
+  String get joiningDate;
+
+  /// No description provided for @profileImage.
+  ///
+  /// In en, this message translates to:
+  /// **'Profile Image'**
+  String get profileImage;
+
+  /// No description provided for @deleteEmployee.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete Employee'**
+  String get deleteEmployee;
+
+  /// No description provided for @confirmDeleteEmployee.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to delete this employee? This action cannot be undone.'**
+  String get confirmDeleteEmployee;
+
+  /// No description provided for @totalEmployees.
+  ///
+  /// In en, this message translates to:
+  /// **'Total Employees'**
+  String get totalEmployees;
+
+  /// No description provided for @activeEmployees.
+  ///
+  /// In en, this message translates to:
+  /// **'Active'**
+  String get activeEmployees;
+
+  /// No description provided for @inactiveEmployees.
+  ///
+  /// In en, this message translates to:
+  /// **'Inactive'**
+  String get inactiveEmployees;
+
+  /// No description provided for @monthlyPayroll.
+  ///
+  /// In en, this message translates to:
+  /// **'Monthly Payroll'**
+  String get monthlyPayroll;
+
+  /// No description provided for @roleRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Role is required'**
+  String get roleRequired;
+
+  /// No description provided for @salaryRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Salary is required'**
+  String get salaryRequired;
+
+  /// No description provided for @invalidEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter a valid email address'**
+  String get invalidEmail;
+
+  /// No description provided for @invalidPhone.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter a valid phone number'**
+  String get invalidPhone;
 }
 
 class _AppLocalizationsDelegate

@@ -1054,10 +1054,10 @@ class AppLocalizationsBn extends AppLocalizations {
       'আপনি কি নিশ্চিত যে আপনি এই গ্রাহককে মুছে ফেলতে চান?';
 
   @override
-  String get nameRequired => 'নাম অবশ্যই পূরণ করতে হবে';
+  String get nameRequired => 'পূর্ণ নাম আবশ্যক';
 
   @override
-  String get phoneRequired => 'ফোন নম্বর অবশ্যই পূরণ করতে হবে';
+  String get phoneRequired => 'ফোন নম্বর আবশ্যক';
 
   @override
   String get add => 'যোগ করুন';
@@ -1278,5 +1278,72 @@ class AppLocalizationsBn extends AppLocalizations {
   }
 
   @override
-  String get pinMismatch => 'পিন এবং কনফার্মেশন মেলে না';
+  String get pinMismatch => 'PIN এবং কনফার্মেশন মেলে না';
+
+  @override
+  String get addNewEmployee => 'নতুন কর্মচারী যোগ করুন';
+
+  @override
+  String get editEmployee => 'কর্মচারীর তথ্য সংশোধন';
+
+  @override
+  String get employeeDetails => 'কর্মচারীর বিবরণ';
+
+  @override
+  String get employeeId => 'কর্মচারী আইডি';
+
+  @override
+  String get rolePosition => 'দায়িত্ব / পদবী';
+
+  @override
+  String get salary => 'বেতন';
+
+  @override
+  String get status => 'অবস্থা';
+
+  @override
+  String get notes => 'নোট';
+
+  @override
+  String get active => 'সক্রিয়';
+
+  @override
+  String get inactive => 'নিষ্ক্রিয়';
+
+  @override
+  String get joiningDate => 'যোগদানের তারিখ';
+
+  @override
+  String get profileImage => 'প্রোফাইল ছবি';
+
+  @override
+  String get deleteEmployee => 'কর্মচারী মুছুন';
+
+  @override
+  String get confirmDeleteEmployee =>
+      'আপনি কি নিশ্চিত যে আপনি এই কর্মচারীকে মুছে ফেলতে চান? এই কাজটি পরিবর্তন করা যাবে না।';
+
+  @override
+  String get totalEmployees => 'মোট কর্মচারী';
+
+  @override
+  String get activeEmployees => 'সক্রিয়';
+
+  @override
+  String get inactiveEmployees => 'নিষ্ক্রিয়';
+
+  @override
+  String get monthlyPayroll => 'মাসিক বেতন বাজেট';
+
+  @override
+  String get roleRequired => 'পদবী আবশ্যক';
+
+  @override
+  String get salaryRequired => 'বেতন আবশ্যক';
+
+  @override
+  String get invalidEmail => 'দয়া করে একটি সঠিক ইমেল ঠিকানা লিখুন';
+
+  @override
+  String get invalidPhone => 'দয়া করে একটি সঠিক ফোন নম্বর লিখুন';
 }

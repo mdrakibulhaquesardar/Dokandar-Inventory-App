@@ -20,6 +20,10 @@ class Employee {
   double paid = 0;
   double due = 0;
 
+  String? profileImage;
+  bool isActive = true;
+  String? notes;
+
   DateTime? joinedAt;
   DateTime? updatedAt;
 
@@ -31,8 +35,12 @@ class Employee {
     this.address,
     this.salary = 0,
     String? employeeCode,
+    this.profileImage,
+    this.isActive = true,
+    this.notes,
+    DateTime? joinedAt,
   }) : employeeCode = employeeCode ?? const Uuid().v4(),
-       joinedAt = DateTime.now();
+       joinedAt = joinedAt ?? DateTime.now();
 
   void recordPayment(double amount) {
     paid += amount;

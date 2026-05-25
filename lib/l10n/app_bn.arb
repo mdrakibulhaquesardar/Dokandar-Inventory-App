@@ -660,6 +660,29 @@
       }
     }
   },
-  "pinMismatch": "পিন এবং কনফার্মেশন মেলে না"
+  "pinMismatch": "PIN এবং কনফার্মেশন মেলে না",
+  "addNewEmployee": "নতুন কর্মচারী যোগ করুন",
+  "editEmployee": "কর্মচারীর তথ্য সংশোধন",
+  "employeeDetails": "কর্মচারীর বিবরণ",
+  "employeeId": "কর্মচারী আইডি",
+  "rolePosition": "দায়িত্ব / পদবী",
+  "salary": "বেতন",
+  "status": "অবস্থা",
+  "notes": "নোট",
+  "active": "সক্রিয়",
+  "inactive": "নিষ্ক্রিয়",
+  "joiningDate": "যোগদানের তারিখ",
+  "profileImage": "প্রোফাইল ছবি",
+  "deleteEmployee": "কর্মচারী মুছুন",
+  "confirmDeleteEmployee": "আপনি কি নিশ্চিত যে আপনি এই কর্মচারীকে মুছে ফেলতে চান? এই কাজটি পরিবর্তন করা যাবে না।",
+  "totalEmployees": "মোট কর্মচারী",
+  "activeEmployees": "সক্রিয়",
+  "inactiveEmployees": "নিষ্ক্রিয়",
+  "monthlyPayroll": "মাসিক বেতন বাজেট",
+  "nameRequired": "পূর্ণ নাম আবশ্যক",
+  "roleRequired": "পদবী আবশ্যক",
+  "phoneRequired": "ফোন নম্বর আবশ্যক",
+  "salaryRequired": "বেতন আবশ্যক",
+  "invalidEmail": "দয়া করে একটি সঠিক ইমেল ঠিকানা লিখুন",
+  "invalidPhone": "দয়া করে একটি সঠিক ফোন নম্বর লিখুন"
 }
-

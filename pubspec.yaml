@@ -40,7 +40,6 @@ dependencies:
     git:
       url: https://github.com/MrLittleWhite/isar_flutter_libs.git
   path_provider: ^2.1.2
-  path: ^1.9.0
   intl: ^0.20.2
   uuid: ^4.3.3
   shared_preferences: ^2.2.2
