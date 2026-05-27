@@ -4,6 +4,9 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
+import 'firebase_options.dart';
 import 'app/core/services/database_service.dart';
 import 'app/core/services/localization_service.dart';
 import 'app/core/services/backup_service.dart';
@@ -16,9 +19,24 @@ import 'app/routes/app_pages.dart';
 import 'app/config/app_config.dart';
 import 'app/config/app_theme_config.dart';
 import 'package:dokandar_app_inventory/l10n/app_localizations.dart';
+import 'app/core/services/notification_service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  // Initialize Firebase
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
+  // Hook up Flutter framework error capturing to Crashlytics
+  FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
+
+  // Pass all uncaught asynchronous errors that aren't handled by the Flutter framework to Crashlytics
+  PlatformDispatcher.instance.onError = (error, stack) {
+    FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
+    return true;
+  };
 
   // Enable edge-to-edge mode to use native status bar
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
@@ -26,6 +44,9 @@ void main() async {
   final dbService = await Get.putAsync(() => DatabaseService().init());
   final appConfig = await Get.putAsync(() => AppConfig().init());
   Get.put(AppThemeConfig());
+
+  // Initialize notification service
+  await Get.putAsync(() => NotificationService().init());
 
   // Initialize LocalizationService if multi-language is enabled
   Locale initialLocale = Locale(AppConfig.defaultLanguage);
@@ -133,6 +154,7 @@ class MyApp extends StatelessWidget {
             Get.lazyPut<HomeController>(() => HomeController());
             Get.lazyPut<AppConfig>(() => AppConfig());
             Get.lazyPut<AppThemeConfig>(() => AppThemeConfig());
+            Get.lazyPut<NotificationService>(() => NotificationService());
             if (AppConfig.enableMultiLanguageSupport) {
               Get.lazyPut<LocalizationService>(() => LocalizationService());
             }
