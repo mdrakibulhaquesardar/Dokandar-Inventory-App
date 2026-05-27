@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "784987072532",
+    "project_id": "dokandar-inventory-app",
+    "storage_bucket": "dokandar-inventory-app.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:784987072532:android:b6b66e710172f2261c9f01",
+        "android_client_info": {
+          "package_name": "com.nexcode.studio.dokandar_app_inventory"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBzJ5BSp0z4PE5jp-ZTW_u0tMe9wb09uPc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
