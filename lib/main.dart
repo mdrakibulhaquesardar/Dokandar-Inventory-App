@@ -11,6 +11,8 @@ import 'app/core/services/database_service.dart';
 import 'app/core/services/localization_service.dart';
 import 'app/core/services/backup_service.dart';
 import 'app/core/services/auto_backup_service.dart';
+import 'app/core/services/auth_service.dart';
+import 'app/core/services/connectivity_service.dart';
 import 'app/controllers/persistent_navigation_controller.dart';
 import 'app/modules/inventory/controllers/inventory_controller.dart';
 import 'app/modules/sell/controllers/sell_controller.dart';
@@ -71,8 +73,22 @@ void main() async {
   final hasUser = await dbService.hasUser();
   final shouldLock =
       hasUser && appConfig.isPinLockEnabled && !appConfig.isSessionUnlocked;
-  final initialRoute =
-      hasUser ? (shouldLock ? Routes.APP_LOCK : Routes.MAIN) : Routes.SETUP;
+  // Initialize auth & connectivity services
+  final authService = await Get.putAsync(() => AuthService().init());
+  await Get.putAsync(() => ConnectivityService().init());
+
+  // Determine initial route based on both remote auth + local user state
+  String initialRoute;
+  if (authService.isLoggedIn.value) {
+    // Remote JWT token found — user is already authenticated
+    initialRoute = shouldLock ? Routes.APP_LOCK : Routes.MAIN;
+  } else if (hasUser) {
+    // Has local Isar user but no remote auth token — prompt login
+    initialRoute = Routes.LOGIN;
+  } else {
+    // Brand new installation — go through setup
+    initialRoute = Routes.SETUP;
+  }
 
   runApp(MyApp(initialRoute: initialRoute, initialLocale: initialLocale));
 }
@@ -155,6 +171,8 @@ class MyApp extends StatelessWidget {
             Get.lazyPut<AppConfig>(() => AppConfig());
             Get.lazyPut<AppThemeConfig>(() => AppThemeConfig());
             Get.lazyPut<NotificationService>(() => NotificationService());
+            Get.lazyPut<AuthService>(() => AuthService());
+            Get.lazyPut<ConnectivityService>(() => ConnectivityService());
             if (AppConfig.enableMultiLanguageSupport) {
               Get.lazyPut<LocalizationService>(() => LocalizationService());
             }

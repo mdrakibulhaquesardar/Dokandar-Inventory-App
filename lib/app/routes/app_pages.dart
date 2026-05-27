@@ -42,6 +42,9 @@ import '../modules/setup/views/confrom_view.dart';
 import '../modules/setup/views/setup_view.dart';
 import '../modules/setup/views/store_setup_view.dart';
 import '../views/main_view.dart';
+import '../modules/auth/bindings/auth_binding.dart';
+import '../modules/auth/views/login_view.dart';
+import '../modules/auth/views/signup_view.dart';
 
 part 'app_routes.dart';
 
@@ -238,6 +241,18 @@ class AppPages {
       name: _Paths.INVOICE_PREVIEW,
       page: () => const InvoicePreviewView(),
       binding: SellBinding(),
+      transition: Transition.fadeIn,
+    ),
+    GetPage(
+      name: _Paths.LOGIN,
+      page: () => const LoginView(),
+      binding: AuthBinding(),
+      transition: Transition.fadeIn,
+    ),
+    GetPage(
+      name: _Paths.SIGNUP,
+      page: () => const SignupView(),
+      binding: AuthBinding(),
       transition: Transition.fadeIn,
     ),
   ];

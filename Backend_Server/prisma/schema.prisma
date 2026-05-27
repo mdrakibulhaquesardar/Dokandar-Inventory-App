@@ -1,0 +1,249 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum UserRole {
+  OWNER
+  EMPLOYEE
+  ADMIN
+}
+
+enum StockHistoryType {
+  IN
+  OUT
+  ADJUSTMENT
+}
+
+enum NotificationType {
+  STOCK_ALERT
+  NEW_ORDER
+  PAYMENT
+  SYSTEM
+}
+
+model User {
+  id            String   @id @default(cuid())
+  name          String
+  email         String   @unique
+  phone         String?
+  password      String
+  role          UserRole @default(OWNER)
+  isActive      Boolean  @default(true)
+  isPremium     Boolean  @default(false)
+  address       String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  store         Store?         @relation("StoreOwner")
+  storeId       String?
+  refreshTokens RefreshToken[]
+  notifications Notification[]
+}
+
+model Store {
+  id           String   @id @default(cuid())
+  name         String
+  address      String
+  phone        String
+  email        String
+  businessType String
+  website      String?
+  description  String?
+  logo         String?
+  settings     String?
+  isActive     Boolean  @default(true)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  ownerId        String         @unique
+  owner          User           @relation("StoreOwner", fields: [ownerId], references: [id])
+
+  products       Product[]
+  categories     Category[]
+  customers      Customer[]
+  sales          Sale[]
+  suppliers      Supplier[]
+  employees      Employee[]
+  expenses       Expense[]
+  stockHistories StockHistory[]
+  notifications  Notification[]
+}
+
+model Product {
+  id            String   @id @default(cuid())
+  sku           String
+  name          String
+  category      String
+  stockQuantity Float    @default(0)
+  unitPrice     Float
+  buyingPrice   Float
+  isActive      Boolean  @default(true)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  storeId        String
+  store          Store          @relation(fields: [storeId], references: [id])
+  saleItems      SaleItem[]
+  stockHistories StockHistory[]
+
+  @@unique([sku, storeId])
+}
+
+model Category {
+  id        String   @id @default(cuid())
+  name      String
+  createdAt DateTime @default(now())
+
+  storeId String
+  store   Store  @relation(fields: [storeId], references: [id])
+
+  @@unique([name, storeId])
+}
+
+model Customer {
+  id            String   @id @default(cuid())
+  name          String
+  phone         String?
+  email         String?
+  address       String?
+  totalPurchase Float    @default(0)
+  totalPaid     Float    @default(0)
+  totalDue      Float    @default(0)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  storeId String
+  store   Store  @relation(fields: [storeId], references: [id])
+  sales   Sale[]
+}
+
+model Sale {
+  id            String   @id @default(cuid())
+  invoiceNumber String
+  totalAmount   Float
+  discount      Float    @default(0)
+  paidAmount    Float
+  dueAmount     Float    @default(0)
+  notes         String?
+  isCompleted   Boolean  @default(true)
+  saleDate      DateTime @default(now())
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  customerId String
+  customer   Customer @relation(fields: [customerId], references: [id])
+  storeId    String
+  store      Store    @relation(fields: [storeId], references: [id])
+  items      SaleItem[]
+
+  @@unique([invoiceNumber, storeId])
+}
+
+model SaleItem {
+  id          String @id @default(cuid())
+  productName String
+  quantity    Float
+  unitPrice   Float
+  totalPrice  Float
+
+  saleId    String
+  sale      Sale    @relation(fields: [saleId], references: [id], onDelete: Cascade)
+  productId String
+  product   Product @relation(fields: [productId], references: [id])
+}
+
+model Supplier {
+  id            String   @id @default(cuid())
+  supplierCode  String
+  name          String
+  company       String?
+  phone         String?
+  email         String?
+  address       String?
+  totalPurchase Float    @default(0)
+  totalPaid     Float    @default(0)
+  totalDue      Float    @default(0)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  storeId String
+  store   Store  @relation(fields: [storeId], references: [id])
+
+  @@unique([supplierCode, storeId])
+}
+
+model Employee {
+  id           String   @id @default(cuid())
+  employeeCode String
+  name         String
+  role         String?
+  phone        String?
+  email        String?
+  address      String?
+  salary       Float    @default(0)
+  paid         Float    @default(0)
+  due          Float    @default(0)
+  joinedAt     DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  storeId String
+  store   Store  @relation(fields: [storeId], references: [id])
+
+  @@unique([employeeCode, storeId])
+}
+
+model Expense {
+  id        String   @id @default(cuid())
+  title     String
+  amount    Float
+  category  String
+  note      String?
+  date      DateTime
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  storeId String
+  store   Store  @relation(fields: [storeId], references: [id])
+}
+
+model StockHistory {
+  id             String           @id @default(cuid())
+  quantityChange Float
+  type           StockHistoryType
+  note           String?
+  createdAt      DateTime         @default(now())
+
+  productId String
+  product   Product @relation(fields: [productId], references: [id])
+  storeId   String
+  store     Store   @relation(fields: [storeId], references: [id])
+}
+
+model Notification {
+  id        String           @id @default(cuid())
+  title     String
+  body      String
+  type      NotificationType
+  isRead    Boolean          @default(false)
+  createdAt DateTime         @default(now())
+
+  storeId String
+  store   Store  @relation(fields: [storeId], references: [id])
+  userId  String
+  user    User   @relation(fields: [userId], references: [id])
+}
+
+model RefreshToken {
+  id        String   @id @default(cuid())
+  token     String   @unique
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+}

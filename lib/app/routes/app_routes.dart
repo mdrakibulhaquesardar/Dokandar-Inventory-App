@@ -37,6 +37,8 @@ abstract class Routes {
   static const INVOICE_PREVIEW = _Paths.INVOICE_PREVIEW;
   static const APP_LOCK = _Paths.APP_LOCK;
   static const MANAGE_PIN = _Paths.MANAGE_PIN;
+  static const LOGIN = _Paths.LOGIN;
+  static const SIGNUP = _Paths.SIGNUP;
 
 }
 
@@ -76,4 +78,6 @@ abstract class _Paths {
   static const INVOICE_PREVIEW = '/invoice-preview';
   static const APP_LOCK = '/app-lock';
   static const MANAGE_PIN = '/manage-pin';
+  static const LOGIN = '/login';
+  static const SIGNUP = '/signup';
 }
